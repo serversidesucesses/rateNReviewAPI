@@ -1,0 +1,1 @@
+exports.routerQ = require('./questions');
