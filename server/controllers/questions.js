@@ -7,16 +7,16 @@ axios.defaults.headers.common['Authorization'] = process.env.Token;
 //  Questions -----------------------------------------------------------
 
 exports.get_questions = (req, res) => {
-  const { product_id, page, count } = req.query;
+  const { product_id, page } = req.query;
   axios.get('/qa/questions/', {
     params: {
       product_id,
       page,
-      count,
+      count: 1000,
     },
   })
     .then((response) => {
-      res.status(200).send(response.data);
+      res.status(200).send(response.data.results);
     })
     .catch((error) => {
       res.status(400).send(error);
