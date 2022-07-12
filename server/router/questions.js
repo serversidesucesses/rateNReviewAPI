@@ -16,5 +16,4 @@ router.post('/answers', controllers.questions.post_answers);
 router.put('/answers/helpful', controllers.questions.put_answHelpful);
 
 router.put('/reportA', controllers.questions.put_reportA);
-
 module.exports = router;

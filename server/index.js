@@ -7,10 +7,10 @@ const router = require('./router');
 const app = express();
 
 app.use(express.json());
-app.use('static', express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Add routes here
-app.use('/questions', router.routerQ);
+app.use('/', router);
 
 const PORT = process.env.PORT || 3000;
 

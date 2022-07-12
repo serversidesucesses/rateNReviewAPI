@@ -7,9 +7,14 @@ axios.defaults.headers.common['Authorization'] = process.env.Token;
 //  Questions -----------------------------------------------------------
 
 exports.get_questions = (req, res) => {
-  axios.get(`/qa/questions/?product_id=${req.query.product_id}&
-  ${req.query.page !== undefined ? `page=${req.query.page}` : null}
-  ${req.query.page !== null && req.query.count !== undefined ? `&count=${req.query.count}` : `count=${req.query.count}`}`)
+  const { product_id, page, count } = req.query;
+  axios.get('/qa/questions/', {
+    params: {
+      product_id,
+      page,
+      count,
+    },
+  })
     .then((response) => {
       res.status(200).send(response.data);
     })
@@ -39,9 +44,13 @@ exports.put_reportQ = (req, res) => {
 //  Answers -----------------------------------------------------------
 
 exports.get_answers = (req, res) => {
-  axios.get(`/qa/questions/${req.query.question_id}/answers/?
-  ${req.query.page !== undefined ? `page=${req.query.page}` : null}
-  ${req.query.page !== null && req.query.count !== undefined ? `&count=${req.query.count}` : `count=${req.query.count}`}`)
+  const { page, count } = req.query;
+  axios.get(`/qa/questions/${req.query.question_id}/answers/`, {
+    params: {
+      page,
+      count,
+    },
+  })
     .then((response) => res.status(200).send(response.data))
     .catch((err) => res.status(400).send(err));
 };
