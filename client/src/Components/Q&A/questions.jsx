@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function QuestionList() {
-  useState();
-
-  //useEffect componentDidMount() --> get the data for questions and answers 
+export default function QuestionList() {
+  //  useEffect componentDidMount() --> get the data for questions and answers
   return (
-    <div> </div>
+    <div>Hello </div>
   );
 }
