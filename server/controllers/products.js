@@ -3,7 +3,7 @@ const axios = require('axios');
 // need to require the .env file here
 // const url = `https://app-hrseei-api.herokuapp.com/api/fec2/hr-rfp`;
 axios.defaults.baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
-axios.defaults.headers.common['Authorization'] = process.env.gitToken;
+axios.defaults.headers.common['Authorization'] = process.env.Token;
 
 exports.getProductDetails = (req, res) => {
   console.log('product id is:', req.query.id);
