@@ -125,7 +125,7 @@ function ProductInformation() {
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "productInformation",
-    children: [category, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), productName, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "$", priceTag]
+    children: [category, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), productName]
   });
 }
 
@@ -144,29 +144,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 function StylePhoto(_ref) {
-  var photos = _ref.photos;
-
+  var photos = _ref.photos,
+      price = _ref.price,
+      setCurrentPrice = _ref.setCurrentPrice;
   // when a style is clicked, need to link the current price to the current style
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      currentPrice = _useState2[0],
-      setCurrentPrice = _useState2[1];
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
       src: photos.thumbnail_url,
@@ -176,7 +160,7 @@ function StylePhoto(_ref) {
         borderRadius: '50%'
       },
       onClick: function onClick() {
-        return setCurrentPrice(1);
+        return setCurrentPrice(price);
       }
     })
   });
@@ -261,6 +245,11 @@ function StyleSelector() {
       styleRow3 = _useState10[0],
       setStyleRow3 = _useState10[1];
 
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState12 = _slicedToArray(_useState11, 2),
+      currentPrice = _useState12[0],
+      setCurrentPrice = _useState12[1];
+
   var getStyleFromProductId = function getStyleFromProductId(productId) {
     axios({
       method: 'get',
@@ -305,52 +294,51 @@ function StyleSelector() {
                       switch (_context.prev = _context.next) {
                         case 0:
                           if (!(row1Count < 4)) {
-                            _context.next = 7;
+                            _context.next = 6;
                             break;
                           }
 
                           _context.next = 3;
                           return setStyleRow1(function (previousStyle) {
-                            return [].concat(_toConsumableArray(previousStyle), [currentStyleArray[i].photos[0]]);
+                            return [].concat(_toConsumableArray(previousStyle), [currentStyleArray[i]]);
                           });
 
                         case 3:
                           row1Count++;
-                          currentStyleArray[i].sale_price ? console.log(currentStyleArray[i].sale_price) : currentStyleArray[i].original_price;
-                          _context.next = 17;
-                          break;
-
-                        case 7:
-                          if (!(row2Count < 4)) {
-                            _context.next = 13;
-                            break;
-                          }
-
-                          _context.next = 10;
-                          return setStyleRow2(function (previousStyle) {
-                            return [].concat(_toConsumableArray(previousStyle), [currentStyleArray[i].photos[0]]);
-                          });
-
-                        case 10:
-                          row1Count++;
-                          _context.next = 17;
-                          break;
-
-                        case 13:
-                          if (!(row3Count < 4)) {
-                            _context.next = 17;
-                            break;
-                          }
-
                           _context.next = 16;
-                          return setStyleRow3(function (previousStyle) {
-                            return [].concat(_toConsumableArray(previousStyle), [currentStyleArray[i].photos[0]]);
+                          break;
+
+                        case 6:
+                          if (!(row2Count < 4)) {
+                            _context.next = 12;
+                            break;
+                          }
+
+                          _context.next = 9;
+                          return setStyleRow2(function (previousStyle) {
+                            return [].concat(_toConsumableArray(previousStyle), [currentStyleArray[i]]);
                           });
+
+                        case 9:
+                          row1Count++;
+                          _context.next = 16;
+                          break;
+
+                        case 12:
+                          if (!(row3Count < 4)) {
+                            _context.next = 16;
+                            break;
+                          }
+
+                          _context.next = 15;
+                          return setStyleRow3(function (previousStyle) {
+                            return [].concat(_toConsumableArray(previousStyle), [currentStyleArray[i]]);
+                          });
+
+                        case 15:
+                          row1Count++;
 
                         case 16:
-                          row1Count++;
-
-                        case 17:
                         case "end":
                           return _context.stop();
                       }
@@ -394,37 +382,43 @@ function StyleSelector() {
   // }
   // map over the array
 
-  var styles1 = styleRow1.map(function (photo, index) {
+  var styles1 = styleRow1.map(function (item, index) {
     return (
       /*#__PURE__*/
       // <li key={index}>{item}</li>
       // consider passing in the current price here as well
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        photos: photo
+        photos: item.photos[0],
+        price: item.sale_price ? item.sale_price : item.original_price,
+        setCurrentPrice: setCurrentPrice
       }, index)
     );
   });
-  var styles2 = styleRow2.map(function (photo, index) {
+  var styles2 = styleRow2.map(function (item, index) {
     return (
       /*#__PURE__*/
       //<li key={index}>{item}</li>
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        photos: photo
+        photos: item.photos[0],
+        price: item.sale_price ? item.sale_price : item.original_price,
+        setCurrentPrice: setCurrentPrice
       }, index)
     );
   });
-  var styles3 = styleRow3.map(function (photo, index) {
+  var styles3 = styleRow3.map(function (item, index) {
     return (
       /*#__PURE__*/
       //<li key={index}>{item}</li>
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        photos: photo
+        photos: item.photos[0],
+        price: item.sale_price ? item.sale_price : item.original_price,
+        setCurrentPrice: setCurrentPrice
       }, index)
     );
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "styleSelector",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: ["$", currentPrice, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("b", {
         children: "STYLE "
       }), "\u25B8 ", currentStyleName]

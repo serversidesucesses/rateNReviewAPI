@@ -11,6 +11,9 @@ export default function StyleSelector() {
   const [styleRow2, setStyleRow2] = useState([]);
   const [styleRow3, setStyleRow3] = useState([]);
 
+  const [currentPrice, setCurrentPrice] = useState(0);
+
+
 
   const getStyleFromProductId = (productId) => {
     axios({
@@ -48,16 +51,14 @@ export default function StyleSelector() {
       for (let i = 0; i < currentStyleArray.length; i++) {
         if (row1Count < 4) {
           // console.log('styleRow1 is: ', styleRow1)
-          await setStyleRow1((previousStyle) => [...previousStyle, currentStyleArray[i].photos[0]]);
+          await setStyleRow1((previousStyle) => [...previousStyle, currentStyleArray[i]]);
           row1Count++;
-
-          currentStyleArray[i].sale_price ? console.log(currentStyleArray[i].sale_price) : currentStyleArray[i].original_price ;
         }
         else if (row2Count < 4) {
-          await setStyleRow2((previousStyle) => [...previousStyle, currentStyleArray[i].photos[0]]);
+          await setStyleRow2((previousStyle) => [...previousStyle, currentStyleArray[i]]);
           row1Count++;
         } else if (row3Count < 4) {
-          await setStyleRow3((previousStyle) => [...previousStyle, currentStyleArray[i].photos[0]]);
+          await setStyleRow3((previousStyle) => [...previousStyle, currentStyleArray[i]]);
           row1Count++;
         }
       }
@@ -74,29 +75,30 @@ export default function StyleSelector() {
 
 
   // map over the array
-  const styles1 = styleRow1.map((photo, index) => {
+  const styles1 = styleRow1.map((item, index) => {
     return (
       // <li key={index}>{item}</li>
       // consider passing in the current price here as well
-      <StylePhoto key={index} photos={photo} />
+      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice}/>
     )
   })
-  const styles2 = styleRow2.map((photo, index) => {
+  const styles2 = styleRow2.map((item, index) => {
     return (
      //<li key={index}>{item}</li>
-      <StylePhoto key={index} photos={photo}/>
+      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice}/>
     )
   })
-  const styles3 = styleRow3.map((photo, index) => {
+  const styles3 = styleRow3.map((item, index) => {
     return (
       //<li key={index}>{item}</li>
-      <StylePhoto key={index} photos={photo}/>
+      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice}/>
     )
   })
 
   return (
 
     <div className='styleSelector'>
+      ${currentPrice}
       <div><b>STYLE </b>▸ {currentStyleName}</div>
       <ul className='styleRow1'>
         {styles1}

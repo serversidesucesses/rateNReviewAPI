@@ -22,7 +22,7 @@ export default function ProductInformation() {
       .then((response) => {
         console.log(response.data.name);
         setProductName(response.data.name);
-        setPriceTag(response.data.default_price)
+        setPriceTag(response.data.default_price);
       })
       .catch((error) => {
         console.log('Error in getting data from getDataFromProductId', error);
@@ -34,17 +34,14 @@ export default function ProductInformation() {
     getDataFromProductId(40344);
   }, [])
 
+
+
   return (
     <div className='productInformation'>
       {category}
       <br />
       {productName}
-      <br />
-      ${priceTag}
-      {/* {ratings}
-      <div className='categoryName'>{this.props.productInfo.category}</div>
-      <div className='productName'><b>{this.props.productInfo.name.toUpperCase()}</b></div>
-      <div className='priceTag'>{displayPrice}</div> */}
+
     </div>
 
   );
