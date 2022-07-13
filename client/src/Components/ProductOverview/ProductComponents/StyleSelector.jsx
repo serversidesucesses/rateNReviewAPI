@@ -7,11 +7,12 @@ export default function StyleSelector() {
 
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyleName, setCurrentStyleName] = useState('Placeholder current style name');
+  const [currentPrice, setCurrentPrice] = useState(0);
+
   const [styleRow1, setStyleRow1] = useState([]);
   const [styleRow2, setStyleRow2] = useState([]);
   const [styleRow3, setStyleRow3] = useState([]);
 
-  const [currentPrice, setCurrentPrice] = useState(0);
 
 
 
@@ -78,20 +79,20 @@ export default function StyleSelector() {
   const styles1 = styleRow1.map((item, index) => {
     return (
       // <li key={index}>{item}</li>
-      // consider passing in the current price here as well
-      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice}/>
+      // currentPirce and currentStyleName are both passed in
+      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice} currentStyleName={item.name}setCurrentStyleName={setCurrentStyleName}/>
     )
   })
   const styles2 = styleRow2.map((item, index) => {
     return (
      //<li key={index}>{item}</li>
-      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice}/>
+      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice} currentStyleName={item.name}setCurrentStyleName={setCurrentStyleName}/>
     )
   })
   const styles3 = styleRow3.map((item, index) => {
     return (
       //<li key={index}>{item}</li>
-      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice}/>
+      <StylePhoto key={index} photos={item.photos[0]} price={item.sale_price ? item.sale_price : item.original_price} setCurrentPrice={setCurrentPrice} currentStyleName={item.name}setCurrentStyleName={setCurrentStyleName}/>
     )
   })
 

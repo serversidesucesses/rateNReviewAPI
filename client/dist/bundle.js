@@ -149,7 +149,9 @@ __webpack_require__.r(__webpack_exports__);
 function StylePhoto(_ref) {
   var photos = _ref.photos,
       price = _ref.price,
-      setCurrentPrice = _ref.setCurrentPrice;
+      setCurrentPrice = _ref.setCurrentPrice,
+      currentStyleName = _ref.currentStyleName,
+      setCurrentStyleName = _ref.setCurrentStyleName;
   // when a style is clicked, need to link the current price to the current style
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -160,7 +162,7 @@ function StylePhoto(_ref) {
         borderRadius: '50%'
       },
       onClick: function onClick() {
-        return setCurrentPrice(price);
+        return setCurrentPrice(price), setCurrentStyleName(currentStyleName);
       }
     })
   });
@@ -230,25 +232,25 @@ function StyleSelector() {
       currentStyleName = _useState4[0],
       setCurrentStyleName = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      styleRow1 = _useState6[0],
-      setStyleRow1 = _useState6[1];
+      currentPrice = _useState6[0],
+      setCurrentPrice = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      styleRow2 = _useState8[0],
-      setStyleRow2 = _useState8[1];
+      styleRow1 = _useState8[0],
+      setStyleRow1 = _useState8[1];
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      styleRow3 = _useState10[0],
-      setStyleRow3 = _useState10[1];
+      styleRow2 = _useState10[0],
+      setStyleRow2 = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState12 = _slicedToArray(_useState11, 2),
-      currentPrice = _useState12[0],
-      setCurrentPrice = _useState12[1];
+      styleRow3 = _useState12[0],
+      setStyleRow3 = _useState12[1];
 
   var getStyleFromProductId = function getStyleFromProductId(productId) {
     axios({
@@ -386,11 +388,13 @@ function StyleSelector() {
     return (
       /*#__PURE__*/
       // <li key={index}>{item}</li>
-      // consider passing in the current price here as well
+      // currentPirce and currentStyleName are both passed in
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         photos: item.photos[0],
         price: item.sale_price ? item.sale_price : item.original_price,
-        setCurrentPrice: setCurrentPrice
+        setCurrentPrice: setCurrentPrice,
+        currentStyleName: item.name,
+        setCurrentStyleName: setCurrentStyleName
       }, index)
     );
   });
@@ -401,7 +405,9 @@ function StyleSelector() {
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         photos: item.photos[0],
         price: item.sale_price ? item.sale_price : item.original_price,
-        setCurrentPrice: setCurrentPrice
+        setCurrentPrice: setCurrentPrice,
+        currentStyleName: item.name,
+        setCurrentStyleName: setCurrentStyleName
       }, index)
     );
   });
@@ -412,7 +418,9 @@ function StyleSelector() {
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         photos: item.photos[0],
         price: item.sale_price ? item.sale_price : item.original_price,
-        setCurrentPrice: setCurrentPrice
+        setCurrentPrice: setCurrentPrice,
+        currentStyleName: item.name,
+        setCurrentStyleName: setCurrentStyleName
       }, index)
     );
   });
