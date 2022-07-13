@@ -5,4 +5,11 @@ import ProductMain from './Components/ProductOverview/ProductMain.jsx';
 
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(<QuestionList />, rootElement);
+function App() {
+  return(
+    <ProductMain />
+    <QuestionList />
+  )
+}
+
+ReactDOM.render(<App />, rootElement);
