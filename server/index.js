@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// Add routes here
+// all routes go to router folder index.js
 app.use('/', router);
 
 const PORT = process.env.PORT || 3000;
