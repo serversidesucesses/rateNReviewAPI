@@ -8,6 +8,7 @@ axios.defaults.headers.common['Authorization'] = process.env.Token;
 
 exports.get_questions = (req, res) => {
   const { product_id, page } = req.query;
+  console.log(product_id)
   axios.get('/qa/questions/', {
     params: {
       product_id,
@@ -32,7 +33,7 @@ exports.post_questions = (req, res) => {
 exports.put_questionHelpful = (req, res) => {
   axios.put(`/qa/questions/${req.query.question_id}/helpful`)
     .then(() => res.sendStatus(204))
-    .catch(() => res.sendStatus(404));
+    .catch(() => res.sendStatus(400));
 };
 
 exports.put_reportQ = (req, res) => {

@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import QuestionContainer from './questionContainer.jsx';
+import {Question_Answer} from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
@@ -28,15 +29,26 @@ export default function QuestionList() {
     fetchData();
   }, [count]);
 
-  console.log(datalength, count);
+  function fetchHelpfulData(question_id) {
+    console.log(question_id);
+    axios.put(`/questions/questions/helpful/?question_id=${question_id}`)
+      .then(() => {
+        fetchData();
+      })
+      .catch((error) => console.log(error));
+  }
+
+  console.log(questions, count);
 
   return (
-    <div>
+    <Question_Answer>
       { (questions === undefined || questions.length === 0)
-        ? null : questions.map((question) => <QuestionContainer question={question} />) }
-      {datalength > count
+        ? null
+       : questions.map((question) => <QuestionContainer helpfulness={fetchHelpfulData} question={question} />) }
+
+      {datalength > count || questions.length === 0
         ? <button type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>MORE ANSWERED QUESTIONS</button>
         : null }
-    </div>
+    </Question_Answer>
   );
 }
