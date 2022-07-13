@@ -23,13 +23,15 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
+const router = require('./router');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// Add routes here
+// all routes go to router folder index.js
+app.use('/', router);
 
 // River routes for product overview
 // const routerProducts = require('./router/products.js');

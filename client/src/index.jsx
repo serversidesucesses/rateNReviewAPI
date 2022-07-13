@@ -1,5 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReviewSection from './Components/Ratings&Reviews/ratingsreviews.jsx';
+import QuestionList from './Components/Q&A/questions.jsx';
+import ProductMain from './Components/ProductOverview/ProductMain.jsx';
 
-ReactDOM.render(<ReviewSection />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
+
+function App() {
+  return(
+    <ProductMain />
+    <QuestionList />
+  )
+}
+
+ReactDOM.render(<App />, rootElement);

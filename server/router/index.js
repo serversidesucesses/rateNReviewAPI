@@ -1,9 +1,14 @@
 const express = require('express');
 
-const router = express.Router();
+const rootRouter = express.Router();
 
-router.use('/products', require('./products.js'));
+const routerQ = require('./questions');
 
-router.use('/reviews', require('./reviews.js'));
+const routerP = require('./products');
 
-module.exports = router;
+rootRouter.use('/questions', routerQ);
+// all ticket from /products goes to
+// routerP file products.js
+rootRouter.use('/products', routerP);
+
+module.exports = rootRouter;

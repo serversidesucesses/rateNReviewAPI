@@ -1,8 +1,16 @@
-var controller = require('../controllers/products.js');
-var router = require('express').Router();
+const router = require('express').Router();
+const controller = require('../controllers');
 
-router.get('/productdetails', controller.getProductDetails);
-router.get('/product/styles', controller.getProductStyles);
-router.post('/addToCart', controller.addToCart);
+// different route needed
+// get product details
+router.get('/productdetails', controller.products.getProductDetails);
+
+router.get('/product/styles', controller.products.getProductStyles);
+
+router.post('/click', controller.products.handleClick)
+
+// router.post('/addToCart', controller.addToCart);
+
+// router.post('/clientClick', controller.clientClick);
 
 module.exports = router;
