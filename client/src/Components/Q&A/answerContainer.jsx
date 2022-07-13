@@ -1,7 +1,8 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import Photos from './photos.jsx';
-import { Button } from '../styles/Q&A/buttons.styled';
+import { Button, ButtonContainerAns } from '../styles/Q&A/buttons.styled';
+import { Answer, Span } from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
@@ -20,20 +21,25 @@ export default function AnswerContainer({ answer, helpfulness }) {
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
 
   return (
-    <div>
-      <p>{`A: ${answer.body}`}</p>
+    <Answer>
+      <p>{answer.body}</p>
       {answer.photos.length === 0
         ? null : answer.photos.map((photo) => <Photos photos={photo} />)}
 
-      {(answer.answerer_name === 'Seller' || answer.answerer_name === 'seller')
-        ? <span>by <b>Seller</b></span> : <span>by {answer.answerer_name}</span> }
-
-      <span>{`, ${date.toLocaleDateString(undefined, options)}`}</span>
-      <span>|</span>
-      <Button type="button" onClick={() => helpfulness(answer.answer_id)}>Helpful?</Button>
-      <span>{`Yes (${answer.helpfulness})`}</span>
-      <span>|</span>
-      {reported ? <span>Reported</span> : <Button type="button" onClick={() => report(answer.answer_id)}>Report</Button>}
-    </div>
+      <ButtonContainerAns>
+        <div>
+          {(answer.answerer_name === 'Seller' || answer.answerer_name === 'seller')
+            ? <Span>by <b>Seller</b>, </Span> : <Span>by {answer.answerer_name}, </Span> }
+          <Span>{`${date.toLocaleDateString(undefined, options)}`}</Span>
+        </div>
+        <span>|</span>
+        <div>
+          <Button type="button" onClick={() => helpfulness(answer.answer_id)}>Helpful?</Button>
+          <Span>{`  Yes (${answer.helpfulness})`}</Span>
+        </div>
+        <span>|</span>
+        {reported ? <span>Reported</span> : <Button type="button" onClick={() => report(answer.answer_id)}>Report</Button>}
+      </ButtonContainerAns>
+    </Answer>
   );
 }

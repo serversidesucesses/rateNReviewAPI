@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import QuestionContainer from './questionContainer.jsx';
-import {Question_Answer} from '../styles/Q&A/container.styled';
+import { Question_Answer } from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
@@ -38,13 +38,12 @@ export default function QuestionList() {
       .catch((error) => console.log(error));
   }
 
-  console.log(questions, count);
-
   return (
     <Question_Answer>
       { (questions === undefined || questions.length === 0)
         ? null
-       : questions.map((question) => <QuestionContainer helpfulness={fetchHelpfulData} question={question} />) }
+        : questions.map((question) => <QuestionContainer helpfulness={fetchHelpfulData}
+            question={question} />) }
 
       {datalength > count || questions.length === 0
         ? <button type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>MORE ANSWERED QUESTIONS</button>

@@ -15,7 +15,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _photos_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./photos.jsx */ "./client/src/Components/Q&A/photos.jsx");
 /* harmony import */ var _styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/Q&A/buttons.styled */ "./client/src/Components/styles/Q&A/buttons.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -29,6 +30,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* eslint-disable import/extensions */
+
 
 
 
@@ -62,41 +64,47 @@ function AnswerContainer(_ref) {
     day: 'numeric',
     year: 'numeric'
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-      children: "A: ".concat(answer.body)
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Answer, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: answer.body
     }), answer.photos.length === 0 ? null : answer.photos.map(function (photo) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_photos_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_photos_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
         photos: photo
       });
-    }), answer.answerer_name === 'Seller' || answer.answerer_name === 'seller' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-      children: ["by ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("b", {
-        children: "Seller"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.ButtonContainerAns, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [answer.answerer_name === 'Seller' || answer.answerer_name === 'seller' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+          children: ["by ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+            children: "Seller"
+          }), ", "]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+          children: ["by ", answer.answerer_name, ", "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+          children: "".concat(date.toLocaleDateString(undefined, options))
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: "|"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          type: "button",
+          onClick: function onClick() {
+            return helpfulness(answer.answer_id);
+          },
+          children: "Helpful?"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+          children: "  Yes (".concat(answer.helpfulness, ")")
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: "|"
+      }), reported ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: "Reported"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        type: "button",
+        onClick: function onClick() {
+          return report(answer.answer_id);
+        },
+        children: "Report"
       })]
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-      children: ["by ", answer.answerer_name]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      children: ", ".concat(date.toLocaleDateString(undefined, options))
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      children: "|"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
-      type: "button",
-      onClick: function onClick() {
-        return helpfulness(answer.answer_id);
-      },
-      children: "Helpful?"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      children: "Yes (".concat(answer.helpfulness, ")")
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      children: "|"
-    }), reported ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      children: "Reported"
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
-      type: "button",
-      onClick: function onClick() {
-        return report(answer.answer_id);
-      },
-      children: "Report"
     })]
   });
 }
@@ -192,26 +200,10 @@ function QuestionContainer(_ref) {
       count = _useState4[0],
       setCount = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      dataLength = _useState6[0],
-      setDataLength = _useState6[1]; // fetch all data --> refactor later
-
-
-  function fetchAllAnswers() {
-    axios.get('/questions/answers', {
-      params: {
-        question_id: question.question_id,
-        page: 1,
-        count: 1000
-      }
-    }).then(function (_ref2) {
-      var data = _ref2.data;
-      return setDataLength(data.results.length);
-    })["catch"](function (error) {
-      return console.log(error);
-    });
-  }
+      allAnswers = _useState6[0],
+      setStatus = _useState6[1];
 
   function fetchAnswerData() {
     axios.get('/questions/answers', {
@@ -220,8 +212,8 @@ function QuestionContainer(_ref) {
         page: 1,
         count: count
       }
-    }).then(function (_ref3) {
-      var data = _ref3.data;
+    }).then(function (_ref2) {
+      var data = _ref2.data;
       return setAnswers(data.results);
     })["catch"](function (error) {
       return console.log(error);
@@ -230,7 +222,6 @@ function QuestionContainer(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchAnswerData();
-    fetchAllAnswers();
   }, [count]); // only sort two
 
   function fetchHelpfulData(answer_id) {
@@ -241,19 +232,30 @@ function QuestionContainer(_ref) {
     });
   }
 
+  function _onClick() {
+    allAnswers ? setCount(2) : setCount(1000);
+    allAnswers ? setStatus(false) : setStatus(true);
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-        children: "Q: ".concat(question.question_body)
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Q, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          children: "Q: "
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          children: question.question_body
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.ButtonContainer, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
-          type: "button",
-          onClick: function onClick() {
-            return helpfulness(question.question_id);
-          },
-          children: "Helpful?"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
-          children: "Yes (".concat(question.question_helpfulness, ")")
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            type: "button",
+            onClick: function onClick() {
+              return helpfulness(question.question_id);
+            },
+            children: "Helpful?"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+            children: "Yes (".concat(question.question_helpfulness, ")")
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
           children: "|"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
@@ -261,20 +263,36 @@ function QuestionContainer(_ref) {
           children: "Add Answer"
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      children: answers.map(function (answer) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          helpfulness: fetchHelpfulData,
-          answer: answer
-        });
-      })
-    }), dataLength >= count ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Div, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.A, {
+        children: "A: "
+      }), allAnswers ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.More_Answer, {
+        children: answers.map(function (answer) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            helpfulness: fetchHelpfulData,
+            answer: answer
+          });
+        })
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [answers.map(function (answer) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            helpfulness: fetchHelpfulData,
+            answer: answer
+          });
+        }), " "]
+      })]
+    }), allAnswers && answers.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      type: "button",
       onClick: function onClick() {
-        return setCount(function (prevCount) {
-          return prevCount + 2;
-        });
+        return _onClick();
       },
-      children: "LOAD MORE ANSWERS"
+      children: "Collapse"
+    }) : null, !allAnswers && answers.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      type: "button",
+      onClick: function onClick() {
+        return _onClick();
+      },
+      children: "SEE MORE ANSWERS"
     }) : null]
   });
 }
@@ -362,7 +380,6 @@ function QuestionList() {
     });
   }
 
-  console.log(questions, count);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_2__.Question_Answer, {
     children: [questions === undefined || questions.length === 0 ? null : questions.map(function (question) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_questionContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -393,16 +410,18 @@ function QuestionList() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Button": () => (/* binding */ Button),
-/* harmony export */   "ButtonContainer": () => (/* binding */ ButtonContainer)
+/* harmony export */   "ButtonContainer": () => (/* binding */ ButtonContainer),
+/* harmony export */   "ButtonContainerAns": () => (/* binding */ ButtonContainerAns)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  cursor: pointer;\n"])));
-var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 200px;\n"])));
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  cursor: pointer;\n  font-size: 14px;\n  font-family: Times;\n"])));
+var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 190px;\n  font-size: 14px;\n"])));
+var ButtonContainerAns = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 320px;\n  font-size: 14px;\n  margin-top: 20px;\n"])));
 
 /***/ }),
 
@@ -415,12 +434,17 @@ var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "A": () => (/* binding */ A),
+/* harmony export */   "Answer": () => (/* binding */ Answer),
+/* harmony export */   "Div": () => (/* binding */ Div),
+/* harmony export */   "More_Answer": () => (/* binding */ More_Answer),
+/* harmony export */   "Q": () => (/* binding */ Q),
 /* harmony export */   "Question": () => (/* binding */ Question),
 /* harmony export */   "Question_Answer": () => (/* binding */ Question_Answer),
 /* harmony export */   "Span": () => (/* binding */ Span)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -430,7 +454,12 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var Question_Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  height: 500px;\n  width: 70%;\n  margin: 0 auto;\n  overflow: scroll;\n  border: 2px solid black;\n  padding: 10px;\n"])));
 var Question = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  padding: 10px;\n"])));
-var Span = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: inline-block;\n  "])));
+var Span = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding-left: 5px;\n  "])));
+var More_Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  height: 250px;\n  overflow: scroll;\n  padding: 10px;\n  border: 2px solid black;\n"])));
+var Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: space-between;\n  justify-content: center;\n  padding: 10px;\n  margin-top: -26px;\n  margin-bottom: 10px;\n"])));
+var Div = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  padding: 10px;\n\n"])));
+var A = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding-left: 5px;\n  font-size: 18px;\n"])));
+var Q = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: 18px;\n\n  span {\n    margin-right: 10px;\n  }\n"])));
 
 /***/ }),
 

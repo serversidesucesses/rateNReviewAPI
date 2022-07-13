@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import AnswerContainer from './answerContainer.jsx';
 import { Button, ButtonContainer } from '../styles/Q&A/buttons.styled';
-import { Question, Span } from '../styles/Q&A/container.styled';
+import { Question, Span, More_Answer, Div, A, Q } from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
@@ -14,19 +14,7 @@ export default function QuestionContainer({ question, helpfulness }) {
   // get answers --> sort by helpfulness
   const [answers, setAnswers] = useState([]);
   const [count, setCount] = useState(2);
-  const [dataLength, setDataLength] = useState(0);
-  // fetch all data --> refactor later
-  function fetchAllAnswers() {
-    axios.get('/questions/answers', {
-      params: {
-        question_id: question.question_id,
-        page: 1,
-        count: 1000,
-      },
-    })
-      .then(({ data }) => setDataLength(data.results.length))
-      .catch((error) => console.log(error));
-  }
+  const [allAnswers, setStatus] = useState(false);
 
   function fetchAnswerData() {
     axios.get('/questions/answers', {
@@ -42,7 +30,6 @@ export default function QuestionContainer({ question, helpfulness }) {
 
   useEffect(() => {
     fetchAnswerData();
-    fetchAllAnswers();
   }, [count]);
   // only sort two
 
@@ -54,25 +41,43 @@ export default function QuestionContainer({ question, helpfulness }) {
       .catch((error) => console.log(error));
   }
 
+  function onClick() {
+    allAnswers ? setCount(2)  : setCount(1000) ;
+    allAnswers ? setStatus(false) : setStatus(true);
+  }
   return (
     <div>
       <Question>
-        <p>{`Q: ${question.question_body}`}</p>
+        <Q>
+          <span>Q: </span>
+          <p>{question.question_body}</p>
+        </Q>
         <ButtonContainer>
-          <Button type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</Button>
-          <Span>{`Yes (${question.question_helpfulness})`}</Span>
+          <div>
+            <Button type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</Button>
+            <Span>{`Yes (${question.question_helpfulness})`}</Span>
+          </div>
           <Span>|</Span>
           <Button type="button">Add Answer</Button>
         </ButtonContainer>
       </Question>
-      <div>
-        {
-        answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)
-        }
-      </div>
-      { dataLength >= count
-        ? <div onClick={() => setCount((prevCount) => prevCount + 2)}>LOAD MORE ANSWERS</div>
+
+      <Div>
+        <A>A: </A>
+        { allAnswers
+          ? <More_Answer>
+            { answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)}
+          </More_Answer>
+
+          : <div>{
+            answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)} </div> }
+      </Div>
+
+      {(allAnswers && answers.length > 1)
+        ? <Button type="button" onClick={() => onClick()}>Collapse</Button>
         : null }
+
+      {(!allAnswers && answers.length > 1) ? <Button type="button" onClick={() => onClick()}>SEE MORE ANSWERS</Button> : null}
 
     </div>
   );
