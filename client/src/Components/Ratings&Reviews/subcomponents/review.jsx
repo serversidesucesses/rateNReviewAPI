@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 // import Stars from './stars';
-// import ReviewResponse from './reviewresponse';
 
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -35,8 +34,11 @@ export default function Review({ review }) {
       <small>
         {`${review.reviewer_name},  ${reviewDate}`}
       </small>
+
       <h3>{review.summary.slice(0, 250)}</h3>
+
       <p>{review.body}</p>
+
       {review.recommend && <small>I recommend this product</small>}
       {review.response && <p>{review.response}</p>}
       <small>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import SortView from './subcomponents/sortview';
+import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 
 const sortType = {
@@ -35,13 +35,13 @@ export default function ReviewSection() {
       .catch((err) => console.log(err));
   }, [sortOption, count]);
 
-  const selectSort = (type) => {
-    setSortOption(type);
+  const selectHandler = (event) => {
+    setSortOption(event.target.value);
   };
 
   return (
     <div>
-      {/* <SortView select={selectSort} /> */}
+      <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
       <ReviewList reviews={reviews} />
 
       <button type="button" onClick={loadMoreReviews}>More Reviews</button>

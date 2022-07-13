@@ -15,8 +15,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _subcomponents_reviewslist_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subcomponents/reviewslist.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/reviewslist.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _subcomponents_sortview_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subcomponents/sortview.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/sortview.jsx");
+/* harmony import */ var _subcomponents_reviewslist_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./subcomponents/reviewslist.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/reviewslist.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -30,7 +31,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
- // import SortView from './subcomponents/sortview';
+
 
 
 
@@ -84,18 +85,21 @@ function ReviewSection() {
     });
   }, [sortOption, count]);
 
-  var selectSort = function selectSort(type) {
-    setSortOption(type);
+  var selectHandler = function selectHandler(event) {
+    setSortOption(event.target.value);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_subcomponents_reviewslist_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_subcomponents_sortview_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      selectHandler: selectHandler,
+      reviewCount: reviews.length
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_subcomponents_reviewslist_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
       reviews: reviews
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
       type: "button",
       onClick: loadMoreReviews,
       children: "More Reviews"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
       children: "Add a Review"
     })]
   });
@@ -133,7 +137,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
  // import Stars from './stars';
-// import ReviewResponse from './reviewresponse';
 
 
 
@@ -223,6 +226,48 @@ function ReviewsList(_ref) {
         review: review
       });
     })
+  });
+}
+
+/***/ }),
+
+/***/ "./client/src/Components/Ratings&Reviews/subcomponents/sortview.jsx":
+/*!**************************************************************************!*\
+  !*** ./client/src/Components/Ratings&Reviews/subcomponents/sortview.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SortBar)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function SortBar(_ref) {
+  var selectHandler = _ref.selectHandler,
+      reviewCount = _ref.reviewCount;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+      children: [reviewCount, ' ', "reviews, sorted by", ' ']
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+      name: "sort-select",
+      id: "sort-select",
+      onChange: selectHandler,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: "relevance",
+        children: "relevance"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: "helpful",
+        children: "helpful"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: "newest",
+        children: "newest"
+      })]
+    })]
   });
 }
 
