@@ -41,8 +41,6 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 // // console.log(routerProducts);
 // // console.log(routerReview);
 
-// app.use('/products', routerProducts);
-// app.use('/reviews', routerReview);
 // // River routes end
 app.use(require('./router/index'));
 

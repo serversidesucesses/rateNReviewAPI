@@ -18,15 +18,17 @@ exports.listReviews = (req, res) => {
       count,
       sort,
       product_id
-    }
+    },
   })
     .then((response) => res.status(200).send(response.data))
-    .catch((err) => res.status(404).send(err));
+    .catch((err) => {
+      console.log(err);
+      return res.status(404).send(err)});
 };
 
 exports.getReviewMetadata = (req, res) => {
   const { product_id } = req.query;
-  axios.get('/meta', {
+  axios.get('/reviews/meta', {
     params: {
       product_id
     }
@@ -36,21 +38,26 @@ exports.getReviewMetadata = (req, res) => {
 };
 
 exports.addReview = (req, res) => {
-  axios.post('/', { body: req.query })
+  axios.post('/reviews', { body: req.query })
     .then((response) => res.status(201).send(response))
     .catch((err) => res.status(404).send(err));
 };
 
 exports.reviewHelpful = (req, res) => {
   const { review_id } = req.query;
-  axios.put(`/${review_id}/helpful`)
-    .then((response) => res.status(204).send(response))
-    .catch((err) => res.status(404).send(err));
+  console.log(review_id);
+  axios.put(`/reviews/${review_id}/helpful`)
+    .then((response) => res.status(204).send(response.statusText))
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send(err);
+    });
 };
 
 exports.reportReview = (req, res) => {
   const { review_id } = req.query;
-  axios.put(`/${review_id}/report`)
-    .then((response) => res.status(204).send(response))
+  console.log(review_id);
+  axios.put(`/reviews/${review_id}/report`)
+    .then((response) => res.status(204).send(response.statusText))
     .catch((err) => res.status(404).send(err));
 };
