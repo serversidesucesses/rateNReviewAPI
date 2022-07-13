@@ -1,4 +1,8 @@
 .env
 node_modules
+<<<<<<< HEAD
 client/dist/
+=======
+/client/dist
+>>>>>>> main
 # remove dist from gitignore when deploying application

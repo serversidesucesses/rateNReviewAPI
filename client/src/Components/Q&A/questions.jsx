@@ -59,7 +59,6 @@ export default function QuestionList() {
   }
 
   return (
-<<<<<<< HEAD
     <>
       <Search onSearch={filter} />
       <Question_Answer>
@@ -72,8 +71,5 @@ export default function QuestionList() {
           : null }
       </Question_Answer>
     </>
-=======
-    <div>Hello</div>
->>>>>>> main
   );
 }
