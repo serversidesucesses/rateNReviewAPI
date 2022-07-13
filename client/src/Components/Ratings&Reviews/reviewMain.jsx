@@ -3,7 +3,7 @@ import axios from 'axios';
 import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 
-export default function ReviewSection() {
+export default function ReviewMain() {
   const [reviews, setReviews] = useState([]);
   const [sortOption, setSortOption] = useState('relevant');
   const [didMount, setDidMount] = useState(false);
