@@ -1,5 +1,5 @@
 .env
 node_modules
-*.map
-*bundle.js
+**/bundle.js
+**/bundle.js.map
 # remove dist from gitignore when deploying application
