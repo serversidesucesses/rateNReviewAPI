@@ -36,11 +36,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var sortType = {
-  newest: 'newest',
-  helpful: 'helpful',
-  relevant: 'relevant'
-};
 function ReviewSection() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -87,6 +82,7 @@ function ReviewSection() {
 
   var selectHandler = function selectHandler(event) {
     setSortOption(event.target.value);
+    setCount(2);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -155,9 +151,9 @@ function Review(_ref) {
       setHelpCount = _useState2[1]; // const [notClicked, setClick] = useState(true);
 
 
-  var helpHandler = function helpHandler(event) {
+  var helpHandler = function helpHandler() {
     axios__WEBPACK_IMPORTED_MODULE_1___default().put("/reviews/mark/helpful?review_id=".concat(review.review_id)).then(function (response) {
-      console.log(response);
+      // console.log(response);
       setHelpCount(function (prevCount) {
         return prevCount + 1;
       }); // setDidClick(false);
@@ -166,9 +162,9 @@ function Review(_ref) {
     });
   };
 
-  var reportHandler = function reportHandler(event) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().put("/reviews/mark/report?review_id=".concat(review.review_id)).then(function (response) {
-      console.log(response); // setDidClick(false);
+  var reportHandler = function reportHandler() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().put("/reviews/mark/report?review_id=".concat(review.review_id)).then(function (response) {// console.log(response);
+      // setDidClick(false);
     })["catch"](function (err) {
       console.log(err);
     });

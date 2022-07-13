@@ -3,12 +3,6 @@ import axios from 'axios';
 import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 
-const sortType = {
-  newest: 'newest',
-  helpful: 'helpful',
-  relevant: 'relevant',
-};
-
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
   const [sortOption, setSortOption] = useState('relevant');
@@ -37,6 +31,7 @@ export default function ReviewSection() {
 
   const selectHandler = (event) => {
     setSortOption(event.target.value);
+    setCount(2);
   };
 
   return (

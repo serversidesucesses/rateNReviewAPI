@@ -9,23 +9,23 @@ export default function Review({ review }) {
   const [helpCount, setHelpCount] = useState(review.helpfulness);
   // const [notClicked, setClick] = useState(true);
 
-  const helpHandler = (event) => {
+  const helpHandler = () => {
     axios.put(`/reviews/mark/helpful?review_id=${review.review_id}`)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setHelpCount((prevCount) => prevCount + 1);
         // setDidClick(false);
       })
       .catch((err) => {console.log(err)});
   };
 
-  const reportHandler = (event) => {
+  const reportHandler = () => {
     axios.put(`/reviews/mark/report?review_id=${review.review_id}`)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         // setDidClick(false);
       })
-      .catch((err) => {console.log(err)});
+      .catch((err) => { console.log(err); });
   };
 
   return (
