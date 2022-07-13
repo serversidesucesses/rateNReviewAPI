@@ -7,8 +7,10 @@ const rootElement = document.getElementById('root');
 
 function App() {
   return(
-    <ProductMain />
-    <QuestionList />
+    <>
+      <ProductMain />
+      <QuestionList />
+    </>
   )
 }
 
