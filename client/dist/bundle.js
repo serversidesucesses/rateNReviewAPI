@@ -14516,9 +14516,16 @@ var Je = function () {
 
 /******/ 	});
 /************************************************************************/
+<<<<<<< HEAD
+<<<<<<< HEAD
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/
+=======
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
+>>>>>>> main
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -14532,6 +14539,16 @@ var Je = function () {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
+<<<<<<< HEAD
+/******/
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+=======
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
@@ -14540,6 +14557,7 @@ var Je = function () {
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+>>>>>>> main
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -14552,7 +14570,11 @@ var Je = function () {
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
+<<<<<<< HEAD
+/******/
+=======
 /******/ 	
+>>>>>>> main
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -14564,12 +14586,20 @@ var Je = function () {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
+<<<<<<< HEAD
+/******/
+=======
 /******/ 	
+>>>>>>> main
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
+<<<<<<< HEAD
+/******/
+=======
 /******/ 	
+>>>>>>> main
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -14580,7 +14610,11 @@ var Je = function () {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
+<<<<<<< HEAD
+/******/
+=======
 /******/ 	
+>>>>>>> main
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -14592,13 +14626,32 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+<<<<<<< HEAD
+/* harmony import */ var _Components_Ratings_Reviews_ratingsreviews_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Ratings&Reviews/ratingsreviews.jsx */ "./client/src/Components/Ratings&Reviews/ratingsreviews.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+=======
 /* harmony import */ var _Components_Q_A_questions_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Q&A/questions.jsx */ "./client/src/Components/Q&A/questions.jsx");
 /* harmony import */ var _Components_ProductOverview_ProductMain_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/ProductOverview/ProductMain.jsx */ "./client/src/Components/ProductOverview/ProductMain.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+>>>>>>> main
 
 
 
 
+<<<<<<< HEAD
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Ratings_Reviews_ratingsreviews_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {}), document.getElementById('root'));
+})();
+
+=======
+/******/
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./client/src/index.jsx"]();
+/******/
+>>>>>>> main
+=======
 
 
 
@@ -14613,6 +14666,7 @@ function App() {
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(App, {}), rootElement);
 })();
 
+>>>>>>> main
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
