@@ -221,8 +221,12 @@ function QuestionContainer(_ref) {
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchAnswerData(); // console.log('amswerwr2')
+  }, [count]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchAnswerData();
-  }, [count]); // only sort two
+    console.log('amswerwr2');
+  }, []); // only sort two
 
   function fetchHelpfulData(answer_id) {
     axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
@@ -237,6 +241,7 @@ function QuestionContainer(_ref) {
     allAnswers ? setStatus(false) : setStatus(true);
   }
 
+  console.log();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Q, {
@@ -312,8 +317,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _questionContainer_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./questionContainer.jsx */ "./client/src/Components/Q&A/questionContainer.jsx");
-/* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _searchBar_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./searchBar.jsx */ "./client/src/Components/Q&A/searchBar.jsx");
+/* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -333,6 +339,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 function QuestionList() {
@@ -342,15 +350,25 @@ function QuestionList() {
       questions = _useState2[0],
       setQuestions = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      count = _useState4[0],
-      setCount = _useState4[1];
+      allQuestions = _useState4[0],
+      setAllQuestions = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      datalength = _useState6[0],
-      setDataLength = _useState6[1];
+      search = _useState6[0],
+      setSearch = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),
+      _useState8 = _slicedToArray(_useState7, 2),
+      count = _useState8[0],
+      setCount = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),
+      _useState10 = _slicedToArray(_useState9, 2),
+      datalength = _useState10[0],
+      setDataLength = _useState10[1];
 
   function fetchData() {
     axios.get('/questions/questions', {
@@ -361,6 +379,7 @@ function QuestionList() {
     }).then(function (_ref) {
       var data = _ref.data;
       setDataLength(data.length);
+      setAllQuestions(data);
       setQuestions(data.slice(0, count));
     })["catch"](function (error) {
       return console.log(error);
@@ -370,6 +389,9 @@ function QuestionList() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchData();
   }, [count]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setQuestions(search);
+  }, [search]);
 
   function fetchHelpfulData(question_id) {
     console.log(question_id);
@@ -380,21 +402,98 @@ function QuestionList() {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_2__.Question_Answer, {
-    children: [questions === undefined || questions.length === 0 ? null : questions.map(function (question) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_questionContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        helpfulness: fetchHelpfulData,
-        question: question
+  function filter(searchWord) {
+    if (searchWord === undefined || '') {
+      setCount(2);
+      setSearch([]);
+    } else {
+      var searchArr = allQuestions.filter(function (q) {
+        return q.question_body.toLowerCase().includes(searchWord.toLowerCase());
       });
-    }), datalength > count || questions.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-      type: "button",
-      onClick: function onClick() {
-        return setCount(function (prevCount) {
-          return prevCount + 2;
+      setSearch(searchArr);
+    }
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_searchBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      onSearch: filter
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question_Answer, {
+      children: [questions === undefined || questions.length === 0 ? null : questions.map(function (question) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_questionContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          helpfulness: fetchHelpfulData,
+          question: question
         });
-      },
-      children: "MORE ANSWERED QUESTIONS"
-    }) : null]
+      }), datalength > count || questions.length > 4 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        type: "button",
+        onClick: function onClick() {
+          return setCount(function (prevCount) {
+            return prevCount + 2;
+          });
+        },
+        children: "MORE ANSWERED QUESTIONS"
+      }) : null]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./client/src/Components/Q&A/searchBar.jsx":
+/*!*************************************************!*\
+  !*** ./client/src/Components/Q&A/searchBar.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Search)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function Search(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1];
+
+  function changeHandler(e) {
+    setValue(e.target.value);
+  }
+
+  function clickHandler() {
+    props.onSearch(value);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: "search",
+      "max-length": "150",
+      autoComplete: "off",
+      value: value,
+      placeholder: "HAVE A QUESTION? SEARCH FOR ANSWERS...",
+      onChange: changeHandler
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      onClick: clickHandler,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+        children: "Search"
+      })
+    })]
   });
 }
 

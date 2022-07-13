@@ -30,7 +30,13 @@ export default function QuestionContainer({ question, helpfulness }) {
 
   useEffect(() => {
     fetchAnswerData();
+    // console.log('amswerwr2')
   }, [count]);
+
+  useEffect(() => {
+    fetchAnswerData();
+    console.log('amswerwr2')
+  }, []);
   // only sort two
 
   function fetchHelpfulData(answer_id) {
@@ -45,6 +51,8 @@ export default function QuestionContainer({ question, helpfulness }) {
     allAnswers ? setCount(2)  : setCount(1000) ;
     allAnswers ? setStatus(false) : setStatus(true);
   }
+
+  console.log();
   return (
     <div>
       <Question>
