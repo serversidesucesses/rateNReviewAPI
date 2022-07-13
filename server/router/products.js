@@ -1,13 +1,15 @@
 const router = require('express').Router();
-const controller = require('../controllers/products');
+const controller = require('../controllers');
 
 // different route needed
 // get product details
-router.get('/productdetails', controller.getProductDetails);
+router.get('/productdetails', controller.products.getProductDetails);
 
-router.get('/product/styles', controller.getProductStyles);
+router.get('/product/styles', controller.products.getProductStyles);
 
-router.post('/addToCart', controller.addToCart);
+router.post('/click', controller.products.handleClick)
+
+// router.post('/addToCart', controller.addToCart);
 
 // router.post('/clientClick', controller.clientClick);
 
