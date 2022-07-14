@@ -689,48 +689,60 @@ function QuestionContainer(_ref) {
       count = _useState4[0],
       setCount = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
       allAnswers = _useState6[0],
-      setStatus = _useState6[1];
+      setAllAnswers = _useState6[1];
 
-  function fetchAnswerData() {
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      status = _useState8[0],
+      setStatus = _useState8[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios.get('/questions/answers', {
       params: {
         question_id: question.question_id,
         page: 1,
-        count: count
+        count: 1000
       }
     }).then(function (_ref2) {
       var data = _ref2.data;
-      return setAnswers(data.results);
+      return setAllAnswers(data.results);
     })["catch"](function (error) {
       return console.log(error);
     });
-  }
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchAnswerData(); // console.log('amswerwr2')
-  }, [count]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchAnswerData();
     console.log('amswerwr2');
-  }, []); // only sort two
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var answer = allAnswers.slice(0, count);
+    setAnswers(answer); // console.log('amswerwr2')
+  }, [allAnswers, count]); // only sort two
 
   function fetchHelpfulData(answer_id) {
     axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
-      fetchAnswerData();
+      return axios.get('/questions/answers', {
+        params: {
+          question_id: question.question_id,
+          page: 1,
+          count: 1000
+        }
+      });
+    }).then(function (_ref3) {
+      var data = _ref3.data;
+      return setAllAnswers(data.results);
     })["catch"](function (error) {
       return console.log(error);
     });
   }
 
   function _onClick() {
-    allAnswers ? setCount(2) : setCount(1000);
-    allAnswers ? setStatus(false) : setStatus(true);
+    status ? setCount(2) : setCount(1000);
+    status ? setStatus(false) : setStatus(true);
   }
 
-  console.log();
+  console.log("question", question);
+  console.log('answersArray', answers);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Q, {
@@ -760,7 +772,7 @@ function QuestionContainer(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Div, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.A, {
         children: "A: "
-      }), allAnswers ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.More_Answer, {
+      }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.More_Answer, {
         children: answers.map(function (answer) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
             helpfulness: fetchHelpfulData,
@@ -775,13 +787,13 @@ function QuestionContainer(_ref) {
           });
         }), " "]
       })]
-    }), allAnswers && answers.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
       type: "button",
       onClick: function onClick() {
         return _onClick();
       },
       children: "Collapse"
-    }) : null, !allAnswers && answers.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    }) : null, !status && answers.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
       type: "button",
       onClick: function onClick() {
         return _onClick();
@@ -899,10 +911,12 @@ function QuestionList() {
       var searchArr = allQuestions.filter(function (q) {
         return q.question_body.toLowerCase().includes(searchWord.toLowerCase());
       });
+      console.log(searchArr);
       setSearch(searchArr);
     }
   }
 
+  console.log('questions', questions);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_searchBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
       onSearch: filter
