@@ -53,11 +53,11 @@ export default function QuestionList() {
     } else {
       const searchArr = allQuestions.filter((q) => (
         q.question_body.toLowerCase().includes(searchWord.toLowerCase())));
-
+      console.log(searchArr);
       setSearch(searchArr);
     }
   }
-
+  console.log('questions', questions)
   return (
     <>
       <Search onSearch={filter} />

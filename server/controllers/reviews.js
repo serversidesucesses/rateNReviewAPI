@@ -2,7 +2,7 @@ require('dotenv').config();
 const axios = require('axios');
 
 axios.defaults.baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
-axios.defaults.headers.common['Authorization'] = process.env.API_KEY;
+axios.defaults.headers.common['Authorization'] = process.env.Token;
 
 exports.listReviews = (req, res) => {
   const {
