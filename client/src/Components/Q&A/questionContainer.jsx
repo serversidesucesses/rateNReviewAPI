@@ -9,50 +9,58 @@ import { Question, Span, More_Answer, Div, A, Q } from '../styles/Q&A/container.
 
 const axios = require('axios');
 
+
+
 export default function QuestionContainer({ question, helpfulness }) {
   // answers only first  two
   // get answers --> sort by helpfulness
   const [answers, setAnswers] = useState([]);
   const [count, setCount] = useState(2);
-  const [allAnswers, setStatus] = useState(false);
+  const [allAnswers, setAllAnswers] = useState([]);
+  const [status, setStatus] = useState(false);
 
-  function fetchAnswerData() {
+  useEffect(() => {
     axios.get('/questions/answers', {
       params: {
         question_id: question.question_id,
         page: 1,
-        count,
+        count: 1000,
       },
     })
-      .then(({ data }) => setAnswers(data.results))
+      .then(({ data }) => setAllAnswers(data.results))
       .catch((error) => console.log(error));
-  }
-
-  useEffect(() => {
-    fetchAnswerData();
-    // console.log('amswerwr2')
-  }, [count]);
-
-  useEffect(() => {
-    fetchAnswerData();
-    console.log('amswerwr2')
+    console.log('amswerwr2'); 
   }, []);
+
+  useEffect(() => {
+    const answer = allAnswers.slice(0, count);
+    setAnswers(answer);
+    // console.log('amswerwr2')
+  }, [allAnswers, count]);
+
   // only sort two
 
   function fetchHelpfulData(answer_id) {
     axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
-      .then(() => {
-        fetchAnswerData();
-      })
+      .then(() => (
+        axios.get('/questions/answers', {
+          params: {
+            question_id: question.question_id,
+            page: 1,
+            count: 1000,
+          },
+        })))
+      .then(({ data }) => setAllAnswers(data.results))
       .catch((error) => console.log(error));
   }
 
   function onClick() {
-    allAnswers ? setCount(2)  : setCount(1000) ;
-    allAnswers ? setStatus(false) : setStatus(true);
+    status ? setCount(2)  : setCount(1000) ;
+    status ? setStatus(false) : setStatus(true);
   }
 
-  console.log();
+  console.log("question", question)
+  console.log('answersArray', answers);
   return (
     <div>
       <Question>
@@ -72,7 +80,7 @@ export default function QuestionContainer({ question, helpfulness }) {
 
       <Div>
         <A>A: </A>
-        { allAnswers
+        { status
           ? <More_Answer>
             { answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)}
           </More_Answer>
@@ -81,11 +89,11 @@ export default function QuestionContainer({ question, helpfulness }) {
             answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)} </div> }
       </Div>
 
-      {(allAnswers && answers.length > 1)
+      {(status)
         ? <Button type="button" onClick={() => onClick()}>Collapse</Button>
         : null }
 
-      {(!allAnswers && answers.length > 1) ? <Button type="button" onClick={() => onClick()}>SEE MORE ANSWERS</Button> : null}
+      {(!status && answers.length > 1) ? <Button type="button" onClick={() => onClick()}>SEE MORE ANSWERS</Button> : null}
 
     </div>
   );
