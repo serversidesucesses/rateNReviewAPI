@@ -43,19 +43,22 @@ const Carousel = ({ currentStyle, productId }) => {
 return (
   <CarouselLayout>
     <CarouselThumbnailContainer>
-      <CarouselThumbnailGrid>
+
         {<CarouselButtonUp onClick={() => handleClick(activePhotoIndex - 1)}><FaAngleUp /></CarouselButtonUp>}
-        {<CarouselButtonDown onClick={() => handleClick(activePhotoIndex + 1)}>
-          <FaAngleDown />
-        </CarouselButtonDown>}
+
+
+      <CarouselThumbnailGrid>
 
         {/* here each photo is an object that contain url and thumbnail_url */}
         {currentStyle.photos.map((photo, index) => {
           return (
-          <CarouselThumbnailImage photo={photo} activePhotoIndex={activePhotoIndex} handleClick={handleClick} index={index} key={index} />
+          <CarouselThumbnailImage photo={photo} activePhotoIndex={activePhotoIndex} handleClick={handleClick} index={index} key={currentStyle.photos[index].url + index} />
           )
         })}
       </CarouselThumbnailGrid>
+      {<CarouselButtonDown onClick={() => handleClick(activePhotoIndex + 1)}>
+          <FaAngleDown />
+      </CarouselButtonDown>}
     </CarouselThumbnailContainer>
 
     <CarouselImageContainer>
