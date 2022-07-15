@@ -7,14 +7,16 @@ export const MainImage = styled.img`
   object-fit: cover;
   opacity: 1;
 `
-export const ThumbnailImage = styled.div`
+export const ThumbnailImage = styled.img`
   object-fit: cover;
+  position: relative;
   width: 100%;
   height: 6rem;
   padding: 2px;
   border: 3px solid;
   border-color: whitesmoke;
   cursor: pointer;
+  opacity: 1;
 `
 export const CarouselLayout = styled.div`
   display: flex;

@@ -84,27 +84,27 @@ var Carousel = function Carousel(_ref) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselLayout, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselThumbnailContainer, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselThumbnailGrid, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselButtonUp, {
-          onClick: function onClick() {
-            return handleClick(activePhotoIndex - 1);
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_5__.FaAngleUp, {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselButtonDown, {
-          onClick: function onClick() {
-            return handleClick(activePhotoIndex + 1);
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_5__.FaAngleDown, {})
-        }), currentStyle.photos.map(function (photo, index) {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselThumbnailContainer, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselButtonUp, {
+        onClick: function onClick() {
+          return handleClick(activePhotoIndex - 1);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_5__.FaAngleUp, {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselThumbnailGrid, {
+        children: currentStyle.photos.map(function (photo, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CarouselThumbnailImage_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
             photo: photo,
             activePhotoIndex: activePhotoIndex,
             handleClick: handleClick,
             index: index
-          }, index);
-        })]
-      })
+          }, currentStyle.photos[index].url + index);
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselButtonDown, {
+        onClick: function onClick() {
+          return handleClick(activePhotoIndex + 1);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_icons_fa__WEBPACK_IMPORTED_MODULE_5__.FaAngleDown, {})
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselImageContainer, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_3__.CarouselButtonLeft, {
         onClick: function onClick() {
@@ -192,9 +192,11 @@ var CarouselThumbnailImage = function CarouselThumbnailImage(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [isExpanded]);
 
   var displayThumbnail = function displayThumbnail() {
+    console.log('photo inside thumbnail.jsx is: ', photo);
+
     if (!isExpanded) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_1__.ThumbnailImage, {
-        src: photo.thumbnail_url,
+        src: photo.url,
         onClick: function onClick() {
           return handleClick(index);
         }
@@ -639,7 +641,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var MainImage = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  opacity: 1;\n"])));
-var ThumbnailImage = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  object-fit: cover;\n  width: 100%;\n  height: 6rem;\n  padding: 2px;\n  border: 3px solid;\n  border-color: whitesmoke;\n  cursor: pointer;\n"])));
+var ThumbnailImage = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  object-fit: cover;\n  position: relative;\n  width: 100%;\n  height: 6rem;\n  padding: 2px;\n  border: 3px solid;\n  border-color: whitesmoke;\n  cursor: pointer;\n  opacity: 1;\n"])));
 var CarouselLayout = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  position: relative;\n  gap: 1rem;\n  height: 41rem;\n"])));
 var CarouselThumbnailContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 1.5rem;\n  left: 6rem;\n  max-height: 30rem;\n  width: 6rem;\n  z-index: 3;\n"])));
 var CarouselThumbnailGrid = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: grid;\n  grid-template-rows: auto;\n  align-content: start;\n  max-height: 30rem;\n  gap: 1rem;\n  overflow-y: scroll;\n  border-radius: 20px;\n  padding-right: 10px;\n"])));
@@ -1620,17 +1622,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Button": () => (/* binding */ Button),
 /* harmony export */   "ButtonContainer": () => (/* binding */ ButtonContainer),
-/* harmony export */   "ButtonContainerAns": () => (/* binding */ ButtonContainerAns)
+/* harmony export */   "ButtonContainerAns": () => (/* binding */ ButtonContainerAns),
+/* harmony export */   "MoreAnswer": () => (/* binding */ MoreAnswer)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  cursor: pointer;\n  font-size: 14px;\n  font-family: Times;\n"])));
-var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 190px;\n  font-size: 14px;\n"])));
-var ButtonContainerAns = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 320px;\n  font-size: 14px;\n  margin-top: 20px;\n"])));
+var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 20%;\n  font-size: 14px;\n"])));
+var ButtonContainerAns = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 40%;\n  font-size: 14px;\n"])));
+var MoreAnswer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin: 30px;\n  margin-top: 50px;\n"])));
 
 /***/ }),
 
