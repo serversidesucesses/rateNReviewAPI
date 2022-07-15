@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./client/src/Components/ProductOverview/ProductComponents/Click.jsx":
-/*!***************************************************************************!*\
-  !*** ./client/src/Components/ProductOverview/ProductComponents/Click.jsx ***!
-  \***************************************************************************/
+/***/ "./client/src/Components/ProductOverview/ProductComponents/Carousel.jsx":
+/*!******************************************************************************!*\
+  !*** ./client/src/Components/ProductOverview/ProductComponents/Carousel.jsx ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13,43 +13,207 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-// this file will handle all the clicking events
+/* harmony import */ var _CarouselImage_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CarouselImage.jsx */ "./client/src/Components/ProductOverview/ProductComponents/CarouselImage.jsx");
+/* harmony import */ var _CarouselThumbnailImage_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CarouselThumbnailImage.jsx */ "./client/src/Components/ProductOverview/ProductComponents/CarouselThumbnailImage.jsx");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./carousel.styled.js */ "./client/src/Components/ProductOverview/ProductComponents/carousel.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-var timeConverter = function timeConverter() {
-  var current = new Date(Date.now());
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var year = current.getFullYear();
-  var month = months[current.getMonth()];
-  var date = current.getDate();
-  var hour = current.getHours();
-  var min = current.getMinutes();
-  var sec = current.getSeconds();
-  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + ' PDT';
-  return time;
-};
 
-var currentTime = timeConverter();
 
-var click = function click(element, widget) {
-  axios({
-    method: 'post',
-    url: '/products/click',
-    params: {
-      element: element,
-      widget: widget,
-      time: currentTime
-    }
-  }).then(function (data) {
-    console.log('Sucessfully logged click', data);
-  })["catch"](function (error) {
-    console.log('Error in logging data from click', error);
+ // currentStyle is an object contains all info about this style
+//
+
+
+
+
+var Carousel = function Carousel(_ref) {
+  var currentStyle = _ref.currentStyle,
+      productId = _ref.productId;
+
+  // index for current image
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      activePhotoIndex = _useState2[0],
+      SetActivePhotoIndex = _useState2[1]; // check expand state, haven't implemented it yet
+
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isExpanded = _useState4[0],
+      setIsExpanded = _useState4[1];
+
+  var numPhotos = currentStyle.photos.length;
+  console.log('currentStyle from carousel is:', currentStyle);
+  console.log('currentStyle photo array length:', currentStyle.photos.length);
+  console.log('current activePhotoIndex is: ', activePhotoIndex);
+
+  if (numPhotos <= activePhotoIndex) {
+    SetActivePhotoIndex(numPhotos - 1);
+  } // when productId change, default image change back to first img
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    SetActivePhotoIndex(0);
+  }, [productId]); // set up infinite loop for the carousel
+
+  var handleClick = function handleClick(index) {
+    if (index === numPhotos) {
+      // or hide right button
+      index = 0;
+    } else if (index < 0) {
+      // or hide left button
+      index = numPhotos - 1;
+    } // reset the activePhotoIndex base on click
+
+
+    SetActivePhotoIndex(index);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselLayout, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselThumbnailContainer, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselThumbnailGrid, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselButtonUp, {
+          onClick: function onClick() {
+            return handleClick(activePhotoIndex - 1);
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselButtonDown, {
+          onClick: function onClick() {
+            return handleClick(activePhotoIndex + 1);
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+        }), currentStyle.photos.map(function (photo, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CarouselThumbnailImage_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            photo: photo,
+            activePhotoIndex: activePhotoIndex,
+            handleClick: handleClick,
+            index: index
+          }, index);
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselImageContainer, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselButtonLeft, {
+        onClick: function onClick() {
+          return handleClick(activePhotoIndex - 1);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_4__.CarouselButtonRight, {
+        onClick: function onClick() {
+          return handleClick(activePhotoIndex + 1);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CarouselImage_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        photo: currentStyle.photos[activePhotoIndex],
+        activePhotoIndex: activePhotoIndex
+      })]
+    })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (click);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Carousel);
+
+/***/ }),
+
+/***/ "./client/src/Components/ProductOverview/ProductComponents/CarouselImage.jsx":
+/*!***********************************************************************************!*\
+  !*** ./client/src/Components/ProductOverview/ProductComponents/CarouselImage.jsx ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _carousel_styled_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carousel.styled.js */ "./client/src/Components/ProductOverview/ProductComponents/carousel.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+ // here photo is an object that contain both the thumbnailurl and normal url
+
+
+
+var CarouselImage = function CarouselImage(_ref) {
+  var photo = _ref.photo,
+      activePhotoIndex = _ref.activePhotoIndex;
+  //console.log('photo.url in CarouselImage is:', photo.url)
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_1__.MainImage, {
+    fetchpriority: "high",
+    src: photo.url
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CarouselImage);
+
+/***/ }),
+
+/***/ "./client/src/Components/ProductOverview/ProductComponents/CarouselThumbnailImage.jsx":
+/*!********************************************************************************************!*\
+  !*** ./client/src/Components/ProductOverview/ProductComponents/CarouselThumbnailImage.jsx ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _carousel_styled_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carousel.styled.js */ "./client/src/Components/ProductOverview/ProductComponents/carousel.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+ // isExpanded not in use right now.
+
+
+
+
+var CarouselThumbnailImage = function CarouselThumbnailImage(_ref) {
+  var photo = _ref.photo,
+      activePhotoIndex = _ref.activePhotoIndex,
+      isExpanded = _ref.isExpanded,
+      handleClick = _ref.handleClick,
+      index = _ref.index,
+      alt = _ref.alt;
+  // reload when image is expanded
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [isExpanded]);
+
+  var displayThumbnail = function displayThumbnail() {
+    if (!isExpanded) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_carousel_styled_js__WEBPACK_IMPORTED_MODULE_1__.ThumbnailImage, {
+        src: photo.thumbnail_url,
+        onClick: function onClick() {
+          return handleClick(index);
+        }
+      });
+    } else {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        onClick: function onClick() {
+          return handleClick(index);
+        }
+      });
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: displayThumbnail()
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CarouselThumbnailImage);
 
 /***/ }),
 
@@ -147,22 +311,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function StylePhoto(_ref) {
-  var photos = _ref.photos,
-      price = _ref.price,
-      setCurrentPrice = _ref.setCurrentPrice,
-      currentStyleName = _ref.currentStyleName,
-      setCurrentStyleName = _ref.setCurrentStyleName;
-  // when a style is clicked, need to link the current price to the current style
+  var currentStyle = _ref.currentStyle,
+      setCurrentStyle = _ref.setCurrentStyle;
+  // when a style is clicked, update currentStyle
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-      src: photos.thumbnail_url,
+      src: currentStyle.photos[0].thumbnail_url,
       width: "90",
       height: "90",
       style: {
         borderRadius: '50%'
       },
       onClick: function onClick() {
-        return setCurrentPrice(price), setCurrentStyleName(currentStyleName);
+        return setCurrentStyle(currentStyle);
       }
     })
   });
@@ -182,8 +343,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ StyleSelector)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Click_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Click.jsx */ "./client/src/Components/ProductOverview/ProductComponents/Click.jsx");
-/* harmony import */ var _StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StylePhoto.jsx */ "./client/src/Components/ProductOverview/ProductComponents/StylePhoto.jsx");
+/* harmony import */ var _StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StylePhoto.jsx */ "./client/src/Components/ProductOverview/ProductComponents/StylePhoto.jsx");
+/* harmony import */ var _Carousel_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Carousel.jsx */ "./client/src/Components/ProductOverview/ProductComponents/Carousel.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -215,6 +376,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ //import ImageGallery from './ImageGallery.jsx';
+//import SizeSelector from './SizeSelector.jsx';
+
 
 
 
@@ -227,15 +391,17 @@ function StyleSelector() {
       currentStyleArray = _useState2[0],
       setCurrentStyleArray = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Placeholder current style name'),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    photos: [1]
+  }),
       _useState4 = _slicedToArray(_useState3, 2),
-      currentStyleName = _useState4[0],
-      setCurrentStyleName = _useState4[1];
+      currentStyle = _useState4[0],
+      setCurrentStyle = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      currentPrice = _useState6[0],
-      setCurrentPrice = _useState6[1];
+      currentStylePhotos = _useState6[0],
+      setCurrentStylePhotos = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -252,6 +418,12 @@ function StyleSelector() {
       styleRow3 = _useState12[0],
       setStyleRow3 = _useState12[1];
 
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      loaded = _useState14[0],
+      setLoaded = _useState14[1]; // the function that sends out get request
+
+
   var getStyleFromProductId = function getStyleFromProductId(productId) {
     axios({
       method: 'get',
@@ -261,8 +433,9 @@ function StyleSelector() {
       }
     }).then(function (response) {
       console.log(response.data);
-      setCurrentStyleName(response.data.results[0].name);
+      setLoaded(true);
       setCurrentStyleArray(response.data.results);
+      setCurrentStyle(response.data.results[0]);
     })["catch"](function (error) {
       console.log('Error in getting data from getStyleFromProductId', error);
     });
@@ -270,13 +443,15 @@ function StyleSelector() {
 
   console.log('row1: ', styleRow1);
   console.log('row2: ', styleRow2);
-  console.log('row3: ', styleRow3); // use product 40344 as a default testing product
+  console.log('row3: ', styleRow3);
+  console.log('currentStyle is:', currentStyle); // use product 40344 as a default testing product
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log('got to useEffect');
     getStyleFromProductId(40344);
-  }, []);
+  }, []); // after axios call, immediate save all styles to three rows of 4
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    //setCount((previousCount) => previousCount + 1)
     var styleRow = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var row1Count, row2Count, row3Count, _loop, i;
@@ -285,8 +460,6 @@ function StyleSelector() {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                // setStyleRow1(() => currentStyleArray.slice(0,4));
-                // setStyleRow2(() => currentStyleArray.slice(4,8));
                 row1Count = 0;
                 row2Count = 0;
                 row3Count = 0;
@@ -378,70 +551,103 @@ function StyleSelector() {
     styleRow()["catch"](function (error) {
       return console.log(error);
     });
-  }, [currentStyleArray]); // update the style id base on user
-  // updateStyleId(event) {
-  //   click()
-  // }
-  // map over the array
+  }, [currentStyleArray]); // // after currentStyle change,
+  // useEffect(() => {
+  //   setCurrentStylePhotos(currentStyle.photos)
+  //   console.log('currentStyle from useEffect: ', currentStyle);
+  // }, [currentStyle])
+
+  var getPhotoUrlsForCurrentStyle = function getPhotoUrlsForCurrentStyle() {
+    var photos = currentStyle.photos;
+    photos = photos.map(function (photo) {
+      return photo.url;
+    });
+    return photos;
+  }; // map over each row of 4
+
 
   var styles1 = styleRow1.map(function (item, index) {
-    return (
-      /*#__PURE__*/
-      // <li key={index}>{item}</li>
-      // currentPirce and currentStyleName are both passed in
-      (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        photos: item.photos[0],
-        price: item.sale_price ? item.sale_price : item.original_price,
-        setCurrentPrice: setCurrentPrice,
-        currentStyleName: item.name,
-        setCurrentStyleName: setCurrentStyleName
-      }, index)
-    );
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      currentStyle: item,
+      setCurrentStyle: setCurrentStyle
+    }, index);
   });
   var styles2 = styleRow2.map(function (item, index) {
-    return (
-      /*#__PURE__*/
-      //<li key={index}>{item}</li>
-      (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        photos: item.photos[0],
-        price: item.sale_price ? item.sale_price : item.original_price,
-        setCurrentPrice: setCurrentPrice,
-        currentStyleName: item.name,
-        setCurrentStyleName: setCurrentStyleName
-      }, index)
-    );
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      currentStyle: item,
+      setCurrentStyle: setCurrentStyle
+    }, index);
   });
   var styles3 = styleRow3.map(function (item, index) {
-    return (
-      /*#__PURE__*/
-      //<li key={index}>{item}</li>
-      (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        photos: item.photos[0],
-        price: item.sale_price ? item.sale_price : item.original_price,
-        setCurrentPrice: setCurrentPrice,
-        currentStyleName: item.name,
-        setCurrentStyleName: setCurrentStyleName
-      }, index)
-    );
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "styleSelector",
-    children: ["$", currentPrice, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("b", {
-        children: "STYLE "
-      }), "\u25B8 ", currentStyleName]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
-      className: "styleRow1",
-      children: styles1
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
-      className: "styleRow2",
-      children: styles2
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
-      className: "styleRow3",
-      children: styles3
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_StylePhoto_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      currentStyle: item,
+      setCurrentStyle: setCurrentStyle
+    }, index);
+  }); // the currentStyle I pass in needs to be the result of a function I call
+  // if(loaded) {
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Carousel_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      currentStyle: currentStyle,
+      productId: 40344
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "StyleSelector",
+      children: ["$", currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("b", {
+          children: "STYLE "
+        }), "\u25B8 ", currentStyle.name]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+        className: "styleRow1",
+        children: styles1
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+        className: "styleRow2",
+        children: styles2
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+        className: "styleRow3",
+        children: styles3
+      })]
     })]
-  });
+  }); // }
 }
+
+/***/ }),
+
+/***/ "./client/src/Components/ProductOverview/ProductComponents/carousel.styled.js":
+/*!************************************************************************************!*\
+  !*** ./client/src/Components/ProductOverview/ProductComponents/carousel.styled.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CarouselButtonDown": () => (/* binding */ CarouselButtonDown),
+/* harmony export */   "CarouselButtonLeft": () => (/* binding */ CarouselButtonLeft),
+/* harmony export */   "CarouselButtonRight": () => (/* binding */ CarouselButtonRight),
+/* harmony export */   "CarouselButtonUp": () => (/* binding */ CarouselButtonUp),
+/* harmony export */   "CarouselImageContainer": () => (/* binding */ CarouselImageContainer),
+/* harmony export */   "CarouselLayout": () => (/* binding */ CarouselLayout),
+/* harmony export */   "CarouselThumbnailContainer": () => (/* binding */ CarouselThumbnailContainer),
+/* harmony export */   "CarouselThumbnailGrid": () => (/* binding */ CarouselThumbnailGrid),
+/* harmony export */   "MainImage": () => (/* binding */ MainImage),
+/* harmony export */   "ThumbnailImage": () => (/* binding */ ThumbnailImage)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var MainImage = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  opacity: 1;\n"])));
+var ThumbnailImage = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  object-fit: cover;\n  width: 100%;\n  height: 6rem;\n  padding: 2px;\n  border: 3px solid;\n  border-color: whitesmoke;\n  cursor: pointer;\n"])));
+var CarouselLayout = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  position: relative;\n  gap: 1rem;\n  height: 41rem;\n"])));
+var CarouselThumbnailContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 1.5rem;\n  left: 6rem;\n  max-height: 30rem;\n  width: 6rem;\n  z-index: 3;\n"])));
+var CarouselThumbnailGrid = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: grid;\n  grid-template-rows: auto;\n  align-content: start;\n  max-height: 30rem;\n  gap: 1rem;\n  overflow-y: scroll;\n  border-radius: 20px;\n  padding-right: 10px;\n"])));
+var CarouselImageContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  position: relative;\n  flex-grow: 1;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  overflow: hidden;\n"])));
+var CarouselButtonUp = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  right: 0;\n  font-size: 2rem;\n  width: 100%;\n"])));
+var CarouselButtonDown = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  bottom: 0;\n  left: 0;\n  right: 0;\n  font-size: 2rem;\n  width: 100%;\n"])));
+var CarouselButtonLeft = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  bottom: 0;\n  left: 0;\n  right: 0;\n  font-size: 2rem;\n\n"])));
+var CarouselButtonRight = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  bottom: 0;\n  left: 0;\n  right: 0;\n  font-size: 2rem;\n"])));
 
 /***/ }),
 
@@ -467,7 +673,7 @@ __webpack_require__.r(__webpack_exports__);
  // import ProductDescription from './ProductComponents/ProductDescription.jsx';
 
 
- // import ImageGallery from './ProductComponents/ImageGallery/ImageGallery.jsx';
+ // import ImageGallery from './ProductComponents/ImageGallery.jsx';
 // import SizeBag from './ProductComponents/SizeBag.jsx';
 
 
@@ -490,19 +696,146 @@ function ProductMain() {
 
 /***/ }),
 
-/***/ "./client/src/Components/Q&A/answerContainer.jsx":
-/*!*******************************************************!*\
-  !*** ./client/src/Components/Q&A/answerContainer.jsx ***!
-  \*******************************************************/
+/***/ "./client/src/Components/Q&A/addAnswer.jsx":
+/*!*************************************************!*\
+  !*** ./client/src/Components/Q&A/addAnswer.jsx ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ AnswerContainer)
+/* harmony export */   "default": () => (/* binding */ AddAnswer)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _photos_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./photos.jsx */ "./client/src/Components/Q&A/photos.jsx");
+/* harmony import */ var _styles_Q_A_form_styled_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/Q&A/form.styled.js */ "./client/src/Components/styles/Q&A/form.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var initialValues = {
+  answer: '',
+  name: '',
+  email: ''
+};
+function AddAnswer(_ref) {
+  var setAddStatus = _ref.setAddStatus;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialValues),
+      _useState2 = _slicedToArray(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      images = _useState4[0],
+      setImages = _useState4[1];
+
+  var handleInputChange = function handleInputChange(e) {
+    var _e$target = e.target,
+        name = _e$target.name,
+        value = _e$target.value;
+    setValues(_objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, value)));
+    console.log(e.target[name], e.target.value);
+  };
+
+  function onSubmit(e) {
+    e.preventDefault();
+    console.log(values);
+    setAddStatus(false);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_styles_Q_A_form_styled_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+      children: "Submit an answer"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+      onSubmit: onSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        claassName: "text",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "text",
+          name: "answer",
+          placeholder: "Enter an answer...",
+          maxLength: "1000",
+          size: "100",
+          value: values.answer,
+          onChange: handleInputChange,
+          required: true
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        claassName: "name",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "text",
+          name: "name",
+          placeholder: "Enter a name",
+          value: values.name,
+          onChange: handleInputChange
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        claassName: "email",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "email",
+          name: "email",
+          placeholder: "Enter an email",
+          value: values.email,
+          onChange: handleInputChange
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        claassName: "file",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "file",
+          name: "photos",
+          placeholder: "Enter image url per line",
+          value: values.photos,
+          onChange: handleInputChange
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "submit",
+          value: "Submit Answer"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "button",
+          value: "close"
+        })]
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./client/src/Components/Q&A/answerList.jsx":
+/*!**************************************************!*\
+  !*** ./client/src/Components/Q&A/answerList.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AnswerList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _photo_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./photo.jsx */ "./client/src/Components/Q&A/photo.jsx");
 /* harmony import */ var _styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/Q&A/buttons.styled */ "./client/src/Components/styles/Q&A/buttons.styled.js");
 /* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -528,7 +861,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-function AnswerContainer(_ref) {
+function AnswerList(_ref) {
   var answer = _ref.answer,
       helpfulness = _ref.helpfulness;
 
@@ -538,14 +871,14 @@ function AnswerContainer(_ref) {
       setReported = _useState2[1];
 
   function report(answer_id) {
-    console.log(answer_id);
     axios.put("/questions/reportA/?answer_id=".concat(answer_id)).then(function () {
       return setReported(true);
     })["catch"](function (error) {
       return console.log(error);
     });
-  } // Date conversion
+  }
 
+  console.log(answer); // Date conversion
 
   var date = new Date(answer.date);
   var options = {
@@ -556,18 +889,20 @@ function AnswerContainer(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Answer, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       children: answer.body
-    }), answer.photos.length === 0 ? null : answer.photos.map(function (photo) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_photos_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        photos: photo
-      });
+    }), answer.photos.length === 0 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.PhotosContainer, {
+      children: [' ', answer.photos.map(function (photo, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_photo_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          photos: photo
+        }, index);
+      }), ' ']
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.ButtonContainerAns, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         children: [answer.answerer_name === 'Seller' || answer.answerer_name === 'seller' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
-          children: ["by ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+          children: ["by", ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
             children: "Seller"
-          }), ", "]
+          }), ",", ' ']
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
-          children: ["by ", answer.answerer_name, ", "]
+          children: ["by", ' ', answer.answerer_name, ",", ' ']
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
           children: "".concat(date.toLocaleDateString(undefined, options))
         })]
@@ -600,51 +935,52 @@ function AnswerContainer(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/Components/Q&A/photos.jsx":
-/*!**********************************************!*\
-  !*** ./client/src/Components/Q&A/photos.jsx ***!
-  \**********************************************/
+/***/ "./client/src/Components/Q&A/photo.jsx":
+/*!*********************************************!*\
+  !*** ./client/src/Components/Q&A/photo.jsx ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Photos)
+/* harmony export */   "default": () => (/* binding */ Photo)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
-function Photos(_ref) {
+function Photo(_ref) {
   var photos = _ref.photos;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
       src: photos.url,
       alt: "imageOfLa",
-      width: "80",
-      height: "80"
+      width: "100",
+      height: "70"
     })
   });
 }
 
 /***/ }),
 
-/***/ "./client/src/Components/Q&A/questionContainer.jsx":
-/*!*********************************************************!*\
-  !*** ./client/src/Components/Q&A/questionContainer.jsx ***!
-  \*********************************************************/
+/***/ "./client/src/Components/Q&A/questionList.jsx":
+/*!****************************************************!*\
+  !*** ./client/src/Components/Q&A/questionList.jsx ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ QuestionContainer)
+/* harmony export */   "default": () => (/* binding */ QuestionList)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./answerContainer.jsx */ "./client/src/Components/Q&A/answerContainer.jsx");
-/* harmony import */ var _styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/Q&A/buttons.styled */ "./client/src/Components/styles/Q&A/buttons.styled.js");
-/* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _answerList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./answerList.jsx */ "./client/src/Components/Q&A/answerList.jsx");
+/* harmony import */ var _addAnswer_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addAnswer.jsx */ "./client/src/Components/Q&A/addAnswer.jsx");
+/* harmony import */ var _styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/Q&A/buttons.styled */ "./client/src/Components/styles/Q&A/buttons.styled.js");
+/* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -671,9 +1007,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-function QuestionContainer(_ref) {
+function QuestionList(_ref) {
   var question = _ref.question,
       helpfulness = _ref.helpfulness;
 
@@ -689,15 +1026,20 @@ function QuestionContainer(_ref) {
       count = _useState4[0],
       setCount = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      allAnswers = _useState6[0],
-      setAllAnswers = _useState6[1];
+      helpfulData = _useState6[0],
+      setHelpfulData = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
       status = _useState8[0],
       setStatus = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      add = _useState10[0],
+      setAddStatus = _useState10[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios.get('/questions/answers', {
@@ -712,25 +1054,13 @@ function QuestionContainer(_ref) {
     })["catch"](function (error) {
       return console.log(error);
     });
-    console.log('amswerwr2');
-  }, []);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var answer = allAnswers.slice(0, count);
-    setAnswers(answer); // console.log('amswerwr2')
-  }, [allAnswers, count]); // only sort two
+  }, [count, helpfulData]); // only sort two
 
   function fetchHelpfulData(answer_id) {
     axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
-      return axios.get('/questions/answers', {
-        params: {
-          question_id: question.question_id,
-          page: 1,
-          count: 1000
-        }
+      return setHelpfulData(function (prevCount) {
+        return prevCount + 1;
       });
-    }).then(function (_ref3) {
-      var data = _ref3.data;
-      return setAllAnswers(data.results);
     })["catch"](function (error) {
       return console.log(error);
     });
@@ -743,57 +1073,62 @@ function QuestionContainer(_ref) {
 
   console.log("question", question);
   console.log('answersArray', answers);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Q, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.Question, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.Q, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           children: "Q: "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: question.question_body
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.ButtonContainer, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_3__.ButtonContainer, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_3__.Button, {
             type: "button",
             onClick: function onClick() {
               return helpfulness(question.question_id);
             },
             children: "Helpful?"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.Span, {
             children: "Yes (".concat(question.question_helpfulness, ")")
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Span, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.Span, {
           children: "|"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_3__.Button, {
           type: "button",
+          onClick: function onClick() {
+            return setAddStatus(true);
+          },
           children: "Add Answer"
-        })]
+        }), add ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_addAnswer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          setAddStatus: setAddStatus
+        }) : null]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Div, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.A, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.AnswerContainer, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.A, {
         children: "A: "
-      }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.More_Answer, {
+      }), status === true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.More_Answer, {
         children: answers.map(function (answer) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_answerList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
             helpfulness: fetchHelpfulData,
             answer: answer
-          });
+          }, answer.answer_id);
         })
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        children: [answers.map(function (answer) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_answerContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_4__.Answer, {
+        children: [answers.map(function (answer, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_answerList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
             helpfulness: fetchHelpfulData,
             answer: answer
-          });
+          }, index);
         }), " "]
       })]
-    }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_3__.Button, {
       type: "button",
       onClick: function onClick() {
         return _onClick();
       },
       children: "Collapse"
-    }) : null, !status && answers.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    }) : null, !status && answers.length > 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_3__.Button, {
       type: "button",
       onClick: function onClick() {
         return _onClick();
@@ -814,13 +1149,14 @@ function QuestionContainer(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ QuestionList)
+/* harmony export */   "default": () => (/* binding */ QuestionListContainer)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _questionContainer_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./questionContainer.jsx */ "./client/src/Components/Q&A/questionContainer.jsx");
+/* harmony import */ var _questionList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./questionList.jsx */ "./client/src/Components/Q&A/questionList.jsx");
 /* harmony import */ var _searchBar_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./searchBar.jsx */ "./client/src/Components/Q&A/searchBar.jsx");
 /* harmony import */ var _styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/Q&A/container.styled */ "./client/src/Components/styles/Q&A/container.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/Q&A/buttons.styled */ "./client/src/Components/styles/Q&A/buttons.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -842,9 +1178,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-function QuestionList() {
+function QuestionListContainer() {
   //  useEffect componentDidMount() --> get the data for questions and answers
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -861,7 +1198,7 @@ function QuestionList() {
       search = _useState6[0],
       setSearch = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(3),
       _useState8 = _slicedToArray(_useState7, 2),
       count = _useState8[0],
       setCount = _useState8[1];
@@ -888,14 +1225,15 @@ function QuestionList() {
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('count Effect');
     fetchData();
   }, [count]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('search Effect');
     setQuestions(search);
   }, [search]);
 
   function fetchHelpfulData(question_id) {
-    console.log(question_id);
     axios.put("/questions/questions/helpful/?question_id=".concat(question_id)).then(function () {
       fetchData();
     })["catch"](function (error) {
@@ -914,19 +1252,20 @@ function QuestionList() {
       console.log(searchArr);
       setSearch(searchArr);
     }
-  }
+  } // console.log('debugger');
+  // console.log('questions', questions);
 
-  console.log('questions', questions);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_searchBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_searchBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
       onSearch: filter
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question_Answer, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_3__.Question_Answer, {
       children: [questions === undefined || questions.length === 0 ? null : questions.map(function (question) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_questionContainer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_questionList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           helpfulness: fetchHelpfulData,
           question: question
-        });
-      }), datalength > count || questions.length > 4 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        }, question.question_id);
+      }), datalength > count || questions.length > 4 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.MoreAnswer, {
         type: "button",
         onClick: function onClick() {
           return setCount(function (prevCount) {
@@ -1281,17 +1620,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Button": () => (/* binding */ Button),
 /* harmony export */   "ButtonContainer": () => (/* binding */ ButtonContainer),
-/* harmony export */   "ButtonContainerAns": () => (/* binding */ ButtonContainerAns)
+/* harmony export */   "ButtonContainerAns": () => (/* binding */ ButtonContainerAns),
+/* harmony export */   "MoreAnswer": () => (/* binding */ MoreAnswer)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  cursor: pointer;\n  font-size: 14px;\n  font-family: Times;\n"])));
-var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 190px;\n  font-size: 14px;\n"])));
-var ButtonContainerAns = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 320px;\n  font-size: 14px;\n  margin-top: 20px;\n"])));
+var ButtonContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 20%;\n  font-size: 14px;\n"])));
+var ButtonContainerAns = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 40%;\n  font-size: 14px;\n"])));
+var MoreAnswer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin: 30px;\n  margin-top: 50px;\n"])));
 
 /***/ }),
 
@@ -1306,15 +1647,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "A": () => (/* binding */ A),
 /* harmony export */   "Answer": () => (/* binding */ Answer),
-/* harmony export */   "Div": () => (/* binding */ Div),
+/* harmony export */   "AnswerContainer": () => (/* binding */ AnswerContainer),
 /* harmony export */   "More_Answer": () => (/* binding */ More_Answer),
+/* harmony export */   "PhotosContainer": () => (/* binding */ PhotosContainer),
 /* harmony export */   "Q": () => (/* binding */ Q),
 /* harmony export */   "Question": () => (/* binding */ Question),
 /* harmony export */   "Question_Answer": () => (/* binding */ Question_Answer),
 /* harmony export */   "Span": () => (/* binding */ Span)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -1323,13 +1665,41 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /* eslint-disable camelcase */
 
 var Question_Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  height: 500px;\n  width: 70%;\n  margin: 0 auto;\n  overflow: scroll;\n  border: 2px solid black;\n  padding: 10px;\n"])));
-var Question = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  padding: 10px;\n"])));
-var Span = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding-left: 5px;\n  "])));
-var More_Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  height: 250px;\n  overflow: scroll;\n  padding: 10px;\n  border: 2px solid black;\n"])));
-var Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: space-between;\n  justify-content: center;\n  padding: 10px;\n  margin-top: -26px;\n  margin-bottom: 10px;\n"])));
-var Div = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  padding: 10px;\n\n"])));
-var A = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding-left: 5px;\n  font-size: 18px;\n"])));
-var Q = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: 18px;\n\n  span {\n    margin-right: 10px;\n  }\n"])));
+var Question = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  padding: 10px;\n  margin-top: 10px;\n"])));
+var Span = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  padding-left: 2px;\n  "])));
+var More_Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  height: 250px;\n  overflow: scroll;\n  padding: 10px;\n  border: 2px solid black;\n  width: 80%;\n"])));
+var Answer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: space-between;\n  justify-content: center;\n  padding: 10px;\n  margin-top: -18px;\n  width: 100%;\n"])));
+var AnswerContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  padding: 10px;\n  margin-top: -20px;\n  margin-bottom: -25px;\n"])));
+var A = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding-left: 5px;\n  font-family: Arial;\n  font-weight: bold;\n  font-size: 18px;\n"])));
+var Q = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: 18px;\n  font-weight: bold;\n  span {\n    margin-right: 10px;\n  }\n"])));
+var PhotosContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-bottom: 10px;\n\n  div {\n    padding-right: 20px;\n    width: 100px;\n  }\n"])));
+
+/***/ }),
+
+/***/ "./client/src/Components/styles/Q&A/form.styled.js":
+/*!*********************************************************!*\
+  !*** ./client/src/Components/styles/Q&A/form.styled.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var _templateObject;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 10%;\n  left: 20%;\n  height: 70%;\n  width: 60%;\n  border-radius: 10px;\n  z-index: 10;\n  background: dodgerblue;\n  padding: 20px;\n\n  h2 {\n    text-align: center;\n  }\n  form {\n    width: 60%;\n    height: 60%;\n    position: fixed;\n    top: 15%;\n    left: 35%;\n    z-index: 11;\n\n    display: flex;\n    flex-direction: column;\n    margin-top: 20px;\n  }\n  input {\n    width: 50%;\n    height: 30px;\n    margin-top: 20px;\n    padding: 10px;\n  }\n  input[name=\"answer\"] {\n    height: 80px;\n  }\n  input[type=\"submit\"] {\n    width: 20%;\n    height: 40px;\n    margin-right: 30px;\n    margin-left: 40px;\n  }\n  input[type=\"button\"] {\n    width: 20%;\n    height: 40px;\n    margin-right: 30px;\n\n  }\n\n"])))); // position: fixed;
+// top: 25%;
+// left: 20%;
+// background: black;
+// width: 60%;
+// height: 60vh;
+// z-index: 1;
 
 /***/ }),
 
