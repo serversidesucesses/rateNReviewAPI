@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Form from '../styles/Q&A/form.styled.js'
+import CloudinaryUploadWidget from './cloudinaryUploadWidget.jsx'
 
 const initialValues = {
   answer: '',
@@ -17,8 +18,11 @@ export default function AddAnswer({setAddStatus}) {
       ...values,
       [name]: value,
     });
-
     console.log(e.target[name], e.target.value);
+  };
+
+  const imageUpload = (image) => {
+    setImages((previmages) => [...previmages, image]);
   };
 
   function onSubmit(e) {
@@ -26,6 +30,7 @@ export default function AddAnswer({setAddStatus}) {
     console.log(values);
     setAddStatus(false);
   }
+  console.log(images);
   return (
     <Form>
       <h2>Submit an answer</h2>
@@ -39,12 +44,10 @@ export default function AddAnswer({setAddStatus}) {
         <div claassName="email">
           <input type="email" name="email" placeholder="Enter an email" value={values.email} onChange={handleInputChange} />
         </div>
-        <div claassName="file">
-          <input type="file" name="photos" placeholder="Enter image url per line" value={values.photos} onChange={handleInputChange} />
-        </div>
+        <CloudinaryUploadWidget imageUpload={imageUpload} />
         <div>
           <input type="submit" value="Submit Answer" />
-          <input type="button" value="close" />
+          <input type="button" value="close" onClick={() => setAddStatus(false)} />
         </div>
       </form>
     </Form>
