@@ -19,6 +19,10 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.svg$/,
+        type: "['@svgr/webpack']",
+      },
     ],
   },
 };

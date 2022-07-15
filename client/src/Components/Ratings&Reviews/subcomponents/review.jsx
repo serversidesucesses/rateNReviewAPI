@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import Stars from './stars';
+import Star from './stars.jsx';
 
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 export default function Review({ review }) {
   const reviewDate = new Date(review.date).toLocaleDateString('en-US', options);
   const [helpCount, setHelpCount] = useState(review.helpfulness);
-  // const [notClicked, setClick] = useState(true);
+  // const [notClicked, setClick] = useState(true); //One click per user
 
   const helpHandler = () => {
     axios.put(`/reviews/mark/helpful?review_id=${review.review_id}`)
       .then((response) => {
         // console.log(response);
-        setHelpCount((prevCount) => prevCount + 1);
+        setHelpCount(helpCount + 1);
         // setDidClick(false);
       })
-      .catch((err) => {console.log(err)});
+      .catch((err) => { console.log(err); });
   };
 
   const reportHandler = () => {
@@ -30,7 +30,7 @@ export default function Review({ review }) {
 
   return (
     <div>
-      {/* <Stars/> */}
+      <Star rating={review.rating} review_id={review.review_id} />
       <small>
         {`${review.reviewer_name},  ${reviewDate}`}
       </small>

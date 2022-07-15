@@ -12,15 +12,16 @@ exports.listReviews = (req, res) => {
     product_id
   } = req.query;
 
-  axios.get('/reviews', {
+  axios.get(`/reviews?sort=${sort}`, {
     params: {
       page,
       count,
-      sort,
       product_id
     },
   })
-    .then((response) => res.status(200).send(response.data))
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
     .catch((err) => {
       console.log(err);
       return res.status(404).send(err)});
@@ -28,6 +29,7 @@ exports.listReviews = (req, res) => {
 
 exports.getReviewMetadata = (req, res) => {
   const { product_id } = req.query;
+  console.log(product_id);
   axios.get('/reviews/meta', {
     params: {
       product_id

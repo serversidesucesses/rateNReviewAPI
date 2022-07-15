@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
+import Star from './subcomponents/stars.jsx';
 
 export default function ReviewMain() {
   const [reviews, setReviews] = useState([]);
@@ -18,29 +19,30 @@ export default function ReviewMain() {
       params: {
         product_id: 40344,
         sort: sortOption,
-        count,
+        count: 1000,
       },
     })
       .then(({ data }) => {
         console.log(data);
         setReviews(data.results);
-        setDidMount(true);
+        // setDidMount(true);
       })
       .catch((err) => console.log(err));
-  }, [sortOption, count]);
+  }, [sortOption, setReviews]);
 
   const selectHandler = (event) => {
     setSortOption(event.target.value);
-    setCount(2);
+    // setCount(2);
   };
 
   return (
     <div>
+      {/* <Star/> */}
       <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
-      <ReviewList reviews={reviews} />
+      <ReviewList reviews={reviews.slice(0, count)} />
 
       <button type="button" onClick={loadMoreReviews}>More Reviews</button>
       <button>Add a Review</button>
     </div>
   );
-};
+}
