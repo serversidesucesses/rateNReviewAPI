@@ -17,11 +17,11 @@ export const Question = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  margin-top: 10px;
 `;
 
 export const Span = styled.span`
-  display: inline-block;
-  padding-left: 5px;
+  padding-left: 2px;
   `;
 
 export const More_Answer = styled.div`
@@ -29,6 +29,7 @@ export const More_Answer = styled.div`
   overflow: scroll;
   padding: 10px;
   border: 2px solid black;
+  width: 80%;
 `;
 
 export const Answer = styled.div`
@@ -37,20 +38,23 @@ export const Answer = styled.div`
   align-items: space-between;
   justify-content: center;
   padding: 10px;
-  margin-top: -26px;
-  margin-bottom: 10px;
+  margin-top: -18px;
+  width: 100%;
 `;
 
-export const Div = styled.div`
+export const AnswerContainer = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 10px;
-
+  margin-top: -20px;
+  margin-bottom: -25px;
 `;
 
 export const A = styled.span`
   display: inline-block;
   padding-left: 5px;
+  font-family: Arial;
+  font-weight: bold;
   font-size: 18px;
 `;
 
@@ -58,8 +62,19 @@ export const Q = styled.span`
   display: flex;
   align-items: center;
   font-size: 18px;
-
+  font-weight: bold;
   span {
     margin-right: 10px;
+  }
+`;
+
+export const PhotosContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  div {
+    padding-right: 20px;
+    width: 100px;
   }
 `;

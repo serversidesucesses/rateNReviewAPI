@@ -1,17 +1,18 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
-import QuestionContainer from './questionContainer.jsx';
+import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
 import { Question_Answer } from '../styles/Q&A/container.styled';
+import { MoreAnswer } from '../styles/Q&A/buttons.styled';
 
 const axios = require('axios');
 
-export default function QuestionList() {
+export default function QuestionListContainer() {
   //  useEffect componentDidMount() --> get the data for questions and answers
   const [questions, setQuestions] = useState([]);
   const [allQuestions, setAllQuestions] = useState([]);
   const [search, setSearch] = useState([]);
-  const [count, setCount] = useState(2);
+  const [count, setCount] = useState(3);
   const [datalength, setDataLength] = useState(2);
 
   function fetchData() {
@@ -30,15 +31,16 @@ export default function QuestionList() {
   }
 
   useEffect(() => {
+    console.log('count Effect');
     fetchData();
   }, [count]);
 
   useEffect(() => {
+    console.log('search Effect');
     setQuestions(search);
   }, [search]);
 
   function fetchHelpfulData(question_id) {
-    console.log(question_id);
     axios.put(`/questions/questions/helpful/?question_id=${question_id}`)
       .then(() => {
         fetchData();
@@ -57,7 +59,8 @@ export default function QuestionList() {
       setSearch(searchArr);
     }
   }
-  console.log('questions', questions)
+console.log('debugger');
+console.log('questions', questions);
   return (
     <>
       <Search onSearch={filter} />
@@ -65,9 +68,9 @@ export default function QuestionList() {
         { (questions === undefined || questions.length === 0)
           ? null
           : questions.map((question) => (
-            <QuestionContainer helpfulness={fetchHelpfulData} question={question} />)) }
+           <QuestionList key={question.question_id} helpfulness={fetchHelpfulData} question={question} />)) }
         {(datalength > count || questions.length > 4)
-          ? <button type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>MORE ANSWERED QUESTIONS</button>
+          ? <MoreAnswer type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>MORE ANSWERED QUESTIONS</MoreAnswer>
           : null }
       </Question_Answer>
     </>
