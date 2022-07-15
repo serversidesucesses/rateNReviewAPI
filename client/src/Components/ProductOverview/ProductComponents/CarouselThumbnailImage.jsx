@@ -9,7 +9,7 @@ const CarouselThumbnailImage = ({ photo, activePhotoIndex, isExpanded, handleCli
   }, [isExpanded])
 
   const displayThumbnail = () => {
-    console.log('photo inside thumbnail.jsx is: ', photo)
+    //console.log('photo inside thumbnail.jsx is: ', photo)
     if (!isExpanded) {
       return <ThumbnailImage src={photo.url} onClick={() => handleClick(index)} />
     } else {

@@ -31,12 +31,12 @@ export default function QuestionListContainer() {
   }
 
   useEffect(() => {
-    console.log('count Effect');
+    //console.log('count Effect');
     fetchData();
   }, [count]);
 
   useEffect(() => {
-    console.log('search Effect');
+   // console.log('search Effect');
     setQuestions(search);
   }, [search]);
 

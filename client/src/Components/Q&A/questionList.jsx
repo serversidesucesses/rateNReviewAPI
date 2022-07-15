@@ -44,8 +44,8 @@ export default function QuestionList({ question, helpfulness }) {
     status ? setStatus(false) : setStatus(true);
   }
 
-  console.log("question", question)
-  console.log('answersArray', answers);
+  //console.log("question", question)
+  //console.log('answersArray', answers);
   return (
     <div>
       <Question>

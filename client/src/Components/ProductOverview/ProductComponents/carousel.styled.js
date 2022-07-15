@@ -25,7 +25,7 @@ export const CarouselLayout = styled.div`
 export const CarouselThumbnailContainer = styled.div`
   position: absolute;
   top: 1.5rem;
-  left: 0%;
+  left: 2%;
   max-height: 30rem;
   width: 6rem;
   z-index: 3;
@@ -37,7 +37,7 @@ export const CarouselThumbnailGrid = styled.div`
   max-height: 32rem;
   gap: 1rem;
   overflow-y: scroll;
-  border-radius: 5px;
+  border-radius: 20px;
   padding-right: 10px;
 `
 export const CarouselImageContainer = styled.div`
@@ -56,6 +56,7 @@ export const CarouselButtonUp = styled.button`
   width: 100%;
   opacity: 50%;
   cursor: pointer;
+  border-radius: 10%;
 `
 export const CarouselButtonDown = styled.button`
   bottom: 0;
@@ -65,6 +66,7 @@ export const CarouselButtonDown = styled.button`
   width: 100%;
   opacity: 50%;
   cursor: pointer;
+  border-radius: 10%;
 `
 export const CarouselButtonLeft = styled.button`
   position: absolute;

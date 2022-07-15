@@ -11,7 +11,6 @@ const Carousel = ({ currentStyle, productId }) => {
   let [activePhotoIndex, SetActivePhotoIndex] = useState(0);
   // check expand state, haven't implemented it yet
   let [isExpanded, setIsExpanded] = useState(false);
-
   let numPhotos = currentStyle.photos.length;
 
   console.log('currentStyle from carousel is:', currentStyle);
@@ -43,12 +42,8 @@ const Carousel = ({ currentStyle, productId }) => {
 return (
   <CarouselLayout>
     <CarouselThumbnailContainer>
-
-        {<CarouselButtonUp onClick={() => handleClick(activePhotoIndex - 1)}><FaAngleUp /></CarouselButtonUp>}
-
-
+      {<CarouselButtonUp onClick={() => handleClick(activePhotoIndex - 1)}><FaAngleUp /></CarouselButtonUp>}
       <CarouselThumbnailGrid>
-
         {/* here each photo is an object that contain url and thumbnail_url */}
         {currentStyle.photos.map((photo, index) => {
           return (

@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 // import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import ProductInformation from './ProductComponents/ProductInformation.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
-// import ImageGallery from './ProductComponents/ImageGallery.jsx';
-// import SizeBag from './ProductComponents/SizeBag.jsx';
 
 
 export default function ProductMain() {
@@ -24,15 +22,11 @@ export default function ProductMain() {
 
   return (
     <div>
-      <ProductInformation  />
-      {/* <ImageGallery /> */}
+      {/* StyleSelector contains style and carousel */}
       <StyleSelector />
+      {/* productinformation contains information, slogan and descirption */}
+      <ProductInformation  />
 
-      {/* <ImageGallery />
-      <ProductInformation />
-      <SizeBag />
-      <ProductDescription /> */}
-      Hi, this is ProductMain
     </div>
   );
 }
