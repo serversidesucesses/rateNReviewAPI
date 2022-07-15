@@ -65,7 +65,7 @@ export default function QuestionList() {
         { (questions === undefined || questions.length === 0)
           ? null
           : questions.map((question) => (
-            <QuestionContainer helpfulness={fetchHelpfulData} question={question} />)) }
+            <QuestionContainer key= {question.question_id} helpfulness={fetchHelpfulData} question={question} />)) }
         {(datalength > count || questions.length > 4)
           ? <button type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>MORE ANSWERED QUESTIONS</button>
           : null }
