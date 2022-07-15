@@ -13,14 +13,18 @@ export const Button = styled.button`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 190px;
+  width: 20%;
   font-size: 14px;
 `;
 
 export const ButtonContainerAns = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 320px;
+  width: 40%;
   font-size: 14px;
-  margin-top: 20px;
+`;
+
+export const MoreAnswer = styled.button`
+  margin: 30px;
+  margin-top: 50px;
 `;

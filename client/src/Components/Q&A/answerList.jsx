@@ -1,20 +1,21 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
-import Photos from './photos.jsx';
+import Photo from './photo.jsx';
 import { Button, ButtonContainerAns } from '../styles/Q&A/buttons.styled';
-import { Answer, Span } from '../styles/Q&A/container.styled';
+import { Answer, Span, PhotosContainer } from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
-export default function AnswerContainer({ answer, helpfulness }) {
+export default function AnswerList({ answer, helpfulness }) {
   const [reported, setReported] = useState(false);
 
   function report(answer_id) {
-    console.log(answer_id);
     axios.put(`/questions/reportA/?answer_id=${answer_id}`)
       .then(() => setReported(true))
       .catch((error) => console.log(error));
   }
+
+  console.log(answer);
 
   // Date conversion
   const date = new Date(answer.date);
@@ -24,12 +25,35 @@ export default function AnswerContainer({ answer, helpfulness }) {
     <Answer>
       <p>{answer.body}</p>
       {answer.photos.length === 0
-        ? null : answer.photos.map((photo) => <Photos photos={photo} />)}
+        ? null
+        : (
+          <PhotosContainer>
+            {' '}
+            {answer.photos.map((photo, index) => <Photo key={index} photos={photo} />)}
+            {' '}
+          </PhotosContainer>
+        )}
 
       <ButtonContainerAns>
         <div>
           {(answer.answerer_name === 'Seller' || answer.answerer_name === 'seller')
-            ? <Span>by <b>Seller</b>, </Span> : <Span>by {answer.answerer_name}, </Span> }
+            ? (
+              <Span>
+                by
+                {' '}
+                <b>Seller</b>
+                ,
+                {' '}
+              </Span>
+            ) : (
+              <Span>
+                by
+                {' '}
+                {answer.answerer_name}
+                ,
+                {' '}
+              </Span>
+            ) }
           <Span>{`${date.toLocaleDateString(undefined, options)}`}</Span>
         </div>
         <span>|</span>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import ProductInformation from './ProductComponents/ProductInformation.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
-// import ImageGallery from './ProductComponents/ImageGallery/ImageGallery.jsx';
+// import ImageGallery from './ProductComponents/ImageGallery.jsx';
 // import SizeBag from './ProductComponents/SizeBag.jsx';
 
 
@@ -25,6 +25,7 @@ export default function ProductMain() {
   return (
     <div>
       <ProductInformation  />
+      {/* <ImageGallery /> */}
       <StyleSelector />
 
       {/* <ImageGallery />

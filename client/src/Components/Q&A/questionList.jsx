@@ -3,56 +3,49 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
-import AnswerContainer from './answerContainer.jsx';
+import AnswerList from './answerList.jsx';
+import AddAnswer from './addAnswer.jsx';
 import { Button, ButtonContainer } from '../styles/Q&A/buttons.styled';
-import { Question, Span, More_Answer, Div, A, Q } from '../styles/Q&A/container.styled';
+import { Question, Span, More_Answer, AnswerContainer, A, Q, Answer} from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
-export default function QuestionContainer({ question, helpfulness }) {
+export default function QuestionList({ question, helpfulness }) {
   // answers only first  two
   // get answers --> sort by helpfulness
   const [answers, setAnswers] = useState([]);
   const [count, setCount] = useState(2);
-  const [allAnswers, setStatus] = useState(false);
+  const [helpfulData, setHelpfulData] = useState(0);
+  const [status, setStatus] = useState(false);
+  const [add, setAddStatus] = useState(false);
 
-  function fetchAnswerData() {
+  useEffect(() => {
     axios.get('/questions/answers', {
       params: {
         question_id: question.question_id,
         page: 1,
-        count,
+        count: 1000,
       },
     })
-      .then(({ data }) => setAnswers(data.results))
+      .then(({ data }) => setAllAnswers(data.results))
       .catch((error) => console.log(error));
-  }
+  }, [count, helpfulData]);
 
-  useEffect(() => {
-    fetchAnswerData();
-    // console.log('amswerwr2')
-  }, [count]);
-
-  useEffect(() => {
-    fetchAnswerData();
-    console.log('amswerwr2')
-  }, []);
   // only sort two
 
   function fetchHelpfulData(answer_id) {
     axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
-      .then(() => {
-        fetchAnswerData();
-      })
+      .then(() => setHelpfulData((prevCount) => prevCount + 1))
       .catch((error) => console.log(error));
   }
 
   function onClick() {
-    allAnswers ? setCount(2)  : setCount(1000) ;
-    allAnswers ? setStatus(false) : setStatus(true);
+    status ? setCount(2)  : setCount(1000) ;
+    status ? setStatus(false) : setStatus(true);
   }
 
-  console.log();
+  console.log("question", question)
+  console.log('answersArray', answers);
   return (
     <div>
       <Question>
@@ -66,26 +59,27 @@ export default function QuestionContainer({ question, helpfulness }) {
             <Span>{`Yes (${question.question_helpfulness})`}</Span>
           </div>
           <Span>|</Span>
-          <Button type="button">Add Answer</Button>
+          <Button type="button" onClick={() => setAddStatus(true)}>Add Answer</Button>
+          { add ? <AddAnswer setAddStatus={setAddStatus} /> : null }
         </ButtonContainer>
       </Question>
 
-      <Div>
+      <AnswerContainer>
         <A>A: </A>
-        { allAnswers
+        { status === true
           ? <More_Answer>
-            { answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)}
+            { answers.map((answer) => <AnswerList key={answer.answer_id} helpfulness={fetchHelpfulData} answer={answer} />)}
           </More_Answer>
 
-          : <div>{
-            answers.map((answer) => <AnswerContainer helpfulness={fetchHelpfulData} answer={answer} />)} </div> }
-      </Div>
+          : <Answer>{
+            answers.map((answer, index) => <AnswerList key={index} helpfulness={fetchHelpfulData} answer={answer} />)} </Answer> }
+      </AnswerContainer>
 
-      {(allAnswers && answers.length > 1)
+      {(status)
         ? <Button type="button" onClick={() => onClick()}>Collapse</Button>
         : null }
 
-      {(!allAnswers && answers.length > 1) ? <Button type="button" onClick={() => onClick()}>SEE MORE ANSWERS</Button> : null}
+      {(!status && answers.length > 2) ? <Button type="button" onClick={() => onClick()}>SEE MORE ANSWERS</Button> : null}
 
     </div>
   );
