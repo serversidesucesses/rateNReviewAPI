@@ -93,6 +93,7 @@ exports.put_answHelpful = (req, res) => {
 };
 
 exports.put_reportA = (req, res) => {
+  console.log(req.query.answer_id);
   axios.put(`/qa/answers/${req.query.answer_id}/report`)
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(404));

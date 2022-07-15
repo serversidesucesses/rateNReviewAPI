@@ -12,7 +12,8 @@ export default function QuestionListContainer() {
   const [questions, setQuestions] = useState([]);
   const [allQuestions, setAllQuestions] = useState([]);
   const [search, setSearch] = useState([]);
-  const [count, setCount] = useState(3);
+  const [resetCount, setResetCount] = useState(0);
+  const [count, setCount] = useState(4);
   const [datalength, setDataLength] = useState(2);
 
   function fetchData() {
@@ -33,12 +34,26 @@ export default function QuestionListContainer() {
   useEffect(() => {
     console.log('count Effect');
     fetchData();
-  }, [count]);
+  }, [count, resetCount]);
 
   useEffect(() => {
     console.log('search Effect');
     setQuestions(search);
+    console.log('count setQuestion: ', count);
   }, [search]);
+
+  function filter(searchWord) {
+    const searchArr = allQuestions.filter((q) => (
+      q.question_body.toLowerCase().includes(searchWord.toLowerCase())));
+    console.log(searchArr);
+    console.log('filter: ', count);
+    if (searchArr.length > 0 && searchWord.length >= 3) {
+      setSearch(searchArr);
+    } else {
+      console.log('empty array');
+      setResetCount((prevCount) => prevCount + 1);
+    }
+  }
 
   function fetchHelpfulData(question_id) {
     axios.put(`/questions/questions/helpful/?question_id=${question_id}`)
@@ -48,31 +63,33 @@ export default function QuestionListContainer() {
       .catch((error) => console.log(error));
   }
 
-  function filter(searchWord) {
-    if (searchWord === undefined || '') {
-      setCount(2);
-      setSearch([]);
-    } else {
-      const searchArr = allQuestions.filter((q) => (
-        q.question_body.toLowerCase().includes(searchWord.toLowerCase())));
-      console.log(searchArr);
-      setSearch(searchArr);
-    }
+  function reportQ(question_id) {
+    axios.put(`questions/reportQ/?question_id=${question_id}`)
+      .then(() => {
+        fetchData();
+      })
+      .catch((error) => console.log(error));
   }
-// console.log('debugger');
-// console.log('questions', questions);
+
   return (
-    <>
-      <Search onSearch={filter} />
-      <Question_Answer>
-        { (questions === undefined || questions.length === 0)
-          ? null
-          : questions.map((question) => (
-           <QuestionList key={question.question_id} helpfulness={fetchHelpfulData} question={question} />)) }
-        {(datalength > count || questions.length > 4)
-          ? <MoreAnswer type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>MORE ANSWERED QUESTIONS</MoreAnswer>
-          : null }
-      </Question_Answer>
-    </>
+    <Question_Answer>
+      <Search onSearch={filter} setCount={setCount} count={count} />
+
+      { (questions === undefined || questions.length === 0)
+        ? null
+        : questions.map((question) => (
+          // eslint-disable-next-line max-len
+          <QuestionList key={question.question_id} helpfulness={fetchHelpfulData} reportQ={reportQ} question={question} />)) }
+      {(datalength > count || questions.length > 4)
+        ? (
+          <MoreAnswer type="button" onClick={() => setResetCount(count)}>
+            SEE
+            { datalength - count }
+            {' '}
+            MORE ANSWERED QUESTIONS
+          </MoreAnswer>
+        )
+        : null }
+    </Question_Answer>
   );
 }

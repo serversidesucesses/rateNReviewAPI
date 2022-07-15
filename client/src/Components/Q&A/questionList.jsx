@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react';
 import AnswerList from './answerList.jsx';
 import AddAnswer from './addAnswer.jsx';
 import { Button, ButtonContainer } from '../styles/Q&A/buttons.styled';
-import { Question, Span, More_Answer, AnswerContainer, A, Q, Answer} from '../styles/Q&A/container.styled';
+import { QuestionListItem, Question, Span, More_Answer, AnswerContainer, A, Q, Answer} from '../styles/Q&A/container.styled';
 
 const axios = require('axios');
 
-export default function QuestionList({ question, helpfulness }) {
+export default function QuestionList({ question, helpfulness, reportQ }) {
   // answers only first  two
   // get answers --> sort by helpfulness
   const [answers, setAnswers] = useState([]);
@@ -18,69 +18,81 @@ export default function QuestionList({ question, helpfulness }) {
   const [helpfulData, setHelpfulData] = useState(0);
   const [status, setStatus] = useState(false);
   const [add, setAddStatus] = useState(false);
+  const [reportA, setReportA] = useState(false);
 
   useEffect(() => {
     axios.get('/questions/answers', {
       params: {
         question_id: question.question_id,
         page: 1,
-        count: 1000,
+        count,
       },
     })
-      .then(({ data }) => setAllAnswers(data.results))
+      .then(({ data }) => setAnswers(data.results))
       .catch((error) => console.log(error));
-  }, [count, helpfulData]);
+  }, [count, helpfulData, reportA]);
 
-  // only sort two
 
+  // ----------setter functions being passed to child component-------------------------------------
   function fetchHelpfulData(answer_id) {
     axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
       .then(() => setHelpfulData((prevCount) => prevCount + 1))
       .catch((error) => console.log(error));
   }
 
-  function onClick() {
+  function report(answer_id) {
+    axios.put(`/questions/reportA/?answer_id=${answer_id}`)
+      .then(() => {
+        setReportA(true);
+        alert('Answer has been reported');
+      })
+      .catch((error) => console.log(error));
+  }
+  // --------------setter function for collapse and more answer-----------
+  function moreQuestions() {
     status ? setCount(2)  : setCount(1000) ;
     status ? setStatus(false) : setStatus(true);
   }
 
-  console.log("question", question)
-  console.log('answersArray', answers);
+  // console.log("question", question)
+  // console.log('answersArray', answers);
+  // console.log('reportA', reportA);
   return (
     <div>
-      <Question>
-        <Q>
-          <span>Q: </span>
-          <p>{question.question_body}</p>
-        </Q>
-        <ButtonContainer>
-          <div>
-            <Button type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</Button>
-            <Span>{`Yes (${question.question_helpfulness})`}</Span>
-          </div>
-          <Span>|</Span>
-          <Button type="button" onClick={() => setAddStatus(true)}>Add Answer</Button>
-          { add ? <AddAnswer setAddStatus={setAddStatus} /> : null }
-        </ButtonContainer>
-      </Question>
+      <QuestionListItem>
+        <Question>
+          <Q>
+            <span>Q: </span>
+            <p>{question.question_body}</p>
+          </Q>
+          <ButtonContainer>
+            <div>
+              <Button type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</Button>
+              <Span>{`Yes (${question.question_helpfulness})`}</Span>
+            </div>
+            <Span>|</Span>
+            <Button type="button" onClick={() => reportQ(question.question_id)}>Report</Button>
+            <Span>|</Span>
+            <Button type="button" onClick={() => setAddStatus(true)}>Add Answer</Button>
+            { add ? <AddAnswer setAddStatus={setAddStatus} /> : null }
+          </ButtonContainer>
+        </Question>
+        <AnswerContainer>
+          <A>A: </A>
+          <Answer>
+            { status === true
+              ? <More_Answer>
+                { answers.map((answer) => <AnswerList key={answer.answer_id} helpfulness={fetchHelpfulData} report={report} answer={answer} />)}
+              </More_Answer>
+              : <>{ answers.map((answer, index) => <AnswerList key={index} helpfulness={fetchHelpfulData} report={report} answer={answer} />)}</>}
 
-      <AnswerContainer>
-        <A>A: </A>
-        { status === true
-          ? <More_Answer>
-            { answers.map((answer) => <AnswerList key={answer.answer_id} helpfulness={fetchHelpfulData} answer={answer} />)}
-          </More_Answer>
-
-          : <Answer>{
-            answers.map((answer, index) => <AnswerList key={index} helpfulness={fetchHelpfulData} answer={answer} />)} </Answer> }
-      </AnswerContainer>
-
-      {(status)
-        ? <Button type="button" onClick={() => onClick()}>Collapse</Button>
-        : null }
-
-      {(!status && answers.length > 2) ? <Button type="button" onClick={() => onClick()}>SEE MORE ANSWERS</Button> : null}
-
+            {(status)
+              ? <Button type="button" onClick={() => onClick()}>Collapse</Button>
+              : null }
+          </Answer>
+          {(!status && answers.length > 2) ? <Button type="button" onClick={() => moreQuestions()}>SEE MORE ANSWERS</Button> : null}
+        </AnswerContainer>
+      </QuestionListItem>
     </div>
   );
 }
