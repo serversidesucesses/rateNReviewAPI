@@ -59,8 +59,8 @@ export default function QuestionListContainer() {
       setSearch(searchArr);
     }
   }
-console.log('debugger');
-console.log('questions', questions);
+// console.log('debugger');
+// console.log('questions', questions);
   return (
     <>
       <Search onSearch={filter} />

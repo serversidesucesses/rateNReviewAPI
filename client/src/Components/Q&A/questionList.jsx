@@ -24,10 +24,10 @@ export default function QuestionList({ question, helpfulness }) {
       params: {
         question_id: question.question_id,
         page: 1,
-        count,
+        count: 1000,
       },
     })
-      .then(({ data }) => setAnswers(data.results))
+      .then(({ data }) => setAllAnswers(data.results))
       .catch((error) => console.log(error));
   }, [count, helpfulData]);
 
