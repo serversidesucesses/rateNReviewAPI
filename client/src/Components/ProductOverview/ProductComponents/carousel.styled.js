@@ -55,6 +55,7 @@ export const CarouselButtonUp = styled.button`
   font-size: 2rem;
   width: 100%;
   opacity: 50%;
+  cursor: pointer;
 `
 export const CarouselButtonDown = styled.button`
   bottom: 0;
@@ -63,6 +64,7 @@ export const CarouselButtonDown = styled.button`
   font-size: 2rem;
   width: 100%;
   opacity: 50%;
+  cursor: pointer;
 `
 export const CarouselButtonLeft = styled.button`
   position: absolute;
@@ -72,6 +74,7 @@ export const CarouselButtonLeft = styled.button`
   z-index: 10;
   opacity: 50%;
   border-radius: 20%;
+  cursor: pointer;
 `
 export const CarouselButtonRight = styled.button`
   position: absolute;
@@ -81,4 +84,5 @@ export const CarouselButtonRight = styled.button`
   z-index: 10;
   opacity: 50%;
   border-radius: 20%;
+  cursor: pointer;
 `
