@@ -30,8 +30,7 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
     })
       .then(({ data }) => setAnswers(data.results))
       .catch((error) => console.log(error));
-  }, [count, helpfulData, reportA]);
-
+  }, [count, helpfulData, reportA, add]);
 
   // ----------setter functions being passed to child component-------------------------------------
   function fetchHelpfulData(answer_id) {
@@ -74,7 +73,8 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
             <Button type="button" onClick={() => reportQ(question.question_id)}>Report</Button>
             <Span>|</Span>
             <Button type="button" onClick={() => setAddStatus(true)}>Add Answer</Button>
-            { add ? <AddAnswer setAddStatus={setAddStatus} /> : null }
+            { add ? <AddAnswer setAddStatus={setAddStatus} question_id={question.question_id} />
+              : null }
           </ButtonContainer>
         </Question>
         <AnswerContainer>

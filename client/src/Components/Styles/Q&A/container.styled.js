@@ -11,6 +11,7 @@ export const Question_Answer = styled.ul`
   padding: 15px;
   font-family: Arial;
   font-size: 14px;
+  background: glacier-white;
 `;
 
 export const Question = styled.div`
@@ -82,17 +83,6 @@ export const Q = styled.div`
   }
   p  {
     margin: 0;
-  }
-`;
-
-export const PhotosContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-
-  div {
-    padding-right: 20px;
-    width: 100px;
   }
 `;
 

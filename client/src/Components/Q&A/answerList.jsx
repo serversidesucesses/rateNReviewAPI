@@ -2,15 +2,10 @@
 import React from 'react';
 import Photo from './photo.jsx';
 import { Button, ButtonContainerAns } from '../styles/Q&A/buttons.styled';
-import { Answer, Span, PhotosContainer } from '../styles/Q&A/container.styled';
+import { Answer, Span } from '../styles/Q&A/container.styled';
+import { PhotosContainer } from '../styles/Q&A/photo.styled';
 
 export default function AnswerList({ answer, helpfulness, report }) {
-  // const [helpfulCount, setHelpfulCount] = useState(0);
-  // const helpfulButton = () => {
-  //   setHelpfulCount((prevCount) => prevCount + 1);
-  //   helpfulness(answer.answer_id);
-  // }
-
   console.log(answer);
 
   // Date conversion
@@ -23,7 +18,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
       {answer.photos.length === 0
         ? null
         : (
-          <PhotosContainer>
+          <PhotosContainer >
             {' '}
             {answer.photos.map((photo, index) => <Photo key={index} photos={photo} />)}
             {' '}
@@ -54,7 +49,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
         </div>
         <span>|</span>
         <div>
-          <Button type="button" onClick={()=> helpfulness(answer_id)}>Helpful?</Button>
+          <Button type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</Button>
           <Span>{`  Yes (${answer.helpfulness})`}</Span>
         </div>
         <span>|</span>

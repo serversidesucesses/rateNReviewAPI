@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import Form from '../styles/Q&A/form.styled.js'
-import CloudinaryUploadWidget from './cloudinaryUploadWidget.jsx'
+import { Form } from '../styles/Q&A/form.styled.js'
+import CloudinaryUploadWidget from './cloudinaryUploadWidget.jsx';
+
+const axios = require('axios');
 
 const initialValues = {
-  answer: '',
+  body: '',
   name: '',
   email: '',
 };
 
-export default function AddAnswer({setAddStatus}) {
+export default function AddAnswer({setAddStatus, question_id}) {
   const [values, setValues] = useState(initialValues);
   const [images, setImages] = useState([]);
 
@@ -27,16 +29,25 @@ export default function AddAnswer({setAddStatus}) {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(values);
-    setAddStatus(false);
+    const data = { ...values, photos: images };
+    axios.post('/questions/answers', data, {
+      params: {
+        question_id,
+      },
+    })
+      .then(() => {
+        console.log('created');
+        setAddStatus(false);
+      })
+      .catch((error) => console.log(error));
   }
-  console.log(images);
+
   return (
     <Form>
       <h2>Submit an answer</h2>
       <form onSubmit={onSubmit}>
         <div claassName="text">
-          <input type="text" name="answer" placeholder="Enter an answer..." maxLength="1000" size="100" value={values.answer} onChange={handleInputChange} required />
+          <input type="text" name="body" placeholder="Enter an answer..." maxLength="1000" size="100" value={values.body} onChange={handleInputChange} required />
         </div>
         <div claassName="name">
           <input type="text" name="name" placeholder="Enter a name" value={values.name} onChange={handleInputChange} />

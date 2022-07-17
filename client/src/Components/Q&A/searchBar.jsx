@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBar } from '../styles/Q&A/container.styled';
 
-export default function Search({ onSearch, setCount, count }) {
+export default function Search({ setSearch, allQuestions }) {
   const [value, setValue] = useState('');
+
+  function filter(searchWord) {
+    if (searchWord.length > 2) {
+      const searchArr = allQuestions.filter((q) => (
+        q.question_body.toLowerCase().includes(searchWord.toLowerCase())));
+      console.log('searchword', searchWord);
+      console.log('searchArr', searchArr);
+      setSearch(searchArr);
+    } else {
+      console.log('empty array');
+      // setResetCount((prevCount) => prevCount + 1);
+      setSearch([]);
+    }
+  }
+
+  useEffect(() => {
+    filter(value);
+  }, [value]);
 
   function changeHandler(e) {
     setValue(e.target.value);
     console.log('hello');
-      onSearch(value);
   }
-  // function clickHandler() {
-  //   props.onSearch(value);
-  // }
 
   return (
     <div>
