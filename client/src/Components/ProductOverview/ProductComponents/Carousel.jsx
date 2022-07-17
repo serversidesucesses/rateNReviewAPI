@@ -64,10 +64,10 @@ const Carousel = ({ currentStyle, productId }) => {
 
   return (
     <>
-      {/* {expandStatus ?
+      {expandStatus ?
         <ExpandedView>
-          <ExpandedImage {currentStyle.photos[activePhotoIndex].url} onClick={() => toggleExpandStatus()} />
-        </ExpandedView> : */}
+          <ExpandedImage src={currentStyle.photos[activePhotoIndex].url} onClick={() => toggleExpandStatus()} />
+        </ExpandedView> :
       <CarouselLayout>
         <CarouselThumbnailContainer>
           {leftButtonStatus ? <CarouselButtonUp onClick={() => handleClick(activePhotoIndex - 1)}><FaAngleUp /></CarouselButtonUp> : null}
@@ -96,7 +96,7 @@ const Carousel = ({ currentStyle, productId }) => {
 
         </CarouselImageContainer>
       </CarouselLayout>
-    {/* } */}
+    }
     </>
   )
 }

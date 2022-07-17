@@ -5,16 +5,16 @@ import StylePhoto from './StylePhoto.jsx';
 import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 // import styles
-import { StyleSelectorLayout, StylePhotoGrid, PriceStyleContainer, SizeQtyContainer, CategoryNameContainer } from './styleSelector.styled.js';
+import { StyleSelectorLayout, StylePhotoGrid, PriceStyleContainer, SizeQtyContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer } from './styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../productOverview.styled.js'
 
 const axios = require('axios');
 
 export default function StyleSelector({ productName, categoryName }) {
-  const [productId, setProductId] = useState(40347);
+  const [productId, setProductId] = useState(40348);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({photos: [0], skus: {}});
-  const [currentStylePhotos, setCurrentStylePhotos] = useState([]);
+  // const [currentStylePhotos, setCurrentStylePhotos] = useState([]);
 
   const getStyleFromProductId = (productId) => {
     axios({
@@ -42,14 +42,12 @@ export default function StyleSelector({ productName, categoryName }) {
       <ProductDescriptionGrid>
         {/* above grid has 2fr 1fr, and I want Carousel to take up 2
         Carousel has too many style therefore has a seperate styling file */}
-
         <Carousel currentStyle={ currentStyle } productId={productId}/>
-
         {/* StyleSelectorLayout will take the other 1fr */}
         <StyleSelectorLayout>
           <CategoryNameContainer>
-          {categoryName}
-          {productName}
+            <CategoryContainer>{categoryName}</CategoryContainer>
+            <ProductNameContainer>{productName}</ProductNameContainer>
           </CategoryNameContainer>
           <PriceStyleContainer>
             ${currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price}

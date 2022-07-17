@@ -13,8 +13,15 @@ export const CategoryNameContainer = styled.div`
   grid-row-start: 2;
   grid-row-end: 3;
   position: grid;
-  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
 `
+export const CategoryContainer = styled.div`
+  font-size: x-large;
+`
+export const ProductNameContainer = styled.div`
+  font-size: xx-large;
+`
+
 export const PriceStyleContainer = styled.div`
   grid-row-start: 3;
   grid-row-end: 4;

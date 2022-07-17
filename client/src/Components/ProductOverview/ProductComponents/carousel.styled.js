@@ -5,8 +5,8 @@ import styled from 'styled-components';
 // the parent grid is ProductDescriptionGrid in StyleSelector
 export const CarouselLayout = styled.div`
   grid-column-start: 1;
-  grid-column-end: 3;
-  height: flex;
+  grid-column-end: -1;
+  height: 40rem;
   display: grid;
 `
 export const CarouselThumbnailContainer = styled.div`
@@ -28,6 +28,7 @@ export const CarouselThumbnailGrid = styled.div`
   overflow-y: scroll;
 `
 export const ThumbnailImage = styled.img`
+
   object-fit: cover;
   position: relative;
   width: 100%;
@@ -98,5 +99,6 @@ export const ExpandedView = styled.div`
 `
 
 export const ExpandedImage = styled.img`
-
+  width: 100%;
+  height: 100%;
 `

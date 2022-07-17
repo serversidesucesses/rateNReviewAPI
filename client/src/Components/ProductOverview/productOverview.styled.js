@@ -5,7 +5,8 @@ import styled from 'styled-components';
 // biggest RED grid that contains all child of ProductOverview
 export const ProductOverviewGrid = styled.div`
   display: grid;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 4fr 1fr;
+  
 `
 // top BLUE grid that contains top row, which is the photo carousel, product description, style selector and buttons
 export const ProductDescriptionGrid = styled.div`
@@ -90,18 +91,39 @@ export const CartFavoGrid = styled.div`
 // bottom BLUE grid that contains product information
 export const ProductInformationGrid = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 0.5fr 1fr;
 `
 
 // bottom row ORANGE grid that contains product slogan stuff
 export const SloganDescriptionGrid = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
   display: grid;
   grid-template-rows: 1fr 2fr;
 `
+export const SloganContainer = styled.div`
+  font-size: 1.5em;
+  color: black;
+`
+export const DescriptionContainer = styled.div`
+  font-size: 1em;
+  color: black;
+`
+
+export const VerticalLine = styled.div`
+  grid-column-start: 2;
+  grid-column-end: 2.5;
+  border-left: 1px solid black;
+  height: flex;
+  justify-content: center;
+`
 // bottom rihgt ORANGE container that contains bullet point product description
 export const BulletPointDescription = styled.div`
-
+  grid-column-start: 2.5;
+  grid-column-end: -1;
+  font-size: large;
 `
+
 
 
 
