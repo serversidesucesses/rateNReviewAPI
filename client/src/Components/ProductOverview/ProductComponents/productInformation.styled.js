@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+// this style file only include ProductInformation.jsx and its child
+// ProductDescription.jsx
 
 export const ProductInformationContainer = styled.div`
   position: absolute;
@@ -6,7 +8,6 @@ export const ProductInformationContainer = styled.div`
   left: 53%;
   max-height: 5rem;
   z-index: 3;
-
 `
 export const CategoryContainer = styled.div`
   font-size: x-large;
@@ -15,7 +16,6 @@ export const CategoryContainer = styled.div`
 export const ProductNameContainer = styled.div`
   font-size: xx-large;
 `
-
 // this container should be below the carousel
 export const ProductDescriptionContainer = styled.div`
   display: flex;

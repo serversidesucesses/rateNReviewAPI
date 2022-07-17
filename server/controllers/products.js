@@ -31,33 +31,33 @@ exports.getProductStyles = (req, res) => {
     });
  };
 
- exports.handleClick = (req, res) => {
-  //${req.query.product_id}
-  const params = {
-    element: data.element,
-    widget: data.widget,
-    time: data.time,
-  };
-  const options = {
-    method: 'POST',
-    url: '/interactions',
-    data: params,
-  }
-  axios.post(options)
-    .then(
-      // (response) => {res.status(200).send(response.data);}
-      console.log('sucessfully post click interaction')
-      )
-    .catch((error) => {
-      res.status(400).send(error);
-    });
- };
+//  exports.handleClick = (req, res) => {
+//   //${req.query.product_id}
+//   const params = {
+//     element: data.element,
+//     widget: data.widget,
+//     time: data.time,
+//   };
+//   const options = {
+//     method: 'POST',
+//     url: '/interactions',
+//     data: params,
+//   }
+//   axios.post(options)
+//     .then(
+//       // (response) => {res.status(200).send(response.data);}
+//       console.log('sucessfully post click interaction')
+//       )
+//     .catch((error) => {
+//       res.status(400).send(error);
+//     });
+//  };
 
-exports.addToCart = (req, res) => {
-  console.log(JSON.stringify(req.body));
-  axios.post(`/cart`, req.body)
-    .then((response) => res.status(200).send(response.data))
-    .catch((err) => {
-      res.status(400).send(error);
-    });
- };
+// exports.addToCart = (req, res) => {
+//   console.log(JSON.stringify(req.body));
+//   axios.post(`/cart`, req.body)
+//     .then((response) => res.status(200).send(response.data))
+//     .catch((err) => {
+//       res.status(400).send(error);
+//     });
+//  };

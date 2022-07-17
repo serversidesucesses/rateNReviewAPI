@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import { ThumbnailImage } from './carousel.styled.js';
 
-// isExpanded not in use right now.
-const CarouselThumbnailImage = ({ photo, activePhotoIndex, isExpanded, handleClick, index, alt }) => {
+// expandStatus not in use right now.
+const CarouselThumbnailImage = ({ photo, activePhotoIndex, expandStatus, handleClick, index, alt }) => {
 
   // reload when image is expanded
   useEffect(() => {
-  }, [isExpanded])
+  }, [expandStatus])
 
   const displayThumbnail = () => {
     //console.log('photo inside thumbnail.jsx is: ', photo)
-    if (!isExpanded) {
+    if (!expandStatus) {
       return <ThumbnailImage src={photo.url} onClick={() => handleClick(index)} />
     } else {
       return <div onClick={() => handleClick(index)}></div>
