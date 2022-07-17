@@ -27,7 +27,7 @@ export default function Review({ review }) {
       })
       .catch((err) => { console.log(err); });
   };
-
+  console.log(review);
   return (
     <div>
       <Star rating={review.rating} review_id={review.review_id} />
