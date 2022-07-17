@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export const Form = styled.div`
   position: fixed;
   top: 10%;
   left: 20%;
@@ -11,25 +11,24 @@ export default styled.div`
   background: dodgerblue;
   padding: 20px;
 
-  h2 {
-    text-align: center;
-  }
   form {
-    width: 60%;
+    margin-top: 30px;
+    width: 100%;
     height: 60%;
-    position: fixed;
+    position: absolute;
     top: 15%;
-    left: 35%;
+    left: 12%;
     z-index: 11;
 
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
   }
+
   input {
-    width: 50%;
+    width: 30%;
     height: 30px;
-    margin-top: 20px;
+    margin-bottom: 1em;
+    margin-top: 0.5em;
     padding: 10px;
   }
   input[name="answer"] {
@@ -50,12 +49,40 @@ export default styled.div`
 
 `;
 
+export const Body = styled.div`
+input {
+  width: 72%;
+  height: 4em;
+}
+`;
 
-// position: fixed;
-// top: 25%;
-// left: 20%;
-// background: black;
-// width: 60%;
-// height: 60vh;
-// z-index: 1;
+export const Heading = styled.div`
+  text-align: center;
+  margin-bottom: 50px;
+`;
 
+export const PersonalInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  input {
+    width: 80%;
+    margin-bottom: -16px;
+  }
+
+  p {
+    width: 70%;
+    margin-bottom: 30px;
+  }
+`;
+
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+`;
+
+export const Buttons = styled.div`
+  position: relative;
+  left: 10%;
+`

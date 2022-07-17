@@ -1,20 +1,11 @@
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React from 'react';
 import Photo from './photo.jsx';
 import { Button, ButtonContainerAns } from '../styles/Q&A/buttons.styled';
-import { Answer, Span, PhotosContainer } from '../styles/Q&A/container.styled';
+import { Answer, Span } from '../styles/Q&A/container.styled';
+import { PhotosContainer } from '../styles/Q&A/photo.styled';
 
-const axios = require('axios');
-
-export default function AnswerList({ answer, helpfulness }) {
-  const [reported, setReported] = useState(false);
-
-  function report(answer_id) {
-    axios.put(`/questions/reportA/?answer_id=${answer_id}`)
-      .then(() => setReported(true))
-      .catch((error) => console.log(error));
-  }
-
+export default function AnswerList({ answer, helpfulness, report }) {
   console.log(answer);
 
   // Date conversion
@@ -27,7 +18,7 @@ export default function AnswerList({ answer, helpfulness }) {
       {answer.photos.length === 0
         ? null
         : (
-          <PhotosContainer>
+          <PhotosContainer >
             {' '}
             {answer.photos.map((photo, index) => <Photo key={index} photos={photo} />)}
             {' '}
@@ -58,11 +49,11 @@ export default function AnswerList({ answer, helpfulness }) {
         </div>
         <span>|</span>
         <div>
-          <Button type="button" onClick={() => helpfulness(answer.answer_id)}>Helpful?</Button>
+          <Button type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</Button>
           <Span>{`  Yes (${answer.helpfulness})`}</Span>
         </div>
         <span>|</span>
-        {reported ? <span>Reported</span> : <Button type="button" onClick={() => report(answer.answer_id)}>Report</Button>}
+        <Button type="button" onClick={() => report(answer.answer_id)}>Report</Button>
       </ButtonContainerAns>
     </Answer>
   );
