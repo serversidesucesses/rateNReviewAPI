@@ -121,6 +121,3 @@ export default function ReviewMain({ product_id }) {
   );
 }
 
-ReviewMain.defaultProps = {
-  product_id: 40344,
-};

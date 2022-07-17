@@ -17,7 +17,7 @@ function App({ product_id }) {
 }
 
 App.defaultProps = {
-  product_id: 40344,
+  product_id: 40346,
 };
 
 ReactDOM.render(<App />, rootElement);

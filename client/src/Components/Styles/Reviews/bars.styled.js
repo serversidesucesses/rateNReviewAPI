@@ -34,3 +34,50 @@ export const BarContainer = styled.div`
   }
 
 `;
+
+export const CharacterBarContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2px;
+  width: 214px;
+  grid-row: 2;
+  grid-column: 1/4;
+  position: relative;
+`;
+
+export const CharacterBar = styled.div`
+  height: 8px;
+  width: 70px;
+  background-color: rgb(210, 210, 210);
+`;
+
+export const Icon = styled.img`
+  position: absolute;
+  width: 14px;
+  top: -6px;
+  z-index: 1;
+  margin-left: -7px;
+  padding: 0;
+`;
+
+export const CharacteristicContainer = styled.div`
+  display: grid;
+  position: relative;
+  width: 200px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 25px 10px 15px;
+  padding-bottom: 20px;
+`;
+
+export const CharacterDescription = styled.span`
+  grid-row: 3;
+  font-size: 12px;
+`;
+
+export const CharacterName = styled.span`
+  grid-row: 1;
+  grid-column: 1/2;
+  font-size: 15px;
+`;
+
+export const
