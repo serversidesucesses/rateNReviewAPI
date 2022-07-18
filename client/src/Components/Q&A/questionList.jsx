@@ -4,18 +4,12 @@
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
 import AnswerList from './answerList.jsx';
-<<<<<<< HEAD
-import AddAnswer from './addAnswer.jsx';
-import { Button, ButtonContainer } from '../Styles/Q&A/buttons.styled';
-import { QuestionListItem, Question, Span, More_Answer, AnswerContainer, A, Q, Answer} from '../Styles/Q&A/container.styled';
-=======
 import Modal from './Modal/modal.jsx';
 
 import { Button, ButtonContainer } from '../styles/Q&A/buttons.styled';
 import {
   QuestionListItem, Question, Span, More_Answer, AnswerContainer, A, Q, Answer,
 } from '../styles/Q&A/container.styled';
->>>>>>> 338984b (incoming changes from main)
 
 const axios = require('axios');
 
