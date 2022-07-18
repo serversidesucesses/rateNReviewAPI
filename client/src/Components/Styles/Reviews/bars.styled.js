@@ -123,3 +123,10 @@ export const Button = styled.button`
   font-weight: light;
   opacity:0.6;
 `;
+
+export const Span = styled.span`
+  padding-left: 2px;
+  font-size: 13px;
+  font-weight: light;
+  opacity: 0.6;
+`;
