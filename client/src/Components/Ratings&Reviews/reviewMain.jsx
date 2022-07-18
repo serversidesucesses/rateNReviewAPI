@@ -23,7 +23,7 @@ export default function ReviewMain() {
       },
     })
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         setReviews(data.results);
         // setDidMount(true);
       })
