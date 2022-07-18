@@ -58,7 +58,7 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
 
   // If the default ‘Select Size’ is currently selected: Clicking this button should open the size dropdown, and a message should appear above the dropdown stating “Please select size”.
   const handleAddToBag = () => {
-    if(!outOfStockStatus) {
+    if(outOfStockStatus === false) {
       return (
         <button onClick={console.log('added to bag')}>ADD TO BAG</button>
       )

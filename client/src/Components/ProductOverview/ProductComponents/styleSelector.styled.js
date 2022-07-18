@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 // styleSelectorLayout is the right top orange grid
 export const StyleSelectorLayout = styled.div`
-  grid-column-start: -1;
-  position: grid;
+  grid-column-start: 2,
+  grid-column-end: 3;
   grid-template-rows: auto auto auto auto auto auto;
   z-index: 3;
 `

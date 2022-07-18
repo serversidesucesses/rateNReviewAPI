@@ -57,7 +57,7 @@ export default function ProductMain() {
         <VerticalLine>
           <div></div>
         </VerticalLine>
-        
+
         <BulletPointDescription>
           <div>
             100% organic material

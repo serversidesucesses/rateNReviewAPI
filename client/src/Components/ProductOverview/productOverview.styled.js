@@ -6,13 +6,15 @@ import styled from 'styled-components';
 export const ProductOverviewGrid = styled.div`
   display: grid;
   grid-template-rows: 4fr 1fr;
-  
-`
+  width: 80%;
+  margin: 0 auto;
+`;
 // top BLUE grid that contains top row, which is the photo carousel, product description, style selector and buttons
 export const ProductDescriptionGrid = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
-`
+  grid-template-columns: 58% 42%;
+  gap: 2rem;
+`;
 // top left ORANGE container that contains the carousel
 export const CarouselContainer = styled.div`
   display: flex;
@@ -67,6 +69,7 @@ export const CarouselMainImage = styled.img`
 // name, style, price, style selector, sizeSelector, qtySelector and addToCart buttons
 export const ProductDetailGrid = styled.div`
   display: grid;
+  width: 100%;
   grid-template-rows: 1fr 2fr 1fr 2fr 1fr 1fr;
 `
 // right GREEN grid that contains all the stylePhotos in rows of 4
@@ -123,8 +126,3 @@ export const BulletPointDescription = styled.div`
   grid-column-end: -1;
   font-size: large;
 `
-
-
-
-
-

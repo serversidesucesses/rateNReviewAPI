@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { MainImage } from './carousel.styled.js'
+import React, { useState, useEffect } from 'react';
+import { MainImage } from './carousel.styled.js';
 
 // here photo is an object that contain both the thumbnailurl and normal url
-const CarouselImage = ({ photo, activePhotoIndex}) => {
+function CarouselImage({ photo, setExpandStatus }) {
   // console.log('photo.url in CarouselImage is:', photo.url)
   return (
-    <MainImage fetchpriority="high" src={photo.url}  />
-  )
+    <MainImage fetchpriority="high" src={photo.url} onClick={() => setExpandStatus((prevStatus) => (!prevStatus))} />
+  );
 }
 
-export default CarouselImage
+export default CarouselImage;

@@ -33,3 +33,4 @@ export const DescriptionContainer = styled.div`
   font-size: 1em;
   color: black;
 `
+
