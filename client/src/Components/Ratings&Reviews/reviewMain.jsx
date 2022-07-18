@@ -87,6 +87,7 @@ export default function ReviewMain({ product_id }) {
         ...prevState,
         [rating]: rating,
       }));
+      setCount(2);
     }
   };
 
@@ -95,6 +96,7 @@ export default function ReviewMain({ product_id }) {
       const filters = { ...currentFilters };
       delete filters[rating];
       setCurrentFilters(filters);
+      setCount(2);
     }
   };
 
