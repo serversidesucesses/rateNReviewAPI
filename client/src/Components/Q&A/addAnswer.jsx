@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from '../styles/Q&A/form.styled.js'
+import { Form } from '../Styles/Q&A/form.styled';
 import CloudinaryUploadWidget from './cloudinaryUploadWidget.jsx';
 
 const axios = require('axios');

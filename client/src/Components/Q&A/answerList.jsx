@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import Photo from './photo.jsx';
-import { Button, ButtonContainerAns } from '../styles/Q&A/buttons.styled';
-import { Answer, Span } from '../styles/Q&A/container.styled';
-import { PhotosContainer } from '../styles/Q&A/photo.styled';
+import { Button, ButtonContainerAns } from '../Styles/Q&A/buttons.styled';
+import { Answer, Span } from '../Styles/Q&A/container.styled';
+import { PhotosContainer } from '../Styles/Q&A/photo.styled';
 
 export default function AnswerList({ answer, helpfulness, report }) {
   console.log(answer);

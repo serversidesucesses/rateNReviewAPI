@@ -79,5 +79,3 @@ export const CharacterName = styled.span`
   grid-column: 1/2;
   font-size: 15px;
 `;
-
-export const
