@@ -23,6 +23,13 @@ module.exports = {
         test: /\.svg$/,
         type: "['@svgr/webpack']",
       },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
+      },
     ],
   },
 };

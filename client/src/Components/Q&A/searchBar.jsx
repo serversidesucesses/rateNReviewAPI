@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar } from '../styles/Q&A/container.styled';
+import { SearchBar } from '../Styles/Q&A/container.styled';
 
 export default function Search({ setSearch, allQuestions }) {
   const [value, setValue] = useState('');
