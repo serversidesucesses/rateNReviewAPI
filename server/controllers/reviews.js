@@ -12,6 +12,7 @@ exports.listReviews = (req, res) => {
     product_id
   } = req.query;
 
+  console.log('count is', count);
   axios.get(`/reviews?sort=${sort}`, {
     params: {
       page,
@@ -20,6 +21,7 @@ exports.listReviews = (req, res) => {
     },
   })
     .then((response) => {
+      console.log(response.data.results.length);
       res.status(200).send(response.data);
     })
     .catch((err) => {

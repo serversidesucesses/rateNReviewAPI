@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
-import QuestionForm from './questionform.jsx';
-import { Question_Answer } from '../styles/Q&A/container.styled';
-import { MoreAnswer } from '../styles/Q&A/buttons.styled';
+// import QuestionForm from './questionform.jsx';
+import { Question_Answer } from '../Styles/Q&A/container.styled';
+import { MoreAnswer } from '../Styles/Q&A/buttons.styled';
 
 const axios = require('axios');
 
@@ -35,15 +35,14 @@ export default function QuestionListContainer() {
   }
 
   useEffect(() => {
-    console.log('count Effect');
+    //console.log('count Effect');
     fetchData();
   }, [count]);
 
-  // useEffect(() => {
-  //   console.log('search Effect');
-  //   setQuestions(search);
-  //   console.log('count setQuestion: ', count);
-  // }, [search]);
+  useEffect(() => {
+   // console.log('search Effect');
+    setQuestions(search);
+  }, [search]);
 
   function fetchHelpfulData(question_id) {
     axios.put(`/questions/questions/helpful/?question_id=${question_id}`)

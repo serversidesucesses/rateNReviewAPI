@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Star from './stars.jsx';
+import {Button, Span} from '../../Styles/Reviews/bars.styled.js';
 
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -27,7 +28,7 @@ export default function Review({ review }) {
       })
       .catch((err) => { console.log(err); });
   };
-
+  console.log(review);
   return (
     <div>
       <Star rating={review.rating} review_id={review.review_id} />
@@ -39,14 +40,13 @@ export default function Review({ review }) {
 
       <p>{review.body}</p>
 
-      {review.recommend && <small>I recommend this product</small>}
+      {review.recommend && <small>{`I recommend this product  `}</small>}
       {review.response && <p>{review.response}</p>}
       <small>
-        Helpful?
-        <button type="button" onClick={helpHandler}>Yes</button>
-        {`(${helpCount})`}
-        |
-        <button type="button" onClick={reportHandler}>Report</button>
+        <Span>{`Helpful?  `}</Span>
+        <Button type="button" onClick={helpHandler}>Yes</Button>
+        <Span>{`(${helpCount}) | `}</Span>
+        <Button type="button" onClick={reportHandler}>Report</Button>
       </small>
     </div>
   );

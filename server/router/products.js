@@ -7,7 +7,7 @@ router.get('/productdetails', controller.products.getProductDetails);
 
 router.get('/product/styles', controller.products.getProductStyles);
 
-router.post('/click', controller.products.handleClick);
+//router.post('/click', controller.products.handleClick);
 
 // router.post('/addToCart', controller.addToCart);
 
