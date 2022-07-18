@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { SizeQtyContainer } from './styleSelector.styled.js';
 import { FaAngleDown, FaRegHeart, FaHeart } from 'react-icons/fa';
 
@@ -11,20 +12,18 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
   const currentStyleSkusArray = Object.entries(currentStyleSkus)
   // currentStyleArray example: [[1394805, {quanitity: 8, size: 'XS'}],[1394806, {quanitity: 16, size: 'S'}]]
   const [favoriteStatus, setFavoriteStatus] = useState(false);
+  const [selectedQty, setSelectedQty] = useState('-');
   const [sizeSeletedStatus, setSizeSelectedStatus] = useState(false);
+  const [qtySeletedStatus, setQtySelectedStatus] = useState(false);
+
+  const [message, setMessage] = useState('none');
+
 
   useEffect(() => {
     const currentStyleSkusArray = Object.entries(currentStyleSkus);
     console.log('currentStyleSkusArray is: ', currentStyleSkusArray);
     setSizeSelectedStatus(false);
   }, [currentStyleSkus])
-
-
-  const handleSizeSelect = (event) => {
-    // when a size is selected, record the size.
-    setSelectedSku(event.target.value);
-    setSizeSelectedStatus(true);
-  }
 
   const sizeOptions = () => {
     if (outOfStockStatus) {
@@ -52,18 +51,64 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
     return qtyArray;
   }
 
+  const handleSizeSelect = (event) => {
+    // when a size is selected, record the size to selected size
+    setSelectedSku(event.target.value);
+    setSizeSelectedStatus(true);
+  }
+
+  const handleQtySelect = (event) => {
+    // when a size is selected, record the size to selected size
+    setSelectedQty(event.target.value);
+    setQtySelectedStatus(true);
+  }
+
   const handleFavorite = () => {
     setFavoriteStatus(!favoriteStatus);
   }
 
   // If the default ‘Select Size’ is currently selected: Clicking this button should open the size dropdown, and a message should appear above the dropdown stating “Please select size”.
   const handleAddToBag = () => {
-    if(outOfStockStatus === false) {
-      return (
-        <button onClick={console.log('added to bag')}>ADD TO BAG</button>
-      )
+    if (outOfStockStatus === false && qtySeletedStatus) {
+      for (let i = 0; i < selectedQty; i++) {
+        axios({
+          method: 'post',
+          url: '/addToCart',
+          params: { sku_id: Number(selectedSku) },
+        })
+          .then((response) => {
+            console.log('sucessfully added item(s) to cart')
+          })
+          .catch((error) => {
+            console.log('Error adding item to cart', error);
+          });
+      }
+    } else {
+      console.log('Error adding to bag')
     }
   }
+
+  // const invokeAddToCart = (e) => {
+  //   e.preventDefault();
+  //   if (selectedSku === 'SELECT SIZE') {
+  //     setMessage('warning');
+  //   } else {
+  //     setMessage('none');
+  //     // need to find the current qty that client wants to add
+  //     axios({
+  //       method: 'post',
+  //       url: '/addToCart',
+  //       params: { sku_id: Number(currSku), count: qty, },
+  //     })
+  //       .then((response) => {
+
+  //       })
+  //       .catch((error) => {
+  //         console.log('Error adding item to cart', error);
+  //       });
+  //   }
+  // }
+
 
   return (
     <>
@@ -72,15 +117,15 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
         <select onChange={handleSizeSelect} name="size" id="size-select">
           {sizeOptions()}
         </select>
-        <select name="quantity" id="quantity-select">
+        <select onChange={handleQtySelect} name="quantity" id="quantity-select">
           {quantityOptions()}
         </select>
       </SizeQtyContainer>
 
       <SizeQtyContainer>
-        {handleAddToBag()}
+        <button onClick={handleAddToBag}>Add To Bag</button>
         <div onClick={handleFavorite}>{
-          favoriteStatus ? <FaHeart/> : <FaRegHeart/>}
+          favoriteStatus ? <FaHeart /> : <FaRegHeart />}
         </div>
       </SizeQtyContainer>
     </>

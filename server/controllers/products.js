@@ -29,7 +29,25 @@ exports.getProductStyles = (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     });
- };
+  };
+
+  // exports.getFromCart = (req, res) => {
+  //  axios.get(`/cart`)
+  //    .then((response) => res.status(200).send(response.data))
+  //    .catch((err) => {
+  //      res.status(400).send(error);
+  //    });
+  // };
+
+  // exports.addToCart = (req, res) => {
+  //   console.log(JSON.stringify(req.body));
+  //   axios.post(`/cart`, req.body.skuId)
+  //     .then((response) => res.status(201).send(response.data))
+  //     .catch((err) => {
+  //       res.status(400).send(error);
+  //     });
+  //  };
+
 
 //  exports.handleClick = (req, res) => {
 //   //${req.query.product_id}
@@ -49,15 +67,6 @@ exports.getProductStyles = (req, res) => {
 //       console.log('sucessfully post click interaction')
 //       )
 //     .catch((error) => {
-//       res.status(400).send(error);
-//     });
-//  };
-
-// exports.addToCart = (req, res) => {
-//   console.log(JSON.stringify(req.body));
-//   axios.post(`/cart`, req.body)
-//     .then((response) => res.status(200).send(response.data))
-//     .catch((err) => {
 //       res.status(400).send(error);
 //     });
 //  };
