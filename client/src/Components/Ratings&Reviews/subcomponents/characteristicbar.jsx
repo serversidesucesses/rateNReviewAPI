@@ -1,5 +1,5 @@
 import React from 'react';
-import { CharacterBar, CharacterBarContainer, CharacteristicContainer, Icon, CharacterDescription, CharacterName } from '../../styles/Reviews/bars.styled';
+import { CharacterBar, CharacterBarContainer, CharacteristicContainer, Icon, CharacterDescription, CharacterName } from '../../Styles/Reviews/bars.styled';
 import Arrow from '../assets/down.png';
 
 export default function CharacteristicBar({ characteristic }) {

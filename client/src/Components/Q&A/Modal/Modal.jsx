@@ -1,6 +1,5 @@
 import React from 'react';
 import ModalHeader from './ModalHeader.jsx';
-import AddAnswer from '../Forms/AddAnswer.jsx';
 import {
   ModalWrapperStyled,
   ModalBackgroundStyled,
@@ -12,7 +11,8 @@ export default function Modal({
   isOpen,
   onCloseRequest,
   title,
-  description
+  description,
+  children,
 }) {
   if (!isOpen) {
     return null;
@@ -28,7 +28,7 @@ export default function Modal({
         description={description}
         onClose={onCloseRequest}
       />
-      <ModalContentStyled><AddAnswer /></ModalContentStyled>
+      <ModalContentStyled>{children}</ModalContentStyled>
     </ModalInnerStyled>
   </ModalWrapperStyled>
   );

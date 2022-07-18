@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Bar, BarContainer, StarSpan } from '../../styles/Reviews/bars.styled';
+import { Bar, BarContainer, StarSpan } from '../../Styles/Reviews/bars.styled';
 
 export default function StarBar({ percentage, star, numStars, addFilter, deleteFilter }) {
   const [filterActive, setFilterActive] = useState(false);
