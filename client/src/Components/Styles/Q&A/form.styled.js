@@ -5,7 +5,7 @@ export const Form = styled.div`
   top: 10%;
   left: 20%;
   height: 70%;
-  width: 60%;
+  width: 100%;
   border-radius: 10px;
   z-index: 10;
   background: dodgerblue;
