@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD:client/src/Components/Q&A/Forms/addAnswer.jsx
+import { Form } from '../../styles/Q&A/form.styled.js'
+import CloudinaryUploadWidget from '../cloudinaryUploadWidget.jsx';
+=======
+<<<<<<< HEAD:client/src/Components/Q&A/addAnswer.jsx
 // import { Form } from '../Styles/Q&A/form.styled';
 // import CloudinaryUploadWidget from './cloudinaryUploadWidget.jsx';
+=======
+import { Form } from '../../styles/Q&A/form.styled.js'
+import CloudinaryUploadWidget from '../cloudinaryUploadWidget.jsx';
+>>>>>>> 338984b (incoming changes from main):client/src/Components/Q&A/Forms/addAnswer.jsx
+>>>>>>> main:client/src/Components/Q&A/addAnswer.jsx
 
 const axios = require('axios');
 
@@ -10,7 +20,7 @@ const initialValues = {
   email: '',
 };
 
-export default function AddAnswer({setAddStatus, question_id}) {
+export default function AddAnswer() {
   const [values, setValues] = useState(initialValues);
   const [images, setImages] = useState([]);
 
@@ -29,36 +39,25 @@ export default function AddAnswer({setAddStatus, question_id}) {
 
   function onSubmit(e) {
     e.preventDefault();
-    const data = { ...values, photos: images };
-    axios.post('/questions/answers', data, {
-      params: {
-        question_id,
-      },
-    })
-      .then(() => {
-        console.log('created');
-        setAddStatus(false);
-      })
-      .catch((error) => console.log(error));
   }
 
   return (
-    <Form>
+    <>
       <h2>Submit an answer</h2>
       <form onSubmit={onSubmit}>
-        <div claassName="text">
+        <div className="text">
           <input type="text" name="body" placeholder="Enter an answer..." maxLength="1000" size="100" value={values.body} onChange={handleInputChange} required />
         </div>
-        <div claassName="name">
+        <div className="name">
           <input type="text" name="name" placeholder="Enter a name" value={values.name} onChange={handleInputChange} />
         </div>
-        <div claassName="email">
+        <div className="email">
           <input type="email" name="email" placeholder="Enter an email" value={values.email} onChange={handleInputChange} />
         </div>
         <CloudinaryUploadWidget imageUpload={imageUpload} />
         <div>
           <input type="submit" value="Submit Answer" />
-          <input type="button" value="close" onClick={() => setAddStatus(false)} />
+          {/* <input type="button" value="close" onClick={() => setAddStatus(false)} /> */}
         </div>
       </form>
     </Form>
