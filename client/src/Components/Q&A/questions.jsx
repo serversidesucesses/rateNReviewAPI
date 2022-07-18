@@ -35,15 +35,14 @@ export default function QuestionListContainer() {
   }
 
   useEffect(() => {
-    console.log('count Effect');
+    //console.log('count Effect');
     fetchData();
   }, [count]);
 
-  // useEffect(() => {
-  //   console.log('search Effect');
-  //   setQuestions(search);
-  //   console.log('count setQuestion: ', count);
-  // }, [search]);
+  useEffect(() => {
+   // console.log('search Effect');
+    setQuestions(search);
+  }, [search]);
 
   function fetchHelpfulData(question_id) {
     axios.put(`/questions/questions/helpful/?question_id=${question_id}`)
