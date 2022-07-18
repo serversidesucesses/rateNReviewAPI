@@ -6,22 +6,25 @@ export const Button = styled.button`
   background: none;
   text-decoration: underline;
   cursor: pointer;
-  font-size: 14px;
-  font-family: Times;
+  font-size: 13px;
+  font-weight: lighter;
+  opacity:0.4;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 20%;
-  font-size: 14px;
+  width: 25%;
+  padding-right: 15px;
+
 `;
 
 export const ButtonContainerAns = styled.div`
   display: flex;
   justify-content: space-between;
   width: 40%;
-  font-size: 14px;
+  margin-top: -0.09em;
+  margin-bottom: 0.3em;
 `;
 
 export const MoreAnswer = styled.button`

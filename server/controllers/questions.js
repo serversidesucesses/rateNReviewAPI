@@ -27,6 +27,7 @@ exports.get_questions = (req, res) => {
 };
 
 exports.post_questions = (req, res) => {
+  console.log(req.body);
   axios.post('/qa/questions', req.body)
     .then(() => res.sendStatus(201))
     .catch((err) => res.status(400).send(err));
@@ -70,6 +71,7 @@ exports.get_answers = (req, res) => {
 };
 
 exports.post_answers = (req, res) => {
+  console.log('req.body:', req.body, 'req.query:', req.query);
   axios.post(`/qa/questions/${req.query.question_id}/answers`, req.body)
     .then(() => res.sendStatus(201))
     .catch((err) => res.status(400).send(err));
@@ -93,6 +95,7 @@ exports.put_answHelpful = (req, res) => {
 };
 
 exports.put_reportA = (req, res) => {
+  console.log(req.query.answer_id);
   axios.put(`/qa/answers/${req.query.answer_id}/report`)
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(404));
