@@ -3,15 +3,14 @@ import { CharacterBar, CharacterBarContainer, CharacteristicContainer, Icon, Cha
 import Arrow from '../assets/down.png';
 
 export default function CharacteristicBar({ characteristic }) {
-  console.log('line 6 characteristics', characteristic);
   return (
     <CharacteristicContainer>
       <CharacterName>{characteristic.name}</CharacterName>
       <CharacterBarContainer>
-        <CharacterBar></CharacterBar>
-        <CharacterBar></CharacterBar>
-        <CharacterBar></CharacterBar>
-        <Icon style={{left: `${characteristic.percent}%`}} src={Arrow} />
+        <CharacterBar />
+        <CharacterBar />
+        <CharacterBar />
+        <Icon style={{ left: `${characteristic.percent}%` }} src={Arrow} />
       </CharacterBarContainer>
       <CharacterDescription style={{ gridColumn: '1/2', justifySelf: 'start' }}>
         {characteristic.descriptionOne}

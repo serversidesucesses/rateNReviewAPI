@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PhotoEnlarge } from '../Styles/Q&A/photo.styled';
+// import { PhotoEnlarge } from '../Styles/Q&A/photo.styled';
 
 export default function Photo({ photos }) {
   const [state, setState] = useState(true);

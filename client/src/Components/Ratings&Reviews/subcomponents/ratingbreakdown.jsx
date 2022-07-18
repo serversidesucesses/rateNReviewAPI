@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Stars from './stars.jsx';
-import StarBar from  './starbar.jsx';
-import CharacteristicBar from './characteristicbar.jsx';
+import StarList from './starlist.jsx';
+import {RatingBreakdownStyled} from '../../Styles/Reviews/bars.styled.js';
+import CharacteristicList from './characteristiclist.jsx';
 
 export default function RatingBreakdown({ ratings, recommended, characteristics, reviewCount, overallRating, addFilter, deleteFilter }) {
   const percentages = Object.keys(ratings).map((key) => [Number(key), (Number(ratings[key]) / reviewCount).toFixed(2) * 100]).reverse();
@@ -10,11 +11,13 @@ export default function RatingBreakdown({ ratings, recommended, characteristics,
   const rating = (Math.round(overallRating * 10) / 10);
   const recommendPercent = ((recommended.true / (reviewCount)) * 100).toFixed();
 
-  const newCharacteristic = Object.keys(characteristics).map((key) => {
+  let newCharacteristic = [];
+
+  newCharacteristic = Object.keys(characteristics).map((key) => {
     let descriptionOne = '';
     let descriptionTwo = '';
 
-    switch(key) {
+    switch (key) {
       case 'Fit':
         descriptionOne = 'Too small';
         descriptionTwo = 'Too large';
@@ -45,26 +48,13 @@ export default function RatingBreakdown({ ratings, recommended, characteristics,
   });
 
   return (
-    <div>
+    <RatingBreakdownStyled>
       <h2>{rating}</h2>
       <span><Stars rating={overallRating} review_id={40344} /></span>
       <p>{`${recommendPercent}% of reviews recommend this product`}</p>
-      {percentages.map((value, index) => (
-        <StarBar
-          percentage={value[1]}
-          star={value[0]}
-          numStars={ratings[value[0]]}
-          addFilter={addFilter}
-          deleteFilter={deleteFilter}
-          key={index}
-        />
-      ))}
-      <div>
+      <StarList percentages={percentages} addFilter={addFilter} deleteFilter={deleteFilter} ratings={ratings} />
 
-      </div>
-      {newCharacteristic.map((value) => (
-        <CharacteristicBar characteristic={value} key={value.id} />
-      ))}
-    </div>
+      <CharacteristicList newCharacteristic={newCharacteristic} />
+    </RatingBreakdownStyled>
   );
 }

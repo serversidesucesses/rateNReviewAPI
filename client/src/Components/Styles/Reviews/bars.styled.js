@@ -34,6 +34,9 @@ export const BarContainer = styled.div`
   }
 
 `;
+export const StarSpan = styled.span`
+  text-decoration: underline;
+`;
 
 export const CharacterBarContainer = styled.div`
   display: grid;
@@ -78,4 +81,45 @@ export const CharacterName = styled.span`
   grid-row: 1;
   grid-column: 1/2;
   font-size: 15px;
+`;
+
+export const MainGridStyled = styled.div`
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-gap: 50px;
+  margin-bottom: 130px;
+  margin-left: 50px;
+  margin-right: 30px;
+`;
+
+export const RatingBreakdownStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+`;
+
+export const CharacterListStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 45px;
+`;
+
+export const StarListStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Button = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: light;
+  opacity:0.6;
 `;

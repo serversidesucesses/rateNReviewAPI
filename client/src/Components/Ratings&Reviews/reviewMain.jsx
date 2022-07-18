@@ -4,6 +4,7 @@ import axios from 'axios';
 import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
+import { MainGridStyled } from '../Styles/Reviews/bars.styled';
 
 export default function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
@@ -100,23 +101,25 @@ export default function ReviewMain({ product_id }) {
   return (
     <div>
       <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
-      <RatingBreakdown
-        ratings={ratings}
-        overallRating={overallRating}
-        recommended={recommended}
-        characteristics={characteristics}
-        reviewCount={numReviews}
-        addFilter={addFilter}
-        deleteFilter={deleteFilter}
-      />
-      <ReviewList
-        reviews={Object.keys(currentFilters).length === 0
-          ? reviews.slice(0, count)
-          : filterReviews().slice(0, count)}
-      />
-
-      <button type="button" onClick={loadMoreReviews}>More Reviews</button>
-      <button>Add a Review</button>
+      <MainGridStyled>
+        <RatingBreakdown
+          ratings={ratings}
+          overallRating={overallRating}
+          recommended={recommended}
+          characteristics={characteristics}
+          reviewCount={numReviews}
+          addFilter={addFilter}
+          deleteFilter={deleteFilter}
+          style={{marginLeft: '-30px'}}
+        />
+        <ReviewList
+          reviews={Object.keys(currentFilters).length === 0
+            ? reviews.slice(0, count)
+            : filterReviews().slice(0, count)}
+          loadMoreReviews={loadMoreReviews}
+          style={{marginRight: '100px'}}
+        />
+      </MainGridStyled>
     </div>
   );
 }

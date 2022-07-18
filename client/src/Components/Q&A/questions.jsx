@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
-import QuestionForm from './questionform.jsx';
+// import QuestionForm from './questionform.jsx';
 import { Question_Answer } from '../Styles/Q&A/container.styled';
 import { MoreAnswer } from '../Styles/Q&A/buttons.styled';
 
