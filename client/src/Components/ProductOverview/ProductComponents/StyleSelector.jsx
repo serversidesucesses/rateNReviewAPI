@@ -5,9 +5,11 @@ import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 import Share from './Share.jsx';
 import {
-  StyleSelectorLayout, StylePhotoGrid, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
+  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
 } from './styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../productOverview.styled.js';
+import { FaShoppingCart } from 'react-icons/fa';
+
 
 export default function StyleSelector({ productName, categoryName, priceTag }) {
   const [productId, setProductId] = useState(40344);
@@ -17,6 +19,38 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   // const [currentStylePhotos, setCurrentStylePhotos] = useState([]);
   const [checkmarkStatus, setCheckmarkStatus] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cartArray, setCartArray] = useState([])
+  const [totalItemCount, setTotalItemCount] = useState(0)
+  const [refreshState, setRefreshState] = useState(false);
+
+  // get data from /cart immediate when the page load
+  useEffect(() => {
+    axios.get('/products/getFromCart')
+      .then((response) => {
+        console.log('The information get from cart is: ', response.data)
+        setCartArray(response.data);
+      })
+      .catch((error) => {
+        console.log('Error getting cart data', error);
+      });
+  }, [refreshState])
+
+
+    useEffect(() => {
+      var count = 0;
+      for (let i= 0; i < cartArray.length; i++) {
+        // setTotalItemCount(totalItemCount + i.count);
+        count += Number(cartArray[i].count);
+
+      }
+      setTotalItemCount(count);
+    }, [cartArray])
+
+    // productId is default to 40345 right now
+    useEffect(() => {
+      getStyleFromProductId(productId);
+    }, []);
+    //console.log('totalItemCount', totalItemCount)
 
   const getStyleFromProductId = (productId) => {
     axios({
@@ -28,6 +62,7 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
         console.log('all style from this productId is: ', response.data);
         setCurrentStyleArray(response.data.results);
         setCurrentStyle(response.data.results[0]);
+        setRefreshState(!refreshState);
       })
       .catch((error) => {
         console.log('Error in getting data from getStyleFromProductId', error);
@@ -36,10 +71,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   };
   console.log('currentStyle is:', currentStyle);
 
-  // productId is default to 40345 right now
-  useEffect(() => {
-    getStyleFromProductId(productId);
-  }, []);
 
   useEffect(() => {
     setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
@@ -53,6 +84,13 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
       <Carousel currentStyle={currentStyle} productId={productId} />
       {/* StyleSelectorLayout will take the other 1fr */}
       <StyleSelectorLayout id='styleSelectorLayout'>
+        <RatingCartGrid>
+          <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
+            {totalItemCount}
+            <FaShoppingCart />
+          </CartLogoContainer>
+
+        </RatingCartGrid>
         <CategoryNameContainer>
           <CategoryContainer>{categoryName}</CategoryContainer>
           <ProductNameContainer>{productName}</ProductNameContainer>
@@ -68,8 +106,8 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
         </PriceStyleContainer>
         <StylePhotoGrid>
           {currentStyleArray.map((style, index) => {
-            console.log(currentIndex);
-            console.log(index);
+            // console.log(currentIndex);
+            // console.log(index);
             return <StylePhoto
               key={style.photos[0].url + index}
               currentStyle={style}
@@ -84,7 +122,7 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
 
           {/* below component takes in current style, and need to access
           currentStyle.skus for the object that contain skus informaation */}
-        <SizeQuantitySelector currentStyleSkus={currentStyle.skus} />
+        <SizeQuantitySelector currentStyleSkus={currentStyle.skus} refreshState={refreshState} setRefreshState={setRefreshState}/>
 
         <Share/>
       </StyleSelectorLayout>

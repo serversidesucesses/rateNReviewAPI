@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SizeQtyContainer, SizeQtyStyle, AddToCartFavoriteContainer, AddToCartButton, FavoriteIcon,  } from './styleSelector.styled.js';
 import { FaAngleDown, FaRegHeart, FaHeart } from 'react-icons/fa';
 
-export default function SizeQuantitySelector({ currentStyleSkus }) {
+export default function SizeQuantitySelector({ currentStyleSkus, refreshState, setRefreshState }) {
   // quantity and size information are inside currentStyleSkus, which is an object, NOT an array
   // different skus means different size
   // If there is no remaining stock for the current style, the dropdown should become inactive and read “OUT OF STOCK”.
@@ -81,13 +81,14 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
         axios.post('/products/addToCart', {sku_id: Number(selectedSku)})
           .then((response) => {
             console.log('sucessfully added item(s) to cart')
+            setRefreshState(!refreshState);
           })
           .catch((error) => {
             console.log('Error adding item to cart', error);
           });
       }
       // should also do the axios call to get from cart
-      
+
     } else if (!sizeSeletedStatus){
       alert("Please select a size.")
     } else if (!qtySeletedStatus) {

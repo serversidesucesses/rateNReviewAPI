@@ -33,7 +33,9 @@ export default function ProductMain() {
       });
   }
 
-  console.log('productdetails from ProductMain is:', productDetails)
+  // console.log('productdetails from ProductMain is:', productDetails)
+
+  // const getTotalCartItem = (currentStyle)
 
   // when first load page, do axios call
   useEffect(() => {

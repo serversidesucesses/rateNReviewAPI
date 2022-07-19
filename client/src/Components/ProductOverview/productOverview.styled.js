@@ -29,14 +29,7 @@ export const LogoContainer = styled.div`
   margin-left: 2%;
   margin-right: 2%;
 `
-export const CartLogoContainer = styled.div`
-  font-size: 2em;
-  color: black;
-  margin-top: 15%;
-  margin-bottom: 15%;
-  margin-left: 15%;
-  margin-right: 15%;
-`
+
 export const PromotionLineContainer = styled.div`
   font-size: 1em;
   color: black;
