@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { SizeQtyContainer } from './styleSelector.styled.js';
+import axios from 'axios';
+import { SizeQtyContainer, SizeQtyStyle, AddToCartFavoriteContainer, AddToCartButton, FavoriteIcon,  } from './styleSelector.styled.js';
 import { FaAngleDown, FaRegHeart, FaHeart } from 'react-icons/fa';
 
-export default function SizeQuantitySelector({ currentStyleSkus }) {
+export default function SizeQuantitySelector({ currentStyleSkus, refreshState, setRefreshState }) {
   // quantity and size information are inside currentStyleSkus, which is an object, NOT an array
   // different skus means different size
   // If there is no remaining stock for the current style, the dropdown should become inactive and read “OUT OF STOCK”.
@@ -11,20 +12,20 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
   const currentStyleSkusArray = Object.entries(currentStyleSkus)
   // currentStyleArray example: [[1394805, {quanitity: 8, size: 'XS'}],[1394806, {quanitity: 16, size: 'S'}]]
   const [favoriteStatus, setFavoriteStatus] = useState(false);
+  const [selectedQty, setSelectedQty] = useState('-');
   const [sizeSeletedStatus, setSizeSelectedStatus] = useState(false);
+  const [sizeSelected, setSetSelected] = useState('');
+  const [qtySeletedStatus, setQtySelectedStatus] = useState(false);
+
+  const [message, setMessage] = useState('none');
+
 
   useEffect(() => {
     const currentStyleSkusArray = Object.entries(currentStyleSkus);
     console.log('currentStyleSkusArray is: ', currentStyleSkusArray);
     setSizeSelectedStatus(false);
+    setSizeSelectedStatus(false);
   }, [currentStyleSkus])
-
-
-  const handleSizeSelect = (event) => {
-    // when a size is selected, record the size.
-    setSelectedSku(event.target.value);
-    setSizeSelectedStatus(true);
-  }
 
   const sizeOptions = () => {
     if (outOfStockStatus) {
@@ -52,37 +53,74 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
     return qtyArray;
   }
 
+  const handleSizeSelect = (event) => {
+    // when a size is selected, record the size to selected size
+    setSelectedSku(event.target.value);
+    console.log('event.target is: ', event)
+    setSizeSelectedStatus(true);
+  }
+
+  const handleQtySelect = (event) => {
+    // when a size is selected, record the size to selected size
+    if (sizeSeletedStatus) {
+      setSelectedQty(event.target.value);
+      setQtySelectedStatus(true);
+    } else {
+      alert("Please select a size.")
+    }
+  }
+
   const handleFavorite = () => {
     setFavoriteStatus(!favoriteStatus);
   }
 
   // If the default ‘Select Size’ is currently selected: Clicking this button should open the size dropdown, and a message should appear above the dropdown stating “Please select size”.
   const handleAddToBag = () => {
-    if(outOfStockStatus === false) {
-      return (
-        <button onClick={console.log('added to bag')}>ADD TO BAG</button>
-      )
+    if (sizeSeletedStatus && outOfStockStatus === false && qtySeletedStatus) {
+      for (let i = 0; i < selectedQty; i++) {
+        axios.post('/products/addToCart', {sku_id: Number(selectedSku)})
+          .then((response) => {
+            console.log('sucessfully added item(s) to cart')
+            setRefreshState(!refreshState);
+          })
+          .catch((error) => {
+            console.log('Error adding item to cart', error);
+          });
+      }
+      // should also do the axios call to get from cart
+
+    } else if (!sizeSeletedStatus){
+      alert("Please select a size.")
+    } else if (!qtySeletedStatus) {
+      alert("Please select the quantity.")
     }
   }
+
+//   const runThis = function () {
+//     document.querySelector('.size-select').focus();
+// };
 
   return (
     <>
       {/* div for size selecting */}
       <SizeQtyContainer >
-        <select onChange={handleSizeSelect} name="size" id="size-select">
+        <SizeQtyStyle name="size" class="size-select" onChange={handleSizeSelect}>
           {sizeOptions()}
-        </select>
-        <select name="quantity" id="quantity-select">
+        </SizeQtyStyle>
+        <SizeQtyStyle onChange={handleQtySelect} name="quantity" id="quantity-select">
           {quantityOptions()}
-        </select>
+        </SizeQtyStyle>
       </SizeQtyContainer>
 
-      <SizeQtyContainer>
-        {handleAddToBag()}
-        <div onClick={handleFavorite}>{
-          favoriteStatus ? <FaHeart/> : <FaRegHeart/>}
-        </div>
-      </SizeQtyContainer>
+      <AddToCartFavoriteContainer>
+        <AddToCartButton onClick={handleAddToBag}>Add To Bag</AddToCartButton>
+
+        <FavoriteIcon>
+          <div onClick={handleFavorite}>{
+            favoriteStatus ? <FaHeart /> : <FaRegHeart />}
+          </div>
+        </FavoriteIcon>
+      </AddToCartFavoriteContainer>
     </>
   )
 }
