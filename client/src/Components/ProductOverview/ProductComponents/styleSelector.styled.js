@@ -10,6 +10,23 @@ export const StyleSelectorLayout = styled.div`
   gap: 1rem;
   z-index: 3;
 `
+export const RatingCartGrid = styled.div`
+grid-row-start: 1;
+grid-row-end: 2;
+position: grid;
+grid-template-columns: auto auto;
+`
+export const CartLogoContainer = styled.div`
+  display: flex;
+  justify-content: right;
+  font-size: 1.5em;
+  color: black;
+  margin-top: 15%;
+  margin-bottom: 15%;
+  margin-left: 15%;
+  margin-right: 15%;
+`
+
 export const CategoryNameContainer = styled.div`
   grid-row-start: 2;
   grid-row-end: 3;
