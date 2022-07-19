@@ -11,50 +11,6 @@ export default function RatingBreakdown({ ratings, recommended, characteristics,
   const rating = (Math.round(overallRating * 10) / 10);
   const recommendPercent = ((recommended.true / (reviewCount)) * 100).toFixed();
 
-  // let newCharacteristic = [];
-
-  // newCharacteristic = Object.keys(characteristics).map((key) => {
-  //   let descriptionOne = '';
-  //   let descriptionTwo = '';
-
-  //   switch (key) {
-  //     case 'Fit':
-  //       descriptionOne = 'Too small';
-  //       descriptionTwo = 'Too large';
-  //       break;
-  //     case 'Length':
-  //       descriptionOne = 'Runs short';
-  //       descriptionTwo = 'Runs large';
-  //       break;
-  //     case 'Comfort':
-  //       descriptionOne = 'Uncomfortable';
-  //       descriptionTwo = 'Perfect';
-  //       break;
-  //     case 'Quality':
-  //       descriptionOne = 'Poor';
-  //       descriptionTwo = 'Perfect';
-  //       break;
-  //     case 'Size':
-  //       descriptionOne = 'A size too small';
-  //       descriptionTwo = 'A size too wide';
-  //       break;
-  //     case 'Width':
-  //       descriptionOne = 'Too narrow';
-  //       descriptionTwo = 'Too wide';
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  //   return ({
-  //     name: key,
-  //     id: characteristics[key].id,
-  //     percent: ((characteristics[key].value / 5) * 100).toFixed(),
-  //     descriptionOne,
-  //     descriptionTwo,
-  //   });
-  // });
-
   return (
     <RatingBreakdownStyled>
       <h2>{rating}</h2>
