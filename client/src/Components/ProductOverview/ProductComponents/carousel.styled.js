@@ -4,42 +4,42 @@ import styled from 'styled-components';
 
 // the parent grid is ProductDescriptionGrid in StyleSelector
 export const CarouselLayout = styled.div`
-  height: 40rem;
+  height: 38rem;
 
 `;
 
+export const CarouselThumbnailContainer = styled.div`
+  position: absolute;
+  margin-top: 2.5rem;
+  margin-left: 1.0rem;
+  max-height: 28rem;
+  width: 4rem;
+  z-index: 11;
+`;
 
+export const CarouselThumbnailGrid = styled.div`
+  display: grid;
+  grid-template-rows: auto;
+  align-content: start;
+  max-height: 28rem;
+  width: 4rem;
+  gap: 10px;
+  border-radius: 5px;
+  padding-right: 10px;
+  overflow-y: scroll;
+`;
 
-// export const CarouselThumbnailContainer = styled.div`
-//   position: absolute;
-//   margin-top: 1.8rem;
-//   margin-left: 1.5rem;
-//   max-height: 32rem;
-//   width: 6rem;
-//   z-index: 11;
-// `;
-
-// export const CarouselThumbnailGrid = styled.div`
-//   display: grid;
-//   grid-template-rows: auto;
-//   align-content: start;
-//   max-height: 32rem;
-//   gap: 10px;
-//   border-radius: 5px;
-//   padding-right: 10px;
-//   overflow-y: scroll;
-// `;
-
-// export const ThumbnailImage = styled.img`
-//   object-fit: cover;
-//   position: ${(props) => props.position || 'relative'};
-//   left: ${(props) => props.left || '0.2rem'};
-//   width: 100%;
-//   height: ${(props) => props.height || '5rem'};
-//   cursor: pointer;
-//   opacity: ${(props) => props.opacity || 0.3};
-//   z-index: 13;
-// `;
+export const ThumbnailImage = styled.img`
+  object-fit: cover;
+  position: ${(props) => props.position || 'relative'};
+  left: ${(props) => props.left || '0.2rem'};
+  height: ${(props) => props.height || '5rem'};
+  cursor: pointer;
+  width: 4rem;
+  opacity: ${(props) => props.opacity || 0.3};
+  z-index: 13;
+  offset-distance: ${(props) => props.transform || 0}
+`;
 
 export const CarouselImageContainer = styled.div`
   position: relative;
@@ -133,6 +133,7 @@ export const ExpandedcarouselThumbnailGrid = styled.div`
   grid-auto-flow: column;
   grid-auto-columns: 50px;
   overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 export const ExpandedCarouselButtonLeft = styled.button`
@@ -158,55 +159,61 @@ export const ExpandedCarouselButtonRight = styled.button`
 `;
 
 export const ExpandedImage = styled.img`
-position: fixed;
-width: 75%;
 height: 95%;
-top: 2.5%;
-left: 12.5%;
-right: 12.5%;
-bottom: 2.5%;
-z-index: 10;
+z-index: 11;
 perspective: 1000px;
 opacity: 1;
 `;
 
-// -------------------------------------------
-
-export const CarouselThumbnailContainer = styled.div`
+export const ExpandedImageViewStyled = styled.div`
   position: absolute;
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 32rem;
-  width: 100px;
-  scroll-snap-type: x promximity;
-  scroll-behavior: smooth;
-  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  top: 1%;
+  left: 1%;
+  height: 98%;
+  width: 98%;
+  z-index: 10;
 `;
+// // -------------------------------------------
 
-export const CarouselThumbnailGrid = styled.ol`
+// export const CarouselThumbnailContainer = styled.div`
+//   position: absolute;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+//   height: 32rem;
+//   width: 100px;
+//   scroll-snap-type: x promximity;
+//   scroll-behavior: smooth;
+//   z-index: 11;
+// `;
 
-li {
-  list-style: none;
-  width:  80px;
-  flex-shrink: 0;
-}
-li > *, li :is(picture, figure, img) {
-  width: 100%;
-}
-li:first-of-type {
-  scroll-snap-align: start;
-}
-li:last-of-type {
-  scroll-snap-align: end;
-}
-`;
+// export const CarouselThumbnailGrid = styled.ol`
 
-export const ThumbnailImage = styled.img`
-  padding: 2px;
-  display: block;
-  height: 100px;
-  border: 1px solid grey;
-  border-radius: 5%;
-  transform: translate(-80%, 0);
+// li {
+//   list-style: none;
+//   width:  80px;
+//   flex-shrink: 0;
+// }
+// li > *, li :is(picture, figure, img) {
+//   width: 100%;
+// }
+// li:first-of-type {
+//   scroll-snap-align: start;
+// }
+// li:last-of-type {
+//   scroll-snap-align: end;
+// }
+// `;
 
-`;
+// export const ThumbnailImage = styled.img`
+//   padding: 2px;
+//   display: block;
+//   height: 100px;
+//   border: 1px solid grey;
+//   border-radius: 5%;
+//   transform: translate(-80%, 0);
+
+// `;

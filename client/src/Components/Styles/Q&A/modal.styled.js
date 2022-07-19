@@ -6,7 +6,7 @@ export const ModalWrapperStyled = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 100;
   perspective: 5.5cm;
 `;
 
@@ -54,7 +54,21 @@ export const CloseButtonStyled = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 10;
+  z-index: 14;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const CloseButtonExpandedStyled = styled.button`
+  background: none;
+  border: none;
+  position: absolute;
+  font-size: 32px;
+  color: white;
+  top: 5%;
+  right: 5%;
+  z-index: 14;
   &:hover {
     cursor: pointer;
   }

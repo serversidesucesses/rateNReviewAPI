@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   FaAngleRight,
   FaAngleLeft,
@@ -18,6 +18,7 @@ import {
   ModalInnerStyled,
   ModalContentStyled,
   CloseButtonStyled,
+  CloseButtonExpandedStyled,
 } from '../../Styles/Q&A/modal.styled';
 import GlobalStyle from '../../Styles/globalstyle.styled';
 
@@ -37,6 +38,36 @@ export default function Modal({
   leftButtonStatus,
   children,
 }) {
+  const modalRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyUp, false);
+    document.addEventListener('click', handleOutsideClick, false);
+    return () => {
+      window.removeEventListener('keyup', handleKeyUp, false);
+      document.removeEventListener('click', handleOutsideClick, false);
+    };
+  }, []);
+
+  function handleKeyUp(e) {
+    const keys = {
+      27: () => {
+        e.preventDefault();
+        onCloseRequest();
+        window.removeEventListener('keyup', handleKeyUp, false);
+      },
+    };
+    if (keys[e.keyCode]) {
+      keys[e.keyCode]();
+    }
+  }
+
+  function handleOutsideClick(e) {
+    console.log(e.target);
+    if (!modalRef.contains(e.target)) {
+      onCloseRequest();
+      document.removeEventListener('click', this.handleOutsideClick, false);
+    }
+  }
   function onClick(photoindex) {
     handleClick(photoindex);
   }
@@ -49,17 +80,19 @@ export default function Modal({
       <>
         <GlobalStyle overflow="hidden" />
         <ModalWrapperStyled>
-          <CloseButtonStyled onClick={onCloseRequest}>X</CloseButtonStyled>
+          <CloseButtonExpandedStyled type="button" onClick={onCloseRequest}>X</CloseButtonExpandedStyled>
           <ModalBackgroundStyled />
-          <div>
+          <div id="modal" ref={modalRef}>
+
             <ExpandedImageView
               image={image}
               handleClick={onClick}
               activePhotoIndex={activePhotoIndex}
               rightButtonStatus={rightButtonStatus}
               leftButtonStatus={leftButtonStatus}
-
+              onCloseRequest={onCloseRequest}
             />
+
             <ExpandedCarouselThumbnailContainer>
               <ExpandedcarouselThumbnailGrid id="ExpandedcarouselThumbnailGrid">
                 {/* here each photo is an object that contain url and thumbnail_url */}
@@ -70,7 +103,7 @@ export default function Modal({
                     handleClick={handleClick}
                     index={index}
                     key={currentStyle.photos[index].url + index}
-                    expand={true}
+                    expand
                   />
                 ))}
               </ExpandedcarouselThumbnailGrid>
@@ -86,6 +119,7 @@ export default function Modal({
     <>
       <GlobalStyle overflow="hidden" />
       <ModalWrapperStyled>
+        <CloseButtonStyled type="button" onClick={onCloseRequest}>X</CloseButtonStyled>
         <ModalBackgroundStyled />
 
         <ModalInnerStyled>
