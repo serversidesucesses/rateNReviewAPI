@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Form, PersonalInfo, Label, Heading, Body, Buttons } from '../styles/Q&A/form.styled.js';
-const axios = require('axios');
+import {
+  Form, PersonalInfo, Label, Heading, Body, Buttons,
+} from '../../styles/Q&A/form.styled.js';
 
-export default function AddAnswer({ product_id, setAddStatus }) {
+export default function AddAnswer({ onFormValidation }) {
   const initialValues = {
     body: '',
     name: '',
     email: '',
-    product_id: product_id,
   };
   const [values, setValues] = useState(initialValues);
 
@@ -21,25 +21,20 @@ export default function AddAnswer({ product_id, setAddStatus }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    axios.post('questions/questions', values)
-      .then(() => setAddStatus(false))
-      .catch((error) => console.log(error));
+    console.log(values);
+    onFormValidation(values);
   }
 
   return (
-    <Form>
-      <Heading>
-        <h2>Ask Your Question</h2>
-        <h3>About the product {'Need product Name'}</h3>
-      </Heading>
-      <form onSubmit={onSubmit}>
-       <Body>
-          <Label>
-            <span>Your Question *</span>
-            <input type="text" name="body" placeholder="Enter your Question" maxLength="1000" size="100" value={values.body} onChange={handleInputChange} required />
-          </Label>
-        </Body>
-        <PersonalInfo>
+
+    <form onSubmit={onSubmit}>
+      <Body>
+        <Label>
+          <span>Your Question *</span>
+          <input type="text" name="body" placeholder="Enter your Question" maxLength="1000" size="100" value={values.body} onChange={handleInputChange} required />
+        </Label>
+      </Body>
+      <PersonalInfo>
         <div claassName="name">
           <Label>
             <span>What is your nickname *</span>
@@ -54,12 +49,11 @@ export default function AddAnswer({ product_id, setAddStatus }) {
           </Label>
           <p>For authentication reasons, you will not be emailed</p>
         </div>
-        </PersonalInfo>
-        <Buttons>
-          <input type="submit" value="Submit Question" />
-          <input type="button" value="close" onClick={() => setAddStatus(false)} />
-        </Buttons>
-      </form>
-    </Form>
+      </PersonalInfo>
+      <Buttons>
+        <input type="submit" value="Submit Question" />
+        <input type="button" value="close" onClick={() => setAddStatus(false)} />
+      </Buttons>
+    </form>
   );
 }

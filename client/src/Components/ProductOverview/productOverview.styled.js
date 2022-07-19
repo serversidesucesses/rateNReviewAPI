@@ -5,10 +5,37 @@ import styled from 'styled-components';
 // biggest RED grid that contains all child of ProductOverview
 export const ProductOverviewGrid = styled.div`
   display: grid;
-  grid-template-rows: 4fr 1fr;
+  grid-template-rows: 1fr 4fr 1fr;
   width: 80%;
   margin: 0 auto;
 `;
+
+// top BLUE grid that contains header, logo, cart symbol and a small row of promotional line
+export const HeaderGrid = styled.div`
+  display: grid;
+  grid-template-rows: 80% 20%;
+  gap: 1em;
+`
+export const LogoCartGrid = styled.div`
+  display: grid;
+  grid-template-columns: 90% 10%;
+  background: grey;
+`
+export const LogoContainer = styled.div`
+  font-size: 3em;
+  color: black;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+`
+
+export const PromotionLineContainer = styled.div`
+  font-size: 1em;
+  color: black;
+
+`
+
 // top BLUE grid that contains top row, which is the photo carousel, product description, style selector and buttons
 export const ProductDescriptionGrid = styled.div`
   display: grid;
@@ -51,7 +78,6 @@ export const CarouselThumbnailImage = styled.img`
   height: 5rem;
   cursor: pointer;
   opacity: 1;
-
 `
 // need styling for currently selected image
 // https://stackoverflow.com/questions/68190075/adding-a-styled-line-underneath-tabs-and-highlight-selected-tab
@@ -117,7 +143,7 @@ export const VerticalLine = styled.div`
   grid-column-start: 2;
   grid-column-end: 2.5;
   border-left: 1px solid black;
-  height: flex;
+  height: 60%;
   justify-content: center;
 `
 // bottom rihgt ORANGE container that contains bullet point product description

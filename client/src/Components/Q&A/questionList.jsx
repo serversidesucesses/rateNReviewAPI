@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import AnswerList from './answerList.jsx';
 import Modal from './Modal/modal.jsx';
-
+import AddAnswer from './Forms/AddAnswer.jsx';
 import { Button, ButtonContainer } from '../Styles/Q&A/buttons.styled';
 import {
   QuestionListItem, Question, Span, More_Answer, AnswerContainer, A, Q, Answer,
@@ -61,6 +61,11 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
     setIsModalOpen(false);
   };
 
+  // need to validate form and then send to api
+  const onFormValidation = (data, questionId) => {
+    console.log('data', data, 'questionId', question.question_id);
+  };
+
   return (
     <div>
       { isModalOpen
@@ -70,7 +75,9 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
             description="A short description of the modal's contents"
             isOpen={isModalOpen}
             onCloseRequest={onModalCloseRequest}
-          />
+          >
+            <AddAnswer onFormValidation={onFormValidation}/>
+          </Modal>
         )
         : null }
       <QuestionListItem style={{ position: 'relative' }}>

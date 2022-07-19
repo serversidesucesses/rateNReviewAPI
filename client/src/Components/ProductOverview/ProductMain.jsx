@@ -1,10 +1,11 @@
 import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Header from './ProductComponents/Header.jsx';
 import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
-import { ProductOverviewGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from './productOverview.styled.js'
+import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from './productOverview.styled.js'
 
 export const ThemeContext = React.createContext({});
 
@@ -32,7 +33,9 @@ export default function ProductMain() {
       });
   }
 
-  // console.log('productdetails from ProductInformation is:', productDetails)
+  // console.log('productdetails from ProductMain is:', productDetails)
+
+  // const getTotalCartItem = (currentStyle)
 
   // when first load page, do axios call
   useEffect(() => {
@@ -43,10 +46,11 @@ export default function ProductMain() {
 
   return (
     <ProductOverviewGrid>
-      {/* <ThemeContext.Provider value={[categoryName, productName]}> */}
+      <HeaderGrid>
+        <Header />
+      </HeaderGrid>
       {/* StyleSelector contains style and carousel */}
-      <StyleSelector productName={productName} categoryName={categoryName} />
-      {/* </ThemeContext.Provider> */}
+      <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag}/>
       {/* productinformation contains information, slogan and descirption */}
       <ProductInformationGrid>
         {/* <ProductInformation /> */}
