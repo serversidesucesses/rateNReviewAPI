@@ -16,6 +16,10 @@ grid-row-end: 2;
 position: grid;
 grid-template-columns: auto auto;
 `
+export const RatingContainer = styled.div`
+
+`
+
 export const CartLogoContainer = styled.div`
   display: flex;
   justify-content: right;
