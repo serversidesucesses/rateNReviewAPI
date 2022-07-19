@@ -17,6 +17,8 @@ export default function StyleSelector({ productName, categoryName }) {
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });
   // const [currentStylePhotos, setCurrentStylePhotos] = useState([]);
+  const [checkmarkStatus, setCheckmarkStatus] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const getStyleFromProductId = (productId) => {
     axios({
@@ -40,6 +42,42 @@ export default function StyleSelector({ productName, categoryName }) {
     getStyleFromProductId(productId);
   }, []);
 
+  useEffect(() => {
+    // rerender
+    reRender();
+  }, [currentStyle])
+
+  useEffect(() => {
+    // rerender
+    reRender();
+  }, [])
+
+  const reRender = () => {
+    <StylePhotoGrid>
+      {currentStyleArray.map((style, index) => {
+        if (currentIndex === index) {
+          return <StylePhoto
+            key={style.photos[0].url + index}
+            currentStyle={style}
+            setCurrentStyle={setCurrentStyle}
+            index={currentIndex}
+            setIndex={setCurrentIndex}
+            checkmarkStatus={true}
+          />
+        } else {
+          return <StylePhoto
+            key={style.photos[0].url + index}
+            currentStyle={style}
+            setCurrentStyle={setCurrentStyle}
+            index={currentIndex}
+            setIndex={setCurrentIndex}
+            checkmarkStatus={false}
+          />
+        }
+      })}
+    </StylePhotoGrid>
+  }
+
   return (
     <ProductDescriptionGrid id='productDescriptionGrid'>
       {/* above grid has 2fr 1fr, and I want Carousel to take up 2
@@ -56,20 +94,11 @@ export default function StyleSelector({ productName, categoryName }) {
           {currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price}
           <div>
             <b>STYLE </b>
-            ▸
             {' '}
             {currentStyle.name}
           </div>
         </PriceStyleContainer>
-        <StylePhotoGrid>
-          {currentStyleArray.map((style, index) => (
-            <StylePhoto
-              key={style.photos[0].url + index}
-              currentStyle={style}
-              setCurrentStyle={setCurrentStyle}
-            />
-          ))}
-        </StylePhotoGrid>
+        {reRender}
         <SizeQtyContainer>
           {/* below component takes in current style, and need to access
           currentStyle.skus for the object that contain skus informaation */}

@@ -69,13 +69,9 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
 
   // If the default ‘Select Size’ is currently selected: Clicking this button should open the size dropdown, and a message should appear above the dropdown stating “Please select size”.
   const handleAddToBag = () => {
-    if (outOfStockStatus === false && qtySeletedStatus) {
+    if (sizeSeletedStatus && outOfStockStatus === false && qtySeletedStatus) {
       for (let i = 0; i < selectedQty; i++) {
-        axios({
-          method: 'post',
-          url: '/addToCart',
-          params: { sku_id: Number(selectedSku) },
-        })
+        axios.post('/products/addToCart', {sku_id: Number(selectedSku)})
           .then((response) => {
             console.log('sucessfully added item(s) to cart')
           })
@@ -84,30 +80,9 @@ export default function SizeQuantitySelector({ currentStyleSkus }) {
           });
       }
     } else {
-      console.log('Error adding to bag')
+      alert("Please select a size and quantity you want to add to bag.")
     }
   }
-
-  // const invokeAddToCart = (e) => {
-  //   e.preventDefault();
-  //   if (selectedSku === 'SELECT SIZE') {
-  //     setMessage('warning');
-  //   } else {
-  //     setMessage('none');
-  //     // need to find the current qty that client wants to add
-  //     axios({
-  //       method: 'post',
-  //       url: '/addToCart',
-  //       params: { sku_id: Number(currSku), count: qty, },
-  //     })
-  //       .then((response) => {
-
-  //       })
-  //       .catch((error) => {
-  //         console.log('Error adding item to cart', error);
-  //       });
-  //   }
-  // }
 
 
   return (

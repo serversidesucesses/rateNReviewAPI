@@ -30,18 +30,25 @@ export const PriceStyleContainer = styled.div`
   z-index: 3;
 `
 export const StylePhotoGrid = styled.div`
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: auto;
+  grid-row-end: auto;
   display: inline-grid;
   grid-template-columns: auto auto auto auto;
   gap: 1rem;
 `
+export const StylePhotoContainer = styled.div`
+
+`
+
+export const StyleCheckmark = styled.img`
+
+`
 
 export const StylePhotoThumbnail = styled.img`
-position: relative;
-width: 5rem;
-height: 5rem;
-border-radius: 50%;
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
 `
 
 export const SizeQtyContainer = styled.div`
