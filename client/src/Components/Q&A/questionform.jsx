@@ -17,12 +17,10 @@ export default function AddAnswer({ product_id, setAddStatus }) {
       ...values,
       [name]: value,
     });
-    console.log(e.target[name], e.target.value);
   };
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(values);
     axios.post('questions/questions', values)
       .then(() => setAddStatus(false))
       .catch((error) => console.log(error));

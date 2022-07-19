@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD:client/src/Components/Q&A/Forms/addAnswer.jsx
-import { Form } from '../../styles/Q&A/form.styled.js'
-import CloudinaryUploadWidget from '../cloudinaryUploadWidget.jsx';
-=======
-<<<<<<< HEAD:client/src/Components/Q&A/addAnswer.jsx
-// import { Form } from '../Styles/Q&A/form.styled';
-// import CloudinaryUploadWidget from './cloudinaryUploadWidget.jsx';
-=======
-import { Form } from '../../styles/Q&A/form.styled.js'
-import CloudinaryUploadWidget from '../cloudinaryUploadWidget.jsx';
->>>>>>> 338984b (incoming changes from main):client/src/Components/Q&A/Forms/addAnswer.jsx
->>>>>>> main:client/src/Components/Q&A/addAnswer.jsx
+import ReactDOM from 'react-dom';
+import { Form } from '../../Styles/Q&A/form.styled.js'
+import CloudinaryUploadWidget from '../../../Assets/cloudinaryUploadWidget.jsx';
 
 const axios = require('axios');
 
@@ -26,11 +17,11 @@ export default function AddAnswer() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, e.target.value);
     setValues({
       ...values,
       [name]: value,
     });
-    console.log(e.target[name], e.target.value);
   };
 
   const imageUpload = (image) => {
@@ -42,7 +33,7 @@ export default function AddAnswer() {
   }
 
   return (
-    <>
+    <Form>
       <h2>Submit an answer</h2>
       <form onSubmit={onSubmit}>
         <div className="text">

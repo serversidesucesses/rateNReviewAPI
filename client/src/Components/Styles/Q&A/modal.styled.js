@@ -6,7 +6,7 @@ export const ModalWrapperStyled = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999999;
+  z-index: 8;
   perspective: 5.5cm;
 `;
 
@@ -30,6 +30,9 @@ export const ModalInnerStyled = styled.div`
   transform: translate(-50%);
   min-width: 30rem;
   z-index: 11;
+  height: 500px;
+  margin-top: -300px;
+  overflow-y: scroll;
 `;
 
 export const ModalHeaderStyled = styled.div`

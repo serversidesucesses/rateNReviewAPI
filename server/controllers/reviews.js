@@ -42,8 +42,9 @@ exports.getReviewMetadata = (req, res) => {
 };
 
 exports.addReview = (req, res) => {
-  axios.post('/reviews', { body: req.query })
-    .then((response) => res.status(201).send(response))
+  console.log(req.body);
+  axios.post('/reviews', req.body)
+    .then((response) => res.status(201).send(response.statusText))
     .catch((err) => res.status(404).send(err));
 };
 

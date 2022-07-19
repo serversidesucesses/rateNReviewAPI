@@ -14,7 +14,7 @@ export default function ReviewMain({ product_id }) {
   const [overallRating, setOverallRating] = useState(0);
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
-  const [characteristics, setCharacteristics] = useState({});
+  const [characteristics, setCharacteristics] = useState([]);
   const [numReviews, setNumReviews] = useState(0);
 
   const [currentFilters, setCurrentFilters] = useState({});
@@ -47,9 +47,50 @@ export default function ReviewMain({ product_id }) {
         ReactDOM.unstable_batchedUpdates(() => {
           setOverallRating(roundedRating.toFixed(2));
           setRecommended(data.recommended);
-          setCharacteristics(data.characteristics);
+          // setCharacteristics(data.characteristics);
           setNumReviews(reviewCount);
           setRatings(data.ratings);
+          setCharacteristics(Object.keys(data.characteristics).map((key) => {
+            let descriptionOne = '';
+            let descriptionTwo = '';
+
+            switch (key) {
+              case 'Fit':
+                descriptionOne = 'Too small';
+                descriptionTwo = 'Too large';
+                break;
+              case 'Length':
+                descriptionOne = 'Runs short';
+                descriptionTwo = 'Runs large';
+                break;
+              case 'Comfort':
+                descriptionOne = 'Uncomfortable';
+                descriptionTwo = 'Perfect';
+                break;
+              case 'Quality':
+                descriptionOne = 'Poor';
+                descriptionTwo = 'Perfect';
+                break;
+              case 'Size':
+                descriptionOne = 'A size too small';
+                descriptionTwo = 'A size too wide';
+                break;
+              case 'Width':
+                descriptionOne = 'Too narrow';
+                descriptionTwo = 'Too wide';
+                break;
+              default:
+                break;
+            }
+
+            return ({
+              name: key,
+              id: data.characteristics[key].id,
+              percent: ((data.characteristics[key].value / 5) * 100).toFixed(),
+              descriptionOne,
+              descriptionTwo,
+            });
+          }));
         });
         return axios.get('/reviews/reviews', {
           params: {
@@ -100,6 +141,49 @@ export default function ReviewMain({ product_id }) {
     }
   };
 
+
+  // const newCharacteristic = Object.keys(characteristics).map((key) => {
+  //   let descriptionOne = '';
+  //   let descriptionTwo = '';
+
+  //   switch (key) {
+  //     case 'Fit':
+  //       descriptionOne = 'Too small';
+  //       descriptionTwo = 'Too large';
+  //       break;
+  //     case 'Length':
+  //       descriptionOne = 'Runs short';
+  //       descriptionTwo = 'Runs large';
+  //       break;
+  //     case 'Comfort':
+  //       descriptionOne = 'Uncomfortable';
+  //       descriptionTwo = 'Perfect';
+  //       break;
+  //     case 'Quality':
+  //       descriptionOne = 'Poor';
+  //       descriptionTwo = 'Perfect';
+  //       break;
+  //     case 'Size':
+  //       descriptionOne = 'A size too small';
+  //       descriptionTwo = 'A size too wide';
+  //       break;
+  //     case 'Width':
+  //       descriptionOne = 'Too narrow';
+  //       descriptionTwo = 'Too wide';
+  //       break;
+  //     default:
+  //       break;
+  //   }
+
+  //   return ({
+  //     name: key,
+  //     id: characteristics[key].id,
+  //     percent: ((characteristics[key].value / 5) * 100).toFixed(),
+  //     descriptionOne,
+  //     descriptionTwo,
+  //   });
+  // });
+
   return (
     <div>
       <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
@@ -120,6 +204,8 @@ export default function ReviewMain({ product_id }) {
             : filterReviews().slice(0, count)}
           loadMoreReviews={loadMoreReviews}
           style={{marginRight: '100px'}}
+          characteristics={characteristics}
+          product_id={product_id}
         />
       </MainGridStyled>
     </div>
