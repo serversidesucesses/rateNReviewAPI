@@ -6,12 +6,12 @@ export const ModalWrapperStyled = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999999;
+  z-index: 1000;
   perspective: 5.5cm;
 `;
 
 export const ModalBackgroundStyled = styled.div`
-  background: transparent;
+  background: rgba(250, 250, 250, 0.3);
   backdrop-filter: blur(2px);
   position: fixed;
   top: 0;

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
 import AddQuestion from './Forms/questionform.jsx';
-import Modal from './Modal/modal.jsx';
+import Modal from './Modal/Modal.jsx';
 import { Question_Answer } from '../Styles/Q&A/container.styled';
 import { MoreAnswer } from '../Styles/Q&A/buttons.styled';
 

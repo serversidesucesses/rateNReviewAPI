@@ -9,7 +9,7 @@ router.get('/product/styles', controller.products.getProductStyles);
 
 //router.post('/click', controller.products.handleClick);
 
-// router.post('/addToCart', controller.addToCart);
+router.post('/addToCart', controller.products.addToCart);
 
 // router.post('/clientClick', controller.clientClick);
 

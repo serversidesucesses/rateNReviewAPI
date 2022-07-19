@@ -53,11 +53,11 @@ exports.getProductStyles = (req, res) => {
 //     });
 //  };
 
-// exports.addToCart = (req, res) => {
-//   console.log(JSON.stringify(req.body));
-//   axios.post(`/cart`, req.body)
-//     .then((response) => res.status(200).send(response.data))
-//     .catch((err) => {
-//       res.status(400).send(error);
-//     });
-//  };
+exports.addToCart = (req, res) => {
+  console.log(JSON.stringify(req.body));
+  axios.post(`/cart`, req.body)
+    .then((response) => res.status(200).send(response.data))
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+ };

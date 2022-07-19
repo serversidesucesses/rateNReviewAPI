@@ -4,7 +4,7 @@
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
 import AnswerList from './answerList.jsx';
-import Modal from './Modal/modal.jsx';
+import Modal from './Modal/Modal.jsx';
 import AddAnswer from './Forms/AddAnswer.jsx';
 import { Button, ButtonContainer } from '../Styles/Q&A/buttons.styled';
 import {

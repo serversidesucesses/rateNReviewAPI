@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import {
-  FaAngleDown, FaAngleUp, FaAngleRight, FaAngleLeft,
+  FaAngleDown,
+  FaAngleUp,
+  FaAngleRight,
+  FaAngleLeft,
 } from 'react-icons/fa';
+import Modal from '../../Q&A/Modal/Modal.jsx'
 import CarouselImage from './CarouselImage.jsx';
 import CarouselThumbnailImage from './CarouselThumbnailImage.jsx';
 import {
-  ExpandedView, ExpandedImage, CarouselLayout, CarouselThumbnailContainer, CarouselThumbnailGrid, CarouselImageContainer, CarouselButtonDown, CarouselButtonUp, CarouselButtonRight, CarouselButtonLeft,
+  CarouselLayout,
+  CarouselThumbnailContainer,
+  CarouselThumbnailGrid,
+  CarouselImageContainer,
+  CarouselButtonDown,
+  CarouselButtonUp,
+  CarouselButtonRight,
+  CarouselButtonLeft,
 } from './carousel.styled.js';
 
 // currentStyle is an object contains all info about this style
@@ -16,7 +27,8 @@ function Carousel({ currentStyle, productId }) {
   // check expand state, haven't implemented it yet
   const [leftButtonStatus, setLeftButtonStatus] = useState(false);
   const [rightButtonStatus, setRightButtonStatus] = useState(true);
-  const [expandStatus, setExpandStatus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currPhoto, setCurrPhotoMain] = useState(0);
 
   const numPhotos = currentStyle.photos.length;
 
@@ -57,33 +69,74 @@ function Carousel({ currentStyle, productId }) {
       setRightButtonStatus(false);
     }
     SetActivePhotoIndex(activePhotoIndex);
+    setCurrPhotoMain(activePhotoIndex);
   };
 
   // const toggleExpandStatus = () => {
   //   setExpandStatus(!expandStatus);
   // };
+
+  const onModalCloseRequest = () => {
+    setIsModalOpen(false);
+  };
+
   console.log('currentStylePhotos :', currentStylePhotos);
   console.log('currentStyle :', currentStyle);
+  console.log('isModalOpen', isModalOpen);
+
   return (
     <>
-      {expandStatus
-        ? <ExpandedImage src={currentStyle.photos[activePhotoIndex].url} onClick={() => setExpandStatus((prevStatus) => (!prevStatus))} />
+      { isModalOpen
+        ? (
+          <Modal
+            isOpen={isModalOpen}
+            onCloseRequest={onModalCloseRequest}
+            image={currentStyle.photos[activePhotoIndex].url}
+            currentStyle={currentStyle}
+            currentStylePhotos={currentStylePhotos}
+            handleClick={handleClick}
+            activePhotoIndex={activePhotoIndex}
+            rightButtonStatus={rightButtonStatus}
+            leftButtonStatus={leftButtonStatus}
+          />
+        )
         : null}
+
       <CarouselLayout id='carouselLayout'>
         <CarouselThumbnailContainer id='carouseThumbnailContainer'>
-          {leftButtonStatus ? <CarouselButtonUp onClick={() => handleClick(activePhotoIndex - 1)}><FaAngleUp /></CarouselButtonUp> : null}
+
           <CarouselThumbnailGrid id='carouselThumbnailGrid'>
             {/* here each photo is an object that contain url and thumbnail_url */}
-            {currentStylePhotos.map((photo, index) => (
-              <CarouselThumbnailImage photo={photo} activePhotoIndex={activePhotoIndex} handleClick={handleClick} index={index} key={currentStyle.photos[index].url + index} />
-            ))}
+            <ol>
+              {currentStylePhotos.map((photo, index) => (
+                <CarouselThumbnailImage
+                  photo={photo} activePhotoIndex={activePhotoIndex}
+                  handleClick={handleClick} index={index}
+                  key={currentStyle.photos[index].url + index}
+                  index={index}
+                  expand={false}
+                />
+              ))}
+            </ol>
           </CarouselThumbnailGrid>
-          {rightButtonStatus ? (
+
+        </CarouselThumbnailContainer>
+
+        { leftButtonStatus
+            ? (
+              <CarouselButtonUp
+                onClick={() => handleClick(activePhotoIndex - 1)}>
+                <FaAngleUp />
+              </CarouselButtonUp>
+            )
+            : null}
+
+        {rightButtonStatus ? (
             <CarouselButtonDown onClick={() => handleClick(activePhotoIndex + 1)}>
               <FaAngleDown />
             </CarouselButtonDown>
           ) : null}
-        </CarouselThumbnailContainer>
+
 
         <CarouselImageContainer id="carouselImageContainer">
           {leftButtonStatus ? (
@@ -97,7 +150,10 @@ function Carousel({ currentStyle, productId }) {
               <FaAngleRight />
             </CarouselButtonRight>
           ) : null}
-          <CarouselImage photo={currentStyle.photos[activePhotoIndex]} setExpandStatus={setExpandStatus} />
+          <CarouselImage
+            photo={currentStyle.photos[activePhotoIndex]}
+            setIsModalOpen={setIsModalOpen}
+          />
 
         </CarouselImageContainer>
       </CarouselLayout>

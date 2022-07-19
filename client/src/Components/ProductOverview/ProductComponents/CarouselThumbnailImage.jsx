@@ -1,27 +1,38 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 import { ThumbnailImage } from './carousel.styled.js';
 
 // expandStatus not in use right now.
-const CarouselThumbnailImage = ({ photo, activePhotoIndex, expandStatus, handleClick, index, alt }) => {
-
+function CarouselThumbnailImage({
+  photo, handleClick, expand, index, activePhotoIndex,
+}) {
   // reload when image is expanded
-  useEffect(() => {
-  }, [expandStatus])
-
-  const displayThumbnail = () => {
-    //console.log('photo inside thumbnail.jsx is: ', photo)
-    if (!expandStatus) {
-      return <ThumbnailImage src={photo.url} onClick={() => handleClick(index)} />
+  function handleOnClick() {
+    handleClick(index);
+  }
+  console.log(expand);
+  let display = null;
+  if (expand) {
+    if (activePhotoIndex === index) {
+      display = <li clasName="list-item"><ThumbnailImage src={photo.url} onClick={handleOnClick} height="5rem" positon="static" left="0" opacity="1" /></li>;
     } else {
-      return <div onClick={() => handleClick(index)}></div>
+      display = <li clasName="list-item"><ThumbnailImage src={photo.url} onClick={handleOnClick} height="3rem" positon="static" left="0" /></li>;
+    }
+  } else if (!expand) {
+    if (activePhotoIndex === index) {
+      display = <li clasName="list-item">
+        <ThumbnailImage src={photo.url}  onClick={handleOnClick} opacity="1" /></li>;
+    } else {
+      display = <li clasName="list-item"><ThumbnailImage src={photo.url}  onClick={handleOnClick} opacity="0.5" /></li>;
     }
   }
 
   return (
     <>
-      {displayThumbnail()}
+      { display }
     </>
-  )
+  );
 }
 
-export default CarouselThumbnailImage
+export default CarouselThumbnailImage;
+// alt="photo" width="100px" height="100px" loading="lazy"
+// alt="photo" width="100px" height="100px" loading="lazy"
