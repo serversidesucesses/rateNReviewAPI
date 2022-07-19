@@ -85,6 +85,9 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
       {/* StyleSelectorLayout will take the other 1fr */}
       <StyleSelectorLayout id='styleSelectorLayout'>
         <RatingCartGrid>
+          <RatingContainer>
+            {/* ROYCE, the rating goes here */}
+          </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
             {totalItemCount}
             <FaShoppingCart />
