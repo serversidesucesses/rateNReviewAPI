@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 axios.defaults.headers.common['Authorization'] = process.env.Token;
 
 exports.getProductDetails = (req, res) => {
-  console.log('product id from controller products.js is:', req.query.id);
+  // console.log('product id from controller products.js is:', req.query.id);
   axios.get(`/products/${req.query.id}`)
     .then((response) =>
       (
@@ -32,6 +32,7 @@ exports.getProductStyles = (req, res) => {
   };
 
   exports.getFromCart = (req, res) => {
+    console.log('');
    axios.get(`/cart`)
      .then((response) => res.status(200).send(response.data))
      .catch((error) => {

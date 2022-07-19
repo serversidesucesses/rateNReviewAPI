@@ -33,7 +33,7 @@ export default function ProductMain() {
       });
   }
 
-  // console.log('productdetails from ProductInformation is:', productDetails)
+  console.log('productdetails from ProductMain is:', productDetails)
 
   // when first load page, do axios call
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function ProductMain() {
         <Header />
       </HeaderGrid>
       {/* StyleSelector contains style and carousel */}
-      <StyleSelector productName={productName} categoryName={categoryName} />
+      <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag}/>
       {/* productinformation contains information, slogan and descirption */}
       <ProductInformationGrid>
         {/* <ProductInformation /> */}

@@ -1,21 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react';
-
-// import files
+import axios from 'axios'
 import StylePhoto from './StylePhoto.jsx';
 import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
-// import styles
+import Share from './Share.jsx';
 import {
-  StyleSelectorLayout, StylePhotoGrid, PriceStyleContainer, SizeQtyContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer,
+  StyleSelectorLayout, StylePhotoGrid, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
 } from './styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../productOverview.styled.js';
 
-const axios = require('axios');
-
-export default function StyleSelector({ productName, categoryName }) {
-  const [productId, setProductId] = useState(40348);
+export default function StyleSelector({ productName, categoryName, priceTag }) {
+  const [productId, setProductId] = useState(40344);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });
+  const [currentPrice, setCurrentPrice] = useState(priceTag);
   // const [currentStylePhotos, setCurrentStylePhotos] = useState([]);
   const [checkmarkStatus, setCheckmarkStatus] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,6 +32,7 @@ export default function StyleSelector({ productName, categoryName }) {
       .catch((error) => {
         console.log('Error in getting data from getStyleFromProductId', error);
       });
+
   };
   console.log('currentStyle is:', currentStyle);
 
@@ -43,40 +42,9 @@ export default function StyleSelector({ productName, categoryName }) {
   }, []);
 
   useEffect(() => {
-    // rerender
-    reRender();
-  }, [currentStyle])
+    setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
 
-  useEffect(() => {
-    // rerender
-    reRender();
-  }, [])
-
-  const reRender = () => {
-    <StylePhotoGrid>
-      {currentStyleArray.map((style, index) => {
-        if (currentIndex === index) {
-          return <StylePhoto
-            key={style.photos[0].url + index}
-            currentStyle={style}
-            setCurrentStyle={setCurrentStyle}
-            index={currentIndex}
-            setIndex={setCurrentIndex}
-            checkmarkStatus={true}
-          />
-        } else {
-          return <StylePhoto
-            key={style.photos[0].url + index}
-            currentStyle={style}
-            setCurrentStyle={setCurrentStyle}
-            index={currentIndex}
-            setIndex={setCurrentIndex}
-            checkmarkStatus={false}
-          />
-        }
-      })}
-    </StylePhotoGrid>
-  }
+  }, [currentStyle]);
 
   return (
     <ProductDescriptionGrid id='productDescriptionGrid'>
@@ -91,21 +59,37 @@ export default function StyleSelector({ productName, categoryName }) {
         </CategoryNameContainer>
         <PriceStyleContainer>
           $
-          {currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price}
+          {currentPrice}
           <div>
             <b>STYLE </b>
             {' '}
             {currentStyle.name}
           </div>
         </PriceStyleContainer>
-        {reRender}
-        <SizeQtyContainer>
+        <StylePhotoGrid>
+          {currentStyleArray.map((style, index) => {
+            console.log(currentIndex);
+            console.log(index);
+            return <StylePhoto
+              key={style.photos[0].url + index}
+              currentStyle={style}
+              setCurrentStyle={setCurrentStyle}
+              index={index}
+              setIndex={setCurrentIndex}
+              currentIndex={currentIndex}
+            />
+            }
+          )}
+        </StylePhotoGrid>
+
           {/* below component takes in current style, and need to access
           currentStyle.skus for the object that contain skus informaation */}
-          <SizeQuantitySelector currentStyleSkus={currentStyle.skus} />
-        </SizeQtyContainer>
+        <SizeQuantitySelector currentStyleSkus={currentStyle.skus} />
+
+        <Share/>
       </StyleSelectorLayout>
     </ProductDescriptionGrid>
   );
   // }
 }
+

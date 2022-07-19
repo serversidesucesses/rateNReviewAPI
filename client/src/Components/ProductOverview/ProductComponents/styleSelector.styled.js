@@ -6,7 +6,8 @@ import styled from 'styled-components';
 export const StyleSelectorLayout = styled.div`
   grid-column-start: 2,
   grid-column-end: 3;
-  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto auto;
+  gap: 1rem;
   z-index: 3;
 `
 export const CategoryNameContainer = styled.div`
@@ -53,6 +54,50 @@ export const StylePhotoThumbnail = styled.img`
 
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-end: auto;
+`
+export const SizeQtyStyle = styled.select`
+  height: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 1rem;
+
+  cursor: pointer;
+`
+
+export const AddToCartFavoriteContainer = styled.div`
+  grid-row-start: auto;
+  grid-row-end: auto;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+`
+export const AddToCartButton = styled.button`
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  height: 3rem;
+  font-size: 1rem;
+
+  cursor: pointer;
+`
+export const FavoriteIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 2rem;
+  margin-left: 1rem;
+  color: rgb(180, 56, 77);
+  cursor: pointer;
+`
+
+export const ShareGrid = styled.div`
+  grid-row-start: auto;
+  grid-row-end: auto;
+`
+export const SharePhoto = styled.img`
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10%;
 `
 
