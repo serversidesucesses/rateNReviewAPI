@@ -85,4 +85,4 @@ export const Label = styled.label`
 export const Buttons = styled.div`
   position: relative;
   left: 10%;
-`
+`;
