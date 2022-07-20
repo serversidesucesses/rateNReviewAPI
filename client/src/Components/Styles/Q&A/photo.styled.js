@@ -4,6 +4,7 @@ export const PhotosContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  margin-top: 10px;
   cursor: pointer;
   div {
     padding-right: 20px;

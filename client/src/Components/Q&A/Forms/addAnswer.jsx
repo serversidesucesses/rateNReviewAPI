@@ -30,7 +30,7 @@ export default function AddAnswer({ onFormValidation }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    const data = { values, images };
+    const data = { ...values, photos: images };
     onFormValidation(data);
   }
 
