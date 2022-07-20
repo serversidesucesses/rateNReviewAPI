@@ -4,6 +4,7 @@ import QuestionListContainer from './Components/Q&A/questions.jsx';
 import ProductMain from './Components/ProductOverview/ProductMain.jsx';
 import ReviewMain from './Components/Ratings&Reviews/reviewMain.jsx';
 import AppContextProvider, { AppContext } from './AppContext.jsx';
+import GlobalCSS from './Components/Styles/globalstyle.styled.js';
 
 // const RatingContext = createContext(null);
 
@@ -17,6 +18,7 @@ export default function App({ product_id }) {
   console.log('parent rerender');
   return (
     <AppContextProvider>
+      <GlobalCSS/>
       <ProductMain />
       <QuestionListContainer />
       <ReviewMain product_id={product_id} />

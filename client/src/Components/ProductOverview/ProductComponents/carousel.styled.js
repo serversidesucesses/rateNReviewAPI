@@ -169,14 +169,25 @@ left: 1%;
 height: 98%;
 width: 98%;
 z-index: 10;
+overflow: auto;
 `;
 
 export const ExpandedImage = styled.img`
-height: 95%;
-z-index: ${(props) => props.zindex || 1};
+display: block;
+height: 90%;
+z-index: 11;
+perspective: 1000px;
+opacity: 1;
+`;
+
+export const MaginifiedImage = styled.img`
+display: block;
+height: 235%;
+z-index:
 perspective: 1000px;
 opacity: 1;
 object-fit: ${(props) => props['object-fit'] || 'null'};
+overflow: auto;
 `;
 // // -------------------------------------------
 

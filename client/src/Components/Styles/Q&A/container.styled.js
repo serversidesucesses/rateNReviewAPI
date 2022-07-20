@@ -3,9 +3,9 @@
 import styled from 'styled-components';
 
 export const Question_Answer = styled.ul`
-  max-height: auto;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
+  max-height: 1000px;
   overflow: scroll;
   padding: 15px;
   font-family: Arial;
@@ -18,7 +18,7 @@ export const Question = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 0.6em;
+  margin-bottom: 1em;
 `;
 
 export const QuestionListItem = styled.li`
@@ -63,10 +63,9 @@ export const AnswerContainer = styled.ul`
 
 export const A = styled.span`
   display: inline-block;
-  padding-left: 5px;
+  padding-left: 6px;
   font-size:  15px;
   font-weight: bold;
-
 `;
 
 export const Q = styled.div`
@@ -75,21 +74,22 @@ export const Q = styled.div`
   color: #007185;
   font-size: 17px;
   font-weight: bold;
-  margin-left: 6px;
+  margin-left: 10px;
   width: 60%;
   span {
     margin-right: 10px;
   }
-  p  {
+  p {
     margin: 0;
   }
 `;
 
 export const SearchBar = styled.input`
+  justify-content: center;
   width: 97%;
   height: 4em;
   padding: 1em;
   margin-left: 1.2em;
   margin-bottom: 1em;
-  margin-top: -1em;
+  margin-top: 0.1em;
 `;
