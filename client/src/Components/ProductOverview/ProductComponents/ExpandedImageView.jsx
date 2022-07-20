@@ -10,7 +10,7 @@ import {
   ExpandedImageViewStyled,
 } from './carousel.styled.js';
 
-export default function ExpandedImageView({ image, handleClick, activePhotoIndex, rightButtonStatus, leftButtonStatus, onCloseRequest }) {
+export default function ExpandedImageView({ image, handleClick, activePhotoIndex, rightButtonStatus, leftButtonStatus, onKeyHandle }) {
   return (
     <>
       { leftButtonStatus
@@ -34,7 +34,6 @@ export default function ExpandedImageView({ image, handleClick, activePhotoIndex
           </ExpandedCarouselButtonRight>
         )
         : null}
-      <ExpandedImageViewStyled onClick={onCloseRequest}></ExpandedImageViewStyled>
       <ExpandedImageViewStyled>
         <ExpandedImage src={image} />
       </ExpandedImageViewStyled>

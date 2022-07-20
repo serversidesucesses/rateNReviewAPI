@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   FaAngleRight,
   FaAngleLeft,
@@ -38,7 +38,8 @@ export default function Modal({
   leftButtonStatus,
   children,
 }) {
-  const modalRef = useRef<HTMLInputElement>(null);
+  const modalRef = useRef(null);
+
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp, false);
     document.addEventListener('click', handleOutsideClick, false);
@@ -61,16 +62,10 @@ export default function Modal({
     }
   }
 
-  function handleOutsideClick(e) {
-    console.log(e.target);
-    if (!modalRef.contains(e.target)) {
-      onCloseRequest();
-      document.removeEventListener('click', this.handleOutsideClick, false);
-    }
-  }
   function onClick(photoindex) {
     handleClick(photoindex);
   }
+
   if (!isOpen) {
     return null;
   }
@@ -79,7 +74,7 @@ export default function Modal({
     return (
       <>
         <GlobalStyle overflow="hidden" />
-        <ModalWrapperStyled>
+        <ModalWrapperStyled onKeyDown={onKeyHandle}>
           <CloseButtonExpandedStyled type="button" onClick={onCloseRequest}>X</CloseButtonExpandedStyled>
           <ModalBackgroundStyled />
           <div id="modal" ref={modalRef}>
@@ -87,6 +82,7 @@ export default function Modal({
             <ExpandedImageView
               image={image}
               handleClick={onClick}
+              onKeyHandle={onKeyHandle}
               activePhotoIndex={activePhotoIndex}
               rightButtonStatus={rightButtonStatus}
               leftButtonStatus={leftButtonStatus}

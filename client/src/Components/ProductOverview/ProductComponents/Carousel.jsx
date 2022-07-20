@@ -60,6 +60,7 @@ function Carousel({ currentStyle, productId }) {
   // conditionally display left/right buttons
 
   const handleClick = (activePhotoIndex) => {
+    console.log(activePhotoIndex);
     if (activePhotoIndex === (numPhotos - 1)) {
       setRightButtonStatus(false);
     }

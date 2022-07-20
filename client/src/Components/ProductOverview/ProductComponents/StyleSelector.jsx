@@ -5,7 +5,7 @@ import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 import Share from './Share.jsx';
 import {
-  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
+  RatingContainer, StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
 } from './styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../productOverview.styled.js';
 import { FaShoppingCart } from 'react-icons/fa';
