@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Form, PersonalInfo, Label, Heading, Body, Buttons,
-} from '../../styles/Q&A/form.styled.js';
+} from '../../Styles/Q&A/form.styled.js';
 
 export default function AddAnswer({ onFormValidation }) {
   const initialValues = {
@@ -17,7 +17,6 @@ export default function AddAnswer({ onFormValidation }) {
       ...values,
       [name]: value,
     });
-    console.log(e.target[name], e.target.value);
   };
 
   function onSubmit(e) {

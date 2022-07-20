@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
-import { ReviewContainer, MainGridStyled } from '../Styles/Reviews/bars.styled';
+import { MainGridStyled } from '../Styles/Reviews/bars.styled';
+import { AppContext } from '../../AppContext.jsx';
 
-export default function ReviewMain({ product_id }) {
+function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
   const [sortOption, setSortOption] = useState('relevant');
   const [count, setCount] = useState(2);
 
   const [overallRating, setOverallRating] = useState(0);
+  const { setRating, setCountRatings } = useContext(AppContext);
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
-  const [characteristics, setCharacteristics] = useState({});
+  const [characteristics, setCharacteristics] = useState([]);
   const [numReviews, setNumReviews] = useState(0);
 
   const [currentFilters, setCurrentFilters] = useState({});
@@ -36,6 +37,12 @@ export default function ReviewMain({ product_id }) {
   };
 
   useEffect(() => {
+    console.log('here is overall:', overallRating);
+    setRating(overallRating);
+    setCountRatings(numReviews);
+  }, [overallRating, numReviews]);
+
+  useEffect(() => {
     axios.get('/reviews/reviews/meta', {
       params: {
         product_id,
@@ -47,9 +54,50 @@ export default function ReviewMain({ product_id }) {
         ReactDOM.unstable_batchedUpdates(() => {
           setOverallRating(roundedRating.toFixed(2));
           setRecommended(data.recommended);
-          setCharacteristics(data.characteristics);
+          // setCharacteristics(data.characteristics);
           setNumReviews(reviewCount);
           setRatings(data.ratings);
+          setCharacteristics(Object.keys(data.characteristics).map((key) => {
+            let descriptionOne = '';
+            let descriptionTwo = '';
+
+            switch (key) {
+              case 'Fit':
+                descriptionOne = 'Too small';
+                descriptionTwo = 'Too large';
+                break;
+              case 'Length':
+                descriptionOne = 'Runs short';
+                descriptionTwo = 'Runs large';
+                break;
+              case 'Comfort':
+                descriptionOne = 'Uncomfortable';
+                descriptionTwo = 'Perfect';
+                break;
+              case 'Quality':
+                descriptionOne = 'Poor';
+                descriptionTwo = 'Perfect';
+                break;
+              case 'Size':
+                descriptionOne = 'A size too small';
+                descriptionTwo = 'A size too wide';
+                break;
+              case 'Width':
+                descriptionOne = 'Too narrow';
+                descriptionTwo = 'Too wide';
+                break;
+              default:
+                break;
+            }
+
+            return ({
+              name: key,
+              id: data.characteristics[key].id,
+              percent: ((data.characteristics[key].value / 5) * 100).toFixed(),
+              descriptionOne,
+              descriptionTwo,
+            });
+          }));
         });
         return axios.get('/reviews/reviews', {
           params: {
@@ -87,6 +135,7 @@ export default function ReviewMain({ product_id }) {
         ...prevState,
         [rating]: rating,
       }));
+      setCount(2);
     }
   };
 
@@ -95,12 +144,13 @@ export default function ReviewMain({ product_id }) {
       const filters = { ...currentFilters };
       delete filters[rating];
       setCurrentFilters(filters);
+      setCount(2);
     }
   };
 
   return (
-    <ReviewContainer>
-      <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
+    <div id="review">
+
       <MainGridStyled>
         <RatingBreakdown
           ratings={ratings}
@@ -118,9 +168,14 @@ export default function ReviewMain({ product_id }) {
             : filterReviews().slice(0, count)}
           loadMoreReviews={loadMoreReviews}
           style={{marginRight: '100px'}}
+          characteristics={characteristics}
+          product_id={product_id}
+          selectHandler={selectHandler}
+          reviewCount={reviews.length}
         />
       </MainGridStyled>
     </ReviewContainer>
   );
 }
 
+export default memo(ReviewMain);
