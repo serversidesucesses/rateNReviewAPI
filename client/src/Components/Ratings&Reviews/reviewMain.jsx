@@ -148,10 +148,6 @@ function ReviewMain({ product_id }) {
 
   return (
     <ReviewContainer id="review">
-<<<<<<< HEAD
-
-=======
->>>>>>> main
       <MainGridStyled>
         <RatingBreakdown
           ratings={ratings}
