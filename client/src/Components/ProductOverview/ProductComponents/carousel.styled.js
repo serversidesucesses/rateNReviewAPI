@@ -158,24 +158,25 @@ export const ExpandedCarouselButtonRight = styled.button`
   cursor: pointer;
 `;
 
-export const ExpandedImage = styled.img`
-height: 95%;
-z-index: 11;
-perspective: 1000px;
-opacity: 1;
+export const ExpandedImageViewStyled = styled.div`
+position: absolute;
+display: flex;
+justify-content: center;
+align-items: center;
+background: black;
+top: 1%;
+left: 1%;
+height: 98%;
+width: 98%;
+z-index: 10;
 `;
 
-export const ExpandedImageViewStyled = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: black;
-  top: 1%;
-  left: 1%;
-  height: 98%;
-  width: 98%;
-  z-index: 10;
+export const ExpandedImage = styled.img`
+height: 95%;
+z-index: ${(props) => props.zindex || 1};
+perspective: 1000px;
+opacity: 1;
+object-fit: ${(props) => props['object-fit'] || 'null'};
 `;
 // // -------------------------------------------
 

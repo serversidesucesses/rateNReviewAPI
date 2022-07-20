@@ -13,7 +13,7 @@ import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
 import { AppContext } from '../../../AppContext.jsx';
 
 export default function StyleSelector({ productName, categoryName, priceTag }) {
-  const [productId, setProductId] = useState(40344);
+  const [productId, setProductId] = useState(40347);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });
   const [currentPrice, setCurrentPrice] = useState(priceTag);
@@ -102,7 +102,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
             {totalItemCount}
             <FaShoppingCart />
           </CartLogoContainer>
-
         </RatingCartGrid>
         <CategoryNameContainer>
           <CategoryContainer>{categoryName}</CategoryContainer>

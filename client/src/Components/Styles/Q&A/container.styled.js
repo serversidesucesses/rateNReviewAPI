@@ -3,11 +3,10 @@
 import styled from 'styled-components';
 
 export const Question_Answer = styled.ul`
-  max-height: 500px;
-  width: 70%;
+  max-height: auto;
+  width: 90%;
   margin: 0 auto;
   overflow: scroll;
-  border: 2px solid black;
   padding: 15px;
   font-family: Arial;
   font-size: 14px;
