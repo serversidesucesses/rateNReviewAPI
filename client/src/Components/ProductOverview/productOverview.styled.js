@@ -19,7 +19,7 @@ export const HeaderGrid = styled.div`
 export const LogoCartGrid = styled.div`
   display: grid;
   grid-template-columns: 90% 10%;
-  background: grey;
+  background: rgb(0, 134, 143);
 `
 export const LogoContainer = styled.div`
   font-size: 3em;
