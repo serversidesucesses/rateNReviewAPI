@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Star from './stars.jsx';
-import {Button, Span} from '../../Styles/Reviews/bars.styled.js';
+import {Button, Span, ReviewStyled, SummaryStyled, NameDateStyled, StarStyled, CheckStyled, SmallStyled, BodyStyled } from '../../Styles/Reviews/bars.styled.js';
+import check from '../assets/check-mark.png';
 
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -28,26 +29,34 @@ export default function Review({ review }) {
       })
       .catch((err) => { console.log(err); });
   };
-  console.log(review);
   return (
-    <div>
-      <Star rating={review.rating} review_id={review.review_id} />
-      <small>
-        {`${review.reviewer_name},  ${reviewDate}`}
-      </small>
+    <ReviewStyled>
+      <StarStyled>
+        <Star rating={review.rating} review_id={review.review_id} styled={{marginTop: '100px'}}/>
+        <NameDateStyled>{`${review.reviewer_name},  ${reviewDate}`}</NameDateStyled>
+      </StarStyled>
+      {review.summary.length > 0
+        ? <SummaryStyled>{review.summary.slice(0, 250)}</SummaryStyled>
+        : null}
 
-      <h3>{review.summary.slice(0, 250)}</h3>
+      <BodyStyled>{review.body.slice(0, 250)}</BodyStyled>
 
-      <p>{review.body}</p>
-
-      {review.recommend && <small>{`I recommend this product  `}</small>}
       {review.response && <p>{review.response}</p>}
-      <small>
-        <Span>{`Helpful?  `}</Span>
-        <Button type="button" onClick={helpHandler}>Yes</Button>
-        <Span>{`(${helpCount}) | `}</Span>
-        <Button type="button" onClick={reportHandler}>Report</Button>
-      </small>
-    </div>
+      <SmallStyled>
+        {review.recommend && (
+          <small style={{ marginBottom: '15px', marginTop: '-10px' }}>
+            <CheckStyled src={check}/>
+            I recommend this product
+          </small>
+        )}
+        <div>
+          <Span>Helpful?</Span>
+          &nbsp;
+          <Button type="button" onClick={helpHandler}>Yes</Button>
+          <Span>{`(${helpCount}) | `}</Span>
+          <Button type="button" onClick={reportHandler}>Report</Button>
+        </div>
+      </SmallStyled>
+    </ReviewStyled>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import StarIcon from './star.jsx';
+import StarIcon from './staricon.jsx';
 
 export default function StarRating({ review_id, rating }) {
   const quarterRating = (Math.round(((rating % 1) * 100) / 25) * 25);
@@ -17,8 +17,8 @@ export default function StarRating({ review_id, rating }) {
   });
 
   return (
-    <div>
+    <span>
       {starRating}
-    </div>
+    </span>
   );
 }

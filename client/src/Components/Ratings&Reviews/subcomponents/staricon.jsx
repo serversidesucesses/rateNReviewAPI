@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function StarIcon({ percent, index }) {
+export default function StarIcon({ percent, index, starId }) {
   return (
     <svg
       version="1.1"
@@ -12,7 +12,8 @@ export default function StarIcon({ percent, index }) {
       viewBox="0 0 526.673 526.673"
       style={{ enableBackground: 'new 0 0 526.673 526.673' }}
       xmlSpace="preserve"
-      width="20px">
+      width="20px"
+      data-star-id={starId}>
       <defs>
         <linearGradient id={`partial_${index}`}>
           <stop offset={`${percent}%`} stopColor="black" />
@@ -24,7 +25,7 @@ export default function StarIcon({ percent, index }) {
       <path
         fill={`url(#partial_${index})`}
         d="M392.683,467.808l-129.346-86.356L133.99,467.808
-        l42.163-149.692L54.058,221.779l155.404-6.163l53.875-145.885l53.885,145.885l155.394,6.163l-122.096,96.337L392.683,467.808z" stroke="black" strokeWidth="30" />
+        l42.163-149.692L54.058,221.779l155.404-6.163l53.875-145.885l53.885,145.885l155.394,6.163l-122.096,96.337L392.683,467.808z" stroke="black" strokeWidth="30" data-star-id={starId} />
     </svg>
   );
 }

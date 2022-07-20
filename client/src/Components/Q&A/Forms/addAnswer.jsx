@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Form } from '../../styles/Q&A/form.styled.js'
-import CloudinaryUploadWidget from '../cloudinaryUploadWidget.jsx';
+import ReactDOM from 'react-dom';
+import { Form } from '../../Styles/Q&A/form.styled.js'
+import CloudinaryUploadWidget from '../../../Assets/cloudinaryUploadWidget.jsx';
+
+const axios = require('axios');
 
 const initialValues = {
   body: '',
@@ -32,7 +35,7 @@ export default function AddAnswer({ onFormValidation }) {
   }
 
   return (
-    <>
+    <Form>
       <h2>Submit an answer</h2>
       <form onSubmit={onSubmit}>
         <div className="text">
@@ -49,6 +52,6 @@ export default function AddAnswer({ onFormValidation }) {
           <input type="submit" value="Submit Answer" />
         </div>
       </form>
-    </>
+    </Form>
   );
 }

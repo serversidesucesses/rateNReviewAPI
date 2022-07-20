@@ -8,18 +8,18 @@ export const ProductOverviewGrid = styled.div`
   grid-template-rows: 1fr 4fr 1fr;
   width: 80%;
   margin: 0 auto;
+  margin-bottom: 2%
 `;
 
 // top BLUE grid that contains header, logo, cart symbol and a small row of promotional line
 export const HeaderGrid = styled.div`
   display: grid;
   grid-template-rows: 80% 20%;
-  gap: 1em;
 `
 export const LogoCartGrid = styled.div`
   display: grid;
   grid-template-columns: 90% 10%;
-  background: grey;
+  background: rgb(0, 134, 143);
 `
 export const LogoContainer = styled.div`
   font-size: 3em;
@@ -33,7 +33,6 @@ export const LogoContainer = styled.div`
 export const PromotionLineContainer = styled.div`
   font-size: 1em;
   color: black;
-
 `
 
 // top BLUE grid that contains top row, which is the photo carousel, product description, style selector and buttons
@@ -121,6 +120,8 @@ export const CartFavoGrid = styled.div`
 export const ProductInformationGrid = styled.div`
   display: grid;
   grid-template-columns: 2fr 0.5fr 1fr;
+  margin-top: 2%;
+  margin-bottom: 2%;
 `;
 
 // bottom row ORANGE grid that contains product slogan stuff
@@ -140,6 +141,7 @@ export const DescriptionContainer = styled.div`
 `
 
 export const VerticalLine = styled.div`
+  display: flex;
   grid-column-start: 2;
   grid-column-end: 2.5;
   border-left: 1px solid black;
@@ -148,7 +150,7 @@ export const VerticalLine = styled.div`
 `
 // bottom rihgt ORANGE container that contains bullet point product description
 export const BulletPointDescription = styled.div`
-  grid-column-start: 2.5;
-  grid-column-end: -1;
+  grid-column-start: auto;
+  grid-column-end: auto;
   font-size: large;
 `

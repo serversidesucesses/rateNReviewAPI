@@ -38,12 +38,22 @@ export default function Modal({
   leftButtonStatus,
   children,
 }) {
+<<<<<<< HEAD
   const modalRef = useRef(null);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp, false);
     return () => {
       window.removeEventListener('keyup', handleKeyUp, false);
+=======
+  // const modalRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyUp, false);
+    // document.addEventListener('click', handleOutsideClick, false);
+    return () => {
+      window.removeEventListener('keyup', handleKeyUp, false);
+      // document.removeEventListener('click', handleOutsideClick, false);
+>>>>>>> main
     };
   }, []);
 
@@ -75,7 +85,7 @@ export default function Modal({
         <ModalWrapperStyled>
           <CloseButtonExpandedStyled type="button" onClick={onCloseRequest}>X</CloseButtonExpandedStyled>
           <ModalBackgroundStyled />
-          <div id="modal" ref={modalRef}>
+          <div id="modal" >
 
             <ExpandedImageView
               image={image}

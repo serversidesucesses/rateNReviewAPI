@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const ReviewContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  min-width: 600px;
+  margin-right: 100px;
+`;
+
 export const Bar = styled.div`
   height: 8px;
   width: 200px;
@@ -7,8 +14,6 @@ export const Bar = styled.div`
   margin: 10px;
   position: relative;
   bottom: 4px;
-
-
   .percentagefill {
     height: 100%;
     background-color: #5AC856;
@@ -28,11 +33,9 @@ export const BarContainer = styled.div`
   flex-direction: row;
   width: 318px;
   cursor: pointer;
-
   &:hover .percentagefill {
     background-color: #E0EF5D;
   }
-
 `;
 export const StarSpan = styled.span`
   text-decoration: underline;
@@ -129,4 +132,83 @@ export const Span = styled.span`
   font-size: 13px;
   font-weight: light;
   opacity: 0.6;
+`;
+
+export const CharacteristicRatingStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin-bottom: 0px;
+  width: 400px;
+`;
+
+export const RadioButtonContainerStyled = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const RadioButtonStyled = styled.input`
+  align-self: center;
+`;
+
+export const ReviewListStyled = styled.div`
+  margin-top: 20px;
+  // border-style: groove;
+  width: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  max-height: 600px;
+`;
+
+export const ReviewStyled = styled.div`
+  padding: 10px;
+  border-bottom: 1px dashed;
+  margin-top: 0px;
+`;
+
+export const SummaryStyled = styled.h3`
+  display: flex;
+  align-items: flex-start;
+  color: #007185;
+  font-weight: bold;
+  margin-left: 0px;
+  width: 60%;
+`;
+
+export const BodyStyled = styled.p`
+`;
+
+export const NameDateStyled = styled.small`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 10px;
+`;
+
+export const StarStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CheckStyled = styled.img`
+  width: 20px;
+`;
+
+export const SmallStyled = styled.small`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+`;
+
+export const OverallRatingStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 50px;
+  margin-bottom: -40px;
 `;

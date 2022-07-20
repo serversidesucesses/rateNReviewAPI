@@ -2,10 +2,10 @@ import React from 'react';
 import CharacteristicBar from './characteristicbar.jsx';
 import {CharacterListStyled} from '../../Styles/Reviews/bars.styled.js';
 
-export default function CharacteristicList({newCharacteristic}) {
+export default function CharacteristicList({characteristics}) {
   return (
     <CharacterListStyled>
-      {newCharacteristic.map((value) => (
+      {characteristics.map((value) => (
         <CharacteristicBar characteristic={value} key={value.id} />
       ))}
     </CharacterListStyled>

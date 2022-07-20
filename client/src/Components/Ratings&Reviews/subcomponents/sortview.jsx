@@ -4,9 +4,12 @@ export default function SortBar({ selectHandler, reviewCount }) {
   return (
     <div>
       <label>
-        {reviewCount}
-        {' '}
-        reviews, sorted by
+        <b>
+          {reviewCount}
+          {' '}
+          reviews
+        </b>
+        , sorted by
         {' '}
       </label>
       <select name="sort-select" id="sort-select" onChange={selectHandler}>

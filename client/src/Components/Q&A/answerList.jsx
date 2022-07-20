@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import Photo from './photo.jsx';
+import Photo from '../../Assets/photo.jsx';
 import { Button, ButtonContainerAns } from '../Styles/Q&A/buttons.styled';
 import { Answer, Span } from '../Styles/Q&A/container.styled';
 import { PhotosContainer } from '../Styles/Q&A/photo.styled';
@@ -47,12 +47,12 @@ export default function AnswerList({ answer, helpfulness, report }) {
             ) }
           <Span>{`${date}`}</Span>
         </div>
-        <span>|</span>
+        <span style={{opacity:0.5}}>|</span>
         <div>
           <Button type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</Button>
           <Span>{`  Yes (${answer.helpfulness})`}</Span>
         </div>
-        <span>|</span>
+        <span style={{opacity:0.5}}>|</span>
         <Button type="button" onClick={() => report(answer.answer_id)}>Report</Button>
       </ButtonContainerAns>
     </Answer>

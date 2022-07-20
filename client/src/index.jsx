@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useState, createContext, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import QuestionListContainer from './Components/Q&A/questions.jsx';
 import ProductMain from './Components/ProductOverview/ProductMain.jsx';
 import ReviewMain from './Components/Ratings&Reviews/reviewMain.jsx';
+import AppContextProvider, { AppContext } from './AppContext.jsx';
+import GlobalCSS from './Components/Styles/globalstyle.styled.js';
 
-const rootElement = document.getElementById('root');
+// const RatingContext = createContext(null);
 
-function App({ product_id }) {
+export default function App({ product_id }) {
+  // const [rating, setRating] = useState(0);
+  // const value = useMemo(
+  //   () => ({ rating, setRating }),
+  //   [rating],
+  // );
+
+  console.log('parent rerender');
   return (
-    <>
+    <AppContextProvider>
+      <GlobalCSS/>
       <ProductMain />
       <QuestionListContainer />
-      <ReviewMain product_id={product_id}/>
-    </>
+      <ReviewMain product_id={product_id} />
+    </AppContextProvider>
   );
 }
 
 App.defaultProps = {
   product_id: 40346,
 };
+
+const rootElement = document.getElementById('root');
 
 ReactDOM.render(<App />, rootElement);

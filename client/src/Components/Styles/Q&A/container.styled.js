@@ -6,6 +6,7 @@ export const Question_AnswerStyled = styled.ul`
   max-height: 500px;
   width: 70%;
   margin: 0 auto;
+  max-height: 1000px;
   overflow: scroll;
   padding: 15px;
   font-family: Arial;
@@ -19,7 +20,7 @@ export const Question = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 0.6em;
+  margin-bottom: 1em;
 `;
 
 export const QuestionListItem = styled.li`
@@ -65,10 +66,9 @@ export const AnswerContainer = styled.ul`
 
 export const A = styled.span`
   display: inline-block;
-  padding-left: 5px;
+  padding-left: 6px;
   font-size:  15px;
   font-weight: bold;
-  height: 100%;
 `;
 
 export const Q = styled.div`
@@ -77,12 +77,12 @@ export const Q = styled.div`
   color: #007185;
   font-size: 17px;
   font-weight: bold;
-  margin-left: 6px;
+  margin-left: 10px;
   width: 60%;
   span {
     margin-right: 10px;
   }
-  p  {
+  p {
     margin: 0;
   }
 `;
