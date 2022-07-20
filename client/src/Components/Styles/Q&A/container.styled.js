@@ -2,16 +2,16 @@
 /* eslint-disable camelcase */
 import styled from 'styled-components';
 
-export const Question_Answer = styled.ul`
+export const Question_AnswerStyled = styled.ul`
   max-height: 500px;
   width: 70%;
   margin: 0 auto;
   overflow: scroll;
-  border: 2px solid black;
   padding: 15px;
   font-family: Arial;
   font-size: 14px;
   background: glacier-white;
+  maring-bottom: -30px;
 `;
 
 export const Question = styled.div`
@@ -57,6 +57,7 @@ export const Answer = styled.li`
 
 export const AnswerContainer = styled.ul`
   display: flex;
+  min-height: 40px;
   padding: 5px;
   width: 100%;
 
@@ -67,7 +68,7 @@ export const A = styled.span`
   padding-left: 5px;
   font-size:  15px;
   font-weight: bold;
-
+  height: 100%;
 `;
 
 export const Q = styled.div`
@@ -87,10 +88,19 @@ export const Q = styled.div`
 `;
 
 export const SearchBar = styled.input`
-  width: 97%;
+  width: 98%;
   height: 4em;
   padding: 1em;
-  margin-left: 1.2em;
-  margin-bottom: 1em;
+  margin-bottom: 0.2em;
   margin-top: -1em;
+`;
+
+export const SeeMoreQuestionStyled = styled.div`
+  max-height: 100px;
+  width: 80%;
+  margin: auto 0;
+  padding: 15px;
+  font-family: Arial;
+  font-size: 14px;
+  background: glacier-white;
 `;

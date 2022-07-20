@@ -4,7 +4,7 @@ import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
 import AddQuestion from './Forms/questionform.jsx';
 import Modal from './Modal/Modal.jsx';
-import { Question_Answer } from '../Styles/Q&A/container.styled';
+import { Question_AnswerStyled, SeeMoreQuestionStyled } from '../Styles/Q&A/container.styled';
 import { MoreAnswer } from '../Styles/Q&A/buttons.styled';
 
 const axios = require('axios');
@@ -71,11 +71,23 @@ export default function QuestionListContainer() {
   if (search.length === 0 && questions !== undefined) {
     question = questions.map((question) => (
       // eslint-disable-next-line max-len
-      <QuestionList key={question.question_id} helpfulness={fetchHelpfulData} reportQ={reportQ} question={question} />));
+      <QuestionList
+        key={question.question_id}
+        helpfulness={fetchHelpfulData}
+        reportQ={reportQ}
+        question={question}
+      />
+    ));
   } else {
     question = search.map((question) => (
       // eslint-disable-next-line max-len
-      <QuestionList key={question.question_id} helpfulness={fetchHelpfulData} reportQ={reportQ} question={question} />));
+      <QuestionList
+        key={question.question_id}
+        helpfulness={fetchHelpfulData}
+        reportQ={reportQ}
+        question={question}
+      />
+    ));
   }
 
   console.log('question:', question);
@@ -89,6 +101,10 @@ export default function QuestionListContainer() {
   // need to validate form and then send to api
   const onFormValidation = (data) => {
     console.log('data', data, 'product_id', product_id);
+    const questionData = {...data, product_id}
+    axios.post(`/questions/questions/`, questionData)
+      .then(() => console.log('successful posting questions'))
+      .catch((error) => console.log('failed to post question', error));
     setIsModalOpen(false);
   };
 
@@ -102,28 +118,34 @@ export default function QuestionListContainer() {
             isOpen={isModalOpen}
             onCloseRequest={onModalCloseRequest}
           >
-            <AddQuestion onFormValidation={onFormValidation}/>
+            <AddQuestion onFormValidation={onFormValidation} />
           </Modal>
         )
         : null }
-      <Question_Answer>
+
+          <Question_AnswerStyled>
         <Search setSearch={setSearch} allQuestions={allQuestions} />
+        </Question_AnswerStyled>
+
+      <Question_AnswerStyled>
 
         {question}
-        <div>
-          {(search.length === 0) && (datalength > count || questions.length > 4)
-            ? (
-              <MoreAnswer type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>
-                SEE
-                { ` (${datalength - count})` }
-                {' '}
-                MORE ANSWERED QUESTIONS
-              </MoreAnswer>
-            )
-            : null }
-          <button type="button" onClick={() => setIsModalOpen(true)}>ADD A QUESTION  +</button>
-        </div>
-      </Question_Answer>
+
+      </Question_AnswerStyled>
+      <SeeMoreQuestionStyled>
+        {(search.length === 0) && (datalength > count || questions.length > 4)
+          ? (
+            <MoreAnswer type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>
+              SEE
+              { ` (${datalength - count})` }
+              {' '}
+              MORE ANSWERED QUESTIONS
+            </MoreAnswer>
+          )
+          : null }
+        <button type="button" onClick={() => setIsModalOpen(true)}>ADD A QUESTION  +</button>
+      </SeeMoreQuestionStyled>
+
     </>
   );
 }

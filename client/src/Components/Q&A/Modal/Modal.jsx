@@ -42,10 +42,8 @@ export default function Modal({
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp, false);
-    document.addEventListener('click', handleOutsideClick, false);
     return () => {
       window.removeEventListener('keyup', handleKeyUp, false);
-      document.removeEventListener('click', handleOutsideClick, false);
     };
   }, []);
 
@@ -74,7 +72,7 @@ export default function Modal({
     return (
       <>
         <GlobalStyle overflow="hidden" />
-        <ModalWrapperStyled onKeyDown={onKeyHandle}>
+        <ModalWrapperStyled>
           <CloseButtonExpandedStyled type="button" onClick={onCloseRequest}>X</CloseButtonExpandedStyled>
           <ModalBackgroundStyled />
           <div id="modal" ref={modalRef}>
@@ -82,7 +80,6 @@ export default function Modal({
             <ExpandedImageView
               image={image}
               handleClick={onClick}
-              onKeyHandle={onKeyHandle}
               activePhotoIndex={activePhotoIndex}
               rightButtonStatus={rightButtonStatus}
               leftButtonStatus={leftButtonStatus}
