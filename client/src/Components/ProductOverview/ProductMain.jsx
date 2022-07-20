@@ -11,7 +11,7 @@ import { AppContext } from '../../AppContext.jsx';
 export const ThemeContext = React.createContext({});
 
 export default function ProductMain() {
-  const [productId, setProductId] = useState(40348);
+  const [productId, setProductId] = useState(40346);
   const [productDetails, setProductDetails] = useState({});
   const [productName, setProductName] = useState('Placeholder Name');
   const [categoryName, setCategorName] = useState('CATEGORY');
