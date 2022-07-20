@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const ReviewContainer = styled.div`
   display: flex;
   justify-content: center;
-`
+  min-width: 600px;
+  margin-right: 100px;
+`;
 
 export const Bar = styled.div`
   height: 8px;
@@ -155,4 +157,62 @@ export const RadioButtonContainerStyled = styled.div`
 
 export const RadioButtonStyled = styled.input`
   align-self: center;
+`;
+
+export const ReviewListStyled = styled.div`
+  margin-top: 20px;
+  // border-style: groove;
+  width: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  max-height: 600px;
+`;
+
+export const ReviewStyled = styled.div`
+  padding: 10px;
+  border-bottom: 1px dashed;
+  margin-top: 0px;
+`;
+
+export const SummaryStyled = styled.h3`
+  display: flex;
+  align-items: flex-start;
+  color: #007185;
+  font-weight: bold;
+  margin-left: 0px;
+  width: 60%;
+`;
+
+export const BodyStyled = styled.p`
+`;
+
+export const NameDateStyled = styled.small`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 10px;
+`;
+
+export const StarStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CheckStyled = styled.img`
+  width: 20px;
+`;
+
+export const SmallStyled = styled.small`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+`;
+
+export const OverallRatingStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 50px;
+  margin-bottom: -40px;
 `;
