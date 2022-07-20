@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Header from './ProductComponents/Header.jsx';
@@ -6,6 +6,7 @@ import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
 import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from './productOverview.styled.js'
+import { AppContext } from '../../AppContext.jsx';
 
 export const ThemeContext = React.createContext({});
 
@@ -15,6 +16,7 @@ export default function ProductMain() {
   const [productName, setProductName] = useState('Placeholder Name');
   const [categoryName, setCategorName] = useState('CATEGORY');
   const [priceTag, setPriceTag] = useState('Placeholder Price');
+  const { setName } = useContext(AppContext);
 
   const getDataFromProductId = (productId) => {
     axios({
@@ -41,8 +43,12 @@ export default function ProductMain() {
   useEffect(() => {
     // console.log('got to useEffect');
     getDataFromProductId(productId);
-  }, [])
+  }, []);
 
+  useEffect(() => {
+    // console.log('got to useEffect');
+    setName(productName);
+  }, [productName]);
 
   return (
     <ProductOverviewGrid>

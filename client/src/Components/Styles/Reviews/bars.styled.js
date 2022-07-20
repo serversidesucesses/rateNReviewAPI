@@ -130,3 +130,24 @@ export const Span = styled.span`
   font-weight: light;
   opacity: 0.6;
 `;
+
+export const CharacteristicRatingStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin-bottom: 0px;
+  width: 400px;
+`;
+
+export const RadioButtonContainerStyled = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const RadioButtonStyled = styled.input`
+  align-self: center;
+`;
