@@ -12,8 +12,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
 import { AppContext } from '../../../AppContext.jsx';
 
-export default function StyleSelector({ productName, categoryName, priceTag }) {
-  const [productId, setProductId] = useState(40347);
+export default function StyleSelector({ productName, categoryName, priceTag, product_id }) {
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });
   const [currentPrice, setCurrentPrice] = useState(priceTag);
@@ -51,7 +50,7 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
 
     // productId is default to 40345 right now
     useEffect(() => {
-      getStyleFromProductId(productId);
+      getStyleFromProductId(product_id);
     }, []);
     //console.log('totalItemCount', totalItemCount)
 
@@ -86,13 +85,13 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
     <ProductDescriptionGrid id='productDescriptionGrid'>
       {/* above grid has 2fr 1fr, and I want Carousel to take up 2
       Carousel has too many style therefore has a seperate styling file */}
-      <Carousel currentStyle={currentStyle} productId={productId} />
+      <Carousel currentStyle={currentStyle} productId={product_id} />
       {/* StyleSelectorLayout will take the other 1fr */}
       <StyleSelectorLayout id='styleSelectorLayout'>
         <RatingCartGrid>
           <RatingContainer>
             <a href="#review">
-              <StarRating review_id={productId + 'starOverview'} rating={rating} />
+              <StarRating review_id={product_id + 'starOverview'} rating={rating} />
               <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
             </a>
             {/* <StarRating review_id={productId + 'starOverview'} rating={rating} />

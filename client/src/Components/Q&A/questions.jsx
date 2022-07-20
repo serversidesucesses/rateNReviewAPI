@@ -10,7 +10,7 @@ import { AppContext } from '../../AppContext.jsx';
 
 const axios = require('axios');
 
-export default function QuestionListContainer() {
+export default function QuestionListContainer({ product_id }) {
   //  useEffect componentDidMount() --> get the data for questions and answers
   const [questions, setQuestions] = useState([]);
   const [allQuestions, setAllQuestions] = useState([]);
@@ -20,7 +20,7 @@ export default function QuestionListContainer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { name } = useContext(AppContext);
 
-  const product_id = 40348; // --------product id need to standardize with all other components---
+  // const product_id = 40348; // --------product id need to standardize with all other components---
 
   function fetchData() {
     axios.get('/questions/questions', {

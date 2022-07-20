@@ -19,8 +19,8 @@ export default function App({ product_id }) {
   return (
     <AppContextProvider>
       <GlobalCSS/>
-      <ProductMain />
-      <QuestionListContainer />
+      <ProductMain product_id={product_id}/>
+      <QuestionListContainer product_id={product_id}/>
       <ReviewMain product_id={product_id} />
     </AppContextProvider>
   );

@@ -4,13 +4,14 @@ import Photo from '../../Assets/photo.jsx';
 import { Button, ButtonContainerAns } from '../Styles/Q&A/buttons.styled';
 import { Answer, Span } from '../Styles/Q&A/container.styled';
 // import { PhotosContainer } from '../Styles/Q&A/photo.styled';
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 export default function AnswerList({ answer, helpfulness, report }) {
   console.log(answer);
 
   // Date conversion
-  const date = new Date(answer.date);
-  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  const date = new Date(answer.date.replace(/-/g, '\/').replace(/T.+/, '')).toLocaleDateString('en-US', options);
+
 
   return (
     <Answer>
@@ -45,7 +46,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
                 {' '}
               </Span>
             ) }
-          <Span>{`${date.toLocaleDateString(undefined, options)}`}</Span>
+          <Span>{`${date}`}</Span>
         </div>
         <span style={{opacity:0.5}}>|</span>
         <div>

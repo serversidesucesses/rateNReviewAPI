@@ -10,8 +10,7 @@ import { AppContext } from '../../AppContext.jsx';
 
 export const ThemeContext = React.createContext({});
 
-export default function ProductMain() {
-  const [productId, setProductId] = useState(40348);
+export default function ProductMain({ product_id }) {
   const [productDetails, setProductDetails] = useState({});
   const [productName, setProductName] = useState('Placeholder Name');
   const [categoryName, setCategorName] = useState('CATEGORY');
@@ -42,7 +41,7 @@ export default function ProductMain() {
   // when first load page, do axios call
   useEffect(() => {
     // console.log('got to useEffect');
-    getDataFromProductId(productId);
+    getDataFromProductId(product_id);
   }, []);
 
   useEffect(() => {
@@ -56,7 +55,7 @@ export default function ProductMain() {
         <Header />
       </HeaderGrid>
       {/* StyleSelector contains style and carousel */}
-      <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag}/>
+      <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag} product_id={product_id}/>
       {/* productinformation contains information, slogan and descirption */}
       <ProductInformationGrid>
         {/* <ProductInformation /> */}
