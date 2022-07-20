@@ -52,7 +52,7 @@ export const MainImage = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 1;
   cursor: -moz-zoom-in;
   cursor: -webkit-zoom-in;
