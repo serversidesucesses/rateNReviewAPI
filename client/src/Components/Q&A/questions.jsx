@@ -1,11 +1,12 @@
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
 import AddQuestion from './Forms/questionform.jsx';
 import Modal from './Modal/modal.jsx';
 import { Question_Answer } from '../Styles/Q&A/container.styled';
 import { MoreAnswer } from '../Styles/Q&A/buttons.styled';
+import { AppContext } from '../../AppContext.jsx';
 
 const axios = require('axios');
 
@@ -17,6 +18,7 @@ export default function QuestionListContainer() {
   const [count, setCount] = useState(4);
   const [datalength, setDataLength] = useState(2);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { name } = useContext(AppContext);
 
   const product_id = 40348; // --------product id need to standardize with all other components---
 
@@ -98,7 +100,7 @@ export default function QuestionListContainer() {
         ? (
           <Modal
             title="Ask Your Question"
-            description="About the product (Need product Name)"
+            description={`About ${name}`}
             isOpen={isModalOpen}
             onCloseRequest={onModalCloseRequest}
           >

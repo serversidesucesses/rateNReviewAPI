@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import QuestionListContainer from './Components/Q&A/questions.jsx';
 import ProductMain from './Components/ProductOverview/ProductMain.jsx';
 import ReviewMain from './Components/Ratings&Reviews/reviewMain.jsx';
-import RatingContextProvider, { RatingContext } from './RatingContext.jsx';
+import AppContextProvider, { AppContext } from './AppContext.jsx';
 
 // const RatingContext = createContext(null);
 
@@ -16,13 +16,11 @@ export default function App({ product_id }) {
 
   console.log('parent rerender');
   return (
-    <>
-      <RatingContextProvider>
-        <ProductMain />
-        <QuestionListContainer />
-        <ReviewMain product_id={product_id} />
-      </RatingContextProvider>
-    </>
+    <AppContextProvider>
+      <ProductMain />
+      <QuestionListContainer />
+      <ReviewMain product_id={product_id} />
+    </AppContextProvider>
   );
 }
 

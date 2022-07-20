@@ -10,7 +10,7 @@ import {
 import { ProductDescriptionGrid } from '../productOverview.styled.js';
 import { FaShoppingCart } from 'react-icons/fa';
 import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
-import { RatingContext } from '../../../RatingContext.jsx';
+import { AppContext } from '../../../AppContext.jsx';
 
 export default function StyleSelector({ productName, categoryName, priceTag }) {
   const [productId, setProductId] = useState(40344);
@@ -23,8 +23,8 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   const [cartArray, setCartArray] = useState([])
   const [totalItemCount, setTotalItemCount] = useState(0)
   const [refreshState, setRefreshState] = useState(false);
-  const rateContext = useContext(RatingContext);
-  const { rating } = rateContext;
+  const context = useContext(AppContext);
+  const { rating, countRatings } = context;
 
   // get data from /cart immediate when the page load
   useEffect(() => {
@@ -91,7 +91,12 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
       <StyleSelectorLayout id='styleSelectorLayout'>
         <RatingCartGrid>
           <RatingContainer>
-            <StarRating review_id={productId + 'starOverview'} rating={rating} />
+            <a href="#review">
+              <StarRating review_id={productId + 'starOverview'} rating={rating} />
+              <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
+            </a>
+            {/* <StarRating review_id={productId + 'starOverview'} rating={rating} />
+            <span style={{cursor:'pointer'}}>{countRatings} Reviews</span> */}
           </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
             {totalItemCount}

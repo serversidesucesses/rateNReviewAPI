@@ -81,8 +81,9 @@ export default function AddReview({ characteristics, product_id }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    // console.log(values);
-    axios.post('/reviews/addreview', values)
+    const data = values;
+    data.photos = images;
+    axios.post('/reviews/addreview', data)
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
   }

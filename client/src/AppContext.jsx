@@ -15,15 +15,21 @@ import React, { createContext, useMemo, useState } from 'react';
 
 // export const useRatingContext = () => useContext(RatingContext);
 
-export const RatingContext = createContext(null);
+export const AppContext = createContext(null);
 
-export default function RatingContextProvider({children}) {
+export default function AppContextProvider({children}) {
   const [rating, setRating] = useState(0);
+  const [countRatings, setCountRatings] = useState(0);
+  const [name, setName] = useState('');
   console.log('here is context:', rating);
   const value = useMemo(() => ({
     rating,
+    countRatings,
+    name,
+    setName,
     setRating,
-  }), [rating]);
+    setCountRatings,
+  }), [rating, countRatings, name]);
 
-  return <RatingContext.Provider value={value}>{children}</RatingContext.Provider>;
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }

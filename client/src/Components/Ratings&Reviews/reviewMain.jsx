@@ -5,7 +5,7 @@ import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
 import { MainGridStyled } from '../Styles/Reviews/bars.styled';
-import { RatingContext } from '../../RatingContext.jsx';
+import { AppContext } from '../../AppContext.jsx';
 
 function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
@@ -13,7 +13,7 @@ function ReviewMain({ product_id }) {
   const [count, setCount] = useState(2);
 
   const [overallRating, setOverallRating] = useState(0);
-  const { setRating } = useContext(RatingContext);
+  const { setRating, setCountRatings } = useContext(AppContext);
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
   const [characteristics, setCharacteristics] = useState([]);
@@ -40,7 +40,8 @@ function ReviewMain({ product_id }) {
   useEffect(() => {
     console.log('here is overall:', overallRating);
     setRating(overallRating);
-  }, [overallRating]);
+    setCountRatings(numReviews);
+  }, [overallRating, numReviews]);
 
   useEffect(() => {
     axios.get('/reviews/reviews/meta', {
@@ -192,7 +193,7 @@ function ReviewMain({ product_id }) {
   // });
 
   return (
-    <div>
+    <div id="review">
       <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
       <MainGridStyled>
         <RatingBreakdown
