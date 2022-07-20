@@ -54,6 +54,7 @@ export const Answer = styled.li`
   width: 100%;
   min-height: 40px;
   margin-bottom: 0.3rem;
+  margin-top: -0.4rem;
 `;
 
 export const AnswerContainer = styled.ul`
