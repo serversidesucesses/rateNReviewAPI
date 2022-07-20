@@ -5,14 +5,14 @@ import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 import Share from './Share.jsx';
 import {
-  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
+  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, RatingContainer, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
 } from './styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../productOverview.styled.js';
 import { FaShoppingCart } from 'react-icons/fa';
 
 
 export default function StyleSelector({ productName, categoryName, priceTag }) {
-  const [productId, setProductId] = useState(40344);
+  const [productId, setProductId] = useState(40347);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });
   const [currentPrice, setCurrentPrice] = useState(priceTag);

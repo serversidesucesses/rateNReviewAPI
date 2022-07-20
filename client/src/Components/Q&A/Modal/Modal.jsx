@@ -38,13 +38,13 @@ export default function Modal({
   leftButtonStatus,
   children,
 }) {
-  const modalRef = useRef<HTMLInputElement>(null);
+  // const modalRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp, false);
-    document.addEventListener('click', handleOutsideClick, false);
+    // document.addEventListener('click', handleOutsideClick, false);
     return () => {
       window.removeEventListener('keyup', handleKeyUp, false);
-      document.removeEventListener('click', handleOutsideClick, false);
+      // document.removeEventListener('click', handleOutsideClick, false);
     };
   }, []);
 
@@ -61,13 +61,14 @@ export default function Modal({
     }
   }
 
-  function handleOutsideClick(e) {
-    console.log(e.target);
-    if (!modalRef.contains(e.target)) {
-      onCloseRequest();
-      document.removeEventListener('click', this.handleOutsideClick, false);
-    }
-  }
+  // function handleOutsideClick(e) {
+  //   console.log(e.target);
+  //   if (!modalRef.contains(e.target)) {
+  //     onCloseRequest();
+  //     document.removeEventListener('click', this.handleOutsideClick, false);
+  //   }
+  // }
+
   function onClick(photoindex) {
     handleClick(photoindex);
   }
@@ -82,7 +83,7 @@ export default function Modal({
         <ModalWrapperStyled>
           <CloseButtonExpandedStyled type="button" onClick={onCloseRequest}>X</CloseButtonExpandedStyled>
           <ModalBackgroundStyled />
-          <div id="modal" ref={modalRef}>
+          <div id="modal" >
 
             <ExpandedImageView
               image={image}
