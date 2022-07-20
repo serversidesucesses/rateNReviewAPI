@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { MainImage } from './carousel.styled.js';
 
 // here photo is an object that contain both the thumbnailurl and normal url
-function CarouselImage({ photo, setExpandStatus }) {
+function CarouselImage({ photo, setIsModalOpen }) {
   // console.log('photo.url in CarouselImage is:', photo.url)
   return (
-    <MainImage fetchpriority="high" src={photo.url} onClick={() => setExpandStatus((prevStatus) => (!prevStatus))} />
+    <MainImage fetchpriority="high" src={photo.url} onClick={() => setIsModalOpen(true)} />
   );
 }
 
