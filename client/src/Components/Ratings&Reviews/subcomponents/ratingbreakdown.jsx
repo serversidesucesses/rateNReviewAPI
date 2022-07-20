@@ -10,7 +10,7 @@ export default function RatingBreakdown({ ratings, recommended, characteristics,
 
   const rating = (Math.round(overallRating * 10) / 10);
   const recommendPercent = ((recommended.true / (reviewCount)) * 100).toFixed();
-
+  console.log(overallRating);
   return (
     <RatingBreakdownStyled>
       <h2>{rating}</h2>

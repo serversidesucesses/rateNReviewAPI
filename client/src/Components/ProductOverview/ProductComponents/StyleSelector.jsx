@@ -5,11 +5,12 @@ import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 import Share from './Share.jsx';
 import {
-  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid,
+  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid, RatingContainer
 } from './styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../productOverview.styled.js';
 import { FaShoppingCart } from 'react-icons/fa';
-
+import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
+import { RatingContext } from '../../../RatingContext.jsx';
 
 export default function StyleSelector({ productName, categoryName, priceTag }) {
   const [productId, setProductId] = useState(40344);
@@ -22,6 +23,8 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   const [cartArray, setCartArray] = useState([])
   const [totalItemCount, setTotalItemCount] = useState(0)
   const [refreshState, setRefreshState] = useState(false);
+  const rateContext = useContext(RatingContext);
+  const { rating } = rateContext;
 
   // get data from /cart immediate when the page load
   useEffect(() => {
@@ -71,6 +74,8 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   };
   console.log('currentStyle is:', currentStyle);
 
+  console.log('rating in style selector:', rating);
+
 
   useEffect(() => {
     setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
@@ -86,7 +91,7 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
       <StyleSelectorLayout id='styleSelectorLayout'>
         <RatingCartGrid>
           <RatingContainer>
-            {/* ROYCE, the rating goes here */}
+            <StarRating review_id={productId + 'starOverview'} rating={rating} />
           </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
             {totalItemCount}

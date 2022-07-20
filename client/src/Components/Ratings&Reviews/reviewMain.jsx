@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
 import { MainGridStyled } from '../Styles/Reviews/bars.styled';
+import { RatingContext } from '../../RatingContext.jsx';
 
-export default function ReviewMain({ product_id }) {
+function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
   const [sortOption, setSortOption] = useState('relevant');
   const [count, setCount] = useState(2);
 
   const [overallRating, setOverallRating] = useState(0);
+  const { setRating } = useContext(RatingContext);
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
   const [characteristics, setCharacteristics] = useState([]);
@@ -34,6 +36,11 @@ export default function ReviewMain({ product_id }) {
 
     return [rounded, numRatings];
   };
+
+  useEffect(() => {
+    console.log('here is overall:', overallRating);
+    setRating(overallRating);
+  }, [overallRating]);
 
   useEffect(() => {
     axios.get('/reviews/reviews/meta', {
@@ -212,3 +219,4 @@ export default function ReviewMain({ product_id }) {
   );
 }
 
+export default memo(ReviewMain);

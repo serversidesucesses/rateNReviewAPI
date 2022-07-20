@@ -52,6 +52,6 @@ export default function AddAnswer({ onFormValidation }) {
           <input type="submit" value="Submit Answer" />
         </div>
       </form>
-    </>
+    </Form>
   );
 }
