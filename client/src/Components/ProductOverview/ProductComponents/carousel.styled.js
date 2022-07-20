@@ -173,9 +173,10 @@ z-index: 10;
 
 export const ExpandedImage = styled.img`
 height: 95%;
-z-index: 1;
+z-index: ${(props) => props.zindex || 1};
 perspective: 1000px;
 opacity: 1;
+object-fit: ${(props) => props['object-fit'] || 'null'};
 `;
 // // -------------------------------------------
 

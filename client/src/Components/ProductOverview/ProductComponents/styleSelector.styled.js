@@ -7,7 +7,6 @@ export const StyleSelectorLayout = styled.div`
   grid-column-start: 2,
   grid-column-end: 3;
   grid-template-rows: auto auto auto auto auto auto auto;
-  gap: 1rem;
   z-index: 3;
 `
 export const RatingCartGrid = styled.div`
@@ -25,10 +24,6 @@ export const CartLogoContainer = styled.div`
   justify-content: right;
   font-size: 1.5em;
   color: black;
-  margin-top: 15%;
-  margin-bottom: 15%;
-  margin-left: 15%;
-  margin-right: 15%;
 `
 
 export const CategoryNameContainer = styled.div`
@@ -50,13 +45,14 @@ export const PriceStyleContainer = styled.div`
   position: grid;
   grid-template-rows: auto auto;
   z-index: 3;
+  margin-top: 2%;
+  margin-bottom: 3%;
 `
 export const StylePhotoGrid = styled.div`
   grid-row-start: auto;
   grid-row-end: auto;
   display: inline-grid;
   grid-template-columns: auto auto auto auto;
-  gap: 1rem;
 `
 export const StylePhotoContainer = styled.div`
 
@@ -76,13 +72,14 @@ export const StylePhotoThumbnail = styled.img`
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;
   grid-row-end: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
 `
 export const SizeQtyStyle = styled.select`
   height: 3rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   font-size: 1rem;
-
   cursor: pointer;
 `
 
@@ -92,13 +89,13 @@ export const AddToCartFavoriteContainer = styled.div`
   display: inline-grid;
   grid-template-columns: auto auto;
   gap: 1rem;
+  margin-bottom: 2%;
 `
 export const AddToCartButton = styled.button`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   height: 3rem;
   font-size: 1rem;
-
   cursor: pointer;
 `
 export const FavoriteIcon = styled.div`

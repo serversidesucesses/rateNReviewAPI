@@ -4,7 +4,7 @@ import axios from 'axios';
 import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
-import { MainGridStyled } from '../Styles/Reviews/bars.styled';
+import { ReviewContainer, MainGridStyled } from '../Styles/Reviews/bars.styled';
 
 export default function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
@@ -99,7 +99,7 @@ export default function ReviewMain({ product_id }) {
   };
 
   return (
-    <div>
+    <ReviewContainer>
       <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
       <MainGridStyled>
         <RatingBreakdown
@@ -120,7 +120,7 @@ export default function ReviewMain({ product_id }) {
           style={{marginRight: '100px'}}
         />
       </MainGridStyled>
-    </div>
+    </ReviewContainer>
   );
 }
 

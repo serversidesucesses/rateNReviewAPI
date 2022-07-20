@@ -47,7 +47,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
             ) }
           <Span>{`${date.toLocaleDateString(undefined, options)}`}</Span>
         </div>
-        <span>|</span>
+        <span style={{}}>|</span>
         <div>
           <Button type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</Button>
           <Span>{`  Yes (${answer.helpfulness})`}</Span>

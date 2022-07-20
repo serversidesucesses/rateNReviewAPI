@@ -92,7 +92,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
             {totalItemCount}
             <FaShoppingCart />
           </CartLogoContainer>
-
         </RatingCartGrid>
         <CategoryNameContainer>
           <CategoryContainer>{categoryName}</CategoryContainer>

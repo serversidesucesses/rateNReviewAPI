@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const ReviewContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 export const Bar = styled.div`
   height: 8px;
   width: 200px;
