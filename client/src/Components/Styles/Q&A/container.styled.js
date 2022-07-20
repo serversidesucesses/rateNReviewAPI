@@ -3,16 +3,16 @@
 import styled from 'styled-components';
 
 export const Question_AnswerStyled = styled.ul`
-  max-height: 500px;
-  width: 70%;
-  margin: 0 auto;
   max-height: 1000px;
+  min-height: 100px;
+  width: 60%;
+  margin: 0 auto;
   overflow: scroll;
   padding: 15px;
   font-family: Arial;
   font-size: 14px;
   background: glacier-white;
-  maring-bottom: -30px;
+  margin-bottom: -2rem;
 `;
 
 export const Question = styled.div`
@@ -20,12 +20,12 @@ export const Question = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 1em;
+  margin-bottom: 0.5rem;
 `;
 
 export const QuestionListItem = styled.li`
-  padding: 10px;
-  margin-top: 0px;
+  padding: 5px;
+  margin-bottom: 10px;
   list-style: none;
   border-bottom: 1px dashed;
 `;
@@ -49,16 +49,18 @@ export const Answer = styled.li`
   display: flex;
   flex-direction: column;
   align-items: space-between;
-  justify-content: center;
-  padding-top: 10px;
-  margin-top: -17px;
+  justify-content: space-between;
   margin-left: 5px;
   width: 100%;
+  min-height: 40px;
+  margin-bottom: 0.3rem;
 `;
 
 export const AnswerContainer = styled.ul`
   display: flex;
-  min-height: 40px;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 80px;
   padding: 5px;
   width: 100%;
 
@@ -91,8 +93,7 @@ export const SearchBar = styled.input`
   width: 98%;
   height: 4em;
   padding: 1em;
-  margin-bottom: 0.2em;
-  margin-top: -1em;
+  margin: 0 auto;
 `;
 
 export const SeeMoreQuestionStyled = styled.div`
