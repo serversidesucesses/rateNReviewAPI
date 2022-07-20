@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
-import { ReviewContainer, MainGridStyled } from '../Styles/Reviews/bars.styled';
+import { MainGridStyled, ReviewContainer } from '../Styles/Reviews/bars.styled';
 import { AppContext } from '../../AppContext.jsx';
 
 function ReviewMain({ product_id }) {
@@ -37,7 +37,6 @@ function ReviewMain({ product_id }) {
   };
 
   useEffect(() => {
-    console.log('here is overall:', overallRating);
     setRating(overallRating);
     setCountRatings(numReviews);
   }, [overallRating, numReviews]);
@@ -54,7 +53,6 @@ function ReviewMain({ product_id }) {
         ReactDOM.unstable_batchedUpdates(() => {
           setOverallRating(roundedRating.toFixed(2));
           setRecommended(data.recommended);
-          // setCharacteristics(data.characteristics);
           setNumReviews(reviewCount);
           setRatings(data.ratings);
           setCharacteristics(Object.keys(data.characteristics).map((key) => {
@@ -150,7 +148,10 @@ function ReviewMain({ product_id }) {
 
   return (
     <ReviewContainer id="review">
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
       <MainGridStyled>
         <RatingBreakdown
           ratings={ratings}
@@ -160,14 +161,14 @@ function ReviewMain({ product_id }) {
           reviewCount={numReviews}
           addFilter={addFilter}
           deleteFilter={deleteFilter}
-          style={{marginLeft: '-30px'}}
+          style={{ marginLeft: '-30px' }}
         />
         <ReviewList
           reviews={Object.keys(currentFilters).length === 0
             ? reviews.slice(0, count)
             : filterReviews().slice(0, count)}
           loadMoreReviews={loadMoreReviews}
-          style={{marginRight: '100px'}}
+          style={{ marginRight: '100px' }}
           characteristics={characteristics}
           product_id={product_id}
           selectHandler={selectHandler}

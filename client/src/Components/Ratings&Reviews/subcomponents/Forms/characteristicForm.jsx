@@ -14,8 +14,6 @@ export default function CharacteristicForm({ characteristic, handleClick }) {
             {index + 1 === 5 ? <label htmlFor={`${characteristic.name}_${index}`}>{characteristic.descriptionTwo}</label> : null}
           </RadioButtonContainerStyled>
         ))}
-        {/* <span>{characteristic.descriptionOne}</span>
-        <span>{characteristic.descriptionTwo}</span> */}
       </CharacteristicRatingStyled>
     </div>
   );
