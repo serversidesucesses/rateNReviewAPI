@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, memo } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import SortView from './subcomponents/sortview.jsx';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
 import { MainGridStyled } from '../Styles/Reviews/bars.styled';
@@ -149,52 +148,9 @@ function ReviewMain({ product_id }) {
     }
   };
 
-
-  // const newCharacteristic = Object.keys(characteristics).map((key) => {
-  //   let descriptionOne = '';
-  //   let descriptionTwo = '';
-
-  //   switch (key) {
-  //     case 'Fit':
-  //       descriptionOne = 'Too small';
-  //       descriptionTwo = 'Too large';
-  //       break;
-  //     case 'Length':
-  //       descriptionOne = 'Runs short';
-  //       descriptionTwo = 'Runs large';
-  //       break;
-  //     case 'Comfort':
-  //       descriptionOne = 'Uncomfortable';
-  //       descriptionTwo = 'Perfect';
-  //       break;
-  //     case 'Quality':
-  //       descriptionOne = 'Poor';
-  //       descriptionTwo = 'Perfect';
-  //       break;
-  //     case 'Size':
-  //       descriptionOne = 'A size too small';
-  //       descriptionTwo = 'A size too wide';
-  //       break;
-  //     case 'Width':
-  //       descriptionOne = 'Too narrow';
-  //       descriptionTwo = 'Too wide';
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  //   return ({
-  //     name: key,
-  //     id: characteristics[key].id,
-  //     percent: ((characteristics[key].value / 5) * 100).toFixed(),
-  //     descriptionOne,
-  //     descriptionTwo,
-  //   });
-  // });
-
   return (
     <div id="review">
-      <SortView selectHandler={selectHandler} reviewCount={reviews.length} />
+
       <MainGridStyled>
         <RatingBreakdown
           ratings={ratings}
@@ -214,6 +170,8 @@ function ReviewMain({ product_id }) {
           style={{marginRight: '100px'}}
           characteristics={characteristics}
           product_id={product_id}
+          selectHandler={selectHandler}
+          reviewCount={reviews.length}
         />
       </MainGridStyled>
     </div>

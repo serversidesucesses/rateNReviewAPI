@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Review from './review.jsx';
 import Modal from './Modal/Modal.jsx';
 import AddReview from './Forms/addReview.jsx';
+import SortView from './sortview.jsx';
 
-export default function ReviewsList({ reviews, loadMoreReviews, characteristics, product_id }) {
+export default function ReviewsList({ reviews, loadMoreReviews, characteristics, product_id, selectHandler, reviewCount }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onModalCloseRequest = () => {
@@ -28,6 +29,7 @@ export default function ReviewsList({ reviews, loadMoreReviews, characteristics,
           </Modal>
         )
         : null }
+      <SortView selectHandler={selectHandler} reviewCount={reviewCount} />
       {reviews.map((review) => <Review key={review.review_id} review={review} />)}
       <button type="button" onClick={loadMoreReviews}>More Reviews</button>
       <button type="button" onClick={() => setIsModalOpen(true)}>Add a Review</button>
