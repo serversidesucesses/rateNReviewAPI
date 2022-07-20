@@ -15,6 +15,7 @@ export const RatingCartGrid = styled.div`
   display: grid;
   grid-template-columns: auto auto;
   overflow: hidden;
+  margin-bottom: 1.5rem;
 `
 export const RatingContainer = styled.div`
   grid-column-start: 1;
