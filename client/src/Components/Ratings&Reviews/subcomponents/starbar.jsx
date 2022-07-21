@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Bar, BarContainer, StarSpan } from '../../Styles/Reviews/bars.styled';
+import { BarStyled, BarContainerStyled, StarSpanStyled } from '../../Styles/Reviews/bars.styled';
 
 export default function StarBar({ percentage, star, numStars, addFilter, deleteFilter }) {
   const [filterActive, setFilterActive] = useState(false);
@@ -15,13 +15,13 @@ export default function StarBar({ percentage, star, numStars, addFilter, deleteF
 
   return (
     <div>
-      <BarContainer onClick={toggleFilter}>
-        <StarSpan>{star} star</StarSpan>
-        <Bar>
-          <div style={{ width: `${percentage}%` }} className={filterActive ? 'percentagefill-opened' : 'percentagefill'} />
-        </Bar>
-        <StarSpan><span>{`${numStars} votes`}</span></StarSpan>
-      </BarContainer>
+      <BarContainerStyled onClick={toggleFilter}>
+        <StarSpanStyled>{star} star</StarSpanStyled>
+        <BarStyled>
+          <div style={{ width: `${percentage}%`, borderRadius: '10px;' }} className={filterActive ? 'percentagefill-opened' : 'percentagefill'} />
+        </BarStyled>
+        <span>{`${numStars} votes`}</span>
+      </BarContainerStyled>
     </div>
   );
 }
