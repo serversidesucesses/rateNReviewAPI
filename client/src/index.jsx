@@ -9,17 +9,10 @@ import GlobalCSS from './Components/Styles/globalstyle.styled.js';
 // const RatingContext = createContext(null);
 
 export default function App({ product_id }) {
-  // const [rating, setRating] = useState(0);
-  // const value = useMemo(
-  //   () => ({ rating, setRating }),
-  //   [rating],
-  // );
-
-  console.log('parent rerender');
   return (
     <AppContextProvider>
       <GlobalCSS/>
-      <ProductMain />
+      <ProductMain product_id={product_id}/>
       <QuestionListContainer />
       <ReviewMain product_id={product_id} />
     </AppContextProvider>

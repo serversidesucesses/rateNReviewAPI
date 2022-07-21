@@ -2,6 +2,9 @@
 node_modules
 **/bundle.js
 **/bundle.js.map
-_test_
+test
 coverage
+_test_
+**/package-lock.json
 # remove dist from gitignore when deploying application
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import StarBar from  './starbar.jsx';
-import {StarListStyled} from '../../Styles/Reviews/bars.styled.js';
+import { StarListStyled } from '../../Styles/Reviews/bars.styled.js';
 
 export default function StarBarList({percentages, addFilter, deleteFilter, ratings}) {
   return (

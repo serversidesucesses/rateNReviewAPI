@@ -3,7 +3,7 @@
   "jest": {
     "verbose": true,
     "moduleNameMapper": {
-      ".+\\.(css|styl|svg|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+      ".+\\.(css|svg|png|jpg)$": "identity-obj-proxy"
     },
     "testEnvironment": "jsdom"
   },
@@ -12,7 +12,7 @@
   "scripts": {
     "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "npx webpack --watch",
-    "test": "jest --coverage"
+    "test": "jest --coverage --env=jsdom"
   },
   "repository": {
     "type": "git",
@@ -56,6 +56,8 @@
     "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^28.1.3",
     "nodemon": "^2.0.19",
     "val-loader": "^5.0.0",
     "webpack": "^5.73.0"
