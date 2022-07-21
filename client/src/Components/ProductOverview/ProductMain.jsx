@@ -5,7 +5,7 @@ import Header from './ProductComponents/Header.jsx';
 import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
-import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from './productOverview.styled.js'
+import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from '../Styles/ProductOverview/productOverview.styled.js'
 import { AppContext } from '../../AppContext.jsx';
 
 export const ThemeContext = React.createContext({});

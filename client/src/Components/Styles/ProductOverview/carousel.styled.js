@@ -5,7 +5,6 @@ import styled from 'styled-components';
 // the parent grid is ProductDescriptionGrid in StyleSelector
 export const CarouselLayout = styled.div`
   height: 38rem;
-
 `;
 
 export const CarouselThumbnailContainer = styled.div`
