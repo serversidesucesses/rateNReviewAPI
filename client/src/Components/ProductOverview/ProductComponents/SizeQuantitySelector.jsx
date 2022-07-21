@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { SizeQtyContainer, SizeQtyStyle, AddToCartFavoriteContainer, AddToCartButton, FavoriteIcon,  } from './styleSelector.styled.js';
+import { SizeQtyContainer, SizeQtyStyle, AddToCartFavoriteContainer, AddToCartButton, FavoriteIcon,  } from '../../Styles/ProductOverview/styleSelector.styled.js';
 import { FaAngleDown, FaRegHeart, FaHeart } from 'react-icons/fa';
 
 export default function SizeQuantitySelector({ currentStyleSkus, refreshState, setRefreshState }) {
@@ -87,8 +87,7 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
             console.log('Error adding item to cart', error);
           });
       }
-      // should also do the axios call to get from cart
-
+      alert("Item(s) added to cart.");
     } else if (!sizeSeletedStatus){
       alert("Please select a size.")
     } else if (!qtySeletedStatus) {

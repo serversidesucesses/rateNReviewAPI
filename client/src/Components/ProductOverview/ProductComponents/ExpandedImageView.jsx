@@ -9,7 +9,7 @@ import {
   ExpandedCarouselButtonLeft,
   ExpandedImageViewStyled,
   MaginifiedImage,
-} from './carousel.styled.js';
+} from '../../Styles/ProductOverview/carousel.styled.js';
 
 export default function ExpandedImageView({
   image, handleClick, activePhotoIndex, rightButtonStatus, leftButtonStatus, onCloseRequest,

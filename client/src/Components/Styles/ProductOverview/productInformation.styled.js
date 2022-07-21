@@ -10,10 +10,12 @@ export const ProductInformationContainer = styled.div`
   z-index: 3;
 `
 export const CategoryContainer = styled.div`
+  font-family: Arial;
   font-size: x-large;
 `
 
 export const ProductNameContainer = styled.div`
+  font-family: Arial;
   font-size: xx-large;
 `
 // this container should be below the carousel

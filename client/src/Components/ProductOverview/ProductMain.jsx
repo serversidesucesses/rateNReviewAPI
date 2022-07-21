@@ -5,7 +5,7 @@ import Header from './ProductComponents/Header.jsx';
 import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
-import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from './productOverview.styled.js'
+import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from '../Styles/ProductOverview/productOverview.styled.js'
 import { AppContext } from '../../AppContext.jsx';
 
 export const ThemeContext = React.createContext({});
@@ -14,7 +14,7 @@ export default function ProductMain({product_id}) {
   // const [productId, setProductId] = useState(40346);
   const [productDetails, setProductDetails] = useState({});
   const [productName, setProductName] = useState('Placeholder Name');
-  const [categoryName, setCategorName] = useState('CATEGORY');
+  const [categoryName, setCategoryName] = useState('CATEGORY');
   const [priceTag, setPriceTag] = useState('Placeholder Price');
   const { setName } = useContext(AppContext);
 
@@ -28,6 +28,7 @@ export default function ProductMain({product_id}) {
         //console.log(response.data.name);
         setProductDetails(response.data)
         setProductName(response.data.name);
+        setCategoryName(response.data.category)
         setPriceTag(response.data.default_price);
       })
       .catch((error) => {

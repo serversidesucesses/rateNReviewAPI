@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ShareGrid, SharePhoto
-} from './styleSelector.styled.js';
+} from '../../Styles/ProductOverview/styleSelector.styled.js';
 
 const Share = (props) => {
   return (
