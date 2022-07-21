@@ -3,7 +3,7 @@ import axios from 'axios';
 import Star from './stars.jsx';
 import {ReviewButtonStyled, SpanStyled, ReviewStyled, SummaryStyled, NameDateStyled, StarStyled, CheckStyled, SmallStyled, BodyStyled } from '../../Styles/Reviews/bars.styled.js';
 import check from '../assets/check-mark.png';
-import { PhotosContainer } from '../../Styles/Q&A/photo.styled';
+import { PhotosContainerStyled } from '../../Styles/Q&A/photo.styled';
 import Photo from '../../../Assets/photo.jsx';
 
 
@@ -49,11 +49,11 @@ export default function Review({ review }) {
       {review.photos.length === 0
         ? null
         : (
-          <PhotosContainer>
+          <PhotosContainerStyled>
             {' '}
             {review.photos.map((photo, index) => <Photo key={index} photos={photo} />)}
             {' '}
-          </PhotosContainer>
+          </PhotosContainerStyled>
         )}
       <SmallStyled>
         {review.recommend && (
