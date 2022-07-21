@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StylePhotoContainer, StyleCheckmark, StylePhotoThumbnail } from './styleSelector.styled.js';
+import { StylePhotoContainer, StyleCheckmark, StylePhotoThumbnail } from '../../Styles/ProductOverview/styleSelector.styled.js';
 import { FaCheck } from 'react-icons/fa';
 
 export default function StylePhoto({ currentStyle, setCurrentStyle, currentIndex, index, setIndex, checkmarkStatus}) {

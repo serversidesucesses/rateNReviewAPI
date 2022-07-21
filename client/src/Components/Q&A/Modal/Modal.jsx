@@ -10,7 +10,7 @@ import {
   ExpandedCarouselButtonLeft,
   ExpandedcarouselThumbnailGrid,
   ExpandedCarouselThumbnailContainer,
-} from '../../ProductOverview/ProductComponents/carousel.styled.js';
+} from '../../Styles/ProductOverview/carousel.styled.js';
 import ModalHeader from './ModalHeader.jsx';
 import {
   ModalWrapperStyled,

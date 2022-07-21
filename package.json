@@ -3,10 +3,10 @@
   "jest": {
     "verbose": true,
     "moduleNameMapper": {
-      ".+\\.(css|styl|svg|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"},
+      ".+\\.(css|styl|svg|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    },
     "testEnvironment": "jsdom"
   },
-
   "version": "1.0.0",
   "main": "server/index.js",
   "scripts": {

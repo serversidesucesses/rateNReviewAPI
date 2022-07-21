@@ -17,7 +17,7 @@ import {
   CarouselButtonUp,
   CarouselButtonRight,
   CarouselButtonLeft,
-} from './carousel.styled.js';
+} from '../../Styles/ProductOverview/carousel.styled.js';
 
 // currentStyle is an object contains all info about this style
 //
