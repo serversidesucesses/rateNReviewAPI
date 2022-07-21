@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import AnswerList from './answerList.jsx';
 import Modal from './Modal/Modal.jsx';
-import AddAnswer from './Forms/AddAnswer.jsx';
+import AddAnswer from './Forms/addAnswer.jsx';
 import { ButtonStyled, ButtonContainerStyled,  SeeMoreBtnStyled } from '../Styles/Q&A/buttons.styled';
 import {
   QuestionListItemStyled,
