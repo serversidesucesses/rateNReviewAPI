@@ -15,10 +15,11 @@ export default function Review({ review }) {
   // const [notClicked, setClick] = useState(true); //One click per user
 
   const helpHandler = () => {
+    setHelpCount(helpCount + 1);
     axios.put(`/reviews/mark/helpful?review_id=${review.review_id}`)
       .then((response) => {
         // console.log(response);
-        setHelpCount(helpCount + 1);
+        // setHelpCount(helpCount + 1);
         // setDidClick(false);
       })
       .catch((err) => { console.log(err); });
