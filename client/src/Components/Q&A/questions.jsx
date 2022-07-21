@@ -5,13 +5,12 @@ import Search from './searchBar.jsx';
 import AddQuestion from './Forms/questionform.jsx';
 import Modal from './Modal/Modal.jsx';
 import { Question_AnswerStyled, SeeMoreQuestionStyled } from '../Styles/Q&A/container.styled';
-import { MoreAnswer } from '../Styles/Q&A/buttons.styled';
+import { MoreQuestionBtnStyled } from '../Styles/Q&A/buttons.styled';
 import { AppContext } from '../../AppContext.jsx';
 
 const axios = require('axios');
 
 export default function QuestionListContainer() {
-  //  useEffect componentDidMount() --> get the data for questions and answers
   const [questions, setQuestions] = useState([]);
   const [allQuestions, setAllQuestions] = useState([]);
   const [search, setSearch] = useState([]);
@@ -27,6 +26,7 @@ export default function QuestionListContainer() {
       params: {
         product_id,
         page: 1,
+        count,
       },
     })
       .then(({ data }) => {
@@ -42,16 +42,14 @@ export default function QuestionListContainer() {
   }, []);
 
   useEffect(() => {
-    // console.log('count Effect');
     setQuestions(allQuestions.slice(0, count));
   }, [count]);
 
   useEffect(() => {
-  // console.log('search Effect');
     setQuestions(search);
   }, [search]);
 
-  function fetchHelpfulData(question_id) {
+  const fetchHelpfulData = (question_id) => {
     axios.put(`/questions/questions/helpful/?question_id=${question_id}`)
       .then(() => {
         fetchData();
@@ -59,7 +57,7 @@ export default function QuestionListContainer() {
       .catch((error) => console.log(error));
   }
 
-  function reportQ(question_id) {
+  const reportQ = (question_id) => {
     axios.put(`questions/reportQ/?question_id=${question_id}`)
       .then(() => {
         fetchData();
@@ -72,7 +70,6 @@ export default function QuestionListContainer() {
 
   if (search.length === 0 && questions !== undefined) {
     question = questions.map((question) => (
-      // eslint-disable-next-line max-len
       <QuestionList
         key={question.question_id}
         helpfulness={fetchHelpfulData}
@@ -82,7 +79,6 @@ export default function QuestionListContainer() {
     ));
   } else {
     question = search.map((question) => (
-      // eslint-disable-next-line max-len
       <QuestionList
         key={question.question_id}
         helpfulness={fetchHelpfulData}
@@ -95,14 +91,12 @@ export default function QuestionListContainer() {
   console.log('question:', question);
   console.log('search:', search);
 
-  // -------- validator function for Modal ------
   const onModalCloseRequest = () => {
     setIsModalOpen(false);
   };
 
   // need to validate form and then send to api
   const onFormValidation = (data) => {
-    console.log('data', data, 'product_id', product_id);
     const questionData = {...data, product_id}
     axios.post(`/questions/questions/`, questionData)
       .then(() => console.log('successful posting questions'))
@@ -137,15 +131,15 @@ export default function QuestionListContainer() {
       <SeeMoreQuestionStyled>
         {(search.length === 0) && (datalength > count || questions.length > 4)
           ? (
-            <MoreAnswer type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>
+            <MoreQuestionBtnStyled type="button" onClick={() => setCount((prevCount) => prevCount + 2)}>
               SEE
               { ` (${datalength - count})` }
               {' '}
               MORE ANSWERED QUESTIONS
-            </MoreAnswer>
+            </MoreQuestionBtnStyled>
           )
           : null }
-        <button type="button" onClick={() => setIsModalOpen(true)}>ADD A QUESTION  +</button>
+        <MoreQuestionBtnStyled type="button" onClick={() => setIsModalOpen(true)}>ADD A QUESTION  +</MoreQuestionBtnStyled>
       </SeeMoreQuestionStyled>
 
     </>

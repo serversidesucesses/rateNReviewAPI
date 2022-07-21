@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const ButtonStyled = styled.button`
   padding: 0;
   border: none;
   background: none;
@@ -11,23 +11,42 @@ export const Button = styled.button`
   opacity:0.4;
 `;
 
-export const ButtonContainer = styled.div`
+export const ButtonContainerStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 25%;
+  width: 18rem;
   padding-right: 15px;
 
 `;
 
-export const ButtonContainerAns = styled.div`
+export const ButtonContainerAnsStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 25rem;
   margin-top: -0.09em;
   margin-bottom: 0.3em;
 `;
 
-export const MoreAnswer = styled.button`
-  margin: 30px;
-  margin-top: 50px;
+export const SeeMoreBtnStyled = styled.button`
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: lighter;
+  opacity:0.4;
+`;
+
+export const MoreQuestionBtnStyled = styled.button`
+  margin-left: 1rem;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: lighter;
+  opacity:0.4;
 `;

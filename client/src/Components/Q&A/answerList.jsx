@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import Photo from '../../Assets/photo.jsx';
-import { Button, ButtonContainerAns } from '../Styles/Q&A/buttons.styled';
-import { Answer, Span } from '../Styles/Q&A/container.styled';
-import { PhotosContainer } from '../Styles/Q&A/photo.styled';
+import { ButtonStyled, ButtonContainerAnsStyled } from '../Styles/Q&A/buttons.styled';
+import { AnswerStyled, SpanStyled } from '../Styles/Q&A/container.styled';
+import { PhotosContainerStyled } from '../Styles/Q&A/photo.styled';
 
 export default function AnswerList({ answer, helpfulness, report }) {
   // Date conversion
@@ -13,48 +13,48 @@ export default function AnswerList({ answer, helpfulness, report }) {
 
   // console.log(AnswerDate);
   return (
-    <Answer>
+    <AnswerStyled>
       <p>{answer.body}</p>
       {answer.photos.length === 0
         ? null
         : (
-          <PhotosContainer>
+          <PhotosContainerStyled>
             {' '}
             {answer.photos.map((photo, index) => <Photo key={index} photos={photo} />)}
             {' '}
-          </PhotosContainer>
+          </PhotosContainerStyled>
         )}
 
-      <ButtonContainerAns>
+      <ButtonContainerAnsStyled>
         <div>
           {(answer.answerer_name === 'Seller' || answer.answerer_name === 'seller')
             ? (
-              <Span>
+              <SpanStyled>
                 by
                 {' '}
                 <b>Seller</b>
                 ,
                 {' '}
-              </Span>
+              </SpanStyled>
             ) : (
-              <Span>
+              <SpanStyled>
                 by
                 {' '}
                 {answer.answerer_name}
                 ,
                 {' '}
-              </Span>
+              </SpanStyled>
             ) }
-          <Span>{`${date}`}</Span>
+          <SpanStyled>{`${date}`}</SpanStyled>
         </div>
         <span style={{opacity:0.5}}>|</span>
         <div>
-          <Button type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</Button>
-          <Span>{`  Yes (${answer.helpfulness})`}</Span>
+          <ButtonStyled type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</ButtonStyled>
+          <SpanStyled>{`  Yes (${answer.helpfulness})`}</SpanStyled>
         </div>
         <span style={{opacity:0.5}}>|</span>
-        <Button type="button" onClick={() => report(answer.answer_id)}>Report</Button>
-      </ButtonContainerAns>
-    </Answer>
+        <ButtonStyled type="button" onClick={() => report(answer.answer_id)}>Report</ButtonStyled>
+      </ButtonContainerAnsStyled>
+    </AnswerStyled>
   );
 }

@@ -6,9 +6,17 @@ import React, { useEffect, useState } from 'react';
 import AnswerList from './answerList.jsx';
 import Modal from './Modal/Modal.jsx';
 import AddAnswer from './Forms/AddAnswer.jsx';
-import { Button, ButtonContainer } from '../Styles/Q&A/buttons.styled';
+import { ButtonStyled, ButtonContainerStyled,  SeeMoreBtnStyled } from '../Styles/Q&A/buttons.styled';
 import {
-  QuestionListItem, Question, Span, More_Answer, AnswerContainer, A, Q, Answer,
+  QuestionListItemStyled,
+  QuestionStyled,
+  SpanStyled,
+  More_AnswerStyled,
+  AnswerContainerStyled,
+  AStyled,
+  QStyled,
+  AnswerStyled,
+  AnswerContainer_Styled
 } from '../Styles/Q&A/container.styled';
 
 const axios = require('axios');
@@ -19,7 +27,7 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
   const [allAnswers, setAllAnswers] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [count, setCount] = useState(2);
-  const [helpfulData, setHelpfulData] = useState(0);
+  const [helpfulDataA, setHelpfulDataA] = useState(false);
   const [status, setStatus] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reportA, setReportA] = useState(false);
@@ -39,40 +47,57 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
         setAnswerLength(data.results.length);
       })
       .catch((error) => console.log(error));
-  }, [helpfulData, reportA, isModalOpen]);
+  }, [helpfulDataA, reportA, isModalOpen]);
 
   useEffect(() => {
     setAnswers(allAnswers.slice(0, count));
   }, [count]);
 
+  useEffect(() => {
+    console.log('set Local Data')
+    localStorage.setItem('helpfulDataA', JSON.stringify(true))
+  }, [helpfulDataA])
+
+  useEffect(() => {
+    localStorage.setItem('reportAns', JSON.stringify(reportA))
+  }, [reportA])
 
   // ----------setter functions being passed to child component-------------------------------------
-  function fetchHelpfulData(answer_id) {
-    axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
-      .then(() => setHelpfulData((prevCount) => prevCount + 1))
+  const fetchHelpfulData = (answer_id) => {
+    const data = JSON.parse(localStorage.getItem('helpfulDataA'));
+    console.log(data)
+    if (data === false) {
+      axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
+      .then(() => setHelpfulDataA(true))
       .catch((error) => console.log(error));
+    }
+
   }
 
-  function report(answer_id) {
-    axios.put(`/questions/reportA/?answer_id=${answer_id}`)
+  const report = (answer_id) => {
+    const reportAns = JSON.parse(localStorage.getItem('reportAns'));
+    if (reportA === false) {
+      console.log('hello')
+      axios.put(`/questions/reportA/?answer_id=${answer_id}`)
       .then(() => {
         setReportA(true);
         alert('Answer has been reported');
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+    }
+
   }
-  // --------------setter function for collapse and more answer-----------
-  function moreQuestions() {
+
+  const moreQuestions = () => {
     status ? setCount(2) : setCount(1000);
     status ? setStatus(false) : setStatus(true);
   }
 
-  // -------- validator function for Modal ------
   const onModalCloseRequest = () => {
     setIsModalOpen(false);
   };
 
-  // need to validate form and then send to api
+
   const onFormValidation = (data, questionId) => {
     console.log('data', data, 'questionId', question.question_id);
     axios.post(`/questions/answers?question_id=${question.question_id}`, data)
@@ -97,41 +122,46 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
           </Modal>
         )
         : null }
-      <QuestionListItem style={{ position: 'relative' }}>
-        <Question>
-          <Q>
+      <QuestionListItemStyled style={{ position: 'relative' }}>
+        <QuestionStyled>
+          <QStyled>
             <span>Q: </span>
-            <p>{question.question_body}</p>
-          </Q>
-          <ButtonContainer>
+            <h4>{question.question_body}</h4>
+          </QStyled>
+          <ButtonContainerStyled>
             <div>
-              <Button type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</Button>
-              <Span>{`Yes (${question.question_helpfulness})`}</Span>
+              <ButtonStyled type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</ButtonStyled>
+              <SpanStyled>{`Yes (${question.question_helpfulness})`}</SpanStyled>
             </div>
-            <Span>|</Span>
-            <Button type="button" onClick={() => reportQ(question.question_id)}>Report</Button>
-            <Span>|</Span>
-            <Button type="button" onClick={() => setIsModalOpen(true)}>Add Answer</Button>
-          </ButtonContainer>
-        </Question>
-        <AnswerContainer>
-          <A>A: </A>
-          <Answer>
+            <SpanStyled>|</SpanStyled>
+            <ButtonStyled type="button" onClick={() => reportQ(question.question_id)}>Report</ButtonStyled>
+            <SpanStyled>|</SpanStyled>
+            <ButtonStyled type="button" onClick={() => setIsModalOpen(true)}>Add Answer</ButtonStyled>
+          </ButtonContainerStyled>
+        </QuestionStyled>
+        <AnswerContainerStyled>
+          <AStyled>A: </AStyled>
+          <AnswerContainer_Styled>
+          {/* <AnswerStyled> */}
             { status === true
               ? (
-                <More_Answer>
+                <>
+                <More_AnswerStyled>
                   { answers.map((answer) => <AnswerList key={answer.answer_id} helpfulness={fetchHelpfulData} report={report} answer={answer} />)}
-                </More_Answer>
-              )
+                </More_AnswerStyled>
+
+              {(status)
+                ? < SeeMoreBtnStyled type="button" onClick={() => moreQuestions()}>COLLAPSE</ SeeMoreBtnStyled>
+                : null }
+               </>)
               : <>{ answers.map((answer, index) => <AnswerList key={index} helpfulness={fetchHelpfulData} report={report} answer={answer} />)}</>}
 
-            {(status)
-              ? <Button type="button" onClick={() => moreQuestions()}>Collapse</Button>
-              : null }
-          </Answer>
-          {(!status && answersLength > 2) ? <Button type="button" onClick={() => moreQuestions()}>SEE MORE ANSWERS</Button> : null}
-        </AnswerContainer>
-      </QuestionListItem>
+         </AnswerContainer_Styled>
+
+          {/* </AnswerStyled> */}
+          {(!status && answersLength > 2) ? < SeeMoreBtnStyled type="button" onClick={() => moreQuestions()}>SEE MORE ANSWERS</ SeeMoreBtnStyled> : null}
+        </AnswerContainerStyled>
+      </QuestionListItemStyled>
     </div>
   );
 }

@@ -103,7 +103,7 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
     <>
       {/* div for size selecting */}
       <SizeQtyContainer >
-        <SizeQtyStyle name="size" class="size-select" onChange={handleSizeSelect}>
+        <SizeQtyStyle name="size" className="size-select" onChange={handleSizeSelect}>
           {sizeOptions()}
         </SizeQtyStyle>
         <SizeQtyStyle onChange={handleQtySelect} name="quantity" id="quantity-select">
