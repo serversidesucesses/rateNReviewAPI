@@ -4,7 +4,7 @@ import axios from 'axios';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
 import { MainGridStyled, ReviewContainerStyled } from '../Styles/Reviews/bars.styled';
-// import { AppContext } from '../../AppContext.jsx';
+import { AppContext } from '../../AppContext.jsx';
 
 function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
@@ -12,7 +12,7 @@ function ReviewMain({ product_id }) {
   const [count, setCount] = useState(2);
 
   const [overallRating, setOverallRating] = useState(0);
-  // const { setRating, setCountRatings } = useContext(AppContext);
+  const { setRating, setCountRatings } = useContext(AppContext);
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
   const [characteristics, setCharacteristics] = useState([]);
@@ -36,10 +36,10 @@ function ReviewMain({ product_id }) {
     return [rounded, numRatings];
   };
 
-  // useEffect(() => {
-  //   // setRating(overallRating);
-  //   setCountRatings(numReviews);
-  // }, [overallRating, numReviews]);
+  useEffect(() => {
+    setRating(overallRating);
+    setCountRatings(numReviews);
+  }, [overallRating, numReviews]);
 
   useEffect(() => {
     axios.get('/reviews/reviews/meta', {
