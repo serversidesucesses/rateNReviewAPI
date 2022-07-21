@@ -10,8 +10,8 @@ import { AppContext } from '../../AppContext.jsx';
 
 export const ThemeContext = React.createContext({});
 
-export default function ProductMain() {
-  const [productId, setProductId] = useState(40346);
+export default function ProductMain({product_id}) {
+  // const [productId, setProductId] = useState(40346);
   const [productDetails, setProductDetails] = useState({});
   const [productName, setProductName] = useState('Placeholder Name');
   const [categoryName, setCategorName] = useState('CATEGORY');
@@ -42,7 +42,7 @@ export default function ProductMain() {
   // when first load page, do axios call
   useEffect(() => {
     // console.log('got to useEffect');
-    getDataFromProductId(productId);
+    getDataFromProductId(product_id);
   }, []);
 
   useEffect(() => {

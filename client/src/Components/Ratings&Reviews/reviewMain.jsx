@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewList from './subcomponents/reviewslist.jsx';
 import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
-import { MainGridStyled, ReviewContainer } from '../Styles/Reviews/bars.styled';
+import { MainGridStyled, ReviewContainerStyled } from '../Styles/Reviews/bars.styled';
 // import { AppContext } from '../../AppContext.jsx';
 
 function ReviewMain({ product_id }) {
@@ -147,7 +147,7 @@ function ReviewMain({ product_id }) {
   };
 
   return (
-    <ReviewContainer id="review">
+    <ReviewContainerStyled id="review">
       <MainGridStyled>
         <RatingBreakdown
           ratings={ratings}
@@ -171,7 +171,7 @@ function ReviewMain({ product_id }) {
           reviewCount={reviews.length}
         />
       </MainGridStyled>
-    </ReviewContainer>
+    </ReviewContainerStyled>
   );
 }
 

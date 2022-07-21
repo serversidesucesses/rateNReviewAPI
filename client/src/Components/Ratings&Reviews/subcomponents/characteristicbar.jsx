@@ -1,23 +1,23 @@
 import React from 'react';
-import { CharacterBar, CharacterBarContainer, CharacteristicContainer, Icon, CharacterDescription, CharacterName } from '../../Styles/Reviews/bars.styled';
+import { CharacterBarStyled, CharacterBarContainerStyled, CharacteristicContainerStyled, IconStyled, CharacterDescriptionStyled, CharacterName } from '../../Styles/Reviews/bars.styled';
 import Arrow from '../assets/down.png';
 
 export default function CharacteristicBar({ characteristic }) {
   return (
-    <CharacteristicContainer>
+    <CharacteristicContainerStyled>
       <CharacterName>{characteristic.name}</CharacterName>
-      <CharacterBarContainer>
-        <CharacterBar />
-        <CharacterBar />
-        <CharacterBar />
-        <Icon style={{ left: `${characteristic.percent}%` }} src={Arrow} />
-      </CharacterBarContainer>
-      <CharacterDescription style={{ gridColumn: '1/2', justifySelf: 'start' }}>
+      <CharacterBarContainerStyled>
+        <CharacterBarStyled />
+        <CharacterBarStyled />
+        <CharacterBarStyled />
+        <IconStyled style={{ left: `${characteristic.percent}%` }} src={Arrow} />
+      </CharacterBarContainerStyled>
+      <CharacterDescriptionStyled style={{ gridColumn: '1/3', justifySelf: 'start' }}>
         {characteristic.descriptionOne}
-      </CharacterDescription>
-      <CharacterDescription style={{ gridColumn: '3/4', justifySelf: 'end' }}>
+      </CharacterDescriptionStyled>
+      <CharacterDescriptionStyled style={{ gridColumn: '3/4', justifySelf: 'end' }}>
         {characteristic.descriptionTwo}
-      </CharacterDescription>
-    </CharacteristicContainer>
+      </CharacterDescriptionStyled>
+    </CharacteristicContainerStyled>
   );
 }

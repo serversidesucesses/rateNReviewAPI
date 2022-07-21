@@ -1,47 +1,60 @@
 import styled from 'styled-components';
 
-export const ReviewContainer = styled.div`
+export const ReviewContainerStyled = styled.div`
   display: flex;
   justify-content: center;
   min-width: 600px;
   margin-right: 100px;
 `;
 
-export const Bar = styled.div`
-  height: 8px;
-  width: 200px;
+export const ReviewListButtonStyled = styled.button`
+  padding: 0;
+  border: 4px black;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+export const BarStyled = styled.div`
+  height: 12px;
+  width: 180px;
+  border-radius: 10px;
   background-color: rgb(210, 210, 210);
   margin: 10px;
   position: relative;
   bottom: 4px;
   .percentagefill {
     height: 100%;
+    border-radius: 10px;
     background-color: #5AC856;
     text-align: right;
     padding: 0;
   }
   .percentagefill-opened {
     height: 100%;
+    border-radius: 10px;
     background-color: #FE8214;
     text-align: right;
     padding: 0;
   }
 `;
 
-export const BarContainer = styled.div`
+export const BarContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
-  width: 318px;
+  width: 340px;
   cursor: pointer;
   &:hover .percentagefill {
     background-color: #E0EF5D;
   }
 `;
-export const StarSpan = styled.span`
+export const StarSpanStyled = styled.span`
   text-decoration: underline;
 `;
 
-export const CharacterBarContainer = styled.div`
+export const CharacterBarContainerStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 2px;
@@ -51,13 +64,13 @@ export const CharacterBarContainer = styled.div`
   position: relative;
 `;
 
-export const CharacterBar = styled.div`
-  height: 8px;
+export const CharacterBarStyled = styled.div`
+  height: 9px;
   width: 70px;
   background-color: rgb(210, 210, 210);
 `;
 
-export const Icon = styled.img`
+export const IconStyled = styled.img`
   position: absolute;
   width: 14px;
   top: -6px;
@@ -66,16 +79,17 @@ export const Icon = styled.img`
   padding: 0;
 `;
 
-export const CharacteristicContainer = styled.div`
+export const CharacteristicContainerStyled = styled.div`
   display: grid;
   position: relative;
-  width: 200px;
+  width: 214px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 25px 10px 15px;
   padding-bottom: 20px;
+  word-break: break-all;
 `;
 
-export const CharacterDescription = styled.span`
+export const CharacterDescriptionStyled = styled.span`
   grid-row: 3;
   font-size: 12px;
 `;
@@ -116,7 +130,7 @@ export const StarListStyled = styled.div`
   justify-content: center;
 `;
 
-export const Button = styled.button`
+export const ReviewButtonStyled = styled.button`
   padding: 0;
   border: none;
   background: none;
@@ -127,7 +141,7 @@ export const Button = styled.button`
   opacity:0.6;
 `;
 
-export const Span = styled.span`
+export const SpanStyled = styled.span`
   padding-left: 2px;
   font-size: 13px;
   font-weight: light;
@@ -162,7 +176,7 @@ export const ReviewListStyled = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   word-wrap: break-word;
-  max-height: 600px;
+  max-height: 500px;
 `;
 
 export const ReviewStyled = styled.div`
@@ -211,4 +225,23 @@ export const OverallRatingStyled = styled.div`
   justify-content: flex-start;
   margin-left: 50px;
   margin-bottom: -40px;
+`;
+
+export const SortBarStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SelectStyled = styled.select`
+  padding-left: 5px;
+  border-color: transparent;
+  display: flex;
+  min-height: 38px;
+  flex-wrap: wrap;
+  text-decoration: underline 2px;
+  font-size: 20px;
+
+  &:focus {
+    outline: none;
+  }
 `;
