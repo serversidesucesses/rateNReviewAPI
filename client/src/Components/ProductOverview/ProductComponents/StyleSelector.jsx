@@ -6,8 +6,8 @@ import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 import Share from './Share.jsx';
 import {
   StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid, RatingContainer
-} from './styleSelector.styled.js';
-import { ProductDescriptionGrid } from '../productOverview.styled.js';
+} from '../../Styles/ProductOverview/styleSelector.styled.js';
+import { ProductDescriptionGrid } from '../../Styles/ProductOverview/productOverview.styled.js';
 import { FaShoppingCart } from 'react-icons/fa';
 import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
 import { AppContext } from '../../../AppContext.jsx';

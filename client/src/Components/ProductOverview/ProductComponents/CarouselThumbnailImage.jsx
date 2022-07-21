@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ThumbnailImage } from './carousel.styled.js';
+import { ThumbnailImage } from '../../Styles/ProductOverview/carousel.styled.js';
 
 // expandStatus not in use right now.
 function CarouselThumbnailImage({
