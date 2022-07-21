@@ -3,7 +3,7 @@ import axios from 'axios';
 import Star from './stars.jsx';
 import {ReviewButtonStyled, SpanStyled, ReviewStyled, SummaryStyled, NameDateStyled, StarStyled, CheckStyled, SmallStyled, BodyStyled } from '../../Styles/Reviews/bars.styled.js';
 import check from '../assets/check-mark.png';
-import { PhotosContainer } from '../../Styles/Q&A/photo.styled';
+import { PhotosContainerStyled } from '../../Styles/Q&A/photo.styled';
 import Photo from '../../../Assets/photo.jsx';
 
 
@@ -15,10 +15,11 @@ export default function Review({ review }) {
   // const [notClicked, setClick] = useState(true); //One click per user
 
   const helpHandler = () => {
+    setHelpCount(helpCount + 1);
     axios.put(`/reviews/mark/helpful?review_id=${review.review_id}`)
       .then((response) => {
         // console.log(response);
-        setHelpCount(helpCount + 1);
+        // setHelpCount(helpCount + 1);
         // setDidClick(false);
       })
       .catch((err) => { console.log(err); });
@@ -48,11 +49,11 @@ export default function Review({ review }) {
       {review.photos.length === 0
         ? null
         : (
-          <PhotosContainer>
+          <PhotosContainerStyled>
             {' '}
             {review.photos.map((photo, index) => <Photo key={index} photos={photo} />)}
             {' '}
-          </PhotosContainer>
+          </PhotosContainerStyled>
         )}
       <SmallStyled>
         {review.recommend && (
