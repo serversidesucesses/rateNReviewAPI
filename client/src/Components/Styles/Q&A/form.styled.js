@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Form = styled.div`
+export const FormStyled = styled.div`
   position: fixed;
   top: 10%;
   left: 20%;
@@ -49,19 +49,19 @@ export const Form = styled.div`
 
 `;
 
-export const Body = styled.div`
+export const BodyStyled = styled.div`
 input {
   width: 72%;
   height: 4em;
 }
 `;
 
-export const Heading = styled.div`
+export const HeadingStyled = styled.div`
   text-align: center;
   margin-bottom: 50px;
 `;
 
-export const PersonalInfo = styled.div`
+export const PersonalInfoStyled = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -76,13 +76,13 @@ export const PersonalInfo = styled.div`
   }
 `;
 
-export const Label = styled.label`
+export const LabelStyled = styled.label`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 `;
 
-export const Buttons = styled.div`
+export const ButtonsStyled = styled.div`
   position: relative;
   left: 10%;
 `;

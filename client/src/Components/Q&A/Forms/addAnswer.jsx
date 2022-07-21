@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Form } from '../../Styles/Q&A/form.styled.js'
+import { FormStyled } from '../../Styles/Q&A/form.styled.js'
 import CloudinaryUploadWidget from '../../../Assets/cloudinaryUploadWidget.jsx';
 
 const axios = require('axios');
@@ -35,7 +35,7 @@ export default function AddAnswer({ onFormValidation }) {
   }
 
   return (
-    <Form>
+    <>
       <h2>Submit an answer</h2>
       <form onSubmit={onSubmit}>
         <div className="text">
@@ -45,13 +45,16 @@ export default function AddAnswer({ onFormValidation }) {
           <input type="text" name="name" placeholder="Enter a name" value={values.name} onChange={handleInputChange} />
         </div>
         <div className="email">
-          <input type="email" name="email" placeholder="Enter an email" value={values.email} onChange={handleInputChange} />
+          <label>
+            Email
+            <input type="email" name="email" placeholder="Enter an email" value={values.email} onChange={handleInputChange} />
+          </label>
         </div>
         <CloudinaryUploadWidget imageUpload={imageUpload} />
         <div>
           <input type="submit" value="Submit Answer" />
         </div>
       </form>
-    </Form>
+      </>
   );
 }

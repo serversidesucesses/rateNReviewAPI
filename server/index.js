@@ -30,7 +30,7 @@ const logger = require('./middleware/logger');
 const app = express();
 
 app.use(sessionHandler);
-app.use(logger);
+// app.use(logger);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 

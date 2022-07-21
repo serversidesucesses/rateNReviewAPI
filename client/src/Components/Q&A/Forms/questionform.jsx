@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import {
-  Form, PersonalInfo, Label, Heading, Body, Buttons,
+  FormStyled,
+  PersonalInfoStyled,
+  LabelStyled,
+  HeadingStyled,
+  BodyStyled,
+  ButtonsStyled,
 } from '../../Styles/Q&A/form.styled.js';
 
-export default function AddAnswer({ onFormValidation }) {
+export default function AddQuestion({ onFormValidation }) {
   const initialValues = {
     body: '',
     name: '',
@@ -19,7 +24,7 @@ export default function AddAnswer({ onFormValidation }) {
     });
   };
 
-  function onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log(values);
     onFormValidation(values);
@@ -28,32 +33,32 @@ export default function AddAnswer({ onFormValidation }) {
   return (
 
     <form onSubmit={onSubmit}>
-      <Body>
-        <Label>
+      <BodyStyled>
+        <LabelStyled>
           <span>Your Question *</span>
           <input type="text" name="body" placeholder="Enter your Question" maxLength="1000" size="100" value={values.body} onChange={handleInputChange} required />
-        </Label>
-      </Body>
-      <PersonalInfo>
-        <div claassName="name">
-          <Label>
+        </LabelStyled>
+      </BodyStyled>
+      <PersonalInfoStyled>
+        <div className="name">
+          <LabelStyled>
             <span>What is your nickname *</span>
             <input type="text" name="name" placeholder="Example: jackson11!" maxLength="60" value={values.name} onChange={handleInputChange} required />
-          </Label>
+          </LabelStyled>
           <p>For privacy reasons, do not use your full name or email address</p>
         </div>
-        <div claassName="email">
-          <Label>
+        <div className="email">
+          <LabelStyled>
             <span>Your email *</span>
             <input type="email" name="email" placeholder="Why did you like the product or not?" value={values.email} onChange={handleInputChange} />
-          </Label>
+          </LabelStyled>
           <p>For authentication reasons, you will not be emailed</p>
         </div>
-      </PersonalInfo>
-      <Buttons>
+      </PersonalInfoStyled>
+      <ButtonsStyled>
         <input type="submit" value="Submit Question" />
         <input type="button" value="close" onClick={() => setAddStatus(false)} />
-      </Buttons>
+      </ButtonsStyled>
     </form>
   );
 }

@@ -22,7 +22,6 @@ import {
 } from '../../Styles/Q&A/modal.styled';
 import GlobalStyle from '../../Styles/globalstyle.styled';
 
-// import { ExpandedImage } from '../../ProductOverview/ProductComponents/carousel.styled';
 
 export default function Modal({
   isOpen,

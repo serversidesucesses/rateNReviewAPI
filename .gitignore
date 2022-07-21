@@ -2,4 +2,5 @@
 node_modules
 **/bundle.js
 **/bundle.js.map
+_tests_
 # remove dist from gitignore when deploying application
