@@ -14,7 +14,7 @@ export default function ProductMain() {
   const [productId, setProductId] = useState(40346);
   const [productDetails, setProductDetails] = useState({});
   const [productName, setProductName] = useState('Placeholder Name');
-  const [categoryName, setCategorName] = useState('CATEGORY');
+  const [categoryName, setCategoryName] = useState('CATEGORY');
   const [priceTag, setPriceTag] = useState('Placeholder Price');
   const { setName } = useContext(AppContext);
 
@@ -28,6 +28,7 @@ export default function ProductMain() {
         //console.log(response.data.name);
         setProductDetails(response.data)
         setProductName(response.data.name);
+        setCategoryName(response.data.category)
         setPriceTag(response.data.default_price);
       })
       .catch((error) => {
