@@ -9,13 +9,13 @@ axios.defaults.headers.common['Authorization'] = process.env.Token;
 //  Questions -----------------------------------------------------------
 
 exports.get_questions = (req, res) => {
-  const { product_id, page } = req.query;
+  const { product_id, page, count } = req.query;
   console.log(product_id)
   axios.get('/qa/questions/', {
     params: {
       product_id,
       page,
-      count: 1000,
+      count,
     },
   })
     .then((response) => {
@@ -34,20 +34,21 @@ exports.post_questions = (req, res) => {
 };
 
 exports.put_questionHelpful = (req, res) => {
-  const dataDir = path.join(__dirname, '../middleware/logger');
-  const filepath = path.join(dataDir, `${req.session_id + req.query.question_id}.txt`);
-  if (fs.existsSync(filepath) === true) {
-    if (Number(fs.readFileSync(filepath, 'utf8')) > 1) {
-      res.status(404).send('Already voted');
-    } else {
-      axios.put(`/qa/questions/${req.query.question_id}/helpful`)
+  // const dataDir = path.join(__dirname, '../middleware/logger');
+  // const filepath = path.join(dataDir, `${req.session_id + req.query.question_id}.txt`);
+  // if (fs.existsSync(filepath) === true) {
+  //   if (Number(fs.readFileSync(filepath, 'utf8')) > 1) {
+  //     res.status(404).send('Already voted');
+  //   } else {
+
+  axios.put(`/qa/questions/${req.query.question_id}/helpful`)
         .then(() => {
           console.log('increment');
           res.sendStatus(204);
         })
         .catch(() => res.sendStatus(400));
-    }
-  }
+    // }
+  // }
 };
 
 exports.put_reportQ = (req, res) => {
@@ -78,20 +79,20 @@ exports.post_answers = (req, res) => {
 };
 
 exports.put_answHelpful = (req, res) => {
-  const dataDir = path.join(__dirname, '../middleware/logger');
-  const filepath = path.join(dataDir, `${req.session_id + req.query.answer_id}.txt`);
-  if (fs.existsSync(filepath) === true) {
-    console.log('true');
-    if (Number(fs.readFileSync(filepath, 'utf8')) > 1) {
-      console.log('not icrement');
-      res.status(404).send('Already voted');
-    } else {
-      console.log('false');
+  // const dataDir = path.join(__dirname, '../middleware/logger');
+  // const filepath = path.join(dataDir, `${req.session_id + req.query.answer_id}.txt`);
+  // if (fs.existsSync(filepath) === true) {
+  //   console.log('true');
+  //   if (Number(fs.readFileSync(filepath, 'utf8')) > 1) {
+  //     console.log('not icrement');
+  //     res.status(404).send('Already voted');
+  //   } else {
+      // console.log('false');
       axios.put(`/qa/answers/${req.query.answer_id}/helpful`)
         .then(() => res.sendStatus(204))
         .catch(() => res.sendStatus(404));
-    }
-  }
+  //   }
+  // }
 };
 
 exports.put_reportA = (req, res) => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PhotosContainer = styled.div`
+export const PhotosContainerStyled = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -13,7 +13,7 @@ export const PhotosContainer = styled.div`
   background: white;
 `;
 
-export const PhotoEnlarge = styled.img`
+export const PhotoEnlargeStyled = styled.img`
   position: fixed;
   width: 50%;
   height: 60%;
