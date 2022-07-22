@@ -27,8 +27,9 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
   const [totalItemCount, setTotalItemCount] = useState(0)
   const [refreshState, setRefreshState] = useState(false);
   const context = useContext(AppContext);
-  const { rating, countRatings } = context;
+  const { ratingAndCount } = context;
 
+  const [isLoading, setIsLoading] = useState(true);
 
   const getTotal = (arr) => {
     var count = 0;
@@ -82,7 +83,8 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
           setCurrentStyleArray(response.data.results);
           setCurrentStyle(response.data.results[0]);
           setRefreshState(!refreshState);
-          setCurrentPrice(current.sale_price ? current.sale_price : current.original_price)
+          setCurrentPrice(current.sale_price ? current.sale_price : current.original_price);
+          setIsLoading(false);
         });
 
       })
@@ -92,12 +94,16 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
 
   };
 
-  console.log('rating in style selector:', rating);
+  console.log('rating in style selector:', ratingAndCount[0]);
 
   // useEffect(() => {
   //   setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
 
   // }, [currentStyle]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <ProductDescriptionGrid id='productDescriptionGrid'>
@@ -109,11 +115,9 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
         <RatingCartGrid>
           <RatingContainer>
             <a href="#review">
-              <StarRating review_id={productId + 'starOverview'} rating={rating} />
-              <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
+              <StarRating review_id={productId + 'starOverview'} rating={ratingAndCount[0]} />
+              <span style={{cursor:'pointer'}}>{ratingAndCount[1]} Reviews</span>
             </a>
-            <StarRating review_id={productId + 'starOverview'} rating={rating} />
-            <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
           </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
             {totalItemCount}

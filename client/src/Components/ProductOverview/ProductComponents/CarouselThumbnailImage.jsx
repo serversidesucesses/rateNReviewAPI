@@ -13,15 +13,15 @@ function CarouselThumbnailImage({
   let display = null;
   if (expand) {
     if (activePhotoIndex === index) {
-      display = <ThumbnailImage src={photo.url} onClick={handleOnClick} transform={transform} height="5rem" positon="static" left="0" opacity="1" />;
+      display = <ThumbnailImage src={photo.thumbnail_url} onClick={handleOnClick} transform={transform} height="5rem" positon="static" left="0" opacity="1" />;
     } else {
-      display = <ThumbnailImage src={photo.url} onClick={handleOnClick} transform={transform} height="3rem" positon="static" left="0" />;
+      display = <ThumbnailImage src={photo.thumbnail_url} onClick={handleOnClick} transform={transform} height="3rem" positon="static" left="0" />;
     }
   } else if (!expand) {
     if (activePhotoIndex === index) {
-      display = <ThumbnailImage src={photo.url}  onClick={handleOnClick} transform={transform} opacity="1" />;
+      display = <ThumbnailImage src={photo.thumbnail_url}  onClick={handleOnClick} transform={transform} opacity="1" />;
     } else {
-      display = <ThumbnailImage src={photo.url}  onClick={handleOnClick} transform={transform} opacity="0.5" />;
+      display = <ThumbnailImage src={photo.thumbnail_url}  onClick={handleOnClick} transform={transform} opacity="0.5" />;
     }
   }
 

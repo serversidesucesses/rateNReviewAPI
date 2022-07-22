@@ -19,6 +19,8 @@ export default function ProductMain({product_id}) {
   const [priceTag, setPriceTag] = useState('Placeholder Price');
   const { setName } = useContext(AppContext);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const getDataFromProductId = (productId) => {
     axios({
       method: 'get',
@@ -33,6 +35,7 @@ export default function ProductMain({product_id}) {
           setCategoryName(response.data.category)
           setPriceTag(response.data.default_price);
           setName(response.data.name);
+          setIsLoading(false);
         });
       })
       .catch((error) => {
@@ -49,6 +52,10 @@ export default function ProductMain({product_id}) {
   //   setName(productName);
   // }, [productName]);
 
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <ProductOverviewGrid>
       <HeaderGrid>
@@ -61,7 +68,7 @@ export default function ProductMain({product_id}) {
         {/* <ProductInformation /> */}
         {/* {productCategory}
         {productName} */}
-        <ProductDescription slogan={productDetails.slogan} description={productDetails.description} />
+        <ProductDescription slogan={!isLoading ? productDetails.slogan : null} description={!isLoading ? productDetails.description : null} />
 
         <VerticalLine>
           <div></div>

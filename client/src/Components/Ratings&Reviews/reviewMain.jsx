@@ -12,13 +12,15 @@ function ReviewMain({ product_id }) {
   const [count, setCount] = useState(2);
 
   const [overallRating, setOverallRating] = useState(0);
-  const { setRating, setCountRatings } = useContext(AppContext);
+  const { setRatingAndCount } = useContext(AppContext);
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
   const [characteristics, setCharacteristics] = useState([]);
   const [numReviews, setNumReviews] = useState(0);
 
   const [currentFilters, setCurrentFilters] = useState({});
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadMoreReviews = () => {
     setCount((prevCount) => prevCount + 2);
@@ -55,8 +57,7 @@ function ReviewMain({ product_id }) {
           setRecommended(data.recommended);
           setNumReviews(reviewCount);
           setRatings(data.ratings);
-          setRating(roundedRating);
-          setCountRatings(reviewCount);
+          setRatingAndCount([roundedRating, reviewCount]);
           setCharacteristics(Object.keys(data.characteristics).map((key) => {
             let descriptionOne = '';
             let descriptionTwo = '';
@@ -108,8 +109,10 @@ function ReviewMain({ product_id }) {
         });
       })
       .then(({ data }) => {
-        setReviews(data.results);
-
+        ReactDOM.unstable_batchedUpdates(() => {
+          setReviews(data.results);
+          setIsLoading(false);
+        });
         // setDidMount(true);
       })
       .catch((err) => console.log(err));
@@ -147,6 +150,10 @@ function ReviewMain({ product_id }) {
       setCount(2);
     }
   };
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <ReviewContainerStyled id="review">
