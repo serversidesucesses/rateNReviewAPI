@@ -19,14 +19,14 @@ export const ReviewListButtonStyled = styled.button`
 
   // padding-left: 1.5rem;
   // padding-right: 1.5rem;
-  padding-left: 10px;
-  padding-right: 10px;
   font-family: 'Oswald', sans-serif;
   font-weight: 200;
   height: 30px;
   background-color: white;
   font-size: 18px;
   cursor: pointer;
+  margin-right: 2.5px;
+  margin-left: 2.5px;
 
   &:hover {
     background-color: #99AEAD;
@@ -150,6 +150,7 @@ export const ReviewButtonStyled = styled.button`
   border: none;
   background: none;
   text-decoration: underline;
+  font-family: 'Oswald', sans-serif;
   cursor: pointer;
   font-size: 13px;
   font-weight: light;
@@ -185,7 +186,7 @@ export const RadioButtonStyled = styled.input`
 `;
 
 export const ReviewListStyled = styled.div`
-  margin-top: 20px;
+  margin-top: 16px;
   width: 600px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -247,10 +248,12 @@ export const SortBarStyled = styled.div`
 `;
 
 export const SelectStyled = styled.select`
-  padding-left: 5px;
+  // padding-left: 3px;
   border-color: transparent;
   display: flex;
   min-height: 38px;
+  margin-left: -0.5px;
+  font-family: 'Oswald', sans-serif;
   flex-wrap: wrap;
   text-decoration: underline 2px;
   font-size: 20px;

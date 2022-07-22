@@ -65,7 +65,8 @@ export const StylePhotoGrid = styled.div`
   grid-row-start: auto;
   grid-row-end: auto;
   display: inline-grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-bottom: 1rem;
 `
 export const StylePhotoContainer = styled.div`
 
@@ -79,9 +80,10 @@ export const StylePhotoThumbnail = styled.img`
   object-fit: cover;
   width: 5rem;
   height: 5rem;
-  padding-bottom: 2%;
+  // margin: 5px;
   border-radius: 50%;
   cursor: pointer;
+
 `
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;
@@ -93,9 +95,11 @@ export const SizeQtyStyle = styled.select`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   font-family: 'Oswald', sans-serif;
+  border: 1px solid black;
   font-weight: 200;
   font-size: 1rem;
   cursor: pointer;
+
 `
 
 export const AddToCartFavoriteContainer = styled.div`
@@ -103,7 +107,7 @@ export const AddToCartFavoriteContainer = styled.div`
   grid-row-end: auto;
   display: inline-grid;
   grid-template-columns: auto auto;
-  gap: 1rem;
+  gap: 5px;
   margin-bottom: 2%;
   margin-top: 2%;
 `
@@ -111,9 +115,12 @@ export const AddToCartButton = styled.button`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   font-family: 'Oswald', sans-serif;
+  background-color: #F0F0F0;
   font-weight: 200;
+  width: 180px;
   height: 3rem;
   font-size: 1rem;
+  border: 1px solid black;
   cursor: pointer;
   &:hover {
     background-color: #99AEAD
@@ -122,9 +129,11 @@ export const AddToCartButton = styled.button`
 export const FavoriteIcon = styled.div`
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   font-size: 1.5rem;
-  margin-left: 1rem;
+  // margin-left: -5;
+  border: 1px solid black;
+  width: 48px;
   color: rgb(180, 56, 77);
   cursor: pointer;
 `

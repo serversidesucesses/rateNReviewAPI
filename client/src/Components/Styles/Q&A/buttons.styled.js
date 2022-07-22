@@ -9,6 +9,7 @@ export const ButtonStyled = styled.button`
   font-size: 13px;
   font-weight: lighter;
   opacity:0.4;
+  font-family: 'Oswald', sans-serif;
 `;
 
 export const ButtonContainerStyled = styled.div`
@@ -16,7 +17,6 @@ export const ButtonContainerStyled = styled.div`
   justify-content: space-between;
   width: 18rem;
   padding-right: 15px;
-
 `;
 
 export const ButtonContainerAnsStyled = styled.div`
@@ -28,25 +28,45 @@ export const ButtonContainerAnsStyled = styled.div`
 `;
 
 export const SeeMoreBtnStyled = styled.button`
-  display: flex;
-  align-items: flex-end;
-  padding: 0;
-  border: none;
-  background: none;
-  text-decoration: underline;
+  // display: flex;
+  // align-items: flex-end;
+  // padding: 0;
+  // border: none;
+  // background: none;
+  // text-decoration: underline;
+  // cursor: pointer;
+  // font-size: 13px;
+  // font-weight: lighter;
+  // opacity:0.4;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  height: 30px;
+  background-color: white;
+  margin-left: 5px;
+  font-size: 18px;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: lighter;
-  opacity:0.4;
+  &:hover {
+    background-color: #99AEAD;
+  }
 `;
 
 export const MoreQuestionBtnStyled = styled.button`
-  margin-left: 1rem;
-  border: none;
-  background: none;
-  text-decoration: underline;
+  // margin-left: 1rem;
+  // border: none;
+  // background: none;
+  // text-decoration: underline;
+  // cursor: pointer;
+  // font-size: 13px;
+  // font-weight: lighter;
+  // opacity:0.4;
+  margin-right: 5px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  height: 30px;
+  background-color: white;
+  font-size: 18px;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: lighter;
-  opacity:0.4;
+  &:hover {
+    background-color: #99AEAD;
+  }
 `;

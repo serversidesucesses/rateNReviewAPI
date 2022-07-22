@@ -103,9 +103,11 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
       <StyleSelectorLayout id='styleSelectorLayout'>
         <RatingCartGrid>
           <RatingContainer>
-            <a href="#review">
+            <a href="#review" style={{textDecoration: 'none'}}>
               <StarRating review_id={productId + 'starOverview'} rating={ratingAndCount[0]} />
-              <span style={{cursor:'pointer'}}>{ratingAndCount[1]} Reviews</span>
+              &nbsp;
+              &nbsp;
+              <span style={{color: 'black'}}>{ratingAndCount[1]} Reviews</span>
             </a>
           </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
