@@ -26,7 +26,6 @@ export default function QuestionListContainer() {
       params: {
         product_id,
         page: 1,
-        count,
       },
     })
       .then(({ data }) => {
