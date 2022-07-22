@@ -26,10 +26,12 @@ export default function ProductMain({product_id}) {
     })
       .then((response) => {
         //console.log(response.data.name);
+        ReactDOM.unstable_batchedUpdates(() => {
         setProductDetails(response.data)
         setProductName(response.data.name);
         setCategoryName(response.data.category)
         setPriceTag(response.data.default_price);
+        })
       })
       .catch((error) => {
         console.log('Error in getting data from getDataFromProductId', error);

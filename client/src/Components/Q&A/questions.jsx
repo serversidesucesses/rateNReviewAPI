@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
 import AddQuestion from './Forms/questionform.jsx';
@@ -26,7 +27,6 @@ export default function QuestionListContainer() {
       params: {
         product_id,
         page: 1,
-        count,
       },
     })
       .then(({ data }) => {
