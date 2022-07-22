@@ -1,7 +1,8 @@
 require('dotenv').config();
 
 const path = require('path');
-
+const CompressionPLugin = require("compression-webpack-plugin")
+const BrotliPlugin = require('brotli-webpack-plugin');
 module.exports = {
   mode: 'development',
   optimization: {
@@ -35,4 +36,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CompressionPLugin({
+      algorithm: "gzip"
+    }),
+    new BrotliPlugin()
+  ]
 };

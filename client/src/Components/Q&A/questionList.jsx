@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import AnswerList from './answerList.jsx';
 import Modal from './Modal/Modal.jsx';
 import AddAnswer from './Forms/addAnswer.jsx';
@@ -38,7 +39,6 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
       params: {
         question_id: question.question_id,
         page: 1,
-        count: 1000,
       },
     })
       .then(({ data }) => {
