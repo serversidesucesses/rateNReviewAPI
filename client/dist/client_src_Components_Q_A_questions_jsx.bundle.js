@@ -473,13 +473,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ QuestionList)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _answerList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./answerList.jsx */ "./client/src/Components/Q&A/answerList.jsx");
-/* harmony import */ var _Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Modal/Modal.jsx */ "./client/src/Components/Q&A/Modal/Modal.jsx");
-/* harmony import */ var _Forms_addAnswer_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/addAnswer.jsx */ "./client/src/Components/Q&A/Forms/addAnswer.jsx");
-/* harmony import */ var _Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Styles/Q&A/buttons.styled */ "./client/src/Components/Styles/Q&A/buttons.styled.js");
-/* harmony import */ var _Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Styles/Q&A/container.styled */ "./client/src/Components/Styles/Q&A/container.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _answerList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./answerList.jsx */ "./client/src/Components/Q&A/answerList.jsx");
+/* harmony import */ var _Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modal/Modal.jsx */ "./client/src/Components/Q&A/Modal/Modal.jsx");
+/* harmony import */ var _Forms_addAnswer_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Forms/addAnswer.jsx */ "./client/src/Components/Q&A/Forms/addAnswer.jsx");
+/* harmony import */ var _Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Styles/Q&A/buttons.styled */ "./client/src/Components/Styles/Q&A/buttons.styled.js");
+/* harmony import */ var _Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Styles/Q&A/container.styled */ "./client/src/Components/Styles/Q&A/container.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -499,7 +498,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable react/prop-types */
 
 /* eslint-disable import/extensions */
-
 
 
 
@@ -563,7 +561,8 @@ function QuestionList(_ref) {
     axios.get('/questions/answers', {
       params: {
         question_id: question.question_id,
-        page: 1
+        page: 1,
+        count: 1000
       }
     }).then(function (_ref2) {
       var data = _ref2.data;
@@ -578,7 +577,6 @@ function QuestionList(_ref) {
     setAnswers(allAnswers.slice(0, count));
   }, [count]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log('set Local Data');
     localStorage.setItem('helpfulDataA', JSON.stringify(true));
   }, [helpfulDataA]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -587,7 +585,6 @@ function QuestionList(_ref) {
 
   var fetchHelpfulData = function fetchHelpfulData(answer_id) {
     var data = JSON.parse(localStorage.getItem('helpfulDataA'));
-    console.log(data);
 
     if (data === false) {
       axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
@@ -602,7 +599,6 @@ function QuestionList(_ref) {
     var reportAns = JSON.parse(localStorage.getItem('reportAns'));
 
     if (reportA === false) {
-      console.log('hello');
       axios.put("/questions/reportA/?answer_id=".concat(answer_id)).then(function () {
         setReportA(true);
         alert('Answer has been reported');
@@ -622,7 +618,6 @@ function QuestionList(_ref) {
   };
 
   var onFormValidation = function onFormValidation(data, questionId) {
-    console.log('data', data, 'questionId', question.question_id);
     axios.post("/questions/answers?question_id=".concat(question.question_id), data).then(function () {
       console.log('created');
     })["catch"](function () {
@@ -631,48 +626,48 @@ function QuestionList(_ref) {
     setIsModalOpen(false);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    children: [isModalOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [isModalOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
       title: "This is the modal's title",
       description: "A short description of the modal's contents",
       isOpen: isModalOpen,
       onCloseRequest: onModalCloseRequest,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Forms_addAnswer_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Forms_addAnswer_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
         onFormValidation: onFormValidation
       })
-    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.QuestionListItemStyled, {
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.QuestionListItemStyled, {
       style: {
         position: 'relative'
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.QuestionStyled, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.QStyled, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.QuestionStyled, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.QStyled, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "Q: "
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
             children: question.question_body
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__.ButtonContainerStyled, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__.ButtonStyled, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.ButtonContainerStyled, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.ButtonStyled, {
               type: "button",
               onClick: function onClick() {
                 return helpfulness(question.question_id);
               },
               children: "Helpful?"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.SpanStyled, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.SpanStyled, {
               children: "Yes (".concat(question.question_helpfulness, ")")
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.SpanStyled, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.SpanStyled, {
             children: "|"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__.ButtonStyled, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.ButtonStyled, {
             type: "button",
             onClick: function onClick() {
               return reportQ(question.question_id);
             },
             children: "Report"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.SpanStyled, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.SpanStyled, {
             children: "|"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__.ButtonStyled, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.ButtonStyled, {
             type: "button",
             onClick: function onClick() {
               return setIsModalOpen(true);
@@ -680,36 +675,36 @@ function QuestionList(_ref) {
             children: "Add Answer"
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.AnswerContainerStyled, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.AStyled, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.AnswerContainerStyled, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.AStyled, {
           children: "A: "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.AnswerContainer_Styled, {
-          children: status === true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.More_AnswerStyled, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.AnswerContainer_Styled, {
+          children: status === true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.More_AnswerStyled, {
               children: answers.map(function (answer) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_answerList_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_answerList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
                   helpfulness: fetchHelpfulData,
                   report: report,
                   answer: answer
                 }, answer.answer_id);
               })
-            }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__.SeeMoreBtnStyled, {
+            }), status ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.SeeMoreBtnStyled, {
               type: "button",
               onClick: function onClick() {
                 return moreQuestions();
               },
               children: "COLLAPSE"
             }) : null]
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
             children: answers.map(function (answer, index) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_answerList_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_answerList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
                 helpfulness: fetchHelpfulData,
                 report: report,
                 answer: answer
               }, index);
             })
           })
-        }), !status && answersLength > 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_5__.SeeMoreBtnStyled, {
+        }), !status && answersLength > 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_4__.SeeMoreBtnStyled, {
           type: "button",
           onClick: function onClick() {
             return moreQuestions();
@@ -735,14 +730,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _questionList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./questionList.jsx */ "./client/src/Components/Q&A/questionList.jsx");
-/* harmony import */ var _searchBar_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./searchBar.jsx */ "./client/src/Components/Q&A/searchBar.jsx");
-/* harmony import */ var _Forms_questionform_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/questionform.jsx */ "./client/src/Components/Q&A/Forms/questionform.jsx");
+/* harmony import */ var _questionList_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./questionList.jsx */ "./client/src/Components/Q&A/questionList.jsx");
+/* harmony import */ var _searchBar_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./searchBar.jsx */ "./client/src/Components/Q&A/searchBar.jsx");
+/* harmony import */ var _Forms_questionform_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Forms/questionform.jsx */ "./client/src/Components/Q&A/Forms/questionform.jsx");
 /* harmony import */ var _Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Modal/Modal.jsx */ "./client/src/Components/Q&A/Modal/Modal.jsx");
-/* harmony import */ var _Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Styles/Q&A/container.styled */ "./client/src/Components/Styles/Q&A/container.styled.js");
-/* harmony import */ var _Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Styles/Q&A/buttons.styled */ "./client/src/Components/Styles/Q&A/buttons.styled.js");
-/* harmony import */ var _AppContext_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../AppContext.jsx */ "./client/src/AppContext.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Styles/Q&A/container.styled */ "./client/src/Components/Styles/Q&A/container.styled.js");
+/* harmony import */ var _Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Styles/Q&A/buttons.styled */ "./client/src/Components/Styles/Q&A/buttons.styled.js");
+/* harmony import */ var _AppContext_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../AppContext.jsx */ "./client/src/AppContext.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -808,7 +803,7 @@ function QuestionListContainer() {
       isModalOpen = _useState12[0],
       setIsModalOpen = _useState12[1];
 
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_AppContext_jsx__WEBPACK_IMPORTED_MODULE_8__.AppContext),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_AppContext_jsx__WEBPACK_IMPORTED_MODULE_3__.AppContext),
       name = _useContext.name;
 
   var product_id = 40348; // --------product id need to standardize with all other components---
@@ -860,7 +855,7 @@ function QuestionListContainer() {
 
   if (search.length === 0 && questions !== undefined) {
     question = questions.map(function (question) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_questionList_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_questionList_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         helpfulness: fetchHelpfulData,
         reportQ: reportQ,
         question: question
@@ -868,7 +863,7 @@ function QuestionListContainer() {
     });
   } else {
     question = search.map(function (question) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_questionList_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_questionList_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         helpfulness: fetchHelpfulData,
         reportQ: reportQ,
         question: question
@@ -897,24 +892,24 @@ function QuestionListContainer() {
     setIsModalOpen(false);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-    children: [isModalOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [isModalOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
       title: "Ask Your Question",
       description: "About ".concat(name),
       isOpen: isModalOpen,
       onCloseRequest: onModalCloseRequest,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Forms_questionform_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Forms_questionform_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
         onFormValidation: onFormValidation
       })
-    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.Question_AnswerStyled, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_searchBar_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_7__.Question_AnswerStyled, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_searchBar_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
         setSearch: setSearch,
         allQuestions: allQuestions
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.Question_AnswerStyled, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_7__.Question_AnswerStyled, {
       children: question
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_6__.SeeMoreQuestionStyled, {
-      children: [search.length === 0 && (datalength > count || questions.length > 4) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_7__.MoreQuestionBtnStyled, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_7__.SeeMoreQuestionStyled, {
+      children: [search.length === 0 && (datalength > count || questions.length > 4) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_9__.MoreQuestionBtnStyled, {
         type: "button",
         onClick: function onClick() {
           return setCount(function (prevCount) {
@@ -922,7 +917,7 @@ function QuestionListContainer() {
           });
         },
         children: ["SEE", " (".concat(datalength - count, ")"), ' ', "MORE ANSWERED QUESTIONS"]
-      }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_7__.MoreQuestionBtnStyled, {
+      }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_9__.MoreQuestionBtnStyled, {
         type: "button",
         onClick: function onClick() {
           return setIsModalOpen(true);
