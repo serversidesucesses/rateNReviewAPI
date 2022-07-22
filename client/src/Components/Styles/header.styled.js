@@ -12,8 +12,8 @@ export const LogoContainer = styled.div`
 `
 export const LogoText = styled.h1`
   padding-left: 10%;
-  font-weight: 700;
-  font-size: 4rem;
+  // font-weight: 700;
+  font-size: 30px;
   color: black;
 `
 
@@ -28,8 +28,9 @@ export const HeaderClick = styled.button`
   background-color: Transparent;
   border: none;
   font-family: 'Oswald', sans-serif;
-  font-weight: 200;
-  font-size: 1.5rem;
+  height:
+  // font-weight: 200;
+  font-size: 30px;
   cursor: pointer;
   &:hover {
     background-color: #C4CDC1
@@ -45,7 +46,7 @@ export const HeaderSearch = styled.button`
   background-color: Transparent;
   border: none;
   font-family: 'Oswald', sans-serif;
-  font-weight: 200;
-  font-size: 1.5rem;
+  // font-weight: 200;
+  font-size: 20px;
   cursor: help;
 `

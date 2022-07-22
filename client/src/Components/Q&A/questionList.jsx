@@ -22,7 +22,7 @@ import {
 
 const axios = require('axios');
 
-export default function QuestionList({ question, helpfulness, reportQ }) {
+export default function QuestionList({ question, helpfulness, reportQ, seeMoreQuestion }) {
   // answers only first  two
   // get answers --> sort by helpfulness
   const [allAnswers, setAllAnswers] = useState([]);
@@ -42,11 +42,12 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
       },
     })
       .then(({ data }) => {
-        // ReactDOM.unstable_batchedUpdates(() => {
+        console.log('heloo gtom answers')
+        ReactDOM.unstable_batchedUpdates(() => {
           setAllAnswers(data.results);
           setAnswers(data.results.slice(0, count));
           setAnswerLength(data.results.length);
-        // });
+        });
       })
       .catch((error) => console.log(error));
   }, [helpfulDataA, reportA, isModalOpen]);
@@ -55,13 +56,13 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
     setAnswers(allAnswers.slice(0, count));
   }, [count]);
 
-  // useEffect(() => {
-  //   localStorage.setItem('helpfulDataA', JSON.stringify(true))
-  // }, [helpfulDataA])
+  useEffect(() => {
+    localStorage.setItem('helpfulDataA', JSON.stringify(true))
+  }, [helpfulDataA])
 
-  // useEffect(() => {
-  //   localStorage.setItem('reportAns', JSON.stringify(reportA))
-  // }, [reportA])
+  useEffect(() => {
+    localStorage.setItem('reportAns', JSON.stringify(reportA))
+  }, [reportA])
 
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {
@@ -107,7 +108,7 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
   };
 
   return (
-    <div>
+    <div  id={`${question.question_id}`} style={{postion: 'relative'}}>
       { isModalOpen
         ? (
           <Modal
@@ -128,7 +129,7 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
           </QStyled>
           <ButtonContainerStyled>
             <div>
-              <ButtonStyled type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</ButtonStyled>
+            {helpfulDataA ? <SpanStyled>Helpful?</SpanStyled> : <ButtonStyled type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</ButtonStyled>}
               <SpanStyled>{`Yes (${question.question_helpfulness})`}</SpanStyled>
             </div>
             <SpanStyled>|</SpanStyled>
