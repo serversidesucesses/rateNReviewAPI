@@ -5,6 +5,7 @@ import styled from 'styled-components';
 // the parent grid is ProductDescriptionGrid in StyleSelector
 export const CarouselLayout = styled.div`
   height: 38rem;
+  background: #E3D9CF;
 `;
 
 export const CarouselThumbnailContainer = styled.div`
@@ -144,6 +145,7 @@ export const ExpandedCarouselButtonLeft = styled.button`
   opacity: 50%;
   border-radius: 20%;
   cursor: pointer;
+  background: #B0B3A2;
 `;
 
 export const ExpandedCarouselButtonRight = styled.button`
@@ -155,6 +157,7 @@ export const ExpandedCarouselButtonRight = styled.button`
   opacity: 50%;
   border-radius: 20%;
   cursor: pointer;
+  background: #B0B3A2;
 `;
 
 export const ExpandedImageViewStyled = styled.div`
@@ -162,7 +165,7 @@ position: absolute;
 display: flex;
 justify-content: center;
 align-items: center;
-background: black;
+background: #B0B3A2;
 top: 1%;
 left: 1%;
 height: 98%;

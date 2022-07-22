@@ -68,17 +68,18 @@ export default function ProductMain({product_id}) {
         {/* {productCategory}
         {productName} */}
         <ProductDescription slogan={!isLoading ? productDetails.slogan : null} description={!isLoading ? productDetails.description : null} />
-
         <VerticalLine>
           <div></div>
         </VerticalLine>
-
         <BulletPointDescription>
           <div>
             100% organic material
           </div>
           <div>
-
+            100% hand made
+          </div>
+          <div>
+            100% size fit
           </div>
         </BulletPointDescription>
       </ProductInformationGrid>

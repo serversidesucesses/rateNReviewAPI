@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const ProductOverviewGrid = styled.div`
   display: grid;
   grid-template-rows: 1fr 4fr 1fr;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   margin-bottom: 2%
 `;
@@ -19,7 +19,7 @@ export const HeaderGrid = styled.div`
 export const LogoCartGrid = styled.div`
   display: grid;
   grid-template-columns: 90% 10%;
-  background: rgb(0, 134, 143);
+  background: #6D7975;
 `
 export const HeaderContainer = styled.div`
   // font-family: 'Courier New', monospace;
@@ -73,6 +73,8 @@ export const Logo = styled.img`
   max-height: 1em
 `
 export const PromotionLineContainer = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight:200;
   font-size: 1em;
   color: black;
 `
@@ -173,10 +175,14 @@ export const SloganDescriptionGrid = styled.div`
   grid-template-rows: 1fr 2fr;
 `
 export const SloganContainer = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   font-size: 1.5em;
   color: black;
 `
 export const DescriptionContainer = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   font-size: 1em;
   color: black;
 `
@@ -184,13 +190,16 @@ export const DescriptionContainer = styled.div`
 export const VerticalLine = styled.div`
   display: flex;
   grid-column-start: 2;
-  grid-column-end: 2.5;
+  grid-column-end: 3;
+  padding-left: 10%;
   border-left: 1px solid black;
   height: 60%;
   justify-content: center;
 `
 // bottom rihgt ORANGE container that contains bullet point product description
 export const BulletPointDescription = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   grid-column-start: auto;
   grid-column-end: auto;
   font-size: large;
