@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const HeaderContainer = styled.div`
   // font-family: 'Courier New', monospace;
   // font-weight: 700;

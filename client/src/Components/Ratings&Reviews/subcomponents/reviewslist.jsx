@@ -34,7 +34,7 @@ export default function ReviewsList({ reviews, loadMoreReviews, characteristics,
           : null }
         {reviews.map((review) => <Review key={review.review_id} review={review} />)}
       </ReviewListStyled>
-      <div>
+      <div style={{marginTop: "15px", display: 'flex'}}>
         <ReviewListButtonStyled type="button" onClick={loadMoreReviews}>More Reviews</ReviewListButtonStyled>
         <ReviewListButtonStyled type="button" onClick={() => setIsModalOpen(true)}>Add a Review</ReviewListButtonStyled>
       </div>

@@ -14,7 +14,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
   // console.log(AnswerDate);
   return (
     <AnswerStyled>
-      <p>{answer.body}</p>
+      <p style={{margin: 0}}>{answer.body}</p>
       {answer.photos.length === 0
         ? null
         : (

@@ -124,7 +124,7 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
         <QuestionStyled>
           <QStyled>
             <span>Q: </span>
-            <h4>{question.question_body}</h4>
+            <h4 style={{margin: 0}}>{question.question_body}</h4>
           </QStyled>
           <ButtonContainerStyled>
             <div>

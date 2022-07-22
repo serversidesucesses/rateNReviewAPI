@@ -12,10 +12,6 @@ export const ProductOverviewGrid = styled.div`
 `;
 
 // top BLUE grid that contains header, logo, cart symbol and a small row of promotional line
-export const HeaderGrid = styled.div`
-  display: grid;
-  grid-template-rows: 80% 20%;
-`
 export const LogoCartGrid = styled.div`
   display: grid;
   grid-template-columns: 90% 10%;
@@ -196,6 +192,7 @@ export const VerticalLine = styled.div`
   border-left: 1px solid black;
   max-height: 100px;
   justify-content: center;
+  max-height: 300px;
 `
 // bottom rihgt ORANGE container that contains bullet point product description
 export const BulletPointDescription = styled.div`
