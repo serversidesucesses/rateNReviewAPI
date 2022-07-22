@@ -1,7 +1,8 @@
 import React, { useState, createContext, useMemo, lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import ProductMain from './Components/ProductOverview/ProductMain.jsx';
-//import QuestionListContainer from './Components/Q&A/questions.jsx';
+import Header from './Header.jsx';
+// import QuestionListContainer from './Components/Q&A/questions.jsx';
 //import ReviewMain from './Components/Ratings&Reviews/reviewMain.jsx';
 import AppContextProvider, { AppContext } from './AppContext.jsx';
 import GlobalCSS from './Components/Styles/globalstyle.styled.js';
@@ -14,9 +15,11 @@ export default function App({ product_id }) {
   return (
     <AppContextProvider>
       <GlobalCSS/>
+      <Header />
       <ProductMain product_id={product_id}/>
       <Suspense fallback={<div>Loading...</div>}>
       <QuestionListContainer />
+      {/* <QuestionListContainer /> */}
       <ReviewMain product_id={product_id} />
       </Suspense>
     </AppContextProvider>

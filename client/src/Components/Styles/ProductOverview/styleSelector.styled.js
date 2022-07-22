@@ -73,6 +73,7 @@ export const StylePhotoThumbnail = styled.img`
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
+  cursor: pointer;
 `
 
 export const SizeQtyContainer = styled.div`

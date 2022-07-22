@@ -18,7 +18,7 @@ export default function StarBar({ percentage, star, numStars, addFilter, deleteF
       <BarContainerStyled onClick={toggleFilter}>
         <StarSpanStyled>{star} star</StarSpanStyled>
         <BarStyled>
-          <div style={{ width: `${percentage}%`, borderRadius: '10px;' }} className={filterActive ? 'percentagefill-opened' : 'percentagefill'} />
+          <div style={{ width: `${percentage}%`, borderRadius: '10px' }} className={filterActive ? 'percentagefill-opened' : 'percentagefill'} />
         </BarStyled>
         <span>{`${numStars} votes`}</span>
       </BarContainerStyled>

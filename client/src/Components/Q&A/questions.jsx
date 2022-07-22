@@ -20,7 +20,7 @@ export default function QuestionListContainer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { name } = useContext(AppContext);
 
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const product_id = 40344; // --------product id need to standardize with all other components---
 
@@ -36,7 +36,6 @@ export default function QuestionListContainer() {
           setDataLength(data.length);
           setAllQuestions(data);
           setQuestions(data.slice(0, count));
-          setIsLoading(false);
         });
       })
       .catch((error) => console.log(error));
@@ -106,9 +105,9 @@ export default function QuestionListContainer() {
     setIsModalOpen(false);
   };
 
-  if (isLoading) {
-    return null;
-  }
+  // if (isLoading) {
+  //   return null;
+  // }
 
   return (
     <>

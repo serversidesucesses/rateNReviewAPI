@@ -42,11 +42,11 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
       },
     })
       .then(({ data }) => {
-        ReactDOM.unstable_batchedUpdates(() => {
+        // ReactDOM.unstable_batchedUpdates(() => {
           setAllAnswers(data.results);
           setAnswers(data.results.slice(0, count));
           setAnswerLength(data.results.length);
-        });
+        // });
       })
       .catch((error) => console.log(error));
   }, [helpfulDataA, reportA, isModalOpen]);
@@ -55,13 +55,13 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
     setAnswers(allAnswers.slice(0, count));
   }, [count]);
 
-  useEffect(() => {
-    localStorage.setItem('helpfulDataA', JSON.stringify(true))
-  }, [helpfulDataA])
+  // useEffect(() => {
+  //   localStorage.setItem('helpfulDataA', JSON.stringify(true))
+  // }, [helpfulDataA])
 
-  useEffect(() => {
-    localStorage.setItem('reportAns', JSON.stringify(reportA))
-  }, [reportA])
+  // useEffect(() => {
+  //   localStorage.setItem('reportAns', JSON.stringify(reportA))
+  // }, [reportA])
 
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {

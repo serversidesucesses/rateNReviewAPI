@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Header from './ProductComponents/Header.jsx';
+// import Header from './ProductComponents/Header.jsx';
 import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
@@ -58,9 +58,9 @@ export default function ProductMain({product_id}) {
 
   return (
     <ProductOverviewGrid>
-      <HeaderGrid>
+      {/* <HeaderGrid>
         <Header />
-      </HeaderGrid>
+      </HeaderGrid> */}
       {/* StyleSelector contains style and carousel */}
       <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag} product_id={product_id}/>
       {/* productinformation contains information, slogan and descirption */}
