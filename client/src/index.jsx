@@ -12,6 +12,7 @@ const ReviewMain = lazy(() => import ('./Components/Ratings&Reviews/reviewMain.j
 
 export default function App({ product_id }) {
   return (
+
     <AppContextProvider>
       <GlobalCSS/>
       <ProductMain product_id={product_id}/>
