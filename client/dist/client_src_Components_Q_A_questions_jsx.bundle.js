@@ -561,24 +561,23 @@ function QuestionList(_ref) {
       }
     }).then(function (_ref2) {
       var data = _ref2.data;
-      react_dom__WEBPACK_IMPORTED_MODULE_1__.unstable_batchedUpdates(function () {
-        setAllAnswers(data.results);
-        setAnswers(data.results.slice(0, count));
-        setAnswerLength(data.results.length);
-      });
+      // ReactDOM.unstable_batchedUpdates(() => {
+      setAllAnswers(data.results);
+      setAnswers(data.results.slice(0, count));
+      setAnswerLength(data.results.length); // });
     })["catch"](function (error) {
       return console.log(error);
     });
   }, [helpfulDataA, reportA, isModalOpen]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setAnswers(allAnswers.slice(0, count));
-  }, [count]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    localStorage.setItem('helpfulDataA', JSON.stringify(true));
-  }, [helpfulDataA]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    localStorage.setItem('reportAns', JSON.stringify(reportA));
-  }, [reportA]); // ----------setter functions being passed to child component-------------------------------------
+  }, [count]); // useEffect(() => {
+  //   localStorage.setItem('helpfulDataA', JSON.stringify(true))
+  // }, [helpfulDataA])
+  // useEffect(() => {
+  //   localStorage.setItem('reportAns', JSON.stringify(reportA))
+  // }, [reportA])
+  // ----------setter functions being passed to child component-------------------------------------
 
   var fetchHelpfulData = function fetchHelpfulData(answer_id) {
     var data = JSON.parse(localStorage.getItem('helpfulDataA'));
@@ -801,12 +800,8 @@ function QuestionListContainer() {
       setIsModalOpen = _useState12[1];
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_AppContext_jsx__WEBPACK_IMPORTED_MODULE_3__.AppContext),
-      name = _useContext.name;
+      name = _useContext.name; // const [isLoading, setIsLoading] = useState(true);
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState14 = _slicedToArray(_useState13, 2),
-      isLoading = _useState14[0],
-      setIsLoading = _useState14[1];
 
   var product_id = 40344; // --------product id need to standardize with all other components---
 
@@ -822,7 +817,6 @@ function QuestionListContainer() {
         setDataLength(data.length);
         setAllQuestions(data);
         setQuestions(data.slice(0, count));
-        setIsLoading(false);
       });
     })["catch"](function (error) {
       return console.log(error);
@@ -892,11 +886,10 @@ function QuestionListContainer() {
       return console.log('failed to post question', error);
     });
     setIsModalOpen(false);
-  };
+  }; // if (isLoading) {
+  //   return null;
+  // }
 
-  if (isLoading) {
-    return null;
-  }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [isModalOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {

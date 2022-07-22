@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // biggest RED grid that contains all child of ProductOverview
 export const ProductOverviewGrid = styled.div`
   display: grid;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 4fr 1fr;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 2%
@@ -163,6 +163,7 @@ export const CartFavoGrid = styled.div`
 export const ProductInformationGrid = styled.div`
   display: grid;
   grid-template-columns: 2fr 0.5fr 1fr;
+  max-height: 200px;
   margin-top: 2%;
   margin-bottom: 2%;
 `;
@@ -189,17 +190,18 @@ export const DescriptionContainer = styled.div`
 
 export const VerticalLine = styled.div`
   display: flex;
-  grid-column-start: 2;
+  grid-column-start: 2.5;
   grid-column-end: 3;
-  padding-left: 10%;
+  padding-left: 20%;
   border-left: 1px solid black;
-  height: 60%;
+  max-height: 100px;
   justify-content: center;
 `
 // bottom rihgt ORANGE container that contains bullet point product description
 export const BulletPointDescription = styled.div`
   font-family: 'Oswald', sans-serif;
   font-weight: 200;
+  max-height: 200px;
   grid-column-start: auto;
   grid-column-end: auto;
   font-size: large;

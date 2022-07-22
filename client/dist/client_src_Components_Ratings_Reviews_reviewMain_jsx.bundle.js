@@ -1312,7 +1312,7 @@ function StarBar(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           style: {
             width: "".concat(percentage, "%"),
-            borderRadius: '10px;'
+            borderRadius: '10px'
           },
           className: filterActive ? 'percentagefill-opened' : 'percentagefill'
         })

@@ -105,6 +105,7 @@ export const AddToCartFavoriteContainer = styled.div`
   grid-template-columns: auto auto;
   gap: 1rem;
   margin-bottom: 2%;
+  margin-top: 2%;
 `
 export const AddToCartButton = styled.button`
   padding-left: 1.5rem;
