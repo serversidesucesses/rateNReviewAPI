@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
   // margin-right: 2%;
 
   padding-top: 20px;
-  background-image: linear-gradient(to bottom, grey, white);
+  background: #99AEAD;
   width: 100%;
 
   display: flex;

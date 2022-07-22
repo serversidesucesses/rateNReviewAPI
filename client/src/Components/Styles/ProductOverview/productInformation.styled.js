@@ -6,7 +6,7 @@ export const ProductInformationContainer = styled.div`
   position: absolute;
   top: 1.5rem;
   left: 53%;
-  max-height: 5rem;
+  max-height: 100px;
   z-index: 3;
 `
 export const CategoryContainer = styled.div`

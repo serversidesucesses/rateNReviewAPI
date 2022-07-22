@@ -58,9 +58,8 @@ export default function ProductMain({product_id}) {
 
   return (
     <ProductOverviewGrid>
-      {/* <HeaderGrid>
-        <Header />
-      </HeaderGrid> */}
+      <HeaderGrid>
+      </HeaderGrid>
       {/* StyleSelector contains style and carousel */}
       <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag} product_id={product_id}/>
       {/* productinformation contains information, slogan and descirption */}
