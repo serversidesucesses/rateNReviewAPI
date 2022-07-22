@@ -81,6 +81,7 @@ export const StylePhotoThumbnail = styled.img`
   height: 5rem;
   padding-bottom: 2%;
   border-radius: 50%;
+  cursor: pointer;
 `
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;
