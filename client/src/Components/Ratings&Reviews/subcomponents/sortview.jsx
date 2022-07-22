@@ -12,7 +12,7 @@ export default function SortBar({ selectHandler, reviewCount }) {
             reviews
           </b>
           , sorted by
-          {' '}
+          {/* {' '} */}
         </h3>
       </label>
       <SelectStyled name="sort-select" id="sort-select" onChange={selectHandler}>

@@ -16,12 +16,11 @@ export default function StarIcon({ percent, index, starId }) {
       data-star-id={starId}>
       <defs>
         <linearGradient id={`partial_${index}`}>
-          <stop offset={`${percent}%`} stopColor="black" />
+          <stop offset={`${percent}%`} stopColor="#FF9900" />
           <stop offset={`${percent}%`} stopColor="white" />
         </linearGradient>
       </defs>
-      <path d="M526.673,204.221l-195.529-7.76L263.337,12.885l-67.798,183.577L0,204.221l153.635,121.202l-53.048,188.365
-        l162.75-108.664l162.75,108.664l-53.048-188.365L526.673,204.221z" />
+      <path d="M526.673,204.221l-195.529-7.76L263.337,12.885l-67.798,183.577L0,204.221l153.635,121.202l-53.048,188.365l162.75-108.664l162.75,108.664l-53.048-188.365L526.673,204.221z" fill="#DB4914" stroke="#DB4914" strokeWidth="10px" />
       <path
         fill={`url(#partial_${index})`}
         d="M392.683,467.808l-129.346-86.356L133.99,467.808
