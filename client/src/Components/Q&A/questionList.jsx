@@ -54,7 +54,6 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
   }, [count]);
 
   useEffect(() => {
-    console.log('set Local Data')
     localStorage.setItem('helpfulDataA', JSON.stringify(true))
   }, [helpfulDataA])
 
@@ -65,7 +64,6 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {
     const data = JSON.parse(localStorage.getItem('helpfulDataA'));
-    console.log(data)
     if (data === false) {
       axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
       .then(() => setHelpfulDataA(true))
@@ -77,7 +75,6 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
   const report = (answer_id) => {
     const reportAns = JSON.parse(localStorage.getItem('reportAns'));
     if (reportA === false) {
-      console.log('hello')
       axios.put(`/questions/reportA/?answer_id=${answer_id}`)
       .then(() => {
         setReportA(true);
@@ -99,7 +96,6 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
 
 
   const onFormValidation = (data, questionId) => {
-    console.log('data', data, 'questionId', question.question_id);
     axios.post(`/questions/answers?question_id=${question.question_id}`, data)
       .then(() => {
           console.log('created');

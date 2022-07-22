@@ -81,19 +81,17 @@ export default function ExpandedImageView({
             position: 'absolute',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
             background: 'black',
             height: '100%',
-            paddingTop: '30%',
             width: '100%',
-            marginRigth: 0,
+            marginRight: 0,
             zIndex: 103,
             overflow: 'scroll',
            }
           }
           >
             <MaginifiedImage
-              object-fit="fill"
+              object-fit="cover"
               zindex="104"
               src={image}
               onClick={() => setShowMagnifier(!showMagnifier)}

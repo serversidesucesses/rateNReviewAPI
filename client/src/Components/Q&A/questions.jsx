@@ -88,9 +88,6 @@ export default function QuestionListContainer() {
     ));
   }
 
-  console.log('question:', question);
-  console.log('search:', search);
-
   const onModalCloseRequest = () => {
     setIsModalOpen(false);
   };
