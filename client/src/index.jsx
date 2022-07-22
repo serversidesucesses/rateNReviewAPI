@@ -10,12 +10,14 @@ import GlobalCSS from './Components/Styles/globalstyle.styled.js';
 
 export default function App({ product_id }) {
   return (
+
     <AppContextProvider>
       <GlobalCSS/>
       <ProductMain product_id={product_id}/>
       <QuestionListContainer />
       <ReviewMain product_id={product_id} />
-    </AppContextProvider>
+   </AppContextProvider>
+
   );
 }
 

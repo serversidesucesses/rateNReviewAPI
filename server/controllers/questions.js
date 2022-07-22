@@ -15,7 +15,7 @@ exports.get_questions = (req, res) => {
     params: {
       product_id,
       page,
-      count,
+      count: 1000,
     },
   })
     .then((response) => {
