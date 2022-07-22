@@ -8,17 +8,14 @@
     },
     "testEnvironment": "jsdom"
   },
-  "sideEffects": [],
   "version": "1.0.0",
   "main": "server/index.js",
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
     "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "npx webpack --watch",
     "build": "webpack --mode production",
     "test": "jest --coverage --env=jsdom"
-
   },
   "repository": {
     "type": "git",
@@ -26,10 +23,6 @@
   },
   "homepage": "https://github.com/RFP-Space-Invaders/Atelier#readme",
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.8.0",
-    "@mui/material": "^5.8.1",
     "axios": "^0.27.2",
     "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^10.0.0",

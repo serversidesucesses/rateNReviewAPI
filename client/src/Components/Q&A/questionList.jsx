@@ -42,9 +42,11 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
       },
     })
       .then(({ data }) => {
-        setAllAnswers(data.results);
-        setAnswers(data.results.slice(0, count));
-        setAnswerLength(data.results.length);
+        ReactDOM.unstable_batchedUpdates(() => {
+          setAllAnswers(data.results);
+          setAnswers(data.results.slice(0, count));
+          setAnswerLength(data.results.length);
+        });
       })
       .catch((error) => console.log(error));
   }, [helpfulDataA, reportA, isModalOpen]);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios'
 import StylePhoto from './StylePhoto.jsx';
 import Carousel from './Carousel.jsx';
@@ -26,13 +27,27 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
   const [totalItemCount, setTotalItemCount] = useState(0)
   const [refreshState, setRefreshState] = useState(false);
   const context = useContext(AppContext);
-  const { rating, countRatings } = context;
+  const { ratingAndCount } = context;
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getTotal = (arr) => {
+    var count = 0;
+    for (let i = 0; i < arr.length; i++) {
+      // setTotalItemCount(totalItemCount + i.count);
+      count += Number(arr[i].count);
+    }
+    return count;
+  }
 
   // get data from /cart immediate when the page load
   useEffect(() => {
     axios.get('/products/getFromCart')
       .then((response) => {
-        setCartArray(response.data);
+        ReactDOM.unstable_batchedUpdates(() => {
+          setCartArray(response.data);
+          setTotalItemCount(getTotal(response.data));
+        });
       })
       .catch((error) => {
         console.log('Error getting cart data', error);
@@ -40,20 +55,21 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
   }, [refreshState])
 
 
-    useEffect(() => {
-      var count = 0;
-      for (let i= 0; i < cartArray.length; i++) {
-        // setTotalItemCount(totalItemCount + i.count);
-        count += Number(cartArray[i].count);
+    // useEffect(() => {
+    //   var count = 0;
+    //   for (let i= 0; i < cartArray.length; i++) {
+    //     // setTotalItemCount(totalItemCount + i.count);
+    //     count += Number(cartArray[i].count);
 
-      }
-      setTotalItemCount(count);
-    }, [cartArray])
+    //   }
+    //   setTotalItemCount(count);
+    // }, [cartArray])
 
     // productId is default to 40345 right now
     useEffect(() => {
       getStyleFromProductId(productId);
     }, []);
+
 
   const getStyleFromProductId = (productId) => {
     axios({
@@ -62,9 +78,15 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
       params: { id: productId },
     })
       .then((response) => {
-        setCurrentStyleArray(response.data.results);
-        setCurrentStyle(response.data.results[0]);
-        setRefreshState(!refreshState);
+        let current = response.data.results[0];
+        ReactDOM.unstable_batchedUpdates(() => {
+          setCurrentStyleArray(response.data.results);
+          setCurrentStyle(response.data.results[0]);
+          setRefreshState(!refreshState);
+          setCurrentPrice(current.sale_price ? current.sale_price : current.original_price);
+          setIsLoading(false);
+        });
+
       })
       .catch((error) => {
         console.log('Error in getting data from getStyleFromProductId', error);
@@ -72,10 +94,16 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
 
   };
 
-  useEffect(() => {
-    setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
+  console.log('rating in style selector:', ratingAndCount[0]);
 
-  }, [currentStyle]);
+  // useEffect(() => {
+  //   setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
+
+  // }, [currentStyle]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <ProductDescriptionGrid id='productDescriptionGrid'>
@@ -87,11 +115,9 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
         <RatingCartGrid>
           <RatingContainer>
             <a href="#review">
-              <StarRating review_id={productId + 'starOverview'} rating={rating} />
-              <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
+              <StarRating review_id={productId + 'starOverview'} rating={ratingAndCount[0]} />
+              <span style={{cursor:'pointer'}}>{ratingAndCount[1]} Reviews</span>
             </a>
-            <StarRating review_id={productId + 'starOverview'} rating={rating} />
-            <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
           </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
             {totalItemCount}

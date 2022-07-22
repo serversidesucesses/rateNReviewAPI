@@ -20,7 +20,9 @@ export default function QuestionListContainer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { name } = useContext(AppContext);
 
-  const product_id = 40348; // --------product id need to standardize with all other components---
+  const [isLoading, setIsLoading] = useState(true);
+
+  const product_id = 40344; // --------product id need to standardize with all other components---
 
   function fetchData() {
     axios.get('/questions/questions', {
@@ -30,9 +32,12 @@ export default function QuestionListContainer() {
       },
     })
       .then(({ data }) => {
-        setDataLength(data.length);
-        setAllQuestions(data);
-        setQuestions(data.slice(0, count));
+        ReactDOM.unstable_batchedUpdates(() => {
+          setDataLength(data.length);
+          setAllQuestions(data);
+          setQuestions(data.slice(0, count));
+          setIsLoading(false);
+        });
       })
       .catch((error) => console.log(error));
   }
@@ -100,6 +105,10 @@ export default function QuestionListContainer() {
       .catch((error) => console.log('failed to post question', error));
     setIsModalOpen(false);
   };
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <>
