@@ -39,10 +39,14 @@ export const CategoryNameContainer = styled.div`
   grid-template-rows: auto auto;
 `
 export const CategoryContainer = styled.div`
-  font-size: x-large;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 2rem;
 `
 export const ProductNameContainer = styled.div`
-  font-size: xx-large;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 3.5rem;
 `
 
 export const PriceStyleContainer = styled.div`
@@ -51,8 +55,11 @@ export const PriceStyleContainer = styled.div`
   position: grid;
   grid-template-rows: auto auto;
   z-index: 3;
-  margin-top: 2%;
-  margin-bottom: 3%;
+`
+export const StyleText = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
 `
 export const StylePhotoGrid = styled.div`
   grid-row-start: auto;
@@ -67,24 +74,25 @@ export const StylePhotoContainer = styled.div`
 export const StyleCheckmark = styled.img`
 
 `
-
 export const StylePhotoThumbnail = styled.img`
   position: relative;
+  object-fit: cover;
   width: 5rem;
   height: 5rem;
+  padding-bottom: 2%;
   border-radius: 50%;
 `
-
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;
   grid-row-end: auto;
-  margin-top: 2%;
-  margin-bottom: 2%;
+
 `
 export const SizeQtyStyle = styled.select`
   height: 3rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   font-size: 1rem;
   cursor: pointer;
 `
@@ -100,6 +108,8 @@ export const AddToCartFavoriteContainer = styled.div`
 export const AddToCartButton = styled.button`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   height: 3rem;
   font-size: 1rem;
   cursor: pointer;
@@ -113,7 +123,6 @@ export const FavoriteIcon = styled.div`
   color: rgb(180, 56, 77);
   cursor: pointer;
 `
-
 export const ShareGrid = styled.div`
   grid-row-start: auto;
   grid-row-end: auto;

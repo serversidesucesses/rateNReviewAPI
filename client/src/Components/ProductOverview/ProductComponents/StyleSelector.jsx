@@ -6,7 +6,7 @@ import Carousel from './Carousel.jsx';
 import SizeQuantitySelector from './SizeQuantitySelector.jsx';
 import Share from './Share.jsx';
 import {
-  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid, RatingContainer
+  StyleSelectorLayout, StylePhotoGrid, RatingCartGrid, CartLogoContainer, PriceStyleContainer, StyleText, CategoryNameContainer, CategoryContainer, ProductNameContainer, ShareGrid, RatingContainer
 } from '../../Styles/ProductOverview/styleSelector.styled.js';
 import { ProductDescriptionGrid } from '../../Styles/ProductOverview/productOverview.styled.js';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -129,12 +129,12 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
           <ProductNameContainer>{productName}</ProductNameContainer>
         </CategoryNameContainer>
         <PriceStyleContainer>
-          $
-          {currentPrice}
           <div>
-            <b>STYLE </b>
-            {' '}
-            {currentStyle.name}
+            <StyleText>
+            ${currentPrice}
+            <br></br>
+            STYLE: {currentStyle.name}
+            </StyleText>
           </div>
         </PriceStyleContainer>
         <StylePhotoGrid>
