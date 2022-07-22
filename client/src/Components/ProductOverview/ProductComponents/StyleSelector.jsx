@@ -54,17 +54,6 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
       });
   }, [refreshState])
 
-
-    // useEffect(() => {
-    //   var count = 0;
-    //   for (let i= 0; i < cartArray.length; i++) {
-    //     // setTotalItemCount(totalItemCount + i.count);
-    //     count += Number(cartArray[i].count);
-
-    //   }
-    //   setTotalItemCount(count);
-    // }, [cartArray])
-
     // productId is default to 40345 right now
     useEffect(() => {
       getStyleFromProductId(productId);

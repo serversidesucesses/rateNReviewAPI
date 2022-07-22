@@ -27,7 +27,7 @@ export const CartLogoContainer = styled.div`
   grid-column-end: 3;
   display: flex;
   justify-content: right;
-  margin-right: 20%;
+  padding-right: 10%;
   font-size: 1.3em;
   color: black;
 `
@@ -105,6 +105,7 @@ export const AddToCartFavoriteContainer = styled.div`
   grid-template-columns: auto auto;
   gap: 1rem;
   margin-bottom: 2%;
+  margin-top: 2%;
 `
 export const AddToCartButton = styled.button`
   padding-left: 1.5rem;
@@ -114,6 +115,9 @@ export const AddToCartButton = styled.button`
   height: 3rem;
   font-size: 1rem;
   cursor: pointer;
+  &:hover {
+    background-color: #99AEAD
+  }
 `
 export const FavoriteIcon = styled.div`
   display: flex;
@@ -132,6 +136,7 @@ export const SharePhoto = styled.img`
   position: relative;
   width: 2rem;
   height: 2rem;
+  padding-right: 1%;
   border-radius: 10%;
 `
 

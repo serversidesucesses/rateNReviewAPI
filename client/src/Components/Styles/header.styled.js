@@ -9,8 +9,8 @@ export const HeaderContainer = styled.div`
   margin-bottom: 50px;
   // margin-left: 3%;
   // margin-right: 2%;
-
-  // margin-top: 12px;
+  height: 5rem;
+  padding-top: 20px;
   background: #99AEAD;
   width: 100%;
 

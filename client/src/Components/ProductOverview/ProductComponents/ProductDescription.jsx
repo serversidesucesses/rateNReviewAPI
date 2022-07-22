@@ -1,15 +1,15 @@
 import React from 'react';
-import { SloganContainer, DescriptionContainer } from '../../Styles/ProductOverview/productInformation.styled.js';
+import { SloganDescriptionContainer,SloganContainer, DescriptionContainer } from '../../Styles/ProductOverview/productInformation.styled.js';
 
 export default function ProductDescription({ slogan, description }) {
   return (
-    <div>
+    <SloganDescriptionContainer>
       <SloganContainer>
         {slogan}
       </SloganContainer>
       <DescriptionContainer>
         {description}
       </DescriptionContainer>
-    </div>
+    </SloganDescriptionContainer>
   )
 }

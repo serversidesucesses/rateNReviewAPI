@@ -109,7 +109,7 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
       </SizeQtyContainer>
 
       <AddToCartFavoriteContainer>
-        <AddToCartButton onClick={handleAddToBag}>ADD TO BAG</AddToCartButton>
+        <AddToCartButton onClick={handleAddToBag} >ADD TO BAG</AddToCartButton>
 
         <FavoriteIcon>
           <div onClick={handleFavorite}>{
