@@ -8,7 +8,8 @@ export const ProductOverviewGrid = styled.div`
   grid-template-rows: 4fr 1fr;
   width: 85%;
   margin: 0 auto;
-  margin-bottom: 2%
+  margin-bottom: 2%;
+  padding-top: 2%;
 `;
 
 // top BLUE grid that contains header, logo, cart symbol and a small row of promotional line
@@ -20,7 +21,7 @@ export const LogoCartGrid = styled.div`
 export const HeaderContainer = styled.div`
   // font-family: 'Courier New', monospace;
   // font-weight: 700;
-  // font-size: 3em;
+  // font-size: 3rem;
   // color: black;
   // margin-top: 2%;
   // margin-bottom: 2%;

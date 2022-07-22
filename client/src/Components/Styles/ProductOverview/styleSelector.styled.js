@@ -66,6 +66,7 @@ export const StylePhotoGrid = styled.div`
   grid-row-end: auto;
   display: inline-grid;
   grid-template-columns: auto auto auto auto;
+  padding-bottom: 1rem;
 `
 export const StylePhotoContainer = styled.div`
 
@@ -107,7 +108,7 @@ export const AddToCartFavoriteContainer = styled.div`
   margin-bottom: 2%;
   margin-top: 2%;
 `
-export const AddToCartButton = styled.button`
+export const AddToCartButton = styled.a`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   font-family: 'Oswald', sans-serif;

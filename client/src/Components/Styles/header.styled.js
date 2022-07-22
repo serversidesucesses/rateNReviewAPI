@@ -1,54 +1,51 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
-  // font-family: 'Courier New', monospace;
-  // font-weight: 700;
-  // font-size: 3em;
-  // color: black;
-  // margin-top: 2%;
-  margin-bottom: 50px;
-  // margin-left: 3%;
-  // margin-right: 2%;
-  height: 5rem;
-  padding-top: 20px;
-  background: #99AEAD;
+export const HeaderGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #658c8a;
   width: 100%;
-
-  display: flex;
-  flex-direction: row;
-
-  & #logo {
-    font-size: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
-    font-size: 1.3rem;
-    margin-left: 1rem;
-  }
-
-  & ul {
-    display: flex;
-    flex-direction: row;
-  }
-
-  & li {
-    list-style-type: none;
-    margin: 0 1rem;
-  }
-
-  & li a {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    color: black;
-  }
+`
+export const LogoContainer = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 2;
+`
+export const LogoText = styled.h1`
+  padding-left: 10%;
+  font-weight: 700;
+  font-size: 4rem;
+  color: black;
 `
 
-export const Nav = styled.div`
-  margin-left: 1rem;
+export const HeaderButtonContainer = styled.div`
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
-
-export const Logo = styled.img`
-  max-height: 1em
+export const HeaderClick = styled.button`
+  background-color: Transparent;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #C4CDC1
+  }
+`
+export const HeaderSearchContainer = styled.div`
+  grid-column-start: 3;
+  grid-column-end: 4;
+  display: inline-grid;
+  grid-template-rows: 1fr;
+`
+export const HeaderSearch = styled.button`
+  background-color: Transparent;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 1.5rem;
+  cursor: help;
 `
