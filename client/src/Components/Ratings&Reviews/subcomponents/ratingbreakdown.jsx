@@ -22,19 +22,20 @@ export default function RatingBreakdown({
 
   return (
     <RatingBreakdownStyled>
-      <h4 style={{marginBottom: '-30px', marginLeft: '50px'}}>Ratings & Reviews</h4>
+      <h2 style={{marginBottom: '-30px', marginLeft: '50px'}}>Ratings & Reviews</h2>
       <OverallRatingStyled>
         <h2 style={{ fontSize: '50px', marginRight: '15px' }}>{rating}</h2>
         <span style={{ marginTop: '68px' }}><Stars rating={overallRating} review_id={40344} /></span>
       </OverallRatingStyled>
-      <p style={{ marginLeft: '50px' }}>{`${recommendPercent}% of reviews recommend this product`}</p>
+      <p style={{ marginLeft: '40px', marginBottom: '15px', marginTop: '15px' }}>{`${recommendPercent}% of reviews recommend this product`}</p>
       <StarBarList
         percentages={percentages}
         addFilter={addFilter}
         deleteFilter={deleteFilter}
         ratings={ratings}
+        style={{marginBottom: '20px'}}
       />
-      <CharacteristicList characteristics={characteristics} />
+      <CharacteristicList style={{marginTop: '60px'}}characteristics={characteristics} />
     </RatingBreakdownStyled>
   );
 }
