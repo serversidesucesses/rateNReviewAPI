@@ -1,5 +1,6 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Header from './ProductComponents/Header.jsx';
 import ProductDescription from './ProductComponents/ProductDescription.jsx';
@@ -7,8 +8,6 @@ import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
 import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from '../Styles/ProductOverview/productOverview.styled.js'
 import { AppContext } from '../../AppContext.jsx';
-
-export const ThemeContext = React.createContext({});
 
 export default function ProductMain({product_id}) {
   // const [productId, setProductId] = useState(40346);
@@ -18,6 +17,8 @@ export default function ProductMain({product_id}) {
   const [priceTag, setPriceTag] = useState('Placeholder Price');
   const { setName } = useContext(AppContext);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const getDataFromProductId = (productId) => {
     axios({
       method: 'get',
@@ -26,10 +27,14 @@ export default function ProductMain({product_id}) {
     })
       .then((response) => {
         //console.log(response.data.name);
-        setProductDetails(response.data)
-        setProductName(response.data.name);
-        setCategoryName(response.data.category)
-        setPriceTag(response.data.default_price);
+        ReactDOM.unstable_batchedUpdates(() => {
+          setProductDetails(response.data)
+          setProductName(response.data.name);
+          setCategoryName(response.data.category)
+          setPriceTag(response.data.default_price);
+          setIsLoading(false);
+          setName(response.data.name);
+        });
       })
       .catch((error) => {
         console.log('Error in getting data from getDataFromProductId', error);
@@ -46,10 +51,14 @@ export default function ProductMain({product_id}) {
     getDataFromProductId(product_id);
   }, []);
 
-  useEffect(() => {
-    // console.log('got to useEffect');
-    setName(productName);
-  }, [productName]);
+  // useEffect(() => {
+  //   // console.log('got to useEffect');
+  //   setName(productName);
+  // }, [productName]);
+
+  if(isLoading) {
+    return null;
+  }
 
   return (
     <ProductOverviewGrid>

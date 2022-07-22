@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, memo } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewList from './subcomponents/reviewslist.jsx';
@@ -6,7 +6,7 @@ import RatingBreakdown from './subcomponents/ratingbreakdown.jsx';
 import { MainGridStyled, ReviewContainerStyled } from '../Styles/Reviews/bars.styled';
 import { AppContext } from '../../AppContext.jsx';
 
-function ReviewMain({ product_id }) {
+export default function ReviewMain({ product_id }) {
   const [reviews, setReviews] = useState([]);
   const [sortOption, setSortOption] = useState('relevant');
   const [count, setCount] = useState(2);
@@ -19,6 +19,8 @@ function ReviewMain({ product_id }) {
   const [numReviews, setNumReviews] = useState(0);
 
   const [currentFilters, setCurrentFilters] = useState({});
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadMoreReviews = () => {
     setCount((prevCount) => prevCount + 2);
@@ -55,6 +57,8 @@ function ReviewMain({ product_id }) {
           setRecommended(data.recommended);
           setNumReviews(reviewCount);
           setRatings(data.ratings);
+          // setRating(roundedRating.toFixed(2));
+          // setCountRatings(nureviewmReviews);
           setCharacteristics(Object.keys(data.characteristics).map((key) => {
             let descriptionOne = '';
             let descriptionTwo = '';
@@ -106,8 +110,10 @@ function ReviewMain({ product_id }) {
         });
       })
       .then(({ data }) => {
-        setReviews(data.results);
-
+        ReactDOM.unstable_batchedUpdates(() => {
+          setReviews(data.results);
+          setIsLoading(false);
+        });
         // setDidMount(true);
       })
       .catch((err) => console.log(err));
@@ -146,6 +152,10 @@ function ReviewMain({ product_id }) {
     }
   };
 
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <ReviewContainerStyled id="review">
       <MainGridStyled>
@@ -175,4 +185,3 @@ function ReviewMain({ product_id }) {
   );
 }
 
-export default memo(ReviewMain);

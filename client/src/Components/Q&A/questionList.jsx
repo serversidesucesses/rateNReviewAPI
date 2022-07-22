@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import AnswerList from './answerList.jsx';
 import Modal from './Modal/Modal.jsx';
 import AddAnswer from './Forms/addAnswer.jsx';
@@ -18,6 +19,7 @@ import {
   AnswerStyled,
   AnswerContainer_Styled
 } from '../Styles/Q&A/container.styled';
+
 
 const axios = require('axios');
 
@@ -42,9 +44,11 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
       },
     })
       .then(({ data }) => {
-        setAllAnswers(data.results);
-        setAnswers(data.results.slice(0, count));
-        setAnswerLength(data.results.length);
+        ReactDOM.unstable_batchedUpdates(() => {
+          setAllAnswers(data.results);
+          setAnswers(data.results.slice(0, count));
+          setAnswerLength(data.results.length);
+        });
       })
       .catch((error) => console.log(error));
   }, [helpfulDataA, reportA, isModalOpen]);

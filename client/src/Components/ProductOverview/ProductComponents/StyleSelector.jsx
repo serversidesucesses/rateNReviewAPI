@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, memo } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios'
 import StylePhoto from './StylePhoto.jsx';
 import Carousel from './Carousel.jsx';
@@ -12,7 +13,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
 import { AppContext } from '../../../AppContext.jsx';
 
-export default function StyleSelector({ productName, categoryName, priceTag }) {
+export default memo(function StyleSelector({ productName, categoryName, priceTag }) {
   // don't use 40347 bc of image file corruption
   const [productId, setProductId] = useState(40346);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
@@ -26,6 +27,7 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   const [refreshState, setRefreshState] = useState(false);
   const context = useContext(AppContext);
   const { rating, countRatings } = context;
+  const [isLoading, setIsLoading] = useState(true);
 
   // get data from /cart immediate when the page load
   useEffect(() => {
@@ -64,9 +66,14 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
     })
       .then((response) => {
         console.log('all style from this productId is: ', response.data);
-        setCurrentStyleArray(response.data.results);
-        setCurrentStyle(response.data.results[0]);
-        setRefreshState(!refreshState);
+        let current = response.data.results[0];
+        ReactDOM.unstable_batchedUpdates(() => {
+          setCurrentStyleArray(response.data.results);
+          setCurrentStyle(response.data.results[0]);
+          setRefreshState(!refreshState);
+          setCurrentPrice(current.sale_price ? current.sale_price : current.original_price);
+          setIsLoading(false);
+        });
       })
       .catch((error) => {
         console.log('Error in getting data from getStyleFromProductId', error);
@@ -78,10 +85,14 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   console.log('rating in style selector:', rating);
 
 
-  useEffect(() => {
-    setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
+  // useEffect(() => {
+  //   setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
 
-  }, [currentStyle]);
+  // }, [currentStyle]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <ProductDescriptionGrid id='productDescriptionGrid'>
@@ -142,5 +153,5 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
     </ProductDescriptionGrid>
   );
   // }
-}
+});
 

@@ -1,7 +1,9 @@
 .env
 node_modules
 **/bundle.js
+**/bundle.js.gz
 **/bundle.js.map
+**/bundle.js.map.gz
 test
 coverage
 _tests_
