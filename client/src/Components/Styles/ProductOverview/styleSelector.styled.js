@@ -45,8 +45,8 @@ export const CategoryContainer = styled.div`
 `
 export const ProductNameContainer = styled.div`
   font-family: 'Oswald', sans-serif;
-  font-weight: 600;
-  font-size: 3.5rem;
+  font-weight: 500;
+  font-size: 3.2rem;
 `
 
 export const PriceStyleContainer = styled.div`
@@ -112,12 +112,14 @@ export const AddToCartFavoriteContainer = styled.div`
   margin-top: 2%;
 `
 export const AddToCartButton = styled.a`
-  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
   padding-right: 1.5rem;
   font-family: 'Oswald', sans-serif;
   background-color: #F0F0F0;
   font-weight: 200;
-  width: 180px;
+  width: 122px;
   height: 3rem;
   font-size: 1rem;
   border: 1px solid black;

@@ -165,7 +165,7 @@ position: absolute;
 display: flex;
 justify-content: center;
 align-items: center;
-background: #B0B3A2;
+background: black;
 top: 1%;
 left: 1%;
 height: 98%;
