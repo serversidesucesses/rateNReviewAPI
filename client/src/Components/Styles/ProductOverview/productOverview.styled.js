@@ -22,19 +22,22 @@ export const LogoCartGrid = styled.div`
   background: rgb(0, 134, 143);
 `
 export const LogoContainer = styled.div`
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
   font-size: 3em;
   color: black;
   margin-top: 2%;
   margin-bottom: 2%;
-  margin-left: 2%;
+  margin-left: 3%;
   margin-right: 2%;
 `
-
+export const Logo = styled.img`
+  max-height: 1em
+`
 export const PromotionLineContainer = styled.div`
   font-size: 1em;
   color: black;
 `
-
 // top BLUE grid that contains top row, which is the photo carousel, product description, style selector and buttons
 export const ProductDescriptionGrid = styled.div`
   display: grid;
