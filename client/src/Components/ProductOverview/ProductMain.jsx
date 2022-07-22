@@ -38,18 +38,12 @@ export default function ProductMain({product_id}) {
       });
   }
 
-  // console.log('productdetails from ProductMain is:', productDetails)
-
-  // const getTotalCartItem = (currentStyle)
-
   // when first load page, do axios call
   useEffect(() => {
-    // console.log('got to useEffect');
     getDataFromProductId(product_id);
   }, []);
 
   useEffect(() => {
-    // console.log('got to useEffect');
     setName(productName);
   }, [productName]);
 
@@ -59,7 +53,7 @@ export default function ProductMain({product_id}) {
         <Header />
       </HeaderGrid>
       {/* StyleSelector contains style and carousel */}
-      <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag}/>
+      <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag} product_id={product_id}/>
       {/* productinformation contains information, slogan and descirption */}
       <ProductInformationGrid>
         {/* <ProductInformation /> */}
@@ -76,7 +70,7 @@ export default function ProductMain({product_id}) {
             100% organic material
           </div>
           <div>
-            Make up line 2
+
           </div>
         </BulletPointDescription>
       </ProductInformationGrid>

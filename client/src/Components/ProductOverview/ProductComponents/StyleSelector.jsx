@@ -12,9 +12,10 @@ import { FaShoppingCart } from 'react-icons/fa';
 import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
 import { AppContext } from '../../../AppContext.jsx';
 
-export default function StyleSelector({ productName, categoryName, priceTag }) {
-  // don't use 40347 bc of image file corruption
-  const [productId, setProductId] = useState(40346);
+export default function StyleSelector({ productName, categoryName, priceTag, product_id }) {
+
+
+  const [productId, setProductId] = useState(product_id);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });
   const [currentPrice, setCurrentPrice] = useState(priceTag);
@@ -31,7 +32,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
   useEffect(() => {
     axios.get('/products/getFromCart')
       .then((response) => {
-        console.log('The information get from cart is: ', response.data)
         setCartArray(response.data);
       })
       .catch((error) => {
@@ -54,7 +54,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
     useEffect(() => {
       getStyleFromProductId(productId);
     }, []);
-    //console.log('totalItemCount', totalItemCount)
 
   const getStyleFromProductId = (productId) => {
     axios({
@@ -63,7 +62,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
       params: { id: productId },
     })
       .then((response) => {
-        console.log('all style from this productId is: ', response.data);
         setCurrentStyleArray(response.data.results);
         setCurrentStyle(response.data.results[0]);
         setRefreshState(!refreshState);
@@ -73,10 +71,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
       });
 
   };
-  console.log('currentStyle is:', currentStyle);
-
-  console.log('rating in style selector:', rating);
-
 
   useEffect(() => {
     setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
@@ -119,8 +113,6 @@ export default function StyleSelector({ productName, categoryName, priceTag }) {
         </PriceStyleContainer>
         <StylePhotoGrid>
           {currentStyleArray.map((style, index) => {
-            // console.log(currentIndex);
-            // console.log(index);
             return <StylePhoto
               key={style.photos[0].url + index}
               currentStyle={style}

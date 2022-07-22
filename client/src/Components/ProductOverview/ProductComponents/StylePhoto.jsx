@@ -9,12 +9,7 @@ export default function StylePhoto({ currentStyle, setCurrentStyle, currentIndex
     setIndex(index);
     setCurrentStyle(currentStyle);
   }
-  // const [changeStyle, setChangeStyle] = useState(false);
-
-  // useEffect(() => {
-  //   setCheckmarkStatus(false);
-  // }, [checkmarkStatus]);
-  console.log('checkmarkstatus', checkmarkStatus, ' ' , 'index:', index);
+ 
   // when a style is clicked, update currentStyle in parent
   return (
     <div>

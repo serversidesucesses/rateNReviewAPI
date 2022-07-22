@@ -19,15 +19,26 @@ export default function App({ product_id }) {
       <Suspense fallback={<div>Loading...</div>}>
       <QuestionListContainer />
       <ReviewMain product_id={product_id} />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
       </Suspense>
     </AppContextProvider>
+=======
+   </AppContextProvider>
+
+>>>>>>> 45c3d2d (webpack)
   );
 }
 // don't use 40347
 App.defaultProps = {
+<<<<<<< HEAD
   product_id: 40344,
+=======
+  product_id: 40348,
+>>>>>>> main
 };
-
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(<App />, rootElement);

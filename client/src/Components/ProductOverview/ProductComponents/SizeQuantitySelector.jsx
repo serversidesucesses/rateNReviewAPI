@@ -22,7 +22,6 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
 
   useEffect(() => {
     const currentStyleSkusArray = Object.entries(currentStyleSkus);
-    console.log('currentStyleSkusArray is: ', currentStyleSkusArray);
     setSizeSelectedStatus(false);
     setSizeSelectedStatus(false);
   }, [currentStyleSkus])
@@ -56,7 +55,6 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
   const handleSizeSelect = (event) => {
     // when a size is selected, record the size to selected size
     setSelectedSku(event.target.value);
-    console.log('event.target is: ', event)
     setSizeSelectedStatus(true);
   }
 
@@ -80,7 +78,6 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
       for (let i = 0; i < selectedQty; i++) {
         axios.post('/products/addToCart', {sku_id: Number(selectedSku)})
           .then((response) => {
-            console.log('sucessfully added item(s) to cart')
             setRefreshState(!refreshState);
           })
           .catch((error) => {
@@ -112,7 +109,7 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
       </SizeQtyContainer>
 
       <AddToCartFavoriteContainer>
-        <AddToCartButton onClick={handleAddToBag}>Add To Bag</AddToCartButton>
+        <AddToCartButton onClick={handleAddToBag}>ADD TO BAG</AddToCartButton>
 
         <FavoriteIcon>
           <div onClick={handleFavorite}>{

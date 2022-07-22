@@ -40,7 +40,6 @@ function Carousel({ currentStyle, productId }) {
 
   useEffect(() => {
     setCurrentStylePhotos(currentStyle.photos);
-    console.log('currentStyle from useEffect: ', currentStyle);
   }, [currentStyle]);
 
   useEffect(() => {
@@ -60,7 +59,6 @@ function Carousel({ currentStyle, productId }) {
   // conditionally display left/right buttons
 
   const handleClick = (activePhotoIndex) => {
-    console.log(activePhotoIndex);
     if (activePhotoIndex === (numPhotos - 1)) {
       setRightButtonStatus(false);
     }
