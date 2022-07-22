@@ -41,6 +41,7 @@ export const HeaderContainer = styled.div`
     text-decoration: none;
     display: block;
     width: 100%;
+    color: black;
   }
 `
 

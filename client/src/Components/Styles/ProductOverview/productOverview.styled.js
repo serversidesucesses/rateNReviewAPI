@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const ProductOverviewGrid = styled.div`
   display: grid;
   grid-template-rows: 4fr 1fr;
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
   margin-bottom: 2%
 `;
