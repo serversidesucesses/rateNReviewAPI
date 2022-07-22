@@ -39,7 +39,6 @@ export default function QuestionList({ question, helpfulness, reportQ }) {
       params: {
         question_id: question.question_id,
         page: 1,
-        count: 1000,
       },
     })
       .then(({ data }) => {

@@ -112,8 +112,8 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
               <StarRating review_id={productId + 'starOverview'} rating={rating} />
               <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
             </a>
-            {/* <StarRating review_id={productId + 'starOverview'} rating={rating} />
-            <span style={{cursor:'pointer'}}>{countRatings} Reviews</span> */}
+            <StarRating review_id={productId + 'starOverview'} rating={rating} />
+            <span style={{cursor:'pointer'}}>{countRatings} Reviews</span>
           </RatingContainer>
           <CartLogoContainer onClick={() => {setRefreshState(!refreshState)}}>
             {totalItemCount}
