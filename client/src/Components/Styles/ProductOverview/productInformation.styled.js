@@ -20,6 +20,7 @@ export const ProductNameContainer = styled.div`
 `
 // this container should be below the carousel
 export const ProductDescriptionContainer = styled.div`
+  font-family: 'Oswald', sans-serif;
   display: flex;
   width: 45%;
   position: relative;
@@ -28,10 +29,14 @@ export const ProductDescriptionContainer = styled.div`
   left: 5%;
 `
 export const SloganContainer = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
   font-size: 1.5em;
   color: black;
 `
 export const DescriptionContainer = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   font-size: 1em;
   color: black;
 `
