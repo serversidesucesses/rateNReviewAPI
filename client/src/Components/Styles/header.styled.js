@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const HeaderContainer = styled.div`
   // font-family: 'Courier New', monospace;
   // font-weight: 700;
@@ -11,7 +10,7 @@ export const HeaderContainer = styled.div`
   // margin-left: 3%;
   // margin-right: 2%;
 
-  padding-top: 20px;
+  // margin-top: 12px;
   background: #99AEAD;
   width: 100%;
 
@@ -41,6 +40,7 @@ export const HeaderContainer = styled.div`
     text-decoration: none;
     display: block;
     width: 100%;
+    color: black;
   }
 `
 

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ProductDescription from './ProductComponents/ProductDescription.jsx';
 import StyleSelector from './ProductComponents/StyleSelector.jsx';
 import styled from 'styled-components';
-import { ProductOverviewGrid, HeaderGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from '../Styles/ProductOverview/productOverview.styled.js'
+import { ProductOverviewGrid, ProductDescriptionGrid, ProductInformationGrid, VerticalLine, BulletPointDescription } from '../Styles/ProductOverview/productOverview.styled.js'
 import { AppContext } from '../../AppContext.jsx';
 
 export const ThemeContext = React.createContext({});
@@ -58,8 +58,8 @@ export default function ProductMain({product_id}) {
 
   return (
     <ProductOverviewGrid>
-      <HeaderGrid>
-      </HeaderGrid>
+      {/* <HeaderGrid>
+      </HeaderGrid> */}
       {/* StyleSelector contains style and carousel */}
       <StyleSelector productName={productName} categoryName={categoryName} priceTag={priceTag} product_id={product_id}/>
       {/* productinformation contains information, slogan and descirption */}

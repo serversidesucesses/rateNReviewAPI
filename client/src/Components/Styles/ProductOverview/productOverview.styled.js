@@ -5,17 +5,13 @@ import styled from 'styled-components';
 // biggest RED grid that contains all child of ProductOverview
 export const ProductOverviewGrid = styled.div`
   display: grid;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 4fr 1fr;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 2%
 `;
 
 // top BLUE grid that contains header, logo, cart symbol and a small row of promotional line
-export const HeaderGrid = styled.div`
-  display: grid;
-  grid-template-rows: 80% 20%;
-`
 export const LogoCartGrid = styled.div`
   display: grid;
   grid-template-columns: 90% 10%;
@@ -195,6 +191,7 @@ export const VerticalLine = styled.div`
   border-left: 1px solid black;
   height: 60%;
   justify-content: center;
+  max-height: 300px;
 `
 // bottom rihgt ORANGE container that contains bullet point product description
 export const BulletPointDescription = styled.div`

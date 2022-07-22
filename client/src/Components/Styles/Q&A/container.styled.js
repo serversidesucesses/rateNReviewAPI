@@ -7,9 +7,8 @@ export const Question_AnswerStyled = styled.ul`
 
   width: 65%;
   margin: 0 auto;
-  overflow: scroll;
+  overflow-y: auto;
   padding: 15px;
-  font-family: Arial;
   font-size: 14px;
   background: glacier-white;
   margin-bottom: -0.8rem;
@@ -39,7 +38,7 @@ export const SpanStyled = styled.span`
 
 export const More_AnswerStyled = styled.div`
   height: 250px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   margin-right: 5px;
   width: 98%;
@@ -115,7 +114,6 @@ export const SeeMoreQuestionStyled = styled.div`
   justify-content: flex-start;
   margin: 0 auto;
   width: 65%;
-  font-family: Arial;
   font-size: 15px;
   padding: 1.5rem;
   background: glacier-white;

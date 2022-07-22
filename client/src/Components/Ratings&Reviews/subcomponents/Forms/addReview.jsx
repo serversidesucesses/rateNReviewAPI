@@ -88,6 +88,10 @@ export default function AddReview({ characteristics, product_id }) {
       .catch((err) => console.log(err));
   }
 
+  const handleFocus = (e) => {
+
+  }
+
   const characteristicReview = characteristics.map((value) => (
     <div className="text">
       <CharacteristicForm characteristic={value} handleClick={handleCharChange} />
@@ -108,16 +112,20 @@ export default function AddReview({ characteristics, product_id }) {
       </div>
       {characteristicReview}
       <div className="name">
-        <input type="text" name="name" placeholder="Enter a name" value={values.name} onChange={handleInputChange} required />
+        <input type="text" name="name" placeholder="Enter a name" maxLength="100" id="nameForm" value={values.name} onChange={handleInputChange} required />
+        {values.name.length > 0 ? <label htmlFor="nameForm" style={{fontSize:"10px"}}>Characters Left: {100 - values.name.length}</label> : null}
       </div>
       <div className="email">
         <input type="email" name="email" placeholder="Enter an email" maxLength="60" value={values.email} onChange={handleInputChange} required />
+        {values.email.length > 0 ? <label htmlFor="nameForm" style={{fontSize:"10px"}}>Characters Left: {60 - values.email.length}</label> : null}
       </div>
       <div className="text">
         <input type="text" name="summary" placeholder="Enter a summary..." maxLength="60" size="50" value={values.summary} onChange={handleInputChange} />
+        {values.summary.length > 0 ? <label htmlFor="nameForm" style={{fontSize:"10px"}}>Characters Left: {60 - values.summary.length}</label> : null}
       </div>
       <div className="text">
         <input type="text" name="body" placeholder="Enter an review..." maxLength="1000" size="100" value={values.body} onChange={handleInputChange} required />
+        {values.body.length > 0 ? <label htmlFor="nameForm" style={{fontSize:"10px"}}>Characters Left: {1000 - values.body.length}</label> : null}
       </div>
       <CloudinaryUploadWidget imageUpload={imageUpload} />
       <div>
