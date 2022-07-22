@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Header from './ProductComponents/Header.jsx';
@@ -26,10 +27,13 @@ export default function ProductMain({product_id}) {
     })
       .then((response) => {
         //console.log(response.data.name);
-        setProductDetails(response.data)
-        setProductName(response.data.name);
-        setCategoryName(response.data.category)
-        setPriceTag(response.data.default_price);
+        ReactDOM.unstable_batchedUpdates(() => {
+          setProductDetails(response.data)
+          setProductName(response.data.name);
+          setCategoryName(response.data.category)
+          setPriceTag(response.data.default_price);
+          setName(response.data.name);
+        });
       })
       .catch((error) => {
         console.log('Error in getting data from getDataFromProductId', error);
@@ -41,9 +45,9 @@ export default function ProductMain({product_id}) {
     getDataFromProductId(product_id);
   }, []);
 
-  useEffect(() => {
-    setName(productName);
-  }, [productName]);
+  // useEffect(() => {
+  //   setName(productName);
+  // }, [productName]);
 
   return (
     <ProductOverviewGrid>

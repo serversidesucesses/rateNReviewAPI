@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import QuestionList from './questionList.jsx';
 import Search from './searchBar.jsx';
 import AddQuestion from './Forms/questionform.jsx';
@@ -30,9 +31,11 @@ export default function QuestionListContainer() {
       },
     })
       .then(({ data }) => {
-        setDataLength(data.length);
-        setAllQuestions(data);
-        setQuestions(data.slice(0, count));
+        ReactDOM.unstable_batchedUpdates(() => {
+          setDataLength(data.length);
+          setAllQuestions(data);
+          setQuestions(data.slice(0, count));
+        });
       })
       .catch((error) => console.log(error));
   }

@@ -36,10 +36,10 @@ function ReviewMain({ product_id }) {
     return [rounded, numRatings];
   };
 
-  useEffect(() => {
-    setRating(overallRating);
-    setCountRatings(numReviews);
-  }, [overallRating, numReviews]);
+  // useEffect(() => {
+  //   setRating(overallRating);
+  //   setCountRatings(numReviews);
+  // }, [overallRating, numReviews]);
 
   useEffect(() => {
     axios.get('/reviews/reviews/meta', {
@@ -55,6 +55,8 @@ function ReviewMain({ product_id }) {
           setRecommended(data.recommended);
           setNumReviews(reviewCount);
           setRatings(data.ratings);
+          setRating(roundedRating);
+          setCountRatings(reviewCount);
           setCharacteristics(Object.keys(data.characteristics).map((key) => {
             let descriptionOne = '';
             let descriptionTwo = '';
@@ -111,7 +113,7 @@ function ReviewMain({ product_id }) {
         // setDidMount(true);
       })
       .catch((err) => console.log(err));
-  }, [sortOption, setReviews]);
+  }, [sortOption]);
 
   const selectHandler = (event) => {
     setSortOption(event.target.value);

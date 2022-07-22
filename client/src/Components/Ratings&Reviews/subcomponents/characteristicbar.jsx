@@ -15,7 +15,7 @@ export default function CharacteristicBar({ characteristic }) {
       <CharacterDescriptionStyled style={{ gridColumn: '1/3', justifySelf: 'start' }}>
         {characteristic.descriptionOne}
       </CharacterDescriptionStyled>
-      <CharacterDescriptionStyled style={{ gridColumn: '3/4', justifySelf: 'end' }}>
+      <CharacterDescriptionStyled style={{ gridColumn: '2/4', justifySelf: 'end' }}>
         {characteristic.descriptionTwo}
       </CharacterDescriptionStyled>
     </CharacteristicContainerStyled>
