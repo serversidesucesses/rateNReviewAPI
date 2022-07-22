@@ -28,8 +28,12 @@ export const ProductDescriptionContainer = styled.div`
   height: 10rem;
   left: 5%;
 `
+export const SloganDescriptionContainer = styled.div`
+  max-height: 200px;
+`
 export const SloganContainer = styled.div`
   font-family: 'Oswald', sans-serif;
+  max-height: 200px;
   font-weight: 400;
   font-size: 1.5em;
   color: black;
@@ -37,6 +41,7 @@ export const SloganContainer = styled.div`
 export const DescriptionContainer = styled.div`
   font-family: 'Oswald', sans-serif;
   font-weight: 200;
+ 
   font-size: 1em;
   color: black;
 `
