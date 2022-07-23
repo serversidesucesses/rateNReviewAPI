@@ -6,12 +6,16 @@ import { AnswerStyled, SpanStyled } from '../Styles/Q&A/container.styled';
 import { PhotosContainerStyled } from '../Styles/Q&A/photo.styled';
 
 export default function AnswerList({ answer, helpfulness, report }) {
-  // Date conversion
+
+  const [helpfulClicked, setHelpfulClick] = useState(false);
   console.log(answer.date);
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   const date = new Date(answer.date.replace(/-/g, '/').replace(/T.+/, '')).toLocaleDateString('en-US', options);
+  const helpfulBtn = () => {
+    helpfulness(answer.answer_id)
+    setHelpfulClick(true);
+  }
 
-  // console.log(AnswerDate);
   return (
     <AnswerStyled>
       <p style={{margin: 0}}>{answer.body}</p>
@@ -49,7 +53,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
         </div>
         <span style={{opacity:0.5}}>|</span>
         <div>
-          <ButtonStyled type="button" onClick={()=> helpfulness(answer.answer_id)}>Helpful?</ButtonStyled>
+          {helpfulClicked ? <SpanStyled>Helpful?</SpanStyled> : <ButtonStyled type="button" onClick={helpulBtn}>Helpful?</ButtonStyled> }
           <SpanStyled>{`  Yes (${answer.helpfulness})`}</SpanStyled>
         </div>
         <span style={{opacity:0.5}}>|</span>

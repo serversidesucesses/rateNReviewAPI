@@ -28,26 +28,26 @@ export const ButtonContainerAnsStyled = styled.div`
 `;
 
 export const SeeMoreBtnStyled = styled.button`
-  // display: flex;
-  // align-items: flex-end;
-  // padding: 0;
-  // border: none;
-  // background: none;
-  // text-decoration: underline;
-  // cursor: pointer;
-  // font-size: 13px;
-  // font-weight: lighter;
-  // opacity:0.4;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 200;
-  height: 30px;
-  background-color: white;
-  margin-left: 5px;
-  font-size: 18px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
   cursor: pointer;
-  &:hover {
-    background-color: #99AEAD;
-  }
+  font-size: 13px;
+  font-weight: lighter;
+  opacity:0.4;
+  // font-family: 'Oswald', sans-serif;
+  // font-weight: 200;
+  // height: 30px;
+  // background-color: white;
+  // margin-left: 5px;
+  // font-size: 18px;
+  // cursor: pointer;
+  // &:hover {
+  //   background-color: #99AEAD;
+  // }
 `;
 
 export const MoreQuestionBtnStyled = styled.button`
