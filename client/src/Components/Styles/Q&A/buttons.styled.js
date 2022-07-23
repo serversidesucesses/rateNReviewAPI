@@ -62,9 +62,9 @@ export const MoreQuestionBtnStyled = styled.button`
   margin-right: 5px;
   font-family: 'Oswald', sans-serif;
   font-weight: 200;
-  height: 30px;
+  // font-size: 18px;
+  min-height: 3rem;
   background-color: white;
-  font-size: 18px;
   cursor: pointer;
   &:hover {
     background-color: #99AEAD;

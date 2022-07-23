@@ -85,11 +85,6 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
 
   console.log('rating in style selector:', ratingAndCount[0]);
 
-  // useEffect(() => {
-  //   setCurrentPrice(currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price)
-
-  // }, [currentStyle]);
-
   if (isLoading) {
     return null;
   }

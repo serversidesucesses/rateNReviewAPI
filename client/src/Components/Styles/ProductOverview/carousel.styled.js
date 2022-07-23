@@ -6,6 +6,7 @@ import styled from 'styled-components';
 export const CarouselLayout = styled.div`
   height: 38rem;
   background: #E3D9CF;
+  width: 85%;
 `;
 
 export const CarouselThumbnailContainer = styled.div`
@@ -124,9 +125,9 @@ export const ExpandedCarouselThumbnailContainer = styled.div`
   z-index: 12;
 `;
 
-export const ExpandedcarouselThumbnailGrid = styled.div`
+export const ExpandedCarouselThumbnailGrid = styled.div`
   display: grid;
-  grid-gap: 16px;
+  grid-gap: 1rem;
   padding: 16px;
   max-height: 3rem;
   grid-template-columns: repeat(auto-fill,50px);

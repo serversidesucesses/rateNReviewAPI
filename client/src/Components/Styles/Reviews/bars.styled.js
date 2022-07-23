@@ -3,8 +3,15 @@ import styled from 'styled-components';
 export const ReviewContainerStyled = styled.div`
   display: flex;
   justify-content: center;
-  min-width: 600px;
-  margin-right: 100px;
+  margin: 0 auto
+  max-width: 85vw;
+  // @media (min-width: 768px) {
+  //   // max-width: 600px;
+  //   // margin-right: 100px;
+  // }
+  // @media (max-width: 375px) {
+
+  // }
 `;
 
 export const ReviewListButtonStyled = styled.button`
@@ -30,6 +37,9 @@ export const ReviewListButtonStyled = styled.button`
 
   &:hover {
     background-color: #99AEAD;
+  }
+  @media (max-width: 400px) {
+    margin-left: 30px;
   }
 `;
 export const BarStyled = styled.div`
@@ -117,17 +127,32 @@ export const CharacterName = styled.span`
 
 export const MainGridStyled = styled.div`
   display: grid;
-  grid-template-columns: 40% 60%;
-  grid-gap: 50px;
+  // grid-template-columns: 40% 60%;
+  // grid-gap: 50px;
   margin-bottom: 130px;
-  margin-left: 50px;
-  margin-right: 30px;
+  // margin-left: 50px;
+  // margin-right: 30px;
+  max-width: 85vw;
+  @media (min-width: 768px) {
+    grid-template-columns: 40% 60%;
+    grid-gap: 50px;
+    margin-left: 50px;
+    margin-right: 30px;
+  }
+  @media (max-width: 375px) {
+    grid-template-rows: auto auto;
+  }
 `;
 
 export const RatingBreakdownStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
+  // @media (min-width: 768px) {
+  // }
+  @media (max-width: 400px) {
+    margin-left: 20px;
+  }
 `;
 
 export const CharacterListStyled = styled.div`
@@ -187,11 +212,17 @@ export const RadioButtonStyled = styled.input`
 
 export const ReviewListStyled = styled.div`
   margin-top: 16px;
-  width: 600px;
+  width: 85vw;
   overflow-y: auto;
   overflow-x: hidden;
   word-wrap: break-word;
   max-height: 500px;
+  // @media (max-width: 375px) {
+  //   width: 400px;
+  // }
+  // @media (max-width: 400px) {
+  //   margin-left: 30px;
+  // }
 `;
 
 export const ReviewStyled = styled.div`
@@ -245,6 +276,9 @@ export const OverallRatingStyled = styled.div`
 export const SortBarStyled = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 400px) {
+    margin-left: 30px;
+  }
 `;
 
 export const SelectStyled = styled.select`
