@@ -3,14 +3,13 @@ import styled from 'styled-components';
 export const ReviewContainerStyled = styled.div`
   display: flex;
   justify-content: center;
-  margin: 0 auto
-  max-width: 85vw;
+  margin: 0 auto;
+  max-width: 85vw
   // @media (min-width: 768px) {
   //   // max-width: 600px;
   //   // margin-right: 100px;
   // }
   // @media (max-width: 375px) {
-
   // }
 `;
 
@@ -127,19 +126,19 @@ export const CharacterName = styled.span`
 
 export const MainGridStyled = styled.div`
   display: grid;
+  max-width: 100%;
   // grid-template-columns: 40% 60%;
   // grid-gap: 50px;
   margin-bottom: 130px;
   // margin-left: 50px;
   // margin-right: 30px;
-  max-width: 85vw;
-  @media (min-width: 768px) {
+  @media (min-width: 501px) {
     grid-template-columns: 40% 60%;
     grid-gap: 50px;
     margin-left: 50px;
     margin-right: 30px;
   }
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
     grid-template-rows: auto auto;
   }
 `;
@@ -148,6 +147,7 @@ export const RatingBreakdownStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
+  max-width: 100%;
   // @media (min-width: 768px) {
   // }
   @media (max-width: 400px) {
@@ -212,7 +212,8 @@ export const RadioButtonStyled = styled.input`
 
 export const ReviewListStyled = styled.div`
   margin-top: 16px;
-  width: 85vw;
+  margin: 0 auto;
+  max-width: 90%;
   overflow-y: auto;
   overflow-x: hidden;
   word-wrap: break-word;

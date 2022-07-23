@@ -21,9 +21,9 @@ export const LogoCartGrid = styled.div`
 // top BLUE grid that contains top row, which is the photo carousel, product description, style selector and buttons
 export const ProductDescriptionGrid = styled.div`
   display: grid;
-  // grid-template-columns: 60% 40%;
   gap: 2rem;
-  @media (min-width: 500px) {
+  max-width: 100%
+  @media (min-width: 501px) {
     grid-template-columns: 60% 40%;
   }
   @media (max-width: 500px) {
