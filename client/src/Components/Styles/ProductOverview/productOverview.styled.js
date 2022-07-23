@@ -23,7 +23,6 @@ export const ProductDescriptionGrid = styled.div`
   display: grid;
   // grid-template-columns: 60% 40%;
   gap: 2rem;
-
   @media (min-width: 500px) {
     grid-template-columns: 60% 40%;
   }

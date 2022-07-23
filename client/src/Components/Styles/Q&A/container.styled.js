@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 export const Question_AnswerStyled = styled.ul`
   max-height: 600px;
-
   width: 65%;
   margin: 0 auto;
   overflow-y: auto;
