@@ -41,7 +41,6 @@ export const SloganContainer = styled.div`
 export const DescriptionContainer = styled.div`
   font-family: 'Oswald', sans-serif;
   font-weight: 200;
- 
   font-size: 1em;
   color: black;
 `

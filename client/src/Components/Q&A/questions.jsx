@@ -19,8 +19,7 @@ export default function QuestionListContainer() {
   const [datalength, setDataLength] = useState(2);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { name } = useContext(AppContext);
-
-  // const [isLoading, setIsLoading] = useState(true);
+  const [helpulBtn, setHelpfulBtnClick] = useState(false);
 
   const product_id = 40344; // --------product id need to standardize with all other components---
 
@@ -33,9 +32,9 @@ export default function QuestionListContainer() {
     })
       .then(({ data }) => {
         ReactDOM.unstable_batchedUpdates(() => {
+          setQuestions(data.slice(0, count));
           setDataLength(data.length);
           setAllQuestions(data);
-          setQuestions(data.slice(0, count));
         });
       })
       .catch((error) => console.log(error));
@@ -54,15 +53,16 @@ export default function QuestionListContainer() {
   }, [search]);
 
   const fetchHelpfulData = (question_id) => {
-    axios.put(`/questions/questions/helpful/?question_id=${question_id}`)
+    axios.put(`/questions/questions/helpful?question_id=${question_id}`)
       .then(() => {
         fetchData();
+        setHelpfulBtnClick(true);
       })
       .catch((error) => console.log(error));
   }
 
   const reportQ = (question_id) => {
-    axios.put(`questions/reportQ/?question_id=${question_id}`)
+    axios.put(`questions/reportQ?question_id=${question_id}`)
       .then(() => {
         fetchData();
         alert('Question has been reported successfully');
@@ -72,24 +72,30 @@ export default function QuestionListContainer() {
 
   let question = null;
 
-  if (search.length === 0 && questions !== undefined) {
-    question = questions.map((question) => (
-      <QuestionList
-        key={question.question_id}
-        helpfulness={fetchHelpfulData}
-        reportQ={reportQ}
-        question={question}
-      />
-    ));
-  } else {
-    question = search.map((question) => (
-      <QuestionList
-        key={question.question_id}
-        helpfulness={fetchHelpfulData}
-        reportQ={reportQ}
-        question={question}
-      />
-    ));
+  if(questions !== undefined) {
+    if (search.length === 0 ) {
+      question = questions.map((question) => (
+        <QuestionList
+          key={question.question_id}
+          helpfulness={fetchHelpfulData}
+          reportQ={reportQ}
+          question={question}
+          helpfulClick={helpulBtn}
+          setHelpfulBtnClick={setHelpfulBtnClick}
+        />
+      ));
+    } else {
+      question = search.map((question) => (
+        <QuestionList
+          key={question.question_id}
+          helpfulness={fetchHelpfulData}
+          reportQ={reportQ}
+          question={question}
+          helpfulClick={helpulBtn}
+          setHelpfulBtnClick={setHelpfulBtnClick}
+        />
+      ));
+    }
   }
 
   const onModalCloseRequest = () => {
@@ -104,10 +110,6 @@ export default function QuestionListContainer() {
       .catch((error) => console.log('failed to post question', error));
     setIsModalOpen(false);
   };
-
-  // if (isLoading) {
-  //   return null;
-  // }
 
   return (
     <>

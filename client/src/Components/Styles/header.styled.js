@@ -30,7 +30,7 @@ export const HeaderClick = styled.button`
   font-family: 'Oswald', sans-serif;
   height:
   // font-weight: 200;
-  font-size: 30px;
+  font-size: 20px;
   cursor: pointer;
   &:hover {
     background-color: #C4CDC1
@@ -47,6 +47,6 @@ export const HeaderSearch = styled.button`
   border: none;
   font-family: 'Oswald', sans-serif;
   // font-weight: 200;
-  font-size: 20px;
+  // font-size: 30px;
   cursor: help;
 `

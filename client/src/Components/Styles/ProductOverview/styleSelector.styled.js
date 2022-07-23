@@ -8,6 +8,7 @@ export const StyleSelectorLayout = styled.div`
   grid-column-end: 3;
   grid-template-rows: auto auto auto auto auto auto auto;
   z-index: 3;
+  width: 85vw;
 `
 export const RatingCartGrid = styled.div`
   grid-row-start: 1;

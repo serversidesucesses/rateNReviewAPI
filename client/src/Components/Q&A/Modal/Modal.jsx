@@ -8,7 +8,7 @@ import CarouselThumbnailImage from '../../ProductOverview/ProductComponents/Caro
 import {
   ExpandedCarouselButtonRight,
   ExpandedCarouselButtonLeft,
-  ExpandedcarouselThumbnailGrid,
+  ExpandedCarouselThumbnailGrid,
   ExpandedCarouselThumbnailContainer,
 } from '../../Styles/ProductOverview/carousel.styled.js';
 import ModalHeader from './ModalHeader.jsx';
@@ -86,7 +86,7 @@ export default function Modal({
             />
 
             <ExpandedCarouselThumbnailContainer>
-              <ExpandedcarouselThumbnailGrid id="ExpandedcarouselThumbnailGrid">
+              <ExpandedCarouselThumbnailGrid id="ExpandedcarouselThumbnailGrid">
                 {/* here each photo is an object that contain url and thumbnail_url */}
                 {currentStylePhotos.map((photo, index) => (
                   <CarouselThumbnailImage
@@ -98,7 +98,7 @@ export default function Modal({
                     expand
                   />
                 ))}
-              </ExpandedcarouselThumbnailGrid>
+              </ExpandedCarouselThumbnailGrid>
             </ExpandedCarouselThumbnailContainer>
           </div>
 
