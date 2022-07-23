@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, {useState} from 'react';
 import Photo from '../../Assets/photo.jsx';
 import { ButtonStyled, ButtonContainerAnsStyled } from '../Styles/Q&A/buttons.styled';
 import { AnswerStyled, SpanStyled } from '../Styles/Q&A/container.styled';
@@ -53,7 +53,7 @@ export default function AnswerList({ answer, helpfulness, report }) {
         </div>
         <span style={{opacity:0.5}}>|</span>
         <div>
-          {helpfulClicked ? <SpanStyled>Helpful?</SpanStyled> : <ButtonStyled type="button" onClick={helpulBtn}>Helpful?</ButtonStyled> }
+          {helpfulClicked ? <SpanStyled>Helpful?</SpanStyled> : <ButtonStyled type="button" onClick={helpfulBtn}>Helpful?</ButtonStyled> }
           <SpanStyled>{`  Yes (${answer.helpfulness})`}</SpanStyled>
         </div>
         <span style={{opacity:0.5}}>|</span>
