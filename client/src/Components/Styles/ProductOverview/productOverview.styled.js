@@ -7,6 +7,7 @@ export const ProductOverviewGrid = styled.div`
   display: grid;
   grid-template-rows: 4fr 1fr;
   width: 85vw;
+  max-width: 100%;
   margin: 0 auto;
   margin-bottom: 2%;
   padding-top: 2%;
@@ -22,7 +23,7 @@ export const LogoCartGrid = styled.div`
 export const ProductDescriptionGrid = styled.div`
   display: grid;
   gap: 2rem;
-  max-width: 100%
+  max-width: 100%;
   @media (min-width: 501px) {
     grid-template-columns: 60% 40%;
   }

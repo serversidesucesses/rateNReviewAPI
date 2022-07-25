@@ -126,17 +126,13 @@ export const CharacterName = styled.span`
 
 export const MainGridStyled = styled.div`
   display: grid;
-  max-width: 100%;
-  // grid-template-columns: 40% 60%;
-  // grid-gap: 50px;
+  width: 100%;
   margin-bottom: 130px;
   // margin-left: 50px;
   // margin-right: 30px;
   @media (min-width: 501px) {
     grid-template-columns: 40% 60%;
     grid-gap: 50px;
-    margin-left: 50px;
-    margin-right: 30px;
   }
   @media (max-width: 500px) {
     grid-template-rows: auto auto;

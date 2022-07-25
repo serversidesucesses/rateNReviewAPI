@@ -14,8 +14,6 @@ import StarRating from '../../Ratings&Reviews/subcomponents/stars.jsx';
 import { AppContext } from '../../../AppContext.jsx';
 
 export default function StyleSelector({ productName, categoryName, priceTag, product_id }) {
-
-
   const [productId, setProductId] = useState(product_id);
   const [currentStyleArray, setCurrentStyleArray] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({ photos: [0], skus: {} });

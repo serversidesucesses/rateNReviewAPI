@@ -6,6 +6,7 @@ import styled from 'styled-components';
 export const StyleSelectorLayout = styled.div`
   grid-column-start: auto,
   grid-column-end: auto;
+  max-width: 100%;
   grid-template-rows: auto auto auto auto auto auto auto;
   z-index: 3;
 `
@@ -68,7 +69,7 @@ export const StylePhotoGrid = styled.div`
   padding-bottom: 1rem;
 `
 export const StylePhotoContainer = styled.div`
-
+  max-width: 100%;
 `
 
 export const StyleCheckmark = styled.img`
@@ -82,7 +83,7 @@ export const StylePhotoThumbnail = styled.img`
   // margin: 5px;
   border-radius: 50%;
   cursor: pointer;
-
+  max-width: 100%;
 `
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;
