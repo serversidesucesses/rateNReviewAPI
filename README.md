@@ -4,16 +4,16 @@ Online retail website front
 
 ## Installation Instructions:
 
-- [ ] **Git Clone:** git clone https://github.com/RFP-Space-Invaders/Atelier.git
+- [ ] **Git Clone:** `git clone https://github.com/RFP-Space-Invaders/Atelier.git`
 
 - [ ] **Install the dependencies:**
-npm install
+`npm install`
 
 - [ ] **Build the client:**
-npm run build
+`npm run build`
 
 - [ ] **Run the server:**
-npm run server-dev
+`npm run server-dev`
 
 
 ## Features Information:
