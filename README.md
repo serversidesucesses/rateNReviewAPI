@@ -1,4 +1,9 @@
 # Atelier
+ Markup : * Bullet list
+              * Nested bullet
+                  * Sub-nested bullet etc
+          * Bullet list item 2
+          
 The following installation will make the site available at https://localhost:3000
 
 Running Locally:
