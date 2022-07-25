@@ -22,17 +22,17 @@ import {
 
 const axios = require('axios');
 
-export default function QuestionList({ question, helpfulness, reportQ, seeMoreQuestion }) {
+export default function QuestionList({ question, helpfulness, reportQ, seeMoreQuestion, helpfulClick} ) {
   // answers only first  two
   // get answers --> sort by helpfulness
   const [allAnswers, setAllAnswers] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [count, setCount] = useState(2);
-  const [helpfulDataA, setHelpfulDataA] = useState(false);
   const [status, setStatus] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reportA, setReportA] = useState(false);
   const [answersLength, setAnswerLength] = useState(0);
+  const [helpfulClicked, setHelpfulClick] = useState(false);
 
   useEffect(() => {
     axios.get('/questions/answers', {
@@ -50,15 +50,11 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
         });
       })
       .catch((error) => console.log(error));
-  }, [helpfulDataA, reportA, isModalOpen]);
+  }, [helpfulClicked, reportA, isModalOpen]);
 
   useEffect(() => {
     setAnswers(allAnswers.slice(0, count));
   }, [count]);
-
-  useEffect(() => {
-    localStorage.setItem('helpfulDataA', JSON.stringify(true))
-  }, [helpfulDataA])
 
   useEffect(() => {
     localStorage.setItem('reportAns', JSON.stringify(reportA))
@@ -66,26 +62,19 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
 
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {
-    const data = JSON.parse(localStorage.getItem('helpfulDataA'));
-    if (data === false) {
-      axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
-      .then(() => setHelpfulDataA(true))
+      setHelpfulClick(true);
+      axios.put(`/questions/answers/helpful?answer_id=${answer_id}`)
+      .then(() => alert('Thank you for your feedback'))
       .catch((error) => console.log(error));
-    }
-
   }
 
   const report = (answer_id) => {
-    const reportAns = JSON.parse(localStorage.getItem('reportAns'));
-    if (reportA === false) {
-      axios.put(`/questions/reportA/?answer_id=${answer_id}`)
+    setReportA(true);
+      axios.put(`/questions/reportA?answer_id=${answer_id}`)
       .then(() => {
-        setReportA(true);
         alert('Answer has been reported');
       })
       .catch((error) => console.log(error))
-    }
-
   }
 
   const moreQuestions = () => {
@@ -101,11 +90,15 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
   const onFormValidation = (data, questionId) => {
     axios.post(`/questions/answers?question_id=${question.question_id}`, data)
       .then(() => {
-          console.log('created');
+          alert('Thank you for your feedback');
       })
       .catch(() => alert('error'));
       setIsModalOpen(false);
   };
+
+  const clickHandler = () => {
+    helpfulness(question.question_id)
+  }
 
   return (
     <div  id={`${question.question_id}`} style={{postion: 'relative'}}>
@@ -117,7 +110,7 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
             isOpen={isModalOpen}
             onCloseRequest={onModalCloseRequest}
           >
-            <AddAnswer onFormValidation={onFormValidation}/>
+            <AddAnswer helpfulClicked={helpfulClicked} onFormValidation={onFormValidation}/>
           </Modal>
         )
         : null }
@@ -129,7 +122,7 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
           </QStyled>
           <ButtonContainerStyled>
             <div>
-            {helpfulDataA ? <SpanStyled>Helpful?</SpanStyled> : <ButtonStyled type="button" onClick={(() => helpfulness(question.question_id))}>Helpful?</ButtonStyled>}
+            {helpfulClick ? <SpanStyled>Helpful?</SpanStyled> : <ButtonStyled type="button" onClick={clickHandler}>Helpful?</ButtonStyled>}
               <SpanStyled>{`Yes (${question.question_helpfulness})`}</SpanStyled>
             </div>
             <SpanStyled>|</SpanStyled>
