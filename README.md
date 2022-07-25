@@ -1,6 +1,8 @@
 # Atelier        
 The following installation will make the site available at https://localhost:3000
 
+## Installation Instructions:
+
 Running Locally:
 Atomic: git clone https://github.com/RFP-Space-Invaders/Atelier.git
 cd Atelier
@@ -17,7 +19,8 @@ npm run server-dev
 Info
 Online retail website
 
-Feature
+## Features Information:
+
 Product Overview: a general information relating to the product
 general and expanded carousel view of product images
 style selector
@@ -35,6 +38,8 @@ size fitter
 current rating of product
 add reviews
 report reviews
+
+## Technologies Used:
 
 Used Technologies
 Axios v0.27.2
