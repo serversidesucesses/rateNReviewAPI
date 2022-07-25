@@ -2,7 +2,7 @@
 The following installation will make the site available at https://localhost:3000
 
 Running Locally:
-git clone https://github.com/RFP-Space-Invaders/Atelier.git
+Atomic: git clone https://github.com/RFP-Space-Invaders/Atelier.git
 cd Atelier
 
 Install the dependencies:
