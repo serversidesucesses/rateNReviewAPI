@@ -4,17 +4,15 @@ Online retail website front
 
 ## Installation Instructions:
 
-**Running Locally:**
-Atomic: git clone https://github.com/RFP-Space-Invaders/Atelier.git
-cd Atelier
+- [] **Git Clone:** git clone https://github.com/RFP-Space-Invaders/Atelier.git
 
-**Install the dependencies:**
+- [] **Install the dependencies:**
 npm install
 
-**Build the client:**
+- [] **Build the client:**
 npm run build
 
-**Run the server:**
+- [] **Run the server:**
 npm run server-dev
 
 
