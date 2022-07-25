@@ -6,7 +6,6 @@ import styled from 'styled-components';
 export const CarouselLayout = styled.div`
   height: 38rem;
   background: #E3D9CF;
-  width: 85%;
 `;
 
 export const CarouselThumbnailContainer = styled.div`

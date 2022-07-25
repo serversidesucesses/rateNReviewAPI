@@ -53,10 +53,10 @@ export default function QuestionListContainer() {
   }, [search]);
 
   const fetchHelpfulData = (question_id) => {
+    setHelpfulBtnClick(true);
     axios.put(`/questions/questions/helpful?question_id=${question_id}`)
       .then(() => {
         fetchData();
-        setHelpfulBtnClick(true);
       })
       .catch((error) => console.log(error));
   }
