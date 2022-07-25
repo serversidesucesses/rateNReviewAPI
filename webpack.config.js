@@ -1,8 +1,10 @@
 require('dotenv').config();
-
+// var nodeExternals = require('webpack-node-externals');
 const path = require('path');
 const CompressionPLugin = require("compression-webpack-plugin")
 const BrotliPlugin = require('brotli-webpack-plugin');
+const ImageminAvifWebpackPlugin= require("imagemin-avif-webpack-plugin");
+
 module.exports = {
   mode: 'development',
   entry: path.join(__dirname, '/client/src/index.jsx'),
@@ -36,10 +38,27 @@ module.exports = {
       },
     ],
   },
+  // target: 'node',
+  // externals: [nodeExternals()],
+  // externalsPresets: {
+  //   node: true
+  // },
   plugins: [
+    new ImageminAvifWebpackPlugin({
+      config: [{
+        test: /\.(jpe?g|png)/,
+        options: {
+          quality:  75
+        }
+      }],
+      overrideExtension: true,
+      detailedLogs: false,
+      silent: false,
+      strict: false
+    }),
     new CompressionPLugin({
       algorithm: "gzip"
     }),
-    new BrotliPlugin()
+    new BrotliPlugin(),
   ]
 };

@@ -60,6 +60,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "identity-obj-proxy": "^3.0.0",
     "jest-environment-jsdom": "^28.1.3",
+    "imagemin-avif-webpack-plugin": "^0.0.1",
     "nodemon": "^2.0.19",
     "val-loader": "^5.0.0",
     "webpack": "^5.73.0",
