@@ -41,13 +41,12 @@ report reviews
 
 ## Technologies Used:
 
-Used Technologies
-Axios v0.27.2
-Babel v7.18.6
-Express v4.18.1
-React v17.0.2
-React-Router v6.3.0
-Styled Components v5.3.5
-Webpack v5.73.0
-Jest v28.1.2
-React-Testing-Library v12.1.2
+- Axios v0.27.2
+- Babel v7.18.6
+- Express v4.18.1
+- React v17.0.2
+- React-Router v6.3.0
+- Styled Components v5.3.5
+- Webpack v5.73.0
+- Jest v28.1.2
+- React-Testing-Library v12.1.2
