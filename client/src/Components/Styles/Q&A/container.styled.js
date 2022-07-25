@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 export const Question_AnswerStyled = styled.ul`
   max-height: 600px;
-
-  width: 65%;
+  width: 85vw;
   margin: 0 auto;
   overflow-y: auto;
   padding: 15px;
@@ -20,6 +19,9 @@ export const QuestionStyled = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
 `;
 
 export const QuestionListItemStyled = styled.li`
@@ -27,6 +29,9 @@ export const QuestionListItemStyled = styled.li`
   margin-bottom: 10px;
   list-style: none;
   border-bottom: 1px dashed;
+
+
+}
 `;
 
 export const SpanStyled = styled.span`

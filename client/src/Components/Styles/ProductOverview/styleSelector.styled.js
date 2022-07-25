@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 // styleSelectorLayout is the right top orange grid
 export const StyleSelectorLayout = styled.div`
-  grid-column-start: 2,
-  grid-column-end: 3;
+  grid-column-start: auto,
+  grid-column-end: auto;
+  max-width: 100%;
   grid-template-rows: auto auto auto auto auto auto auto;
   z-index: 3;
-  width: 85vw;
 `
 export const RatingCartGrid = styled.div`
   grid-row-start: 1;
@@ -26,8 +26,6 @@ export const RatingContainer = styled.div`
 export const CartLogoContainer = styled.div`
   grid-column-start: 2;
   grid-column-end: 3;
-  display: flex;
-  justify-content: right;
   padding-right: 10%;
   font-size: 1.3em;
   color: black;
@@ -67,10 +65,11 @@ export const StylePhotoGrid = styled.div`
   grid-row-end: auto;
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  max-width: 100%;
   padding-bottom: 1rem;
 `
 export const StylePhotoContainer = styled.div`
-
+  max-width: 100%;
 `
 
 export const StyleCheckmark = styled.img`
@@ -84,7 +83,7 @@ export const StylePhotoThumbnail = styled.img`
   // margin: 5px;
   border-radius: 50%;
   cursor: pointer;
-
+  max-width: 100%;
 `
 export const SizeQtyContainer = styled.div`
   grid-row-start: 5;

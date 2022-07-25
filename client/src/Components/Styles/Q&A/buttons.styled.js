@@ -15,14 +15,17 @@ export const ButtonStyled = styled.button`
 export const ButtonContainerStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 18rem;
+  width: 30%;
   padding-right: 15px;
+  @media (max-width: 500px) {
+    width: 60%;
+  }
 `;
 
 export const ButtonContainerAnsStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 25rem;
+  width: 18rem;
   margin-top: -0.09em;
   margin-bottom: 0.3em;
 `;

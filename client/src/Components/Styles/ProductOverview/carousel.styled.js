@@ -6,6 +6,7 @@ import styled from 'styled-components';
 export const CarouselLayout = styled.div`
   height: 38rem;
   background: #E3D9CF;
+  max-width: 100%;
 `;
 
 export const CarouselThumbnailContainer = styled.div`
@@ -44,13 +45,13 @@ export const ThumbnailImage = styled.img`
 export const CarouselImageContainer = styled.div`
   position: relative;
   height: 100%;
-  width: 100%;
+  max-width: 100%;
   z-index: 10;
 `;
 
 export const MainImage = styled.img`
   position: absolute;
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   object-fit: contain;
   opacity: 1;
@@ -128,6 +129,7 @@ export const ExpandedCarouselThumbnailGrid = styled.div`
   display: grid;
   grid-gap: 1rem;
   padding: 16px;
+  max-width: 100%;
   max-height: 3rem;
   grid-template-columns: repeat(auto-fill,50px);
   grid-auto-flow: column;

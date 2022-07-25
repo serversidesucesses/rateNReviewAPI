@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const HeaderGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  max-width: 100vw;
   background: #658c8a;
-  width: 100%;
 `
 export const LogoContainer = styled.div`
   grid-column-start: 1;
