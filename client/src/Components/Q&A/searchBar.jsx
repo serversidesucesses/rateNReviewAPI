@@ -15,12 +15,12 @@ export default function Search({ setSearch, allQuestions }) {
   }
 
   useEffect(() => {
+    console.log('filter')
     filter(value);
   }, [value]);
 
   const changeHandler = (e) => {
     setValue(e.target.value);
-    console.log('hello');
   }
 
   return (

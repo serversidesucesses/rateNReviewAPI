@@ -44,6 +44,7 @@ function ReviewMain({ product_id }) {
   // }, [overallRating, numReviews]);
 
   useEffect(() => {
+    console.log('Review Main')
     axios.get('/reviews/reviews/meta', {
       params: {
         product_id,

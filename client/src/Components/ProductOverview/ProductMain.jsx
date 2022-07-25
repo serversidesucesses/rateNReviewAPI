@@ -45,6 +45,7 @@ export default function ProductMain({product_id}) {
 
   // when first load page, do axios call
   useEffect(() => {
+    console.log('productMain')
     getDataFromProductId(product_id);
   }, []);
 

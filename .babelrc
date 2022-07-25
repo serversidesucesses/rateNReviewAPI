@@ -7,5 +7,6 @@
         "runtime": "automatic"
       }
     ]
-  ]
+  ],
+  // "exclude": ["node_modules"]
 }
