@@ -19,19 +19,19 @@ Online retail website front
 
 ## Features Information:
 
-`**Product Overview:**` a general information relating to the product
+`Product Overview:` a general information relating to the product
 general and expanded carousel view of product images
 style selector
 add to cart and favorite item
 item rating and link to review section
 
-**Questions & Answers:** a dynamic list of questions and answers
+`Questions & Answers:` a dynamic list of questions and answers
 upload images through Cloudinary
 add questions/answers
 report questions/answers
 
 
-**Reviews:** a dynamic list of current ratings and reviews
+`Reviews:` a dynamic list of current ratings and reviews
 size fitter
 current rating of product
 add reviews
