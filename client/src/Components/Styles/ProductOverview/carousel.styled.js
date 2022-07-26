@@ -51,7 +51,7 @@ export const CarouselImageContainer = styled.div`
 
 export const MainImage = styled.img`
   position: absolute;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: contain;
   opacity: 1;
