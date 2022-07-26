@@ -41,7 +41,10 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
   // get data from /cart immediate when the page load
   useEffect(() => {
     console.log('styleSelector')
-      axios.get('/products/getFromCart')
+    axios({
+      method: 'get',
+      url:  '/cart',
+    })
       .then((response) => {
         ReactDOM.unstable_batchedUpdates(() => {
           setCartArray(response.data);
@@ -63,8 +66,7 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
   const getStyleFromProductId = (productId) => {
     axios({
       method: 'get',
-      url: '/products/product/styles',
-      params: { id: productId },
+      url:  `products/${productID}/styles`,
     })
       .then((response) => {
         let current = response.data.results[0];

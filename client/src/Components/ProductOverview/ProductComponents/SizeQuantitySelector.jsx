@@ -77,7 +77,10 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
   const handleAddToBag = () => {
     if (sizeSeletedStatus && outOfStockStatus === false && qtySeletedStatus) {
       for (let i = 0; i < selectedQty; i++) {
-        axios.post('/products/addToCart', {sku_id: Number(selectedSku)})
+        axios({
+          method: 'post',
+          url:  '/cart',
+        })
           .then((response) => {
             setRefreshState(!refreshState);
           })

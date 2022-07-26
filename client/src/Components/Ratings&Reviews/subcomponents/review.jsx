@@ -16,7 +16,10 @@ export default function Review({ review }) {
 
   const helpHandler = () => {
     setHelpCount(helpCount + 1);
-    axios.put(`/reviews/mark/helpful?review_id=${review.review_id}`)
+    axios({
+      method: 'put',
+      url: `/reviews/${review.review_id}/helpful`,
+    })
       .then((response) => {
         // console.log(response);
         // setHelpCount(helpCount + 1);
@@ -26,7 +29,10 @@ export default function Review({ review }) {
   };
 
   const reportHandler = () => {
-    axios.put(`/reviews/mark/report?review_id=${review.review_id}`)
+    axios({
+      method: 'put',
+      url: `/reviews/${review.review_id}/report`,
+    })
       .then((response) => {
         // console.log(response);
         // setDidClick(false);

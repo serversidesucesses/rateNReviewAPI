@@ -24,11 +24,13 @@ export default function QuestionListContainer() {
   const product_id = 40344; // --------product id need to standardize with all other components---
 
   function fetchData() {
-    axios.get('/questions/questions', {
+    axios({
+      method: 'get',
+      url: `/qa/questions`,
       params: {
-        product_id,
         page: 1,
-      },
+        count: 1000,
+      }
     })
       .then(({ data }) => {
         ReactDOM.unstable_batchedUpdates(() => {
@@ -57,7 +59,10 @@ export default function QuestionListContainer() {
 
   const fetchHelpfulData = (question_id) => {
     setHelpfulBtnClick(true);
-    axios.put(`/questions/questions/helpful?question_id=${question_id}`)
+    axios({
+      method: 'put',
+      url: `/qa/answers/${question_id}/helpful`
+    })
       .then(() => {
         fetchData();
       })
@@ -65,7 +70,10 @@ export default function QuestionListContainer() {
   }
 
   const reportQ = (question_id) => {
-    axios.put(`questions/reportQ?question_id=${question_id}`)
+    axios({
+      method: 'put',
+      url: `/qa/questions/${question_id}/report`
+    })
       .then(() => {
         fetchData();
         alert('Question has been reported successfully');

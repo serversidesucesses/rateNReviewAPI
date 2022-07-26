@@ -45,9 +45,11 @@ function ReviewMain({ product_id }) {
 
   useEffect(() => {
     console.log('Review Main')
-    axios.get('/reviews/reviews/meta', {
+    axios({
+      method: 'get',
+      url: `/reviews/meta`,
       params: {
-        product_id,
+        product_id
       },
     })
       .then(({ data }) => {
@@ -101,14 +103,16 @@ function ReviewMain({ product_id }) {
             });
           }));
         });
-        return axios.get('/reviews/reviews', {
+        return axios({
+          method: 'get',
+          url: `/reviews/`,
           params: {
+            page: 1,
+            count: reviewCount,
             product_id,
             sort: sortOption,
-            count: reviewCount,
-          },
-        });
-      })
+          }
+        })
       .then(({ data }) => {
         ReactDOM.unstable_batchedUpdates(() => {
           setReviews(data.results);

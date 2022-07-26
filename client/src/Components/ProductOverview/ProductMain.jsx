@@ -24,8 +24,7 @@ export default function ProductMain({product_id}) {
   const getDataFromProductId = (productId) => {
     axios({
       method: 'get',
-      url: '/products/productdetails',
-      params: { id: productId },
+      url: `/products/${productID}`,
     })
       .then((response) => {
         //console.log(response.data.name);

@@ -41,11 +41,13 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
       setAnswers(allAnswers.slice(0, count));
     } else {
       console.log('questionList')
-      axios.get('/questions/answers', {
+      axios({
+        method: 'get',
+        url: `/qa/questions/${question_id}/answers`,
         params: {
-          question_id: question.question_id,
           page: 1,
-        },
+          count,
+        }
       })
         .then(({ data }) => {
           ReactDOM.unstable_batchedUpdates(() => {
@@ -66,14 +68,20 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
 
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {
-      axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
+    axios({
+      method: 'put',
+      url: `qa/answers/${answer_id}/helpful`
+    })
       .then(() => setHelpfulDataA(true))
       .catch((error) => console.log(error));
 
   }
 
   const report = (answer_id) => {
-      axios.put(`/questions/reportA/?answer_id=${answer_id}`)
+    axios({
+      method: 'put',
+      url: `qa/answers/${answer_id}/report`,
+    })
       .then(() => {
         alert('Answer has been reported');
       })
@@ -91,7 +99,11 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
 
 
   const onFormValidation = (data, questionId) => {
-    axios.post(`/questions/answers?question_id=${question.question_id}`, data)
+    axios({
+      method: 'post',
+      url: `/qa/questions/${questionId}/answers`,
+      data,
+    })
       .then(() => {
           alert('Thank you for your feedback');
       })
