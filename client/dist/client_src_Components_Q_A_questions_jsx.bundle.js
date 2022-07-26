@@ -169,7 +169,6 @@ function AddAnswer(_ref) {
     var _e$target = e.target,
         name = _e$target.name,
         value = _e$target.value;
-    console.log(e.target[name], e.target.value);
     setValues(_objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, value)));
   };
 
@@ -296,7 +295,6 @@ function AddQuestion(_ref) {
 
   var onSubmit = function onSubmit(e) {
     e.preventDefault();
-    console.log(values);
     onFormValidation(values);
   };
 
@@ -561,56 +559,46 @@ function QuestionList(_ref) {
       setAnswerLength = _useState16[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get('/questions/answers', {
-      params: {
-        question_id: question.question_id,
-        page: 1
-      }
-    }).then(function (_ref2) {
-      var data = _ref2.data;
-      console.log('heloo gtom answers');
-      react_dom__WEBPACK_IMPORTED_MODULE_1__.unstable_batchedUpdates(function () {
-        setAllAnswers(data.results);
-        setAnswers(data.results.slice(0, count));
-        setAnswerLength(data.results.length);
+    if (count > 2) {
+      console.log('questionList_1');
+      setAnswers(allAnswers.slice(0, count));
+    } else {
+      console.log('questionList');
+      axios.get('/questions/answers', {
+        params: {
+          question_id: question.question_id,
+          page: 1
+        }
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        react_dom__WEBPACK_IMPORTED_MODULE_1__.unstable_batchedUpdates(function () {
+          setAllAnswers(data.results);
+          setAnswers(data.results.slice(0, count));
+          setAnswerLength(data.results.length);
+        });
+      })["catch"](function (error) {
+        return console.log(error);
       });
+    }
+  }, [count, helpfulDataA, reportA, isModalOpen]); // useEffect(() => {
+  // }, [count]);
+  // ----------setter functions being passed to child component-------------------------------------
+
+  var fetchHelpfulData = function fetchHelpfulData(answer_id) {
+    axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
+      return setHelpfulDataA(true);
     })["catch"](function (error) {
       return console.log(error);
     });
-  }, [helpfulDataA, reportA, isModalOpen]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setAnswers(allAnswers.slice(0, count));
-  }, [count]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    localStorage.setItem('helpfulDataA', JSON.stringify(true));
-  }, [helpfulDataA]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    localStorage.setItem('reportAns', JSON.stringify(reportA));
-  }, [reportA]); // ----------setter functions being passed to child component-------------------------------------
-
-  var fetchHelpfulData = function fetchHelpfulData(answer_id) {
-    var data = JSON.parse(localStorage.getItem('helpfulDataA'));
-
-    if (data === false) {
-      axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
-        return setHelpfulDataA(true);
-      })["catch"](function (error) {
-        return console.log(error);
-      });
-    }
   };
 
   var report = function report(answer_id) {
-    var reportAns = JSON.parse(localStorage.getItem('reportAns'));
-
-    if (reportA === false) {
-      axios.put("/questions/reportA/?answer_id=".concat(answer_id)).then(function () {
-        setReportA(true);
-        alert('Answer has been reported');
-      })["catch"](function (error) {
-        return console.log(error);
-      });
-    }
+    axios.put("/questions/reportA/?answer_id=".concat(answer_id)).then(function () {
+      setReportA(true);
+      alert('Answer has been reported');
+    })["catch"](function (error) {
+      return console.log(error);
+    });
   };
 
   var moreQuestions = function moreQuestions() {
@@ -846,12 +834,15 @@ function QuestionListContainer() {
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('questions');
     fetchData();
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('questions_1');
     setQuestions(allQuestions.slice(0, count));
   }, [count]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('question_2');
     setQuestions(search);
   }, [search]);
 
@@ -1003,12 +994,12 @@ function Search(_ref) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('filter');
     filter(value);
   }, [value]);
 
   var changeHandler = function changeHandler(e) {
     setValue(e.target.value);
-    console.log('hello');
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {

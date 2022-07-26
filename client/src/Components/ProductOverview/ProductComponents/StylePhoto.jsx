@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StylePhotoContainer, StyleCheckmark, StylePhotoThumbnail } from '../../Styles/ProductOverview/styleSelector.styled.js';
 import { FaCheck } from 'react-icons/fa';
 

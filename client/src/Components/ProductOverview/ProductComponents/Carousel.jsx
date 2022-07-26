@@ -35,14 +35,17 @@ function Carousel({ currentStyle, productId }) {
 
   // when productId change, default image change back to first img
   useEffect(() => {
+    console.log('Carousel')
     SetActivePhotoIndex(0);
   }, [productId]);
 
   useEffect(() => {
+    console.log('Carousel_1')
     setCurrentStylePhotos(currentStyle.photos);
   }, [currentStyle]);
 
   useEffect(() => {
+    console.log('Carousel_2')
     if (activePhotoIndex === 0) {
       setLeftButtonStatus(false);
     } else if (activePhotoIndex !== 0) {
