@@ -18,7 +18,7 @@ export default function RelatedProducts() {
     })
       .then((response) => {
         let data = response.data;
-        return Promise.all(data.map((product)) => {
+        return Promise.all(data.map((product) => {
           return axios.get(`/products/${product.id}`)
             .then((response) => {
               return {
@@ -30,7 +30,7 @@ export default function RelatedProducts() {
               }
             })
             .catch((err) => console.log(err))
-        })
+        }))
       })
       .then((ProductData) => {
         setProducts(ProductData);
