@@ -16,7 +16,7 @@ export const ReviewContainerStyled = styled.div`
 export const ReviewListContainerStyled = styled.div`
   margin-bottom: 10px;
   margin-top: 20px;
-  @media (max-width: 510px) {
+  @media (max-width: 400px) {
     width: 85vw;
   }
 `;
