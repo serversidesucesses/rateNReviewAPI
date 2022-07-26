@@ -8,16 +8,19 @@ import AppContextProvider, { AppContext } from './AppContext.jsx';
 import GlobalCSS from './Components/Styles/globalstyle.styled.js';
 const QuestionListContainer = lazy(() => import ('./Components/Q&A/questions.jsx'))
 const ReviewMain = lazy(() => import ('./Components/Ratings&Reviews/reviewMain.jsx'))
+const RelatedProducts = lazy(() => import('./Components/RelatedProducts/relatedmain.jsx'))
 
 // const RatingContext = createContext(null);
 
 export default function App({ product_id }) {
+
   return (
     <AppContextProvider>
       <GlobalCSS/>
       <Header />
       <ProductMain product_id={product_id}/>
       <Suspense fallback={<div>Loading...</div>}>
+      <RelatedProducts/>
       <QuestionListContainer />
       {/* <QuestionListContainer /> */}
       <ReviewMain product_id={product_id} />
