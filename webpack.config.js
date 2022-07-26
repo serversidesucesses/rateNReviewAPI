@@ -1,8 +1,7 @@
 require('dotenv').config();
 // var nodeExternals = require('webpack-node-externals');
 const path = require('path');
-const CompressionPLugin = require("compression-webpack-plugin")
-const BrotliPlugin = require('brotli-webpack-plugin');
+const CompressionPLugin = require("compression-webpack-plugin");
 const ImageminAvifWebpackPlugin= require("imagemin-avif-webpack-plugin");
 
 module.exports = {
@@ -58,7 +57,6 @@ module.exports = {
     }),
     new CompressionPLugin({
       algorithm: "gzip"
-    }),
-    new BrotliPlugin(),
+    })
   ]
 };

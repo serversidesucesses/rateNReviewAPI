@@ -13,6 +13,14 @@ export const ReviewContainerStyled = styled.div`
   // }
 `;
 
+export const ReviewListContainerStyled = styled.div`
+  margin-bottom: 10px;
+  margin-top: 20px;
+  @media (max-width: 510px) {
+    width: 85vw;
+  }
+`;
+
 export const ReviewListButtonStyled = styled.button`
   // padding: 0;
   // border: 4px black;
