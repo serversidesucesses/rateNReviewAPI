@@ -225,7 +225,14 @@ function ReviewMain(_ref) {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('Review Main');
+<<<<<<< HEAD
+    axios__WEBPACK_IMPORTED_MODULE_2___default()({
+      method: 'get',
+      url: "/reviews/meta",
+=======
     axios__WEBPACK_IMPORTED_MODULE_2___default().get('/reviews/reviews/meta', {
+>>>>>>> main
       params: {
         product_id: product_id
       }
@@ -287,7 +294,13 @@ function ReviewMain(_ref) {
           };
         }));
       });
+<<<<<<< HEAD
+      return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+        method: 'get',
+        url: '/reviews',
+=======
       return axios__WEBPACK_IMPORTED_MODULE_2___default().get('/reviews/reviews', {
+>>>>>>> main
         params: {
           product_id: product_id,
           sort: sortOption,
@@ -457,11 +470,13 @@ function AddReview(_ref) {
       setCharacteristicsObj = _useState6[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('addReview');
     setValues(_objectSpread(_objectSpread({}, values), {}, {
       characteristics: characteristicsObj
     }));
   }, [characteristicsObj]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('addReviewForm1');
     setValues(_objectSpread(_objectSpread({}, values), {}, {
       product_id: product_id
     }));
@@ -747,6 +762,7 @@ function FormStarButton(_ref) {
       setRating = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('formstarbutton');
     onChange(rating);
   }, [rating]);
 
@@ -1072,7 +1088,14 @@ function Review(_ref) {
 
   var helpHandler = function helpHandler() {
     setHelpCount(helpCount + 1);
+<<<<<<< HEAD
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
+      method: 'put',
+      url: "/reviews/".concat(review.review_id, "/helpful")
+    }).then(function (response) {// console.log(response);
+=======
     axios__WEBPACK_IMPORTED_MODULE_1___default().put("/reviews/mark/helpful?review_id=".concat(review.review_id)).then(function (response) {// console.log(response);
+>>>>>>> main
       // setHelpCount(helpCount + 1);
       // setDidClick(false);
     })["catch"](function (err) {
@@ -1081,7 +1104,14 @@ function Review(_ref) {
   };
 
   var reportHandler = function reportHandler() {
+<<<<<<< HEAD
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
+      method: 'put',
+      url: "/reviews/".concat(review.review_id, "/report")
+    }).then(function (response) {// console.log(response);
+=======
     axios__WEBPACK_IMPORTED_MODULE_1___default().put("/reviews/mark/report?review_id=".concat(review.review_id)).then(function (response) {// console.log(response);
+>>>>>>> main
       // setDidClick(false);
     })["catch"](function (err) {
       console.log(err);
@@ -1154,8 +1184,8 @@ function Review(_ref) {
 /* harmony import */ var _review_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./review.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/review.jsx");
 /* harmony import */ var _Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Modal/Modal.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/Modal/Modal.jsx");
 /* harmony import */ var _Forms_addReview_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Forms/addReview.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/Forms/addReview.jsx");
-/* harmony import */ var _sortview_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sortview.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/sortview.jsx");
-/* harmony import */ var _Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Styles/Reviews/bars.styled.js */ "./client/src/Components/Styles/Reviews/bars.styled.js");
+/* harmony import */ var _sortview_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sortview.jsx */ "./client/src/Components/Ratings&Reviews/subcomponents/sortview.jsx");
+/* harmony import */ var _Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Styles/Reviews/bars.styled.js */ "./client/src/Components/Styles/Reviews/bars.styled.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -1196,11 +1226,15 @@ function ReviewsList(_ref) {
   // };
 
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_2__.ReviewListContainerStyled, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_sortview_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    style: {
+      marginBottom: '10px',
+      marginTop: '20px'
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_sortview_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
       selectHandler: selectHandler,
       reviewCount: reviewCount
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_2__.ReviewListStyled, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_3__.ReviewListStyled, {
       children: [isModalOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Modal_Modal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         title: "Add a Review",
         description: "A short description of the modal's contents",
@@ -1220,11 +1254,11 @@ function ReviewsList(_ref) {
         marginTop: "15px",
         display: 'flex'
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_2__.ReviewListButtonStyled, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_3__.ReviewListButtonStyled, {
         type: "button",
         onClick: loadMoreReviews,
         children: "More Reviews"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_2__.ReviewListButtonStyled, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Styles_Reviews_bars_styled_js__WEBPACK_IMPORTED_MODULE_3__.ReviewListButtonStyled, {
         type: "button",
         onClick: function onClick() {
           return setIsModalOpen(true);
@@ -1439,7 +1473,6 @@ var PhotoEnlargeStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default
 /* harmony export */   "ReviewButtonStyled": () => (/* binding */ ReviewButtonStyled),
 /* harmony export */   "ReviewContainerStyled": () => (/* binding */ ReviewContainerStyled),
 /* harmony export */   "ReviewListButtonStyled": () => (/* binding */ ReviewListButtonStyled),
-/* harmony export */   "ReviewListContainerStyled": () => (/* binding */ ReviewListContainerStyled),
 /* harmony export */   "ReviewListStyled": () => (/* binding */ ReviewListStyled),
 /* harmony export */   "ReviewStyled": () => (/* binding */ ReviewStyled),
 /* harmony export */   "SelectStyled": () => (/* binding */ SelectStyled),
@@ -1452,43 +1485,64 @@ var PhotoEnlargeStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default
 /* harmony export */   "SummaryStyled": () => (/* binding */ SummaryStyled)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
+<<<<<<< HEAD
 var ReviewContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  margin: 0 auto;\n  max-width: 85vw\n  // @media (min-width: 768px) {\n  //   // max-width: 600px;\n  //   // margin-right: 100px;\n  // }\n  // @media (max-width: 375px) {\n  // }\n"])));
-var ReviewListContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  margin-bottom: 10px;\n  margin-top: 20px;\n  @media (max-width: 400px) {\n    width: 85vw;\n  }\n"])));
-var ReviewListButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  // padding: 0;\n  // border: 4px black;\n  // background: none;\n  // text-decoration: underline;\n  // cursor: pointer;\n  // font-size: 15px;\n  // margin-left: 15px;\n  // margin-right: 15px;\n\n  // padding-left: 1.5rem;\n  // padding-right: 1.5rem;\n  font-family: 'Oswald', sans-serif;\n  font-weight: 200;\n  height: 30px;\n  background-color: white;\n  font-size: 18px;\n  cursor: pointer;\n  margin-right: 2.5px;\n  margin-left: 2.5px;\n\n  &:hover {\n    background-color: #99AEAD;\n  }\n  @media (max-width: 400px) {\n    margin-left: 30px;\n  }\n"])));
-var BarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  height: 12px;\n  width: 180px;\n  border-radius: 10px;\n  background-color: rgb(210, 210, 210);\n  margin: 10px;\n  position: relative;\n  bottom: 4px;\n  .percentagefill {\n    height: 100%;\n    border-radius: 10px;\n    background-color: #5AC856;\n    text-align: right;\n    padding: 0;\n  }\n  .percentagefill-opened {\n    height: 100%;\n    border-radius: 10px;\n    background-color: #FE8214;\n    text-align: right;\n    padding: 0;\n  }\n"])));
-var BarContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  width: 340px;\n  cursor: pointer;\n  &:hover .percentagefill {\n    background-color: #E0EF5D;\n  }\n"])));
-var StarSpanStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  text-decoration: underline;\n"])));
-var CharacterBarContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  column-gap: 2px;\n  width: 214px;\n  grid-row: 2;\n  grid-column: 1/4;\n  position: relative;\n"])));
-var CharacterBarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  height: 9px;\n  width: 70px;\n  background-color: rgb(210, 210, 210);\n"])));
-var IconStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 14px;\n  top: -6px;\n  z-index: 1;\n  margin-left: -7px;\n  padding: 0;\n"])));
-var CharacteristicContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  display: grid;\n  position: relative;\n  width: 214px;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: 25px 10px 15px;\n  padding-bottom: 20px;\n  word-break: break-all;\n"])));
-var CharacterDescriptionStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  grid-row: 3;\n  font-size: 12px;\n"])));
-var CharacterName = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  grid-row: 1;\n  grid-column: 1/2;\n  font-size: 15px;\n"])));
-var MainGridStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  display: grid;\n  width: 100%;\n  margin-bottom: 130px;\n  // margin-left: 50px;\n  // margin-right: 30px;\n  @media (min-width: 501px) {\n    grid-template-columns: 40% 60%;\n    grid-gap: 50px;\n  }\n  @media (max-width: 500px) {\n    grid-template-rows: auto auto;\n  }\n"])));
-var RatingBreakdownStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  max-width: 100%;\n  // @media (min-width: 768px) {\n  // }\n  @media (max-width: 400px) {\n    margin-left: 20px;\n  }\n"])));
-var CharacterListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  margin-right: 45px;\n"])));
-var StarListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n"])));
-var ReviewButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  font-family: 'Oswald', sans-serif;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: light;\n  opacity:0.6;\n"])));
-var SpanStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  padding-left: 2px;\n  font-size: 13px;\n  font-weight: light;\n  opacity: 0.6;\n"])));
-var CharacteristicRatingStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: stretch;\n  justify-content: space-evenly;\n  margin-bottom: 0px;\n  width: 400px;\n"])));
-var RadioButtonContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n"])));
-var RadioButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].input(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  align-self: center;\n"])));
-var ReviewListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  margin-top: 16px;\n  margin: 0 auto;\n  max-width: 90%;\n  overflow-y: auto;\n  overflow-x: hidden;\n  word-wrap: break-word;\n  max-height: 500px;\n  // @media (max-width: 375px) {\n  //   width: 400px;\n  // }\n  // @media (max-width: 400px) {\n  //   margin-left: 30px;\n  // }\n"])));
-var ReviewStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  padding: 10px;\n  border-bottom: 1px dashed;\n  margin-top: 0px;\n"])));
-var SummaryStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].h3(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  color: #007185;\n  font-weight: bold;\n  margin-left: 0px;\n  width: 60%;\n"])));
-var BodyStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].p(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n"])));
-var NameDateStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].small(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-self: center;\n  margin-bottom: 10px;\n"])));
-var StarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n"])));
-var CheckStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 20px;\n"])));
-var SmallStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].small(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n"])));
-var OverallRatingStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin-left: 50px;\n  margin-bottom: -40px;\n"])));
-var SortBarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  @media (max-width: 400px) {\n    margin-left: 30px;\n  }\n"])));
-var SelectStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].select(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  // padding-left: 3px;\n  border-color: transparent;\n  display: flex;\n  min-height: 38px;\n  margin-left: -0.5px;\n  font-family: 'Oswald', sans-serif;\n  flex-wrap: wrap;\n  text-decoration: underline 2px;\n  font-size: 20px;\n\n  &:focus {\n    outline: none;\n  }\n"])));
+=======
+var ReviewContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  margin: 0 auto\n  max-width: 85vw;\n  // @media (min-width: 768px) {\n  //   // max-width: 600px;\n  //   // margin-right: 100px;\n  // }\n  // @media (max-width: 375px) {\n\n  // }\n"])));
+>>>>>>> main
+var ReviewListButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  // padding: 0;\n  // border: 4px black;\n  // background: none;\n  // text-decoration: underline;\n  // cursor: pointer;\n  // font-size: 15px;\n  // margin-left: 15px;\n  // margin-right: 15px;\n\n  // padding-left: 1.5rem;\n  // padding-right: 1.5rem;\n  font-family: 'Oswald', sans-serif;\n  font-weight: 200;\n  height: 30px;\n  background-color: white;\n  font-size: 18px;\n  cursor: pointer;\n  margin-right: 2.5px;\n  margin-left: 2.5px;\n\n  &:hover {\n    background-color: #99AEAD;\n  }\n  @media (max-width: 400px) {\n    margin-left: 30px;\n  }\n"])));
+var BarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  height: 12px;\n  width: 180px;\n  border-radius: 10px;\n  background-color: rgb(210, 210, 210);\n  margin: 10px;\n  position: relative;\n  bottom: 4px;\n  .percentagefill {\n    height: 100%;\n    border-radius: 10px;\n    background-color: #5AC856;\n    text-align: right;\n    padding: 0;\n  }\n  .percentagefill-opened {\n    height: 100%;\n    border-radius: 10px;\n    background-color: #FE8214;\n    text-align: right;\n    padding: 0;\n  }\n"])));
+var BarContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  width: 340px;\n  cursor: pointer;\n  &:hover .percentagefill {\n    background-color: #E0EF5D;\n  }\n"])));
+var StarSpanStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  text-decoration: underline;\n"])));
+var CharacterBarContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  column-gap: 2px;\n  width: 214px;\n  grid-row: 2;\n  grid-column: 1/4;\n  position: relative;\n"])));
+var CharacterBarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  height: 9px;\n  width: 70px;\n  background-color: rgb(210, 210, 210);\n"])));
+var IconStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 14px;\n  top: -6px;\n  z-index: 1;\n  margin-left: -7px;\n  padding: 0;\n"])));
+var CharacteristicContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: grid;\n  position: relative;\n  width: 214px;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: 25px 10px 15px;\n  padding-bottom: 20px;\n  word-break: break-all;\n"])));
+var CharacterDescriptionStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  grid-row: 3;\n  font-size: 12px;\n"])));
+var CharacterName = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  grid-row: 1;\n  grid-column: 1/2;\n  font-size: 15px;\n"])));
+<<<<<<< HEAD
+var MainGridStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  display: grid;\n  width: 100%;\n  margin-bottom: 130px;\n  // margin-left: 50px;\n  // margin-right: 30px;\n  @media (min-width: 391px) {\n    grid-template-columns: 40% 60%;\n    grid-gap: 50px;\n  }\n  @media (max-width: 390px) {\n    grid-template-rows: auto auto;\n  }\n"])));
+var RatingBreakdownStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  max-width: 100%;\n  // @media (min-width: 768px) {\n  // }\n  @media (max-width: 400px) {\n    margin-left: 20px;\n  }\n"])));
+var CharacterListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  width: 100%;\n  justify-content: center;\n  margin-right: 45px;\n"])));
+var StarListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n"])));
+var ReviewButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  font-family: 'Oswald', sans-serif;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: light;\n  opacity:0.6;\n  width: 100%;\n"])));
+var SpanStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  padding-left: 2px;\n  font-size: 13px;\n  font-weight: light;\n  opacity: 0.6;\n  max-width: 100%;\n"])));
+var CharacteristicRatingStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: stretch;\n  justify-content: space-evenly;\n  margin-bottom: 0px;\n  max-width: 100%;\n"])));
+var RadioButtonContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  max-width: 100%;\n"])));
+var RadioButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].input(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  align-self: center;\n  max-width: 100%;\n"])));
+var ReviewListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  margin-top: 16px;\n  margin: 0 auto;\n  max-width: 90%;\n  overflow-y: auto;\n  overflow-x: hidden;\n  word-wrap: break-word;\n  max-height: 500px;\n  // @media (max-width: 375px) {\n  //   width: 400px;\n  // }\n  // @media (max-width: 400px) {\n  //   margin-left: 30px;\n  // }\n"])));
+var ReviewStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  padding: 10px;\n  border-bottom: 1px dashed;\n  margin-top: 0px;\n  max-width: 100%;\n\n"])));
+var SummaryStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].h3(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  color: #007185;\n  font-weight: bold;\n  margin-left: 0px;\n  width: 60%;\n"])));
+var BodyStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].p(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n"])));
+var NameDateStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].small(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-self: center;\n  margin-bottom: 10px;\n  max-width: 100%;\n\n"])));
+var StarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  max-width: 100%;\n\n"])));
+=======
+var MainGridStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  display: grid;\n  // grid-template-columns: 40% 60%;\n  // grid-gap: 50px;\n  margin-bottom: 130px;\n  // margin-left: 50px;\n  // margin-right: 30px;\n  max-width: 85vw;\n  @media (min-width: 768px) {\n    grid-template-columns: 40% 60%;\n    grid-gap: 50px;\n    margin-left: 50px;\n    margin-right: 30px;\n  }\n  @media (max-width: 375px) {\n    grid-template-rows: auto auto;\n  }\n"])));
+var RatingBreakdownStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  // @media (min-width: 768px) {\n  // }\n  @media (max-width: 400px) {\n    margin-left: 20px;\n  }\n"])));
+var CharacterListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  margin-right: 45px;\n"])));
+var StarListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n"])));
+var ReviewButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  font-family: 'Oswald', sans-serif;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: light;\n  opacity:0.6;\n"])));
+var SpanStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  padding-left: 2px;\n  font-size: 13px;\n  font-weight: light;\n  opacity: 0.6;\n"])));
+var CharacteristicRatingStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: stretch;\n  justify-content: space-evenly;\n  margin-bottom: 0px;\n  width: 400px;\n"])));
+var RadioButtonContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n"])));
+var RadioButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].input(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  align-self: center;\n"])));
+var ReviewListStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  margin-top: 16px;\n  width: 85vw;\n  overflow-y: auto;\n  overflow-x: hidden;\n  word-wrap: break-word;\n  max-height: 500px;\n  // @media (max-width: 375px) {\n  //   width: 400px;\n  // }\n  // @media (max-width: 400px) {\n  //   margin-left: 30px;\n  // }\n"])));
+var ReviewStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  padding: 10px;\n  border-bottom: 1px dashed;\n  margin-top: 0px;\n"])));
+var SummaryStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].h3(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  color: #007185;\n  font-weight: bold;\n  margin-left: 0px;\n  width: 60%;\n"])));
+var BodyStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].p(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n"])));
+var NameDateStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].small(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-self: center;\n  margin-bottom: 10px;\n"])));
+var StarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n"])));
+>>>>>>> main
+var CheckStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].img(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  width: 20px;\n"])));
+var SmallStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].small(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n"])));
+var OverallRatingStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin-left: 50px;\n  margin-bottom: -40px;\n"])));
+var SortBarStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  @media (max-width: 400px) {\n    margin-left: 30px;\n  }\n"])));
+var SelectStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].select(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  // padding-left: 3px;\n  border-color: transparent;\n  display: flex;\n  min-height: 38px;\n  margin-left: -0.5px;\n  font-family: 'Oswald', sans-serif;\n  flex-wrap: wrap;\n  text-decoration: underline 2px;\n  font-size: 20px;\n\n  &:focus {\n    outline: none;\n  }\n"])));
 
 /***/ }),
 

@@ -21,6 +21,7 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
 
 
   useEffect(() => {
+    console.log('add to cart');
     const currentStyleSkusArray = Object.entries(currentStyleSkus);
     setSizeSelectedStatus(false);
     setSizeSelectedStatus(false);
@@ -76,7 +77,10 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
   const handleAddToBag = () => {
     if (sizeSeletedStatus && outOfStockStatus === false && qtySeletedStatus) {
       for (let i = 0; i < selectedQty; i++) {
-        axios.post('/products/addToCart', {sku_id: Number(selectedSku)})
+        axios({
+          method: 'post',
+          url:  '/cart',
+        })
           .then((response) => {
             setRefreshState(!refreshState);
           })
@@ -92,13 +96,8 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
     }
   }
 
-//   const runThis = function () {
-//     document.querySelector('.size-select').focus();
-// };
-
   return (
     <>
-      {/* div for size selecting */}
       <SizeQtyContainer >
         <SizeQtyStyle name="size" className="size-select" onChange={handleSizeSelect}>
           {sizeOptions()}

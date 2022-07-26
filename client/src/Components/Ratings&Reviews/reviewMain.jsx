@@ -44,9 +44,12 @@ function ReviewMain({ product_id }) {
   // }, [overallRating, numReviews]);
 
   useEffect(() => {
-    axios.get('/reviews/reviews/meta', {
+    console.log('Review Main')
+    axios({
+      method: 'get',
+      url: `/reviews/meta`,
       params: {
-        product_id,
+        product_id
       },
     })
       .then(({ data }) => {
@@ -100,7 +103,9 @@ function ReviewMain({ product_id }) {
             });
           }));
         });
-        return axios.get('/reviews/reviews', {
+        return axios({
+          method: 'get',
+          url: '/reviews',
           params: {
             product_id,
             sort: sortOption,

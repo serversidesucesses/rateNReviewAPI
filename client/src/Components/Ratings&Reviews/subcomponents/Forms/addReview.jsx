@@ -23,6 +23,7 @@ export default function AddReview({ characteristics, product_id }) {
   const [characteristicsObj, setCharacteristicsObj] = useState({});
 
   useEffect(() => {
+    console.log('addReview')
     setValues({
       ...values,
       characteristics: characteristicsObj,
@@ -30,6 +31,7 @@ export default function AddReview({ characteristics, product_id }) {
   }, [characteristicsObj]);
 
   useEffect(() => {
+    console.log('addReviewForm1')
     setValues({
       ...values,
       product_id,

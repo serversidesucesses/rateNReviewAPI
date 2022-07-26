@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MainImage } from '../../Styles/ProductOverview/carousel.styled.js';
 
 // here photo is an object that contain both the thumbnailurl and normal url

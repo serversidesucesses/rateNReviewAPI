@@ -17,7 +17,6 @@ export default function AddAnswer({ onFormValidation }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target[name], e.target.value);
     setValues({
       ...values,
       [name]: value,

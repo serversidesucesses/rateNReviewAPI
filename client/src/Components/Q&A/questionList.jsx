@@ -33,44 +33,57 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
   const [reportA, setReportA] = useState(false);
   const [answersLength, setAnswerLength] = useState(0);
   const [helpfulClicked, setHelpfulClick] = useState(false);
+  const [helpfulDataA, setHelpfulDataA] = useState(false);
 
+  console.log(question);
   useEffect(() => {
-    axios.get('/questions/answers', {
-      params: {
-        question_id: question.question_id,
-        page: 1,
-      },
-    })
-      .then(({ data }) => {
-        console.log('heloo gtom answers')
-        ReactDOM.unstable_batchedUpdates(() => {
-          setAllAnswers(data.results);
-          setAnswers(data.results.slice(0, count));
-          setAnswerLength(data.results.length);
-        });
+
+    if (count > 2) {
+      console.log('questionList_1')
+      setAnswers(allAnswers.slice(0, count));
+    } else {
+      console.log('questionList')
+      axios({
+        method: 'get',
+        url: `/qa/questions/${question.question_id}/answers`,
+        params: {
+          page: 1,
+          count,
+        }
       })
-      .catch((error) => console.log(error));
-  }, [helpfulClicked, reportA, isModalOpen]);
+        .then(({ data }) => {
+          ReactDOM.unstable_batchedUpdates(() => {
+            setAllAnswers(data.results);
+            setAnswers(data.results.slice(0, count));
+            setAnswerLength(data.results.length);
+          });
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [count, helpfulDataA, reportA, isModalOpen]);
 
-  useEffect(() => {
-    setAnswers(allAnswers.slice(0, count));
-  }, [count]);
+  // useEffect(() => {
 
-  useEffect(() => {
-    localStorage.setItem('reportAns', JSON.stringify(reportA))
-  }, [reportA])
+
+  // }, [count]);
+
 
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {
-      setHelpfulClick(true);
-      axios.put(`/questions/answers/helpful?answer_id=${answer_id}`)
-      .then(() => alert('Thank you for your feedback'))
+    axios({
+      method: 'put',
+      url: `qa/answers/${answer_id}/helpful`
+    })
+      .then(() => setHelpfulDataA(!helpfulDataA))
       .catch((error) => console.log(error));
+
   }
 
   const report = (answer_id) => {
-    setReportA(true);
-      axios.put(`/questions/reportA?answer_id=${answer_id}`)
+    axios({
+      method: 'put',
+      url: `qa/answers/${answer_id}/report`,
+    })
       .then(() => {
         alert('Answer has been reported');
       })
@@ -88,7 +101,11 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
 
 
   const onFormValidation = (data, questionId) => {
-    axios.post(`/questions/answers?question_id=${question.question_id}`, data)
+    axios({
+      method: 'post',
+      url: `/qa/questions/${questionId}/answers`,
+      data,
+    })
       .then(() => {
           alert('Thank you for your feedback');
       })

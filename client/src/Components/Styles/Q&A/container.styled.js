@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const Question_AnswerStyled = styled.ul`
   max-height: 600px;
+  min-heigh: 600px;
   width: 85vw;
   margin: 0 auto;
   overflow-y: auto;
@@ -125,4 +126,8 @@ export const SeeMoreQuestionStyled = styled.div`
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
   border-bottom 1px solid black;
+`;
+
+export const loadingQuestion = styled.div`
+  min-height:600px;
 `;
