@@ -105,14 +105,14 @@ function ReviewMain({ product_id }) {
         });
         return axios({
           method: 'get',
-          url: `/reviews/`,
+          url: '/reviews',
           params: {
-            page: 1,
-            count: reviewCount,
             product_id,
             sort: sortOption,
-          }
-        })
+            count: reviewCount,
+          },
+        });
+      })
       .then(({ data }) => {
         ReactDOM.unstable_batchedUpdates(() => {
           setReviews(data.results);

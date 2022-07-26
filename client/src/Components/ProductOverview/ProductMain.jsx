@@ -24,10 +24,10 @@ export default function ProductMain({product_id}) {
   const getDataFromProductId = (productId) => {
     axios({
       method: 'get',
-      url: `/products/${productID}`,
+      url: `/products/${productId}`,
     })
       .then((response) => {
-        //console.log(response.data.name);
+        // console.log(response.data.name);
         ReactDOM.unstable_batchedUpdates(() => {
           setProductDetails(response.data)
           setProductName(response.data.name);

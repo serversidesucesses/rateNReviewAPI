@@ -33,7 +33,9 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
   const [reportA, setReportA] = useState(false);
   const [answersLength, setAnswerLength] = useState(0);
   const [helpfulClicked, setHelpfulClick] = useState(false);
+  const [helpfulDataA, setHelpfulDataA] = useState(false);
 
+  console.log(question);
   useEffect(() => {
 
     if (count > 2) {
@@ -43,7 +45,7 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
       console.log('questionList')
       axios({
         method: 'get',
-        url: `/qa/questions/${question_id}/answers`,
+        url: `/qa/questions/${question.question_id}/answers`,
         params: {
           page: 1,
           count,
@@ -72,7 +74,7 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
       method: 'put',
       url: `qa/answers/${answer_id}/helpful`
     })
-      .then(() => setHelpfulDataA(true))
+      .then(() => setHelpfulDataA(!helpfulDataA))
       .catch((error) => console.log(error));
 
   }

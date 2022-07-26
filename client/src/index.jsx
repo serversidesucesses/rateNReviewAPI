@@ -18,7 +18,7 @@ export default function App({ product_id }) {
       <Header />
       <ProductMain product_id={product_id}/>
       <Suspense fallback={<div>Loading...</div>}>
-      <QuestionListContainer />
+      <QuestionListContainer product_id={product_id} />
       {/* <QuestionListContainer /> */}
       <ReviewMain product_id={product_id} />
       </Suspense>

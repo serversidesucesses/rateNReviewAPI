@@ -66,7 +66,7 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
   const getStyleFromProductId = (productId) => {
     axios({
       method: 'get',
-      url:  `products/${productID}/styles`,
+      url:  `products/${productId}/styles`,
     })
       .then((response) => {
         let current = response.data.results[0];
