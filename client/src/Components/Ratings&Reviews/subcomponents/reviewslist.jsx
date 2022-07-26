@@ -17,7 +17,7 @@ export default function ReviewsList({ reviews, loadMoreReviews, characteristics,
   // };
 
   return (
-    <div style={{ marginBottom: '10px', marginTop: '20px' }}>
+    <div style={{ marginBottom: '10px', marginTop: '20px'}}>
       <SortView selectHandler={selectHandler} reviewCount={reviewCount} />
       <ReviewListStyled>
         { isModalOpen
