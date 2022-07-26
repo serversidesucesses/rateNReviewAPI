@@ -514,8 +514,12 @@ function QuestionList(_ref) {
   var question = _ref.question,
       helpfulness = _ref.helpfulness,
       reportQ = _ref.reportQ,
+<<<<<<< HEAD
       seeMoreQuestion = _ref.seeMoreQuestion,
       helpfulClick = _ref.helpfulClick;
+=======
+      seeMoreQuestion = _ref.seeMoreQuestion;
+>>>>>>> main
 
   // answers only first  two
   // get answers --> sort by helpfulness
@@ -536,6 +540,7 @@ function QuestionList(_ref) {
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
+<<<<<<< HEAD
       status = _useState8[0],
       setStatus = _useState8[1];
 
@@ -565,18 +570,50 @@ function QuestionList(_ref) {
       setHelpfulDataA = _useState18[1];
 
   console.log(question);
+=======
+      helpfulDataA = _useState8[0],
+      setHelpfulDataA = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      status = _useState10[0],
+      setStatus = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      isModalOpen = _useState12[0],
+      setIsModalOpen = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      reportA = _useState14[0],
+      setReportA = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState16 = _slicedToArray(_useState15, 2),
+      answersLength = _useState16[0],
+      setAnswerLength = _useState16[1];
+
+>>>>>>> main
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (count > 2) {
       console.log('questionList_1');
       setAnswers(allAnswers.slice(0, count));
     } else {
       console.log('questionList');
+<<<<<<< HEAD
       axios({
         method: 'get',
         url: "/qa/questions/".concat(question.question_id, "/answers"),
         params: {
           page: 1,
           count: count
+=======
+      axios.get('/questions/answers', {
+        params: {
+          question_id: question.question_id,
+          page: 1
+>>>>>>> main
         }
       }).then(function (_ref2) {
         var data = _ref2.data;
@@ -594,21 +631,31 @@ function QuestionList(_ref) {
   // ----------setter functions being passed to child component-------------------------------------
 
   var fetchHelpfulData = function fetchHelpfulData(answer_id) {
+<<<<<<< HEAD
     axios({
       method: 'put',
       url: "qa/answers/".concat(answer_id, "/helpful")
     }).then(function () {
       return setHelpfulDataA(!helpfulDataA);
+=======
+    axios.put("/questions/answers/helpful/?answer_id=".concat(answer_id)).then(function () {
+      return setHelpfulDataA(true);
+>>>>>>> main
     })["catch"](function (error) {
       return console.log(error);
     });
   };
 
   var report = function report(answer_id) {
+<<<<<<< HEAD
     axios({
       method: 'put',
       url: "qa/answers/".concat(answer_id, "/report")
     }).then(function () {
+=======
+    axios.put("/questions/reportA/?answer_id=".concat(answer_id)).then(function () {
+      setReportA(true);
+>>>>>>> main
       alert('Answer has been reported');
     })["catch"](function (error) {
       return console.log(error);
@@ -625,22 +672,30 @@ function QuestionList(_ref) {
   };
 
   var onFormValidation = function onFormValidation(data, questionId) {
+<<<<<<< HEAD
     axios({
       method: 'post',
       url: "/qa/questions/".concat(questionId, "/answers"),
       data: data
     }).then(function () {
       alert('Thank you for your feedback');
+=======
+    axios.post("/questions/answers?question_id=".concat(question.question_id), data).then(function () {
+      console.log('created');
+>>>>>>> main
     })["catch"](function () {
       return alert('error');
     });
     setIsModalOpen(false);
   };
 
+<<<<<<< HEAD
   var clickHandler = function clickHandler() {
     helpfulness(question.question_id);
   };
 
+=======
+>>>>>>> main
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     id: "".concat(question.question_id),
     style: {
@@ -652,7 +707,10 @@ function QuestionList(_ref) {
       isOpen: isModalOpen,
       onCloseRequest: onModalCloseRequest,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Forms_addAnswer_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+<<<<<<< HEAD
         helpfulClicked: helpfulClicked,
+=======
+>>>>>>> main
         onFormValidation: onFormValidation
       })
     }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.QuestionListItemStyled, {
@@ -671,11 +729,21 @@ function QuestionList(_ref) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_6__.ButtonContainerStyled, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+<<<<<<< HEAD
             children: [helpfulClick ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.SpanStyled, {
               children: "Helpful?"
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_6__.ButtonStyled, {
               type: "button",
               onClick: clickHandler,
+=======
+            children: [helpfulDataA ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.SpanStyled, {
+              children: "Helpful?"
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_buttons_styled__WEBPACK_IMPORTED_MODULE_6__.ButtonStyled, {
+              type: "button",
+              onClick: function onClick() {
+                return helpfulness(question.question_id);
+              },
+>>>>>>> main
               children: "Helpful?"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Styles_Q_A_container_styled__WEBPACK_IMPORTED_MODULE_5__.SpanStyled, {
               children: "Yes (".concat(question.question_helpfulness, ")")
@@ -795,9 +863,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
+<<<<<<< HEAD
 function QuestionListContainer(_ref) {
   var product_id = _ref.product_id;
 
+=======
+function QuestionListContainer() {
+>>>>>>> main
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       questions = _useState2[0],
@@ -834,6 +906,7 @@ function QuestionListContainer(_ref) {
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
       helpulBtn = _useState14[0],
+<<<<<<< HEAD
       setHelpfulBtnClick = _useState14[1]; // const product_id = 40344; // --------product id need to standardize with all other components---
 
 
@@ -853,6 +926,24 @@ function QuestionListContainer(_ref) {
         setQuestions(data.results.slice(0, count));
         setDataLength(data.results.length);
         setAllQuestions(data.results);
+=======
+      setHelpfulBtnClick = _useState14[1];
+
+  var product_id = 40344; // --------product id need to standardize with all other components---
+
+  function fetchData() {
+    axios.get('/questions/questions', {
+      params: {
+        product_id: product_id,
+        page: 1
+      }
+    }).then(function (_ref) {
+      var data = _ref.data;
+      react_dom__WEBPACK_IMPORTED_MODULE_1__.unstable_batchedUpdates(function () {
+        setQuestions(data.slice(0, count));
+        setDataLength(data.length);
+        setAllQuestions(data);
+>>>>>>> main
       });
     })["catch"](function (error) {
       return console.log(error);
@@ -873,22 +964,32 @@ function QuestionListContainer(_ref) {
   }, [search]);
 
   var fetchHelpfulData = function fetchHelpfulData(question_id) {
+<<<<<<< HEAD
     setHelpfulBtnClick(true);
     axios({
       method: 'put',
       url: "/qa/answers/".concat(question_id, "/helpful")
     }).then(function () {
       fetchData();
+=======
+    axios.put("/questions/questions/helpful?question_id=".concat(question_id)).then(function () {
+      fetchData();
+      setHelpfulBtnClick(true);
+>>>>>>> main
     })["catch"](function (error) {
       return console.log(error);
     });
   };
 
   var reportQ = function reportQ(question_id) {
+<<<<<<< HEAD
     axios({
       method: 'put',
       url: "/qa/questions/".concat(question_id, "/report")
     }).then(function () {
+=======
+    axios.put("questions/reportQ?question_id=".concat(question_id)).then(function () {
+>>>>>>> main
       fetchData();
       alert('Question has been reported successfully');
     })["catch"](function (error) {
@@ -1068,8 +1169,13 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var ButtonStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: lighter;\n  opacity:0.4;\n  font-family: 'Oswald', sans-serif;\n"])));
+<<<<<<< HEAD
 var ButtonContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 30%;\n  padding-right: 15px;\n  @media (max-width: 500px) {\n    width: 60%;\n  }\n"])));
 var ButtonContainerAnsStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 18rem;\n  margin-top: -0.09em;\n  margin-bottom: 0.3em;\n"])));
+=======
+var ButtonContainerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 18rem;\n  padding-right: 15px;\n"])));
+var ButtonContainerAnsStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  width: 25rem;\n  margin-top: -0.09em;\n  margin-bottom: 0.3em;\n"])));
+>>>>>>> main
 var SeeMoreBtnStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-end;\n  padding: 0;\n  border: none;\n  background: none;\n  text-decoration: underline;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: lighter;\n  opacity:0.4;\n  // font-family: 'Oswald', sans-serif;\n  // font-weight: 200;\n  // height: 30px;\n  // background-color: white;\n  // margin-left: 5px;\n  // font-size: 18px;\n  // cursor: pointer;\n  // &:hover {\n  //   background-color: #99AEAD;\n  // }\n"])));
 var MoreQuestionBtnStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  // margin-left: 1rem;\n  // border: none;\n  // background: none;\n  // text-decoration: underline;\n  // cursor: pointer;\n  // font-size: 13px;\n  // font-weight: lighter;\n  // opacity:0.4;\n  margin-right: 5px;\n  font-family: 'Oswald', sans-serif;\n  font-weight: 200;\n  // font-size: 18px;\n  min-height: 3rem;\n  background-color: white;\n  cursor: pointer;\n  &:hover {\n    background-color: #99AEAD;\n  }\n"])));
 
@@ -1104,9 +1210,15 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 /* eslint-disable camelcase */
 
+<<<<<<< HEAD
 var Question_AnswerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-height: 600px;\n  width: 85vw;\n  margin: 0 auto;\n  overflow-y: auto;\n  padding: 15px;\n  font-size: 14px;\n  background: glacier-white;\n  margin-bottom: -0.8rem;\n"])));
 var QuestionStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: flex-start;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  @media (max-width: 500px) {\n    display: flex;\n    flex-direction: column;\n"])));
 var QuestionListItemStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].li(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  padding: 5px;\n  margin-bottom: 10px;\n  list-style: none;\n  border-bottom: 1px dashed;\n\n\n}\n"])));
+=======
+var Question_AnswerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-height: 600px;\n  width: 65%;\n  margin: 0 auto;\n  overflow-y: auto;\n  padding: 15px;\n  font-size: 14px;\n  background: glacier-white;\n  margin-bottom: -0.8rem;\n"])));
+var QuestionStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  align-items: flex-start;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n"])));
+var QuestionListItemStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].li(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  padding: 5px;\n  margin-bottom: 10px;\n  list-style: none;\n  border-bottom: 1px dashed;\n"])));
+>>>>>>> main
 var SpanStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  padding-left: 2px;\n  font-size: 13px;\n  font-weight: lighter;\n  opacity: 0.4;\n  "])));
 var More_AnswerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  height: 250px;\n  overflow-y: auto;\n  overflow-x: hidden;\n  margin-right: 5px;\n  width: 98%;\n\n"])));
 var AnswerStyled = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].li(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: space-between;\n  justify-content: space-between;\n  margin-left: 5px;\n  width: 100%;\n  min-height: 40px;\n  margin-bottom: 0.3rem;\n\n"])));

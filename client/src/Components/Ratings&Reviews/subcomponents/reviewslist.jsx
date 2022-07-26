@@ -3,7 +3,7 @@ import Review from './review.jsx';
 import Modal from './Modal/Modal.jsx';
 import AddReview from './Forms/addReview.jsx';
 import SortView from './sortview.jsx';
-import { ReviewListStyled, ReviewListButtonStyled } from '../../Styles/Reviews/bars.styled.js';
+import { ReviewListStyled, ReviewListButtonStyled, ReviewListContainerStyled } from '../../Styles/Reviews/bars.styled.js';
 
 export default function ReviewsList({ reviews, loadMoreReviews, characteristics, product_id, selectHandler, reviewCount }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +17,7 @@ export default function ReviewsList({ reviews, loadMoreReviews, characteristics,
   // };
 
   return (
-    <div style={{ marginBottom: '10px', marginTop: '20px'}}>
+    <ReviewListContainerStyled>
       <SortView selectHandler={selectHandler} reviewCount={reviewCount} />
       <ReviewListStyled>
         { isModalOpen
@@ -38,8 +38,6 @@ export default function ReviewsList({ reviews, loadMoreReviews, characteristics,
         <ReviewListButtonStyled type="button" onClick={loadMoreReviews}>More Reviews</ReviewListButtonStyled>
         <ReviewListButtonStyled type="button" onClick={() => setIsModalOpen(true)}>Add a Review</ReviewListButtonStyled>
       </div>
-      {/* <ReviewListButtonStyled type="button" onClick={loadMoreReviews}>More Reviews</ReviewListButtonStyled>
-      <ReviewListButtonStyled type="button" onClick={() => setIsModalOpen(true)}>Add a Review</ReviewListButtonStyled> */}
-    </div>
+    </ReviewListContainerStyled>
   );
 }

@@ -13,6 +13,14 @@ export const ReviewContainerStyled = styled.div`
   // }
 `;
 
+export const ReviewListContainerStyled = styled.div`
+  margin-bottom: 10px;
+  margin-top: 20px;
+  @media (max-width: 400px) {
+    width: 85vw;
+  }
+`;
+
 export const ReviewListButtonStyled = styled.button`
   // padding: 0;
   // border: 4px black;
@@ -130,11 +138,11 @@ export const MainGridStyled = styled.div`
   margin-bottom: 130px;
   // margin-left: 50px;
   // margin-right: 30px;
-  @media (min-width: 391px) {
+  @media (min-width: 501px) {
     grid-template-columns: 40% 60%;
     grid-gap: 50px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     grid-template-rows: auto auto;
   }
 `;
@@ -155,7 +163,6 @@ export const CharacterListStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   justify-content: center;
   margin-right: 45px;
 `;
@@ -177,7 +184,6 @@ export const ReviewButtonStyled = styled.button`
   font-size: 13px;
   font-weight: light;
   opacity:0.6;
-  width: 100%;
 `;
 
 export const SpanStyled = styled.span`
@@ -185,7 +191,6 @@ export const SpanStyled = styled.span`
   font-size: 13px;
   font-weight: light;
   opacity: 0.6;
-  max-width: 100%;
 `;
 
 export const CharacteristicRatingStyled = styled.div`
@@ -194,7 +199,7 @@ export const CharacteristicRatingStyled = styled.div`
   align-items: stretch;
   justify-content: space-evenly;
   margin-bottom: 0px;
-  max-width: 100%;
+  width: 400px;
 `;
 
 export const RadioButtonContainerStyled = styled.div`
@@ -203,12 +208,10 @@ export const RadioButtonContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 100%;
 `;
 
 export const RadioButtonStyled = styled.input`
   align-self: center;
-  max-width: 100%;
 `;
 
 export const ReviewListStyled = styled.div`
@@ -231,8 +234,6 @@ export const ReviewStyled = styled.div`
   padding: 10px;
   border-bottom: 1px dashed;
   margin-top: 0px;
-  max-width: 100%;
-
 `;
 
 export const SummaryStyled = styled.h3`
@@ -252,15 +253,11 @@ export const NameDateStyled = styled.small`
   flex-direction: column;
   align-self: center;
   margin-bottom: 10px;
-  max-width: 100%;
-
 `;
 
 export const StarStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 100%;
-
 `;
 
 export const CheckStyled = styled.img`
