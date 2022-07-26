@@ -26,7 +26,6 @@ export default function AddQuestion({ onFormValidation }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
     onFormValidation(values);
   }
 

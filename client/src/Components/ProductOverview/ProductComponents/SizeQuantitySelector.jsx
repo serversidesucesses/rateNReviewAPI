@@ -21,6 +21,7 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
 
 
   useEffect(() => {
+    console.log('add to cart');
     const currentStyleSkusArray = Object.entries(currentStyleSkus);
     setSizeSelectedStatus(false);
     setSizeSelectedStatus(false);
@@ -92,13 +93,8 @@ export default function SizeQuantitySelector({ currentStyleSkus, refreshState, s
     }
   }
 
-//   const runThis = function () {
-//     document.querySelector('.size-select').focus();
-// };
-
   return (
     <>
-      {/* div for size selecting */}
       <SizeQtyContainer >
         <SizeQtyStyle name="size" className="size-select" onChange={handleSizeSelect}>
           {sizeOptions()}

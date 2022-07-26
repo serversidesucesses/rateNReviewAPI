@@ -35,42 +35,45 @@ export default function QuestionList({ question, helpfulness, reportQ, seeMoreQu
   const [helpfulClicked, setHelpfulClick] = useState(false);
 
   useEffect(() => {
-    axios.get('/questions/answers', {
-      params: {
-        question_id: question.question_id,
-        page: 1,
-      },
-    })
-      .then(({ data }) => {
-        console.log('heloo gtom answers')
-        ReactDOM.unstable_batchedUpdates(() => {
-          setAllAnswers(data.results);
-          setAnswers(data.results.slice(0, count));
-          setAnswerLength(data.results.length);
-        });
+
+    if (count > 2) {
+      console.log('questionList_1')
+      setAnswers(allAnswers.slice(0, count));
+    } else {
+      console.log('questionList')
+      axios.get('/questions/answers', {
+        params: {
+          question_id: question.question_id,
+          page: 1,
+        },
       })
-      .catch((error) => console.log(error));
-  }, [helpfulClicked, reportA, isModalOpen]);
+        .then(({ data }) => {
+          ReactDOM.unstable_batchedUpdates(() => {
+            setAllAnswers(data.results);
+            setAnswers(data.results.slice(0, count));
+            setAnswerLength(data.results.length);
+          });
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [count, helpfulDataA, reportA, isModalOpen]);
 
-  useEffect(() => {
-    setAnswers(allAnswers.slice(0, count));
-  }, [count]);
+  // useEffect(() => {
 
-  useEffect(() => {
-    localStorage.setItem('reportAns', JSON.stringify(reportA))
-  }, [reportA])
+
+  // }, [count]);
+
 
   // ----------setter functions being passed to child component-------------------------------------
   const fetchHelpfulData = (answer_id) => {
-      setHelpfulClick(true);
-      axios.put(`/questions/answers/helpful?answer_id=${answer_id}`)
-      .then(() => alert('Thank you for your feedback'))
+      axios.put(`/questions/answers/helpful/?answer_id=${answer_id}`)
+      .then(() => setHelpfulDataA(true))
       .catch((error) => console.log(error));
+
   }
 
   const report = (answer_id) => {
-    setReportA(true);
-      axios.put(`/questions/reportA?answer_id=${answer_id}`)
+      axios.put(`/questions/reportA/?answer_id=${answer_id}`)
       .then(() => {
         alert('Answer has been reported');
       })

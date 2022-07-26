@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import {
   FaAngleRight,
   FaAngleLeft,
@@ -23,9 +23,9 @@ export default function ExpandedImageView({
   const magnifierHeight = 300;
   const magnifieWidth = 300;
   const zoomLevel = 2.5;
-  console.log('image url is: ', image);
+  // console.log('image url is: ', image);
 
-  console.log('this is magnifying status:', showMagnifier);
+  // console.log('this is magnifying status:', showMagnifier);
   return (
     <>
       {leftButtonStatus
@@ -61,7 +61,7 @@ export default function ExpandedImageView({
                 const elem = e.currentTarget;
                 const { width, height } = elem.getBoundingClientRect();
                 setSize([width, height]);
-                console.log(width, height);
+                // console.log(width, height);
               }}
               onMouseMove={(e) => {
               // update cursor position
@@ -101,7 +101,7 @@ export default function ExpandedImageView({
                 const { width, height } = elem.getBoundingClientRect();
                 setSize([width, height]);
                 setShowMagnifier(true);
-                console.log(width, height);
+                // console.log(width, height);
               }}
               onMouseMove={(e) => {
               // update cursor position

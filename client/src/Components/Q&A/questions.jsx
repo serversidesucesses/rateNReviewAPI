@@ -41,14 +41,17 @@ export default function QuestionListContainer() {
   }
 
   useEffect(() => {
+    console.log('questions')
     fetchData();
   }, []);
 
   useEffect(() => {
+    console.log('questions_1')
     setQuestions(allQuestions.slice(0, count));
   }, [count]);
 
   useEffect(() => {
+    console.log('question_2')
     setQuestions(search);
   }, [search]);
 

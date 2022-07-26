@@ -40,7 +40,8 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
 
   // get data from /cart immediate when the page load
   useEffect(() => {
-    axios.get('/products/getFromCart')
+    console.log('styleSelector')
+      axios.get('/products/getFromCart')
       .then((response) => {
         ReactDOM.unstable_batchedUpdates(() => {
           setCartArray(response.data);
@@ -54,6 +55,7 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
 
     // productId is default to 40345 right now
     useEffect(() => {
+      console.log('styleSelector_1')
       getStyleFromProductId(productId);
     }, []);
 
@@ -81,7 +83,7 @@ export default function StyleSelector({ productName, categoryName, priceTag, pro
 
   };
 
-  console.log('rating in style selector:', ratingAndCount[0]);
+  // console.log('rating in style selector:', ratingAndCount[0]);
 
   if (isLoading) {
     return null;
