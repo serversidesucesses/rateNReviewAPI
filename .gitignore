@@ -6,5 +6,7 @@ test
 coverage
 _tests_
 **/package-lock.json
+*.csv
+
 # remove dist from gitignore when deploying application
 
