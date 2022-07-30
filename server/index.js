@@ -1,45 +1,38 @@
 require('dotenv').config();
-
-const express = require('express');
 const path = require('path');
-const router = require('./router');
-const sessionHandler = require('./middleware/session-handler');
-const compression = require('compression');
-const logger = require('./middleware/logger');
-const expressStaticGzip = require("express-static-gzip");
 const axios = require('axios');
-
 const app = express();
-app.use(compression());
-app.use(sessionHandler);
-// app.use(logger);
+const db = require('./db.js');
+
 app.use(express.json());
-app.use(expressStaticGzip(path.join(__dirname, '../client/dist'), {
-  enableBrotli: true
-})
-);
 
-// all routes go to router folder index.js
-app.all('/*', (req, res) => {
-  axios({
-    url: req.url,
-    method: req.method,
-    baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp',
-    data: req.body,
-    headers: {
-      Authorization: process.env.Token,
-      'Accept-Encoding': 'gzip, compress, br',
-    },
-  })
-  .then((response) => {
-    res.status(response.status).send(response.data);
-  })
-  .catch((err) => {
-    res.status(500).send(err);
-  })
-} )
+app.use(cors());
 
-const PORT = process.env.PORT || 3000;
+
+
+app.get('/reviews', db.getReviewList);
+
+app.get('/reviews/meta', db.getProductMetadata);
+
+app.post('/reviews', db.addReview);
+
+app.put('/reviews/:review_id/helpful', db.markReviewHelpful);
+
+app.put('/reviews/:review_id/report', db.reportReview);
+
+
+const PORT = process.env.PORT || 5432;
 
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
+
+// MAYBE FOR LATER USE
+// const expressStaticGzip = require("express-static-gzip");
+// app.use(expressStaticGzip(path.join(__dirname, '../client/dist'), {
+  // const sessionHandler = require('./middleware/session-handler');
+  // app.use(sessionHandler);
+  // const compression = require('compression');
+  // app.use(compression());
+  // const logger = require('./middleware/logger');
+  // // app.use(logger);
+  //   enableBrotli: true

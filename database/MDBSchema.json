@@ -36,9 +36,9 @@
         "char_id": { "type": "number", "unique": true },
         "helpfulness": { "type": "number" },
         "date": { "type": "object" },
-        "reviewer_name": { "type": "number" },
-        "email": { "type": "number" },
-        "photos_id": { "type": "number" },
+        "reviewer_name": { "type": "string" },
+        "email": { "type": "string" },
+        "photos_id": { "type": "string" },
     },
     "additionalProperties": false
 };

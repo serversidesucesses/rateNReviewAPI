@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS rnrdb OWNER postgres;
+
 
 CREATE TABLE IF NOT EXISTS product (
   id            SERIAL PRIMARY KEY,
@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS reviews (
   -- FOREIGN KEY (photos_id)
   --   references photos (_id)
 
-
 CREATE TABLE IF NOT EXISTS reviews_photos (
   id         SERIAL PRIMARY KEY,
   review_id  INT UNIQUE NOT NULL references reviews (id),
@@ -61,6 +60,18 @@ CREATE TABLE IF NOT EXISTS characteristic_reviews (
   review_id          INT NOT NULL,
   value              SMALLINT NOT NULL CHECK (value >= 1 AND value <= 5)
 );
+
+
+-- CREATE TABLE product_chars (
+--   id          SERIAL,
+--   product_id  FOREIGN KEY references product (id),
+--   chars       json_agg(json_build_object( SELECT f_id, f_val, l_id, l_val, c_id, c_val, q_id, q_val))
+-- )
+
+-- CREATE TABLE map_chars (
+--   product_id FOREIGN KEY references product (id);
+
+-- )
 
 
 -- CREATE INDEX CONCURRENTLY product_id_index ON meta_data (product_id);
