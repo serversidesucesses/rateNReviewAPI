@@ -1,6 +1,8 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
+import _ from 'underscore';
+
 const pool = new Pool({
   user: process.env.DB_USERNAME,
   host: process.env.DB_HOSTNAME,
@@ -144,28 +146,24 @@ module.exports.getProductMetadata = (req, res) => {
 */
   //param: product_id
 module.exports.addReview = (req, res) => {
+  const {product_id, rating, summary, body, recommend, name, email, photos, characteristics} = req.query;
+
+
 
   //post chars to char_review table
-
+  pool.query(`INSERT INTO reviews (product_id, rating, date, summary, body, recommend, reported, reviewer_name, reviewer_email) VALUES (${product_id}, ${rating}, trunc(extract(epoch from now())*1000), ${summary}, ${body}, ${recommend}, FALSE, ${name}, ${email})
+  RETURNING id;`)
+    .then(({id}) =>
+      _.each(characteristics, ((val, key, list) =>
+      pool.query(`INSERT INTO characteristic_reviews (characteristic_id, review_id, value)
+      VALUES (${key}, ${id}, ${val})`)
+      ))
+    )
   //char table
 
   //review table
 
   //photos table
-  const body = {
-    product_id: 900,
-    rating: 3,
-    summary: `That'll do pig, that'll do!`,
-    body: "This is how i am going to test this route and see if it works!",
-    recommend: true,
-    name: 'Echasketch',
-    email: 'eSketch@aol.com',
-    characteristics: {
-      2991: 2,
-      2992: 3,
-      2993: 4,
-      2994: 3
-    }
 
 
 };
